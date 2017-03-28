@@ -19,7 +19,7 @@
 
 ## Usage
 
-Install dependencies (#installing-dependencies), then run the following:
+[Install dependencies](#installing-dependencies), then run the following:
 ```
 npm run create:db
 npm run build
