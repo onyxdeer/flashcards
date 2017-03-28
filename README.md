@@ -20,7 +20,8 @@
 ## Usage
 
 Install dependencies (#installing-dependencies), then run the following:
-```npm run create:db
+```
+npm run create:db
 npm run build
 ```
 Go to `localhost:7890` to run the server and connect to the database.
