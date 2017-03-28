@@ -61,8 +61,6 @@ From within the root directory:
 sudo npm install -g bower
 npm install
 bower install
-npm run create:db
-npm run build
 ```
 
 ### Roadmap
