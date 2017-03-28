@@ -24,7 +24,7 @@
 npm run create:db
 npm run build
 ```
-Go to `localhost:7890` to run the app.
+Go to `localhost:8000` to run the app.
 
 
 ## Requirements
