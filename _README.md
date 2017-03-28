@@ -1,12 +1,11 @@
 # Project Name
-
-> Pithy project description
+> TBD
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Eric Chen
+  - __Scrum Master__: David Zou
+  - __Development Team Members__: Patrick Xie, Wilton Chew, Eric Chen, David Zou
 
 ## Table of Contents
 
@@ -20,17 +19,38 @@
 
 ## Usage
 
-> Some usage instructions
+Install dependencies (#installing-dependencies), then run the following:
+```npm run create:db
+npm run build
+```
+Go to `localhost:7890` to run the server and connect to the database.
+
 
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Express 4.15.x
+- axios ^0.15.x
+- body-parser 1.17.x
+- mysql 2.13.x
+- path 0.12.x
+- react ^15.4.2
+- react-dom ^15.4.2
+- react-router-dom ^4.x.x
+- Sequelize 3.30.x
+- webpack 2.3.x
+- webpack-dev-server 2.4.x
+
 
 ## Development
+
+- babel-core 6.24.x
+- babel-loader ^6.4.x
+- babel-preset-env ^1.2.x
+- babel-preset-es2015 ^6.24.x
+- babel-preset-react ^6.23.x
+- nodemon 1.11.x
+
 
 ### Installing Dependencies
 
@@ -40,6 +60,8 @@ From within the root directory:
 sudo npm install -g bower
 npm install
 bower install
+npm run create:db
+npm run build
 ```
 
 ### Roadmap
