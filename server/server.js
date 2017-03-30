@@ -4,7 +4,7 @@ const path = require('path');
 const axios = require('axios');
 const db = require('../db/startdb.js');
 
-const PORT = process.env.PORT || 7890;
+const PORT = process.env.PORT || 8000;
 
 const app = express();
 
