@@ -1,13 +1,13 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../server/app');
+const { app } = require('../../server/server.js');
 const should = chai.should();
 
 chai.use(chaiHttp)
 
 describe('Api Endpoints Test', function() {
   it('should list ALL noris on /api/noris GET', function(done){
-    chai.request(server)
+    chai.request(app)
     .get('/api/noris')
     .end(function(err, res){
       res.should.have.status(200);
