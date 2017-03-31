@@ -11,7 +11,7 @@ class Display extends Component {
         title: 'Mock Data Title Here',
         description: 'This is mock data',
         tags: null,
-        obento: [{
+        bento: [{
           front: 'Front 1',
           back: 'Back 1',
           // isFlipped: false
@@ -27,7 +27,7 @@ class Display extends Component {
       },
       noriToDisplay: null,
       currentNori: 0,
-      input: 0
+      input: ''
     }
 
     this.prevNori = this.prevNori.bind(this);
@@ -38,13 +38,13 @@ class Display extends Component {
   }
 
   nextNori() {
-    if (this.state.currentNori < this.state.mockData.obento.length - 1) {
+    if (this.state.currentNori < this.state.mockData.bento.length - 1) {
       this.setState({
         currentNori: this.state.currentNori+=1
       });
     }
     this.setState({
-      noriToDisplay: this.state.mockData.obento[this.state.currentNori]
+      noriToDisplay: this.state.mockData.bento[this.state.currentNori]
     });
   }
 
@@ -55,54 +55,75 @@ class Display extends Component {
       });
     }
     this.setState({  
-      noriToDisplay: this.state.mockData.obento[this.state.currentNori]
+      noriToDisplay: this.state.mockData.bento[this.state.currentNori]
     });
   }
 
   handleInput(event) {
     this.setState({
       input: event.target.value
-    }, console.log('handleInput: value for input has been set to', this.state.input));
+    });
   }
 
-  setNori() {
-    event.preventDefault();
-    if (this.state.input > 0 && this.state.input < this.state.mockData.obento.length - 1) {
+  setNori(event) {
+    event.preventDefault(); 
+    if (this.state.input >= 0 && this.state.input < this.state.mockData.bento.length) {
       this.setState({
-        currentNori: this.state.input
+        currentNori: this.state.input,
+        noriToDisplay: this.state.mockData.bento[this.state.input]
       });
     } else {
       alert('Invalid nori number, please enter another number.');
     }
-    this.setState({  
-      noriToDisplay: this.state.mockData.obento[this.state.currentNori]
-    });
-    console.log('setNori: value for currentNori has been set to', this.state.currentNori);
   }
 
   shuffleNori() {
-
+    var temp = this.state.mockData.bento.slice();
+    var result = [];
+    var randomIndex;
+    while (temp.length > 0) {
+      randomIndex = Math.floor(Math.random() * temp.length);
+      result.push(temp[randomIndex]);
+      temp.splice(randomIndex, 1);
+    }
+    console.log('shuffleNori:', result);
+    this.setState({
+      mockData: { 
+        title: this.state.mockData.title,
+        description: this.state.mockData.description,
+        tags: this.state.mockData.tags,
+        bento: result
+      },
+      currentNori: 0,
+      noriToDisplay: this.state.mockData.bento[0]
+    });
   }
 
   componentWillMount() {
     // send an DB GET request for the flash cards here
   }
 
+  componentDidUpdate() {
+    
+  }
+
   render() {
+    console.log('this.state.mockData in render:', this.state.mockData.bento);
+    console.log('this.state.noriToDisplay in render:', this.state.noriToDisplay);
     return (
       <div>
         <h1>Bento: {this.state.mockData.title}</h1>
           <FlipCard>
-            <div>{this.state.noriToDisplay ? this.state.noriToDisplay.front : this.state.mockData.obento[0].front}</div>
-            <div>{this.state.noriToDisplay ? this.state.noriToDisplay.back : this.state.mockData.obento[0].back}</div>
+            <div>{this.state.noriToDisplay ? this.state.noriToDisplay.front : this.state.mockData.bento[0].front}</div>
+            <div>{this.state.noriToDisplay ? this.state.noriToDisplay.back : this.state.mockData.bento[0].back}</div>
           </FlipCard>
           <div className='buttonSection'>
             <button className='btn btn-default' onClick={this.prevNori}>Previous Nori</button>
             <button className='btn btn-default' onClick={this.nextNori}>Next Nori</button>
-            <button className='btn btn-default' onClick={this.shuffleNori}>Shuffle Nori</button>
+            <button className='btn btn-default' onClick={this.shuffleNori}>Shuffle Bento</button>
           </div>
           <form className='changeToNoriSection' onSubmit={this.setNori}>
-            <label>Enter from 0 to {this.state.mockData.obento.length - 1} to go to that Nori: </label>
+            <label>Enter from 0 to {this.state.mockData.bento.length - 1} to go to that Nori: </label>
             <input type='text' value={this.state.input} onChange={this.handleInput} placeholder='Enter a number here!' />
           </form>
       </div>
