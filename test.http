@@ -6,15 +6,18 @@
 #     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
 # }
 
-POST http://localhost:8000/api/cards HTTP/1.1
-content-type: application/json
+# POST http://localhost:8000/api/cards HTTP/1.1
+# content-type: application/json
 
-{
-    "name": "ayy",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
-}
+# {
+#     "name": "ayy",
+#     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+# }
 
-GET http://localhost:8000/api/cards HTTP/1.1
+# GET http://localhost:8000/api/cards HTTP/1.1
 
 
-GET http://google.com HTTP/1.1
+# GET http://google.com HTTP/1.1
+
+# GET http://localhost:8000/api/noris
+GET http://localhost:8000/hello
