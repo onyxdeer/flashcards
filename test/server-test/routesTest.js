@@ -5,8 +5,15 @@ const should = chai.should();
 
 chai.use(chaiHttp)
 
-describe('Blobs', function() {
-  it('should list ALL blobs on /blobs GET');
+describe('Api Endpoints Test', function() {
+  it('should list ALL noris on /api/noris GET', function(done){
+    chai.request(server)
+    .get('/api/noris')
+    .end(function(err, res){
+      res.should.have.status(200);
+      done();
+    });
+  });
   it('should list a SINGLE blob on /blob/<id> GET');
   it('should add a SINGLE blob on /blobs POST');
   it('should update a SINGLE blob on /blob/<id> PUT');
