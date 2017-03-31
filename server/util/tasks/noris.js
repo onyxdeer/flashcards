@@ -1,10 +1,10 @@
 const get = (req, res) => {
-  console.log('hello this is Cardsget')
-  res.send('hello cards get')
+  console.log('hello this is nori get')
+  res.send('hello nori get')
 }
 
 const post = (req, res) => {
-  console.log('hello this is Cardspost')
+  console.log('hello this is nori post')
   res.send(req.body)
 }
 

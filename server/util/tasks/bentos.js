@@ -2,11 +2,11 @@
 
 
 const get = (req, res) => {
-  console.log('hello this is Decksget')
+  console.log('hello this is bentopost')
 }
 
 const post = (req, res) => {
-  console.log('hello this is Deckspost')
+  console.log('hello this is bentopost')
 }
 
 

@@ -1,6 +1,6 @@
-const cards = require('./tasks/cards.js')
-const decks = require('./tasks/decks.js')
+const noris = require('./tasks/noris.js')
+const bentos = require('./tasks/bentos.js')
 
 
 
-module.exports.tasks = { cards, decks }
+module.exports.tasks = { noris, bentos }
