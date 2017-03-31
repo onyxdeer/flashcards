@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 
 import Display from './Display/Display.jsx';
 import Edit from './Edit/Edit.jsx';
+import Nav from './Nav.jsx';
+import Main from './Main.jsx';
 
 import {
   HashRouter as Router,
   Route,
-  Redirect
+  Redirect,
+  Link
 } from 'react-router-dom';
 
 class App extends Component {
@@ -22,14 +25,13 @@ class App extends Component {
 
     return (
       <div>
-        <h1>Welcome to NoriBento!</h1>
-        <h5>Go to 'localhost:8000/#/display' to go to the Display Page</h5>
-        <h5>Go to 'localhost:8000/#/edit' to go to the Edit Page</h5>
         <Router>
           <div>
+            <Nav />
             <Redirect from='/' to='/' />
-            <Route path='/display' component={Display} />
-            <Route path='/edit' component={Edit} />
+            <Route exact path='/' component={() => <Main/>} />
+            <Route path='/display' component={() => <Display/>} />
+            <Route path='/edit' component={() => <Edit/>} />
           </div>
         </Router>
       </div>
