@@ -1,5 +1,5 @@
-var Sequelize = require('sequelize');
-var db = new Sequelize('reup', 'root', '', {
+const Sequelize = require('sequelize');
+const db = new Sequelize('flashcardsDB', 'root', '', {
       dialect: "mysql", // or 'sqlite', 'postgres', 'mariadb'
     });
 
@@ -10,3 +10,5 @@ db.authenticate()
   .catch(function (err) {
     console.log('Unable to connect to the database:', err);
   });
+
+module.exports = db

@@ -1,6 +1,3 @@
-
-
-
 const get = (req, res) => {
   console.log('hello this is Cardsget')
   res.send('hello cards get')
