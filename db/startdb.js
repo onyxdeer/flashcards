@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var db = new Sequelize('reup', 'root', '', {
+var db = new Sequelize('flashcards', 'root', '', {
       dialect: "mysql", // or 'sqlite', 'postgres', 'mariadb'
     });
 
