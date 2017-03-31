@@ -28,6 +28,7 @@
     "path": "^0.12.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-flipcard": "^0.2.1",
     "react-router-dom": "^4.0.0",
     "sequelize": "^3.30.4",
     "webpack": "^2.3.2",
