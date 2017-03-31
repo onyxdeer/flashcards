@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Display from './Display/Display.jsx';
 import Edit from './Edit/Edit.jsx';
-import Nav from './Nav.jsx';
+import Nav from './Nav/Nav.jsx';
 import Main from './Main.jsx';
 
 import {
