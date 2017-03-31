@@ -10,10 +10,10 @@ const bindRoutes = (app) => {
     .post(util.tasks.bentos.post)
     .get(util.tasks.bentos.get)
 
-app.route('/hello')
-  .get(function(req, res){
-    res.send('okayy')
-  })
+  app.route('/hello')
+    .get(function(req, res){
+      res.send('okayy')
+    })
 }
 
 module.exports = bindRoutes

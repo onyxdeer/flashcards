@@ -27,7 +27,7 @@ app.listen(PORT, function() {
   console.log('Obento express server connection established at:', PORT);
 });
 
-// exports.app = app 
+exports.app = app 
 
 // app.route('/api/noris')
 //   .post(util.tasks.noris.post)
