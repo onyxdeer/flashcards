@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const axios = require('axios');
-const db = require('../db/startdb.js');
+// const db = require('../db/startdb.js');
 
 const PORT = process.env.PORT || 8000;
 
