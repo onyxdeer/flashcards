@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FlipCard from 'react-flipcard';
+import axios from 'axios';
 // import Cards, { Card } from 'react-swipe-card';
 
 class Display extends Component {
@@ -35,6 +36,17 @@ class Display extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.setNori = this.setNori.bind(this);
     this.shuffleNori = this.shuffleNori.bind(this);
+    this.fetchBentos = this.fetchBentos.bind(this);
+
+    // this.fetchBentos();
+  }
+
+  fetchBentos() {
+    axios.get('/get/bentos', function(response) {
+      console.log(response);
+    }).catch(function(err) {
+      console.error(err);
+    });
   }
 
   nextNori() {
@@ -78,6 +90,7 @@ class Display extends Component {
   }
 
   shuffleNori() {
+    var context = this;
     var temp = this.state.mockData.bento.slice();
     var result = [];
     var randomIndex;
@@ -95,8 +108,7 @@ class Display extends Component {
         bento: result
       },
       currentNori: 0,
-      noriToDisplay: this.state.mockData.bento[0]
-    });
+    }, () => context.setState({ noriToDisplay: context.state.mockData.bento[0] }));
   }
 
   componentWillMount() {
