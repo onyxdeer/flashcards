@@ -14,7 +14,8 @@ class NewNori extends React.Component {
           <textarea name="message" id="message" className="form nori-textarea"  placeholder="Front"></textarea>
           <textarea name="message" id="message" className="form nori-textarea"  placeholder="Back"></textarea>
       </form>
-      <button type="button" className="btn add-nori-button">Add</button>
+      <button type="submit" className="btn add-nori-button"  onClick={this.props.addNewNori}>Add</button>
+      <button type="submit" className="btn add-nori-button" value={this.props.number}  onDoubleClick={this.props.deleteNori}>Delete</button>
       </center> 
     );
   }
