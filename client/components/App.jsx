@@ -7,6 +7,7 @@ import Main from './Main.jsx';
 
 import {
   HashRouter as Router,
+  hashHistory,
   Route,
   Redirect,
   Link
