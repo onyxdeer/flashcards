@@ -138,6 +138,7 @@ class Display extends Component {
             <button className='btn btn-default' onClick={this.shuffleNori}>Shuffle Bento</button>
           </div>
           <form className='changeToNoriSection' onSubmit={this.setNori}>
+            <text>Currently at card {this.state.currentNori}.</text><br></br>
             <label>Enter from 0 to {this.state.mockData.bento.length - 1} to go to that Nori: </label>
             <input type='text' value={this.state.input} onChange={this.handleInput} placeholder='Enter a number here!' />
           </form>
