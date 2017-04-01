@@ -70,17 +70,17 @@ class User extends Component {
     return (
       <div>
         <div className='row center-block userBentos'>
-          <div className='col-xs-offset-6'><h2>User Bentos:</h2></div>
+          <div className='col-xs-offset-5'><h2>User Bentos:</h2></div>
           <div className='thumbnails'>
           </div>
         </div>
         <div className='row center-block favoriteBentos'>
-          <div className='col-xs-offset-6'><h2>Favorite Bentos:</h2></div>
+          <div className='col-xs-offset-5'><h2>Favorite Bentos:</h2></div>
           <div className='thumbnails'>
           </div>
         </div>
         <div className='row center-block popularBentos'>
-          <div className='col-xs-offset-6'><h2>Popular Bentos:</h2></div>
+          <div className='col-xs-offset-5'><h2>Popular Bentos:</h2></div>
           <div className='thumbnails'>
           </div>
         </div>
