@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 const Sequelize = require('sequelize');
 const db = new Sequelize('flashcardsDB', 'root', '', {
+=======
+var Sequelize = require('sequelize');
+var db = new Sequelize('flashcards', 'root', '', {
+>>>>>>> master
       dialect: "mysql", // or 'sqlite', 'postgres', 'mariadb'
     });
 
