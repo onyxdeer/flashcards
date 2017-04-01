@@ -53,10 +53,10 @@ class Edit extends React.Component {
     return (
       <div>
         <div className="relative fullwidth">
-        <h1 className="create-title">Create A New Bento</h1>
+          <h1 className="create-title">Create A New Bento</h1>
         </div>
         <div className="newbentoinfo">
-        <NewBentoInfo bento = {this.state.bento} handleChange = {this.handleChange}/>
+          <NewBentoInfo bento = {this.state.bento} handleChange = {this.handleChange}/>
         </div>
         {this.state.bento.noris.map((nori, index) => 
           <NewNori key={index} number = {index} nori = {nori} addNewNori = {this.addNewNori} deleteNori = {this.deleteNori}/>

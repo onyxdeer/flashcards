@@ -125,11 +125,13 @@ class Display extends Component {
     console.log('this.state.noriToDisplay in render:', this.state.noriToDisplay);
     return (
       <div>
-        <h1>Bento: {this.state.mockData.title}</h1>
-          <FlipCard>
-            <div>{this.state.noriToDisplay ? this.state.noriToDisplay.front : this.state.mockData.bento[0].front}</div>
-            <div>{this.state.noriToDisplay ? this.state.noriToDisplay.back : this.state.mockData.bento[0].back}</div>
-          </FlipCard>
+        <h1 className='create-title'>Bento: {this.state.mockData.title}</h1>
+          <div className='cardSection'>
+            <FlipCard>
+              <div>{this.state.noriToDisplay ? this.state.noriToDisplay.front : this.state.mockData.bento[0].front}</div>
+              <div>{this.state.noriToDisplay ? this.state.noriToDisplay.back : this.state.mockData.bento[0].back}</div>
+            </FlipCard>
+          </div>
           <div className='buttonSection'>
             <button className='btn btn-default' onClick={this.prevNori}>Previous Nori</button>
             <button className='btn btn-default' onClick={this.nextNori}>Next Nori</button>
