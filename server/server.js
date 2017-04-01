@@ -1,19 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const axios = require('axios');
-const db = require('../db/startdb.js');
+const express = require('express')
+const bodyParser = require('body-parser')
+const path = require('path')
+const axios = require('axios')
+const db = require('../db/startdb.js')
 const router = require('./router.js')
 
 const util = require('./util/util.js')
 
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8000
 
-const app = express();
+const app = express()
 
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname, '../public')))
 
 
 router(app)
@@ -25,7 +25,7 @@ router(app)
 
 app.listen(PORT, function() {
   console.log('Obento express server connection established at:', PORT);
-});
+})
 
 exports.app = app 
 

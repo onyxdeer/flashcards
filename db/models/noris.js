@@ -1,11 +1,11 @@
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize')
 const sequelize = require('../startdb.js')
 
 
 const Nori = sequelize.define('nori', {
-  username: Sequelize.STRING,
-  birthday: Sequelize.DATE
-});
+  name: Sequelize.STRING,
+  created_date: Sequelize.DATE
+})
 
 
 
