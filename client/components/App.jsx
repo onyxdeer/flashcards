@@ -13,7 +13,12 @@ import {
   Link
 } from 'react-router-dom';
 
+<<<<<<< HEAD
+
+class App extends React.Component {
+=======
 class App extends Component {
+>>>>>>> master
   constructor(props) {
     super(props);
 
