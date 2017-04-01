@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 class Landing extends Component {
   constructor(props){
-    super(props) 
+    super(props);
   }
 
                         // <ul className="list-inline intro-social-buttons">
@@ -142,4 +142,4 @@ class Landing extends Component {
   }
 }
 
-export default Landing
+export default Landing;
