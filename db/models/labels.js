@@ -1,14 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../startdb.js')
 
-const Bento = sequelize.define('bentos', {
-  name: Sequelize.STRING,
-  description: Sequelize.STRING,
-  nori_count: Sequelize.INTEGER,
-  private: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false
-  },
+const Label = sequelize.define('label', {
   user_id: {
     type: Sequelize.INTEGER,
     references: {
@@ -16,11 +9,15 @@ const Bento = sequelize.define('bentos', {
       key: 'id'
     }
   },
-  category_id: {
+  bento_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: Category,
+      model: Bento,
       key: 'id'
     }
+  },
+  favorite: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });

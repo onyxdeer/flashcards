@@ -1,13 +1,32 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../startdb.js')
 
-
 const Nori = sequelize.define('nori', {
   name: Sequelize.STRING,
-  created_date: Sequelize.DATE
-})
+  description: Sequelize.STRING,
+  text: Sequelize.TEXT,
+  front: Sequelize.BOOLEAN,
+  private: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },  
+  tag_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Hashtag,
+      key: 'id'
+    }
+  }
+});
 
-
+// sequelize.sync()
+//   .then(function() {
+//     Nori.create({
+//       name: 'Eric\'s Cards',
+//       description: 'These are Eric\'s cards',
+//       text: "" 
+//     });
+//   });
 
 
 // const Sequelize = require('sequelize');
