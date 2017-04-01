@@ -48,6 +48,9 @@ class Edit extends React.Component {
     })
   }
 
+  componentWillMount() {
+    // send an DB GET request for the flash cards here
+  }
 
   render() {
     return (

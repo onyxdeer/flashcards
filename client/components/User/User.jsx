@@ -64,7 +64,10 @@ class User extends Component {
     }
   }
 
-
+  componentWillMount() {
+    // this.props.endNavSubmit();
+    // send an DB GET request for the flash cards here
+  }
 
   render() {
     return (
