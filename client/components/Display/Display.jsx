@@ -11,6 +11,7 @@ class Display extends Component {
       mockData: {
         title: 'Mock Data Title Here',
         description: 'This is mock data',
+        thumbnail: null,
         tags: null,
         bento: [{
           front: 'Front 1',
