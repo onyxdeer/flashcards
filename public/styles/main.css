@@ -8,7 +8,7 @@
   .ReactFlipCard__Back {
     box-sizing: border-box;
     margin: auto;
-    max-width: 500px;
+    width: 500px;
     height: 300px;
   }
   .ReactFlipCard__Front,
@@ -384,6 +384,7 @@ p.copyright {
 
 .cardSection {
     text-align: center;
+    float: none;
 }
 
 .buttonSection {
@@ -410,3 +411,109 @@ p.copyright {
     text-align: center;
     color: #BADA55;
 }
+
+/* SEARCH PAGE */
+
+.searchSection {
+    color: #BADA55;    
+}
+
+/* REACT DECK */
+
+.deck {
+  list-style: none;
+  /*position: relative;*/
+  height: 350px;
+  max-width: 500px;
+  padding: 10px;
+}
+
+
+.card {
+  display: block;
+  perspective: 1000px;
+  position: absolute;
+}
+
+.card-transform {
+  transition: 0.5s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card-flipped .card-transform {
+  transform: rotateY(175deg);
+}
+
+.card, .card-front, .card-back {
+  width: 100%;
+  margin: 0 auto;
+  height: 300px;
+}
+
+.card-front, .card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1px solid black;
+}
+
+.card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.center-within-viewport {
+  left: 50%;
+  top: 50%;
+  margin-top: -150px;
+  margin-left: -250px;
+}
+
+.index-card {
+  font-family: 'Reenie Beanie', cursive;
+  text-align: center;
+  color: #555;
+}
+
+.index-card, .index-card .card-front, .index-card .card-back {
+  /*width: 100%;*/
+  height: 300px;
+}
+
+.index-card .card-front, .index-card .card-back {
+  /*padding: 5px;*/
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.index-card .card-front p {
+  font-size: 20px;
+  line-height: 300px;
+  text-align: center;
+  margin: 0;
+}
+
+.index-card .card-back p {
+  font-size: 20px;
+  line-height: 300px;
+  text-align: center;
+  margin: 0;
+}
+
+.deck > :nth-child(1n+0) { transform: rotate(2.02deg); }
+.deck > :nth-child(2n+0) { transform: rotate(-0.87deg); }
+.deck > :nth-child(3n+0) { transform: rotate(-0.16deg); }
+.deck > :nth-child(4n+0) { transform: rotate(1.84deg); }
+.deck > :nth-child(5n+0) { transform: rotate(0.32deg); }
+.deck > :nth-child(6n+0) { transform: rotate(1.63deg); }
+.deck > :nth-child(7n+0) { transform: rotate(0.44deg); }
+.deck > :nth-child(8n+0) { transform: rotate(-0.35deg); }
+.deck > :nth-child(9n+0) { transform: rotate(2.47deg); }
+.deck > :nth-child(10n+0) { transform: rotate(-2.27deg); }
