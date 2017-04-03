@@ -1,1 +1,1 @@
-CREATE DATABASE flashcards;
+CREATE DATABASE flashcardsdb;
