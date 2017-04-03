@@ -107,12 +107,16 @@
   }
 
   .nori-textarea{
-    height: 100px;
+    height: 10%;
     max-height: 120px;
-    max-width: 30%;
+    width: 30%;
     margin: 0 auto;
     position: relative;
     display: inline-block
+  }
+
+  .RichTextEditor__root___2QXK-{
+    width: 100%
   }
 
 

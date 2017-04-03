@@ -5,11 +5,25 @@ class NewNoriRTE extends Component {
 constructor(props){
   super(props)  
   this.state = {
-    value: RichTextEditor.createEmptyValue()
+    value: RichTextEditor.createEmptyValue(),
+    showTB : false
   }
   this.onChange = this.onChange.bind(this)
+  this.onFocus = this.onFocus.bind(this)
+  this.onBlur = this.onBlur.bind(this)
 }
 
+  onFocus (){
+    this.setState({
+      showTB : true
+    })
+  }
+
+  onBlur () {
+    this.setState({
+      showTB: false
+    })
+  }
 
   onChange (value) {
     this.setState({value});
@@ -24,7 +38,8 @@ constructor(props){
   };
 
   render () {
-    const toolbarConfig = {
+
+    const ToolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
     display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
     INLINE_STYLE_BUTTONS: [
@@ -43,11 +58,20 @@ constructor(props){
       {label: 'OL', style: 'ordered-list-item'}
     ]
   };
+
+  const hiddenToolbarConfig = {
+    display: ['NONE']
+  }
+
+    var config = this.state.showTB ? ToolbarConfig : hiddenToolbarConfig
     return (
       <RichTextEditor
-        toolbarConfig = {toolbarConfig}
+        toolbarConfig = {config}
         value={this.state.value}
+        onFocus = {this.onFocus}
+        onBlur = {this.onBlur}
         onChange={this.onChange}
+        placeholder = {this.props.side} 
       />
     );
   }

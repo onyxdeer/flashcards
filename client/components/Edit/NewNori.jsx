@@ -28,10 +28,10 @@ class NewNori extends React.Component {
     return (
       <center className="new-nori">
         <div className='nori-textarea'>
-          <NewNoriRTE />
+          <NewNoriRTE side = 'Front'/>
           </div>
           <div className='nori-textarea'>
-          <NewNoriRTE />
+          <NewNoriRTE side = 'Back'/>
           </div>
           <center className="add-delete-nori">
       <button type="submit" className="btn add-nori-button"  onClick={this.props.addNewNori}>Add</button>
