@@ -39,6 +39,10 @@
     padding:10px 0 10px;
   }
 
+  .inner-contact {
+    height: 320px;
+  }
+
   .contact-text{
     margin:45px auto;
   }
@@ -94,24 +98,28 @@
     border:1px solid #8BC3A3;
   }
 
+/*New Nori Style*/
+
   .textarea{
     height: 200px;
     max-height: 200px;
     max-width: 100%;
   }
 
-/*New Nori Style*/
-
   .nori-textarea{
-    height: 100px;
+    height: 10%;
     max-height: 120px;
-    max-width: 30%;
+    width: 30%;
+    margin: 0 auto;
+    position: relative;
+    display: inline-block
   }
 
-  .ops-div {
-    padding: 15px;
+  .RichTextEditor__root___2QXK-{
+    width: 100%
   }
-  
+
+
 /* Generic Button Styles */
 
   .button{
@@ -180,14 +188,14 @@ input {
 }
 
 .add-nori-button{
-    width: auto;
-    display: block;
+    width:50px;
+    display:inline-block;
     height: auto;
     padding:15px 15px;
     color:#fff;
     background:#BADA55;
     border:none;
-    border-radius:10px/30px; /* horizontal radius / vertical radius */
+    border-radius:5px 20px 5px; /* horizontal radius / vertical radius */
     outline: none;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
@@ -197,6 +205,7 @@ input {
     box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
     -moz-box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
     -webkit-box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
+    text-align: center
 }
 
 

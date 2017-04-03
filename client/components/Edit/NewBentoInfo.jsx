@@ -7,9 +7,8 @@ class NewBentoInfo extends React.Component {
 
 
   render() {
-    console.log(this.props)
     return (
-<div className="inner contact">
+<div className="inner-contact">
                 <div className="contact-form">
                     <form id="contact-us" method="post" action="#">
                         <div className="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
