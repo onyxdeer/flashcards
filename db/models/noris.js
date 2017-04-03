@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../index.js');
+const db = require('../connect.js');
 
 const Nori = db.define('nori', {
   name: Sequelize.STRING,

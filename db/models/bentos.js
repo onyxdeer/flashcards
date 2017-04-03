@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../index.js');
+const db = require('../connect.js');
 const User = require('./users.js');
 const Category = require('./categories.js');
 
@@ -21,7 +21,7 @@ const Bento = db.define('bento', {
   category_id: {
     type: Sequelize.INTEGER,
     references: {
-      model: Category,
+      model: 'categories',
       key: 'id'
     }
   }

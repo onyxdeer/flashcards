@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../index.js');
+const db = require('../connect.js');
 const Tag = require('./tags.js');
 const Nori = require('./noris.js');
 
