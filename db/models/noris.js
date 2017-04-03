@@ -1,30 +1,18 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../startdb.js')
+const Sequelize = require('sequelize');
+const db = require('../index.js');
 
-
-const Nori = sequelize.define('nori', {
+const Nori = db.define('nori', {
   name: Sequelize.STRING,
-  created_date: Sequelize.DATE
-})
+  description: Sequelize.STRING,
+  text: Sequelize.TEXT,
+  front: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true,
+  },
+  private: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
+});
 
-
-
-
-// const Sequelize = require('sequelize');
-// const sequelize = new Sequelize('database', 'root', 'password');
-
-// const User = sequelize.define('user', {
-//   username: Sequelize.STRING,
-//   birthday: Sequelize.DATE
-// });
-
-// sequelize.sync().then(function() {
-//   return User.create({
-//     username: 'janedoe',
-//     birthday: new Date(1980, 6, 20)
-//   });
-// }).then(function(jane) {
-//   console.log(jane.get({
-//     plain: true
-//   }));
-// });
+module.exports = Nori;
