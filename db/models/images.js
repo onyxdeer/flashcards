@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../startdb.js')
+const db = require('../index.js');
+const Bento = require('./bentos.js');
+const Nori = require('./noris.js');
 
-const Image = sequelize.define('image', {
+const Image = db.define('image', {
   url: Sequelize.STRING,
   bento_id: {
     type: Sequelize.INTEGER,
@@ -18,3 +20,5 @@ const Image = sequelize.define('image', {
     }
   }  
 });
+
+module.exports = Image;

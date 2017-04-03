@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../startdb.js')
+const db = require('../index.js');
+const User = require('./users.js');
+const Category = require('./categories.js');
 
-const Bento = sequelize.define('bentos', {
+const Bento = db.define('bento', {
   name: Sequelize.STRING,
   description: Sequelize.STRING,
   nori_count: Sequelize.INTEGER,
@@ -24,3 +26,5 @@ const Bento = sequelize.define('bentos', {
     }
   }
 });
+
+module.exports = Bento;

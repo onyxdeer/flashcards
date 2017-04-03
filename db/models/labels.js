@@ -1,7 +1,9 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../startdb.js')
+const db = require('../index.js');
+const User = require('./users.js');
+const Bento = require('./bentos.js');
 
-const Label = sequelize.define('label', {
+const Label = db.define('label', {
   user_id: {
     type: Sequelize.INTEGER,
     references: {
@@ -21,3 +23,5 @@ const Label = sequelize.define('label', {
     defaultValue: false
   }
 });
+
+module.exports = Label;
