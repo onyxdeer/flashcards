@@ -188,13 +188,8 @@ input {
 }
 
 .add-nori-button{
-<<<<<<< HEAD
-    width: auto;
-    display: block;
-=======
     width:50px;
     display:inline-block;
->>>>>>> Centered and Serparated RTE
     height: auto;
     padding:15px 15px;
     color:#fff;
