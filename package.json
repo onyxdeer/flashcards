@@ -24,13 +24,17 @@
   "dependencies": {
     "axios": "^0.15.3",
     "body-parser": "^1.17.1",
+    "classnames": "^2.2.5",
     "express": "^4.15.2",
     "mysql": "^2.13.0",
     "path": "^0.12.7",
     "react": "^15.4.2",
+    "react-card": "^1.0.4",
+    "react-deck": "^2.0.2",
     "react-dom": "^15.4.2",
     "react-flipcard": "^0.2.1",
     "react-router-dom": "^4.0.0",
+    "react-swipeable": "^3.9.2",
     "sequelize": "^3.30.4",
     "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2"
