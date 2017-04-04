@@ -11,12 +11,12 @@ class Edit extends React.Component {
       bento : {
         name: '',
         description:'',
-        category: [],
+        category: '',
         noris: [{Front: null, Back: null}, {Front: null, Back: null}]
       },
       value: RichTextEditor.createEmptyValue()
     }
-    //this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNoriChange = this.handleNoriChange.bind(this);
     this.addNewNori = this.addNewNori.bind(this);
@@ -27,9 +27,13 @@ class Edit extends React.Component {
   //   this.setState({})
   // }
 
-  // handleChange(event) {
-  //   this.setState({});
-  // }
+  handleChange(event) {
+    var tempBento = this.state.bento;
+    tempBento[event.target.name] = event.target.value
+    this.setState({
+      bento : tempBento
+    });
+  }
 
   // handleSubmit(event) {
   //   event.preventDefault();
@@ -67,7 +71,6 @@ class Edit extends React.Component {
   }
 
   render() {
-    console.log("storing into bento", this.state.bento.noris)
     return (
       <div>
         <div className="relative fullwidth">
