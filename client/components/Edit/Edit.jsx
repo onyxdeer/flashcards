@@ -12,7 +12,7 @@ class Edit extends React.Component {
         name: '',
         description:'',
         category: '',
-        noris: [{Front: null, Back: null}, {Front: null, Back: null}]
+        noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
       value: RichTextEditor.createEmptyValue()
     }
@@ -42,7 +42,7 @@ class Edit extends React.Component {
   handleNoriChange(value, side, index) {
     var data = JSON.stringify(value._editorState.getCurrentContent());
     var tempBento = this.state.bento
-    tempBento.noris[index][side] = data;
+    tempBento.noris[index][side]["text"] = data;
     this.setState({
       bento: tempBento
     })
@@ -50,7 +50,7 @@ class Edit extends React.Component {
 
   addNewNori () {
     console.log("adding a new nori")
-    var newNori = {Front:null, Back:null}
+    var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}
     var tempBento = this.state.bento;
     tempBento.noris.push(newNori);
     this.setState({
