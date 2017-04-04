@@ -25,7 +25,7 @@ module.exports = {get, post};
 //   "name": "Hack Reactor Super Deck",
 //   "description": "Learn more about Hack Reactor Cohort 71",
 //   "nori_count": "10",
-//   "private": "false",
+//   "visit_count": "20",
 //   "user_id": "1",
 //   "category_id": "1"
 // }

@@ -5,6 +5,8 @@ const Nori = require('./noris.js');
 
 const Image = db.define('image', {
   url: Sequelize.STRING,
+  nori_front: Sequelize.BOOLEAN,
+  nori_back: Sequelize.BOOLEAN,
   bento_id: {
     type: Sequelize.INTEGER,
     references: {

@@ -11,6 +11,7 @@ const Bento = db.define('bento', {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
+  visit_count: Sequelize.INTEGER,
   user_id: {
     type: Sequelize.INTEGER,
     references: {

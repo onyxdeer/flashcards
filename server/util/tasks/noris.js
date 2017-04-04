@@ -24,5 +24,6 @@ module.exports = {get, post};
 // {
 //   "name": "Eric",
 //   "description": "Question about Eric",
-//   "text": "Who is Eric's favorite basketball player?" 
+//   "text_front": "Who is Eric's favorite basketball player?",
+//   "text_back": "Stephen Curry"
 // }

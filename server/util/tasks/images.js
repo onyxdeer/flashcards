@@ -23,6 +23,8 @@ module.exports = {get, post};
 
 // {
 //   "url": "https://static.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg",
+//   "nori_front": "true",
+//   "nori_back": "false,
 //   "bento_id": "1",
 //   "nori_id": "1"
 // }
