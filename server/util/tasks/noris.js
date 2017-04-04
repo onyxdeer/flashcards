@@ -1,12 +1,28 @@
+const Sequelize = require('sequelize');
+const Nori = require('../../../db/models/noris.js');
+
 const get = (req, res) => {
-  console.log('hello this is nori get');
-  res.send('hello nori get');
+  Nori.findOne({where: {name: 'Eric'}})
+    .then(function(nori) {
+      console.log('Successfully fetched nori from database: ' + nori.name);
+      res.send(nori);
+    })
+    .catch((err) => console.log(err));
 };
 
 const post = (req, res) => {
-  console.log('hello this is nori post');
-  res.send(req.body);
+  Nori.create(req.body)
+    .then(function(nori) {
+      console.log('Successfully saved nori to database: ' + nori.name);
+      res.send(req.body);
+    })
+    .catch((err) => console.log(err));    
 };
 
+module.exports = {get, post};
 
-module.exports = { get, post };
+// {
+//   "name": "Eric",
+//   "description": "Question about Eric",
+//   "text": "Who is Eric's favorite basketball player?" 
+// }
