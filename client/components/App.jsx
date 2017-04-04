@@ -7,6 +7,7 @@ import Landing from './Landing/Landing.jsx';
 import Edit from './Edit/Edit.jsx';
 import Search from './Search/Search.jsx';
 import User from './User/User.jsx';
+import Voice from './Voice/Voice.jsx';
 
 import {
   BrowserRouter as Router,
@@ -82,6 +83,7 @@ class App extends Component {
             <Route path='/edit' component={() => <Edit />} />
             <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} />} />
             <Route path='/user' component={() => <User />} />
+            <Route path='/voice' component={() => <Voice />} />
           </div>
         </Router>
       </div>
