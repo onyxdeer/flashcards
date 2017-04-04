@@ -7,7 +7,7 @@
     "start": "nodemon server/server.js",
     "build": "webpack",
     "build:watch": "webpack --watch",
-    "create:db": "mysql -u root < ./db/createdb.sql",
+    "create:db": "echo This script requires admin password, please enter the password now:; sudo mysql -u root < ./db/createdb.sql",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-server": "mocha test/test-server || true"
   },
@@ -27,6 +27,7 @@
     "body-parser": "^1.17.1",
     "classnames": "^2.2.5",
     "express": "^4.15.2",
+    "morgan": "^1.8.1",
     "mysql": "^2.13.0",
     "path": "^0.12.7",
     "react": "^15.4.2",
