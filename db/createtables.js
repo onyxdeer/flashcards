@@ -13,6 +13,9 @@ const Nori_tag = require('./models/noris_tags.js');
 
 // Create database tables
 module.exports = function() {
+  // Bento.belongsTo(Category);
+  // Category.hasMany(Bento);
+
   return User.sync({logging: console.log})
     .then(() => Follow.sync({logging:console.log}))
     .then(() => Category.sync({logging:console.log}))

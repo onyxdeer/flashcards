@@ -23,5 +23,5 @@ module.exports = {get, post};
 
 // {
 //   "username": "patrick",
-//   "password": "pattywatty",
+//   "password": "pattywatty"
 // }
