@@ -31,3 +31,5 @@ bower_components/
 public/assets/bundles/
 .DS_Store
 .vscode
+
+pats_notes.md

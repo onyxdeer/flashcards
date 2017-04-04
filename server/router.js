@@ -14,6 +14,9 @@ const bindRoutes = (app) => {
     .get(function(req, res){
       res.send('okayy')
     })
+
+  app.route('/api/speech')
+    .post(util.tasks.speech.post)
 }
 
 module.exports = bindRoutes
