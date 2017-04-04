@@ -8,9 +8,10 @@ constructor(props){
     value: RichTextEditor.createEmptyValue(),
     showTB : false
   }
-  this.onChange = this.onChange.bind(this)
   this.onFocus = this.onFocus.bind(this)
   this.onBlur = this.onBlur.bind(this)
+  this.onChange = this.onChange.bind(this)
+  this.handleNoriChange = this.props.handleNoriChange
 }
 
   onFocus (){
@@ -25,6 +26,7 @@ constructor(props){
     })
   }
 
+
   onChange (value) {
     this.setState({value});
     if (this.props.onChange) {
@@ -35,10 +37,10 @@ constructor(props){
         value.toString('html')
       );
     }
+    this.props.handleNoriChange(value, this.props.side, this.props.number);
   };
 
   render () {
-
     const ToolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
     display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
