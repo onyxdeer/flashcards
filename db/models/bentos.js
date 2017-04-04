@@ -4,7 +4,11 @@ const User = require('./users.js');
 const Category = require('./categories.js');
 
 const Bento = db.define('bento', {
-  name: Sequelize.STRING,
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
   description: Sequelize.STRING,
   nori_count: Sequelize.INTEGER,
   private: {
