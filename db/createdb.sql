@@ -1,1 +1,1 @@
-CREATE DATABASE flashcardsdb;
+CREATE DATABASE obentoDB;

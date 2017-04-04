@@ -1,15 +1,17 @@
 const Sequelize = require('sequelize');
+const db = require('./connect.js');
+const createTables = require('./createtables.js');
+const seed = require('./seed.js');
 
-const db = new Sequelize('obentoDB', 'root', '', {
-  dialect: 'mysql' // or 'sqlite', 'postgres', 'mariadb'
-});
-
+// Initiate database
 db.authenticate()
+  .then((err) => console.log('Connection to database has been established successfully.'))
   .then(function(err) {
-    console.log('Connection to database has been established successfully.');
+    return createTables()
+    .then(console.log('Created tables successfully.'));
   })
-  .catch(function (err) {
-    console.log('Unable to connect to database:', err);
-  });
-
-module.exports = db;
+  .then(function(err) {
+    return seed()
+    .then(console.log('Seeded test data successfully.'));
+  })
+  .catch((err) => console.log('Unable to connect to database:', err));
