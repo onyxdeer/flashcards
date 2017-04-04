@@ -13,13 +13,13 @@ class NewBentoInfo extends React.Component {
                     <form id="contact-us" method="post" action="#">
                         <div className="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
                             <label>Name</label>
-                            <input type="text" name="name" id="name" required="required" className="form" placeholder="Name" />
-                            <label>Subject</label>
-                            <input type="text" name="subject" id="subject" required="required" className="form" placeholder="Subject" />
+                            <input type="text" name="name" id="name" required="required" value={this.props.bento.name} className="form" placeholder="Name" onChange = {this.props.handleChange}/>
+                            <label>Category</label>
+                            <input type="text" name="category" id="subject" required="required" value={this.props.bento.category} className="form" placeholder="Subject" onChange = {this.props.handleChange}/>
                         </div>
                         <div className="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
                             <label>Description</label>
-                            <textarea name="message" id="message" className="form textarea"  placeholder="Description"></textarea>
+                            <textarea name="description" id="message" className="form textarea" value={this.props.bento.description} placeholder="Description" onChange = {this.props.handleChange}></textarea>
                         </div>
                         <div className="ops-div relative fullwidth col-xs-12">
                             <button type="submit" id="submit" name="submit" className="form-btn semibold pull-right">Save Bento</button> 
