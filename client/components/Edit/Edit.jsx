@@ -1,20 +1,24 @@
 import React from 'react';
 import NewBentoInfo from './NewBentoInfo.jsx'
 import NewNori from './NewNori.jsx'
+import RichTextEditor from 'react-rte';
+import {convertFromRaw, convertToRaw} from 'draft-js'
 
 class Edit extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       bento : {
-        title: '',
-        tags: [],
+        name: '',
         description:'',
-        noris: [{front: null, back: null}, {front: null, back: null}]
+        category: '',
+        noris: [{Front: null, Back: null}, {Front: null, Back: null}]
       },
+      value: RichTextEditor.createEmptyValue()
     }
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNoriChange = this.handleNoriChange.bind(this);
     this.addNewNori = this.addNewNori.bind(this);
     this.deleteNori = this.deleteNori.bind(this);
   }
@@ -23,16 +27,30 @@ class Edit extends React.Component {
   //   this.setState({})
   // }
 
-  // handleChange(event) {
-  //   this.setState({});
-  // }
+  handleChange(event) {
+    var tempBento = this.state.bento;
+    tempBento[event.target.name] = event.target.value
+    this.setState({
+      bento : tempBento
+    });
+  }
 
   // handleSubmit(event) {
   //   event.preventDefault();
   // }
+
+  handleNoriChange(value, side, index) {
+    var data = JSON.stringify(value._editorState.getCurrentContent());
+    var tempBento = this.state.bento
+    tempBento.noris[index][side] = data;
+    this.setState({
+      bento: tempBento
+    })
+  }
+
   addNewNori () {
     console.log("adding a new nori")
-    var newNori = {front:null, back:null}
+    var newNori = {Front:null, Back:null}
     var tempBento = this.state.bento;
     tempBento.noris.push(newNori);
     this.setState({
@@ -53,6 +71,7 @@ class Edit extends React.Component {
   }
 
   render() {
+    console.log("storing into bento", this.state.bento.noris)
     return (
       <div>
         <div className="relative fullwidth">
@@ -62,7 +81,7 @@ class Edit extends React.Component {
           <NewBentoInfo bento = {this.state.bento} handleChange = {this.handleChange}/>
         </div>
         {this.state.bento.noris.map((nori, index) => 
-          <NewNori key={index} number = {index} nori = {nori} addNewNori = {this.addNewNori} deleteNori = {this.deleteNori}/>
+          <NewNori key={index} number = {index} nori = {nori} addNewNori = {this.addNewNori} deleteNori = {this.deleteNori} handleNoriChange = {this.handleNoriChange}/>
         )}
         <div className="ops-div relative fullwidth col-xs-12">
           <button type="submit" id="submit" name="submit" className="form-btn semibold pull-right">Save Bento</button> 
