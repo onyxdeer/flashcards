@@ -11,6 +11,7 @@ const Image = require('./models/images.js');
 const Bento_nori = require('./models/bentos_noris.js');
 const Nori_tag = require('./models/noris_tags.js');
 
+// Create database tables
 module.exports = function() {
   return User.sync({logging: console.log})
     .then(() => Follow.sync({logging:console.log}))
