@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-// import FlipCard from 'react-flipcard';
 import Deck from 'react-deck';
 import Card from 'react-card';
 import classnames from 'classnames';
 import axios from 'axios';
 import Swipeable from 'react-swipeable';
-
-console.log('Deck:', Deck);
-console.log('Card:', Card);
 
 class Display extends Component {
   constructor(props) {
@@ -21,18 +17,19 @@ class Display extends Component {
         tags: null,
         bento: [{
           front: 'Front 1',
-          back: 'Back 1',
+          back: 'Lorem ipsum dolor sit amet, sit eu probo commodo elaboraret, affert persecuti his cu.\nPutant meliore ad qui, nonumy ignota pri et. Eum cibo eligendi evertitur in. Cum no esse\npartem forensibus, est quas quidam mnesarchum an. Sed ne omnium copiosae delectus, eu nec\neligendi placerat vituperatoribus. Mel alterum contentiones id. Eos ferri ceteros ne, impedit\nnostrum at eum, libris ocurreret laboramus id eum. Has dictas insolens et, vel malis dicant\nquaestio an, ne ferri adipisci ius. Sale soluta conceptam an vel, per ex quis putent consequuntur.\nEquidem iudicabit adolescens in nec, exerci tamquam fabulas vis an, ius dolores antiopam percipitur\nno. Nemore sententiae neglegentur ea mei. Iisque integre mentitum sed ad. An aeterno phaedrum nam,\ntritani verterem dignissim per et. Error officiis vis ei. Ad eos consul ceteros elaboraret, veniam\nprodesset duo ad.'
         }, {
           front: 'Front 2',
-          back: 'Back 2',
+          back: 'Back 2'
         }, {
           front: 'Front 3',
-          back: 'Back 3',
+          back: 'Back 3'
         }]
       },
       noriToDisplay: null,
       currentNori: 0,
       isFlipped: false,
+      buttonPressed: false,
       input: ''
     }
 
@@ -41,8 +38,6 @@ class Display extends Component {
     this.showBack = this.showBack.bind(this);
     this.showFront = this.showFront.bind(this);
     this.flip = this.flip.bind(this);
-    this.handleOnFlip = this.handleOnFlip.bind(this);
-    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.setNori = this.setNori.bind(this);
     this.shuffleNori = this.shuffleNori.bind(this);
@@ -70,15 +65,17 @@ class Display extends Component {
 
   renderNori (nori, index , noris) {
     const className = classnames('index-card', {
-      'card-flipped': index === noris.length - 1 && this.state.isFlipped
+      'card-flipped': index === noris.length - 1 && this.state.isFlipped && !this.state.buttonPressed,
+      'no-animation': this.state.buttonPressed
     });
+    console.log('className in render:', className);
     return (
       <Card key={nori.front} className={className}>
         <Card.Front>
-          <p onClick={this.flip}>{nori.front}</p>
+          <p className={className} onClick={this.flip}>{nori.front}</p>
         </Card.Front>
         <Card.Back>
-          <p onClick={this.flip}>{nori.back}</p>
+          <p className={className} onClick={this.flip}>{nori.back}</p>
         </Card.Back>
       </Card>
     );
@@ -94,7 +91,8 @@ class Display extends Component {
       });
     }
     this.setState({
-      noriToDisplay: this.state.mockData.bento[this.state.currentNori]
+      noriToDisplay: this.state.mockData.bento[this.state.currentNori],
+      buttonPressed: true
     });
   }
 
@@ -108,7 +106,8 @@ class Display extends Component {
       });
     }
     this.setState({  
-      noriToDisplay: this.state.mockData.bento[this.state.currentNori]
+      noriToDisplay: this.state.mockData.bento[this.state.currentNori],
+      buttonPressed: true
     });
   }
 
@@ -129,20 +128,9 @@ class Display extends Component {
   flip() {
     console.log('Toggling isFlipped to:', this.state.isFlipped);
     this.setState({
-      isFlipped: !this.state.isFlipped
+      isFlipped: !this.state.isFlipped,
+      buttonPressed: false
     });
-  }
-
-  handleOnFlip(flipped) {
-    if (flipped) {
-      this.refs.backButton.getDOMNode().focus();
-    }
-  }
-
-  handleKeyDown(e) {
-    if (this.state.isFlipped && e.keyCode === 27) {
-      this.showFront();
-    }
   }
 
   handleInput(event) {
@@ -174,14 +162,16 @@ class Display extends Component {
       temp.splice(randomIndex, 1);
     }
     console.log('shuffleNori:', result);
+    this.flip();
     this.setState({
-      mockData: { 
+      mockData: {
         title: this.state.mockData.title,
         description: this.state.mockData.description,
         tags: this.state.mockData.tags,
         bento: result
       },
       currentNori: 0,
+      buttonPressed: true
     }, () => context.setState({ noriToDisplay: context.state.mockData.bento[0] }));
   }
 
@@ -194,8 +184,6 @@ class Display extends Component {
   }
 
   render() {
-    console.log('this.state.mockData in render:', this.state.mockData.bento);
-    console.log('this.state.noriToDisplay in render:', this.state.noriToDisplay);
     return (
       <div>
         <div className='row'>
@@ -203,6 +191,8 @@ class Display extends Component {
         </div>
         <div className='row'>
             <Swipeable
+              onSwipedUp={this.prevNori}
+              onSwipedDown={this.nextNori}
               onSwipedLeft={this.prevNori}
               onSwipedRight={this.nextNori}>
                 <div className='col-md-offset-4 col-md-4'>
@@ -213,9 +203,9 @@ class Display extends Component {
             </Swipeable>
         </div>
           <div className='buttonSection'>
-            <button className='btn btn-default' onClick={this.prevNori}>Previous Nori</button>
-            <button className='btn btn-default' onClick={this.nextNori}>Next Nori</button>
-            <button className='btn btn-default' onClick={this.shuffleNori}>Shuffle Bento</button>
+            <button type='button' className='btn btn-success' onClick={this.prevNori}>Previous Nori</button>
+            <button type='button' className='btn btn-success' onClick={this.nextNori}>Next Nori</button>
+            <button type='button' className='btn btn-success' onClick={this.shuffleNori}>Shuffle Bento</button>
           </div>
           <form className='changeToNoriSection' onSubmit={this.setNori}>
             <div className='row'>
@@ -232,11 +222,3 @@ class Display extends Component {
 }
 
 export default Display;
-
-              // {/*<FlipCard
-              //   disabled={true}
-              //   flipped={this.state.isFlipped}
-              //   onClick={this.toggleFlip}>
-              //     <div>{this.state.noriToDisplay ? this.state.noriToDisplay.front : this.state.mockData.bento[0].front}</div>
-              //     <div>{this.state.noriToDisplay ? this.state.noriToDisplay.back : this.state.mockData.bento[0].back}</div>
-              // </FlipCard>*/}

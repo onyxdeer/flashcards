@@ -73,7 +73,7 @@ class Landing extends Component {
     <div>
     <a name="about"></a>
     <div className="intro-header">
-        <div className="container">
+        <div className="container-fluid">
             <div className="row">
                 <div className="col-lg-12">
                     <div className="intro-message">

@@ -1,1 +1,1 @@
-CREATE DATABASE obentoDB;
+CREATE DATABASE obentodb;
