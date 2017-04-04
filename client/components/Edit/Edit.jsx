@@ -71,6 +71,7 @@ class Edit extends React.Component {
   }
 
   render() {
+    console.log("storing into bento", this.state.bento.noris)
     return (
       <div>
         <div className="relative fullwidth">
