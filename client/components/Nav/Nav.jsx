@@ -27,6 +27,7 @@ class Nav extends Component {
               <li><Link to="User"><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
               <li><Link to="Display"><span className="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Display</Link></li>
               <li><Link to="Edit"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
+              <li><Link to="Voice"><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>
             </ul>
             <form className="navbar-form navbar-left" onSubmit={this.props.handleNavSubmit}>
               <div className="form-group">

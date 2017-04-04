@@ -32,8 +32,12 @@
    margin-top: 25px;
    text-align: center;
    color: #BADA55;
-   
  }
+
+label, button {
+    margin: 2px;
+}
+
 /*Start of Create Page Stylesheet*/
  #contact{
     padding:10px 0 10px;
@@ -398,6 +402,7 @@ p.copyright {
 
 .buttonSection {
     text-align: center;
+    margin: 3px;
 }
 
 .changeToNoriSection {
@@ -440,6 +445,7 @@ p.copyright {
 
 .card {
   display: block;
+  max-width: 500px;
   perspective: 1000px;
   position: absolute;
 }
@@ -450,6 +456,7 @@ p.copyright {
   position: relative;
 }
 
+/* starts the animation */
 .card-flipped .card-transform {
   transform: rotateY(175deg);
 }
@@ -504,16 +511,18 @@ p.copyright {
 
 .index-card .card-front p {
   font-size: 20px;
-  line-height: 300px;
+  /*line-height: 300px;*/
   text-align: center;
   margin: 0;
+  overflow: scroll;
 }
 
 .index-card .card-back p {
   font-size: 20px;
-  line-height: 300px;
+  /*line-height: 300px;*/
   text-align: center;
   margin: 0;
+  overflow: scroll;
 }
 
 .deck > :nth-child(1n+0) { transform: rotate(2.02deg); }
@@ -526,3 +535,29 @@ p.copyright {
 .deck > :nth-child(8n+0) { transform: rotate(-0.35deg); }
 .deck > :nth-child(9n+0) { transform: rotate(2.47deg); }
 .deck > :nth-child(10n+0) { transform: rotate(-2.27deg); }
+
+/* USER PAGE */
+
+.carousel-card {
+    /*display: block;*/
+    max-width: 500px;
+    perspective: 1000px;
+}
+
+.container {
+    margin: 20px;
+}
+
+.slick-prev:before, .slick-next:before { 
+    color:black !important;
+}
+
+.slick-prev {
+    margin-left: 40px;
+    z-index: 999;
+  }
+
+.slick-next {
+    margin-right: 40px;
+    z-index: 999;
+}
