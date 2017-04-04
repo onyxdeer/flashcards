@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const Bento = require('../../../db/models/bentos.js');
-
 const get = (req, res) => {
   Bento.findOne({where: {name: 'Hack Reactor'}})
     .then(function(bento) {
@@ -11,12 +10,13 @@ const get = (req, res) => {
 };
 
 const post = (req, res) => {
-  Bento.create(req.body)
-    .then(function(bento) {
-      console.log('Successfully saved bento to database: ' + bento.name);
-      res.send(req.body);
-    })
-    .catch((err) => console.log(err));    
+  console.log(req.body)
+  // Bento.create(req.body)
+  //   .then(function(bento) {
+  //     console.log('Successfully saved bento to database: ' + bento.name);
+  //     res.send(req.body);
+  //   })
+  //   .catch((err) => console.log(err));    
 };
 
 module.exports = {get, post};
