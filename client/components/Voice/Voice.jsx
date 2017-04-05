@@ -17,6 +17,24 @@ class Voice extends Component {
       },
       'hello': function(){
         console.log('just work baby')
+      },
+      'next': function(){
+        console.log('next function called!')
+      },
+      'go' : function(){
+        console.log('go fucntion called')
+      },
+      'repeat': function(){
+        console.log('repeat function called')
+      },
+      'redo': function(){
+        console.log('redo fucntion called')
+      },
+      'previous': function(){
+        console.log('previous function called')
+      },
+      'retry': function(){
+        console.log('retry function called')
       }
     };
 
