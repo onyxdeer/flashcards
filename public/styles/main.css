@@ -433,6 +433,11 @@ p.copyright {
     color: #BADA55;    
 }
 
+.bento-metadata {
+    color: black;
+    text-align: center;
+}
+
 /* REACT DECK */
 
 .deck {

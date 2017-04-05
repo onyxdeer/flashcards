@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Carousel from 'react-slick';
+import axios from 'axios';
 
 class Search extends Component {
   constructor(props) {
@@ -176,9 +176,15 @@ class Search extends Component {
   componentWillMount() {
     this.props.endNavSubmit();
     // send an DB GET request for the flash cards here
-    this.setState({
+    axios.get('/api/bentos', {
+      params: {
+        name: this.props.keyword
+      }
+    }).then(function(response) {
+      console.log('RESPONSE BACK FROM DB:', response);
+    }).then(this.setState({
       bentosToDisplay: this.state.userBentos
-    });
+    }));
   }
 
 
@@ -200,10 +206,6 @@ class Search extends Component {
             </span>
           </div>
           <div className='row'>
-            {/*<div className='container'>*/}
-              {/*<div className='col-xs-2 col-md-2 scrollSection'>
-                  <button type='button' className='btn btn-primary scrollToTopButton'><span className='glyphicon glyphicon-arrow-up'></span> Scroll to Top</button>
-              </div>*/}
               <div className='center-block col-xs-12 col-md-12'>
                 {this.state.bentosToDisplay.map((data, index) => (
                 <div className='col-xs-4 col-md-4' data-index={index} key={index}>
@@ -212,9 +214,12 @@ class Search extends Component {
                         <p>{data.bento[0].front}</p>
                       </div>
                     </div>
+                    <div className='bento-metadata'>
+                      <div>{data.title}</div>
+                      <div>{data.description}</div>
+                    </div>
                 </div> ))}
               </div>
-            {/*</div>*/}
           </div>
         </div>
       </div>
