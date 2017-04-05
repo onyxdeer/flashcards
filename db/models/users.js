@@ -3,7 +3,14 @@ const db = require('../connect.js');
 const bcrypt = require('bcryptjs');
 
 const User = db.define('user', {
-  username: Sequelize.STRING,
+  username: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: {
+      args: true,
+      msg: 'Username already exists!'
+    }
+  },
   password: Sequelize.STRING,
 }, {
   hooks: {

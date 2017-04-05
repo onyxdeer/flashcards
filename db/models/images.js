@@ -4,7 +4,16 @@ const Bento = require('./bentos.js');
 const Nori = require('./noris.js');
 
 const Image = db.define('image', {
-  url: Sequelize.STRING,
+  url: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: {
+      args: true,
+      msg: 'Image URL already exists!'
+    }
+  },
+  nori_front: Sequelize.BOOLEAN,
+  nori_back: Sequelize.BOOLEAN,
   bento_id: {
     type: Sequelize.INTEGER,
     references: {

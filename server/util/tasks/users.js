@@ -20,3 +20,8 @@ const post = (req, res) => {
 };
 
 module.exports = {get, post};
+
+// {
+//   "username": "patrick",
+//   "password": "pattywatty"
+// }

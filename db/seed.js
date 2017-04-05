@@ -32,7 +32,7 @@ User.create({
     name: 'Hack Reactor',
     description: 'Learn more about Hack Reactor Cohort 71',
     nori_count: 10,
-    private: false,
+    visit_count: 20,
     user_id: 1,
     category_id: 1
   });
@@ -48,7 +48,8 @@ User.create({
   Nori.create({
     name: 'Eric',
     description: 'Question about Eric',
-    text: 'Who is Eric\'s favorite basketball player?' 
+    text_front: 'Who is Eric\'s favorite basketball player?',
+    text_back: 'Stephen Curry'
   });
 })
 .then(function() {
@@ -59,6 +60,8 @@ User.create({
 .then(function() {
   Image.create({
     url: 'https://static.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg',
+    nori_front: true,
+    nori_back: false,
     bento_id: 1,
     nori_id: 1
   });

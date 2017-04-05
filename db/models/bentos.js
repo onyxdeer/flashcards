@@ -4,13 +4,21 @@ const User = require('./users.js');
 const Category = require('./categories.js');
 
 const Bento = db.define('bento', {
-  name: Sequelize.STRING,
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: {
+      args: true,
+      msg: 'Bento name already exists!'
+    }
+  },
   description: Sequelize.STRING,
   nori_count: Sequelize.INTEGER,
   private: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
+  visit_count: Sequelize.INTEGER,
   user_id: {
     type: Sequelize.INTEGER,
     references: {
