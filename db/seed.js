@@ -9,7 +9,7 @@ const Nori = require('./models/noris.js');
 const Tag = require('./models/tags.js');
 const Image = require('./models/images.js');
 const Bento_nori = require('./models/bentos_noris.js');
-const Nori_tag = require('./models/noris_tags.js');
+const Nori_tag = require('./models/noris_tags.js');     
 
 // Seed database with test data
 User.create({
@@ -46,8 +46,6 @@ User.create({
 })
 .then(function() {
   Nori.create({
-    name: 'Eric',
-    description: 'Question about Eric',
     text_front: 'Who is Eric\'s favorite basketball player?',
     text_back: 'Stephen Curry'
   });
@@ -79,3 +77,77 @@ User.create({
   });
 })
 .catch((err) => console.log('Error seeding database: ', err));
+
+// Seed numerous bentos
+// Bento.create({
+//   name: 'Hack Reactor 2',
+//   description: 'Learn more about Hack Reactor Cohort 71',
+//   nori_count: 10,
+//   visit_count: 20,
+//   user_id: 1,
+//   category_id: 1
+// })
+// .then(function() {
+//   Bento.create({
+//     name: 'Hack Reactor 3',
+//     description: 'Learn more about Hack Reactor Cohort 71',
+//     nori_count: 10,
+//     visit_count: 20,
+//     user_id: 1,
+//     category_id: 1
+//   })
+// })
+// .then(function() {
+//   Bento.create({
+//     name: 'Hack Reactor 4',
+//     description: 'Learn more about Hack Reactor Cohort 71',
+//     nori_count: 10,
+//     visit_count: 20,
+//     user_id: 1,
+//     category_id: 1
+//   })
+// })    
+// .then(function() {
+//   Bento.create({
+//     name: 'Hack Reactor 5',
+//     description: 'Learn more about Hack Reactor Cohort 71',
+//     nori_count: 10,
+//     visit_count: 20,
+//     user_id: 1,
+//     category_id: 1
+//   })
+// })    
+// .catch((err) => console.log('Error seeding database: ', err));
+
+// Seed numerous noris
+// Nori.create({
+//   name: 'Eric 2',
+//   description: 'Question about Eric',
+//   text_front: 'Who is Eric\'s favorite basketball player?',
+//   text_back: 'Kevin Durant'
+// })
+// .then(function() {
+//   Nori.create({
+//     name: 'Eric 3',
+//     description: 'Question about Eric',
+//     text_front: 'Who is Eric\'s favorite basketball player?',
+//     text_back: 'Klay Thompson'
+//   })
+// })
+// .then(function() {
+//   Nori.create({
+//     name: 'Eric 4',
+//     description: 'Question about Eric',
+//     text_front: 'Who is Eric\'s favorite basketball player?',
+//     text_back: 'Draymond Green'
+//   })
+// })    
+// .then(function() {
+//   Nori.create({
+//     name: 'Eric 5',
+//     description: 'Question about Eric',
+//     text_front: 'Who is Eric\'s favorite basketball player?',
+//     text_back: 'Iggy'
+//   })
+// })    
+// .catch((err) => console.log('Error seeding database: ', err));

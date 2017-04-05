@@ -6,11 +6,7 @@ const Category = require('./categories.js');
 const Bento = db.define('bento', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
-    unique: {
-      args: true,
-      msg: 'Bento name already exists!'
-    }
+    allowNull: false
   },
   description: Sequelize.STRING,
   nori_count: Sequelize.INTEGER,

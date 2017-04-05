@@ -67,6 +67,15 @@ class Search extends Component {
   componentWillMount() {
     this.props.endNavSubmit();
     // send an DB GET request for the flash cards here
+    axios.get('/api/bentos', {
+      params: {
+        name: this.props.query
+      }
+    }).then(function(response) {
+      console.log('RESPONSE BACK FROM DB:', response);
+    }).then(this.setState({
+      bentosToDisplay: this.state.userBentos
+    }));    
   }
 
 
