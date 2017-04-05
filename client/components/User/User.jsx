@@ -192,7 +192,7 @@ class User extends Component {
     // do a GET PERSONAL api to DB
     this.setState({
       bentosToDisplay: this.state.userBentos
-    });
+    }, () => { Carousel.slickGoTo(0) } );
   }
 
   fetchFavorites() {
@@ -202,7 +202,7 @@ class User extends Component {
     // do a GET FAVORITES api to DB
     this.setState({
       bentosToDisplay: this.state.favoriteBentos
-    });
+    }, () => { Carousel.slickGoTo(0) } );
   }
 
   fetchPopular() {
@@ -212,7 +212,7 @@ class User extends Component {
     // do a GET POPULAR api to DB
     this.setState({
       bentosToDisplay: this.state.popularBentos
-    });
+    }, () => { Carousel.slickGoTo(0) } );
   }
 
   // getSortedNoris () {
@@ -236,8 +236,11 @@ class User extends Component {
       arrows: true,
       accessibility: true,
       autoplay: false,
+      centerMode: true,
+      className: 'slick-margin',
       dotsClass: 'slick-dots slick-thumb',
-      responsive: [ { breakpoint: 550, settings: { slidesToShow: 1 } }, { breakpoint: 1000, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } }],
+      focusOnSelect: true,
+      responsive: [ { breakpoint: 550, settings: { slidesToShow: 1 } }, { breakpoint: 1100, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } }],
       touchMove: true,
       swipe: true,
       swipeToSlide: true,
@@ -270,8 +273,7 @@ class User extends Component {
                             </div>
                         </div>
                       </div>
-                    </div> )
-                  )}
+                    </div> ))}
             </Carousel>
           </div>
         </div>

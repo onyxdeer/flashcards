@@ -35,7 +35,7 @@
  }
 
 label, button {
-    margin: 2px;
+    margin-left: 2px;
 }
 
 /*Start of Create Page Stylesheet*/
@@ -247,7 +247,7 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/blue-landing.jpg) no-repeat center center;
+    background: url(../img/green-landing.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -385,6 +385,7 @@ p.copyright {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 20px;
 }
 
 .navbar .navbar-collapse.in {
@@ -393,11 +394,11 @@ p.copyright {
     overflow-x: hidden !important;
 }
 
-/* VIEW PAGE */
+/* DISPLAY PAGE */
 
 .cardSection {
-    text-align: center;
-    float: none;
+    width: 500px;
+    margin: 0 auto;
 }
 
 .buttonSection {
@@ -438,14 +439,17 @@ p.copyright {
   list-style: none;
   /*position: relative;*/
   height: 350px;
-  max-width: 500px;
+  /*max-width: 500px;*/
   padding: 10px;
 }
 
 
 .card {
   display: block;
-  max-width: 500px;
+  /*min-width: 300px;*/
+  /*max-width: 500px;*/
+
+  width: 100%;
   perspective: 1000px;
   position: absolute;
 }
@@ -486,6 +490,7 @@ p.copyright {
 
 .center-within-viewport {
   left: 50%;
+  right: 50%;
   top: 50%;
   margin-top: -150px;
   margin-left: -250px;
@@ -540,8 +545,13 @@ p.copyright {
 
 .carousel-card {
     /*display: block;*/
+    /*margin: 20px;*/
     max-width: 500px;
     perspective: 1000px;
+}
+
+.slick-margin {
+    margin: 20px;
 }
 
 .container {
@@ -560,4 +570,27 @@ p.copyright {
 .slick-next {
     margin-right: 40px;
     z-index: 999;
+}
+
+/* SEARCH PAGE */
+
+.scrollSection {
+    height: 100vh;
+}
+
+.scrollToTopButton {
+    /*position:absolute;
+    bottom:0;*/
+    white-space: normal;
+}
+
+.filterSection {
+    text-align: center;
+}
+
+.search-card {
+    /*display: block;*/
+    margin: 20px;
+    max-width: 500px;
+    perspective: 1000px;
 }

@@ -195,7 +195,7 @@ class Display extends Component {
               onSwipedDown={this.nextNori}
               onSwipedLeft={this.prevNori}
               onSwipedRight={this.nextNori}>
-                <div className='col-md-offset-4 col-md-4'>
+                <div className='cardSection'>
                   <Deck>
                     {this.getSortedNoris().map(this.renderNori, this)}
                   </Deck>
