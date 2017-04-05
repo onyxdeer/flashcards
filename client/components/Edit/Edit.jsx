@@ -37,7 +37,7 @@ class Edit extends React.Component {
     if(this.state.bento.name.replace(/\s/g,'').length < 5) {
       alert("Please give your new Bento a name and make sure it's longer than 5 characters")
     } else {
-      axios.post('/bento', this.state.bento).then(function(data){
+      axios.post('/api/bentos', this.state.bento).then(function(data){
         console.log(data);
       })
     } 
