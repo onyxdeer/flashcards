@@ -55,7 +55,9 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^3.30.4",
     "slick-carousel": "^1.6.0",
-    "wav": "^1.0.1"
+    "wav": "^1.0.1",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
