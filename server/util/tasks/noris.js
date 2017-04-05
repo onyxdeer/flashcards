@@ -22,7 +22,7 @@ const post = (req, res) => {
 module.exports = {get, post};
 
 // {
-//   "name": "Eric",
+//   "name": "Eric Chen",
 //   "description": "Question about Eric",
 //   "text_front": "Who is Eric's favorite basketball player?",
 //   "text_back": "Stephen Curry"

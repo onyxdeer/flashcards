@@ -7,7 +7,10 @@ const Image = db.define('image', {
   url: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true
+    unique: {
+      args: true,
+      msg: 'Image URL already exists!'
+    }
   },
   nori_front: Sequelize.BOOLEAN,
   nori_back: Sequelize.BOOLEAN,

@@ -5,7 +5,10 @@ const Nori = db.define('nori', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true
+    unique: {
+      args: true,
+      msg: 'Nori name already exists!'
+    }
   },
   description: Sequelize.STRING,
   text_front: Sequelize.TEXT,

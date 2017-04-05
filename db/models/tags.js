@@ -5,7 +5,10 @@ const Tag = db.define('tag', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true
+    unique: {
+      args: true,
+      msg: 'Tag name already exists!'
+    }
   }
 });
 

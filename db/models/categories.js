@@ -6,7 +6,10 @@ const Category = db.define('category', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true
+    unique: {
+      args: true,
+      msg: 'Category name already exists!'
+    }
   }
 });
 

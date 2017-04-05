@@ -6,7 +6,10 @@ const User = db.define('user', {
   username: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true
+    unique: {
+      args: true,
+      msg: 'Username already exists!'
+    }
   },
   password: Sequelize.STRING,
 }, {

@@ -7,7 +7,10 @@ const Bento = db.define('bento', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true
+    unique: {
+      args: true,
+      msg: 'Bento name already exists!'
+    }
   },
   description: Sequelize.STRING,
   nori_count: Sequelize.INTEGER,

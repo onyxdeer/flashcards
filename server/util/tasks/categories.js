@@ -22,5 +22,5 @@ const post = (req, res) => {
 module.exports = {get, post};
 
 // {
-//   "name": "Fun"
+//   "name": "Sports"
 // }
