@@ -5,8 +5,6 @@ class NewNori extends React.Component {
   constructor(props){
     super(props)
       this.state = {
-        value: this.props.nori.front,
-        secondValue: this.props.nori.back
       }
   }
 
