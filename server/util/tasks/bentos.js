@@ -10,13 +10,12 @@ const get = (req, res) => {
 };
 
 const post = (req, res) => {
-  console.log(req.body)
-  // Bento.create(req.body)
-  //   .then(function(bento) {
-  //     console.log('Successfully saved bento to database: ' + bento.name);
-  //     res.send(req.body);
-  //   })
-  //   .catch((err) => console.log(err));    
+  Bento.create(req.body)
+    .then(function(bento) {
+      console.log('Successfully saved bento to database: ' + bento.name);
+      res.send(req.body);
+    })
+    .catch((err) => console.log("UNABLE TO SAVE TO DATABASE", err));    
 };
 
 module.exports = {get, post};
