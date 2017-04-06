@@ -18,14 +18,13 @@ class Nav extends Component {
     var context = this;
     this.setState({
       input: event.target.value,
-    }, () => console.log('input:',context.state.input));
+    });
   }
 
   // brings up the 'input' to App and will assign to 'query'
   bringUpInput(input) {
     var context = this;
     return function(event) {
-      console.log('input in bringUpInput', input);
       context.props.handleNavSubmit(event, input);
     }
   }

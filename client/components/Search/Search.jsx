@@ -178,35 +178,33 @@ class Search extends Component {
 
   fetchBentos() {
     var context = this;
-    // if (this.props.query === this.props.input) {
-      console.log('Calling fetchBentos with keyword:', this.props.query);
+      // console.log('Calling fetchBentos with keyword:', this.props.query);
       axios.get('/api/bentos', {
         params: { name: this.props.query }
       }).then(function(response) {
-        console.log('response.data:', response.data);
+        // console.log('response.data:', response.data);
         for (var index = 0; index < response.data.length; index++) {
           
           // Check if it is private
           if (!response.data[index].private) {
             var bento = {};
-            console.log('bento id:', response.data[index].id);
+            // console.log('bento id:', response.data[index].id);
             bento.name = response.data[index].name;
             bento.description = response.data[index].description;
             bento.visit_count = response.data[index].visit_count;
             axios.get('/api/images', {
               params: { bento_id: response.data[index].id }
-            }).then(function(response) {
+            })
+            .then(function(response) {
               bento.img_url = response.data.url;
               context.setState({
                 bentosToDisplay: context.state.bentosToDisplay.concat([bento])
               });
-
             });
           }
 
         }
       });
-    // }
   }
 
   componentWillMount() {
@@ -240,25 +238,11 @@ class Search extends Component {
 
 
           <div className='row'>
-            {/*<div className='center-block col-xs-12 col-md-12'>*/}
             <div className='center-block col-sm-6 col-md-4'>
 
-              {/* Cards */}
-              {/*{this.state.bentosToDisplay.map((data, index) => (
-              <div className='col-xs-4 col-md-4' data-index={index} key={index}>
-                <div className='search-card index-card'>
-                  <div className='card-front'>
-                    <p>{data.bento[0].front}</p>
-                  </div>
-                </div>
-                <div className='bento-metadata'>
-                  <div>{data.title}</div>
-                  <div>{data.description}</div>
-                </div>
-              </div> ))
-              }*/}
+            {/*Search results*/}
               {
-                this.state.bentosToDisplay.map((bento, index) => (
+                this.state.bentosToDisplay.length > 0 ? this.state.bentosToDisplay.map((bento, index) => (
                   <div className='thumbnail' key={index}>
                     <img src={bento.img_url} />
                     <div className='caption'>
@@ -268,10 +252,9 @@ class Search extends Component {
                       <p><a href='#' className='btn btn-primary' role='button'>View</a> <a href='#' className='btn btn-default' role='button'>Edit</a></p>
                     </div>
                   </div>
-                ))
+                )) : (<h1 className='center-block'>Sorry, no results were found!</h1>)
               }
               
-
             </div>
           </div>
 

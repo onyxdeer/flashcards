@@ -64,14 +64,11 @@ class App extends Component {
       TargetRoute = () => ( <Redirect to='/search' /> )
     }
 
-    console.log('rendering App');
-
     return (
       <div>
         <Router>
           <div>
             <Nav handleNavSubmit={this.handleNavSubmit} />
-            {/*{this.state.searchActive ? <Redirect to='/search' /> : <Redirect from='/' to='/' />}*/}
             <TargetRoute />
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display' component={() => <Display />} />
