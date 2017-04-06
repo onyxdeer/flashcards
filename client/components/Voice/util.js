@@ -41,12 +41,17 @@ const startPipingToBackend = () => { console.log('piping data started')}
 
 const endPipingToBackend = () => { console.log('piping data ended')} 
 
-const answer = (text) => {
-  responsiveVoice.speak(text, "UK English Female", {onstart: startPipingToBackend, onend: endPipingToBackend});
+const prompt = (text) => {
+  responsiveVoice.speak(text, "UK English Female", { onend: recordAnswer });
 }
 
-const say = (text, config) => {
-  responsiveVoice.speak(text, "UK English Female", config);
+const recordAnswer = () => {
+  console.log('recording answer on microphone')
+  //this is where we pipe the answer to the backend
+}
+
+const say = (text, callbacks ) => {
+  responsiveVoice.speak(text, "UK English Female", callbacks );
 }
 
 
