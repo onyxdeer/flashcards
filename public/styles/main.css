@@ -590,6 +590,7 @@ p.copyright {
 }
 
 .filterSection {
+    margin: 10px;
     text-align: center;
 }
 
@@ -598,4 +599,18 @@ p.copyright {
     margin: 20px;
     max-width: 500px;
     perspective: 1000px;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  height: 7.5ex;
+
+  /* Required for text-overflow to do anything */
+  white-space: wrap;
+  overflow: scroll;
+}
+
+.thumbnail {
+    margin: 0 auto;
+    width: 200px;
 }

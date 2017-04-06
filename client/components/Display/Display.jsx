@@ -69,6 +69,7 @@ class Display extends Component {
       'no-animation': this.state.buttonPressed
     });
     console.log('className in render:', className);
+    console.log('nori: ', nori, 'index: ', index, 'noris: ', noris)
     return (
       <Card key={nori.front} className={className}>
         <Card.Front>
@@ -162,7 +163,9 @@ class Display extends Component {
       temp.splice(randomIndex, 1);
     }
     console.log('shuffleNori:', result);
-    this.flip();
+    if (this.state.isFlipped) {
+      this.flip();
+    }
     this.setState({
       mockData: {
         title: this.state.mockData.title,
@@ -184,6 +187,7 @@ class Display extends Component {
   }
 
   render() {
+
     return (
       <div>
         <div className='row'>

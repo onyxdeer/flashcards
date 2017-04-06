@@ -2,7 +2,9 @@ const Sequelize = require('sequelize');
 const Bento_nori = require('../../../db/models/bentos_noris.js');
 
 const get = (req, res) => {
-  Bento_nori.findOne({where: {id: 1}})
+  console.log('req.body:', req.body);
+  console.log('req.query:', req.query);
+  Bento_nori.findAll({where: {id: 1}})
     .then(function(bento_nori) {
       console.log('Successfully fetched bento_nori from database! id: ' + bento_nori.id);
       res.send(bento_nori);

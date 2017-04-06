@@ -33,6 +33,17 @@ const bindRoutes = (app) => {
   app.route('/api/images')
     .get(util.tasks.images.get)  
     .post(util.tasks.images.post);
+
+  app.route('/api/bentos_noris')
+    .get(util.tasks.bentos_noris.get)  
+    .post(util.tasks.bentos_noris.post);
+
+  app.route('/api/noris_tags')
+    .get(util.tasks.noris_tags.get)  
+    .post(util.tasks.noris_tags.post);     
+
+  app.route('/*')
+    .get(util.tasks.redirect.get);   
 };
 
 module.exports = bindRoutes;
