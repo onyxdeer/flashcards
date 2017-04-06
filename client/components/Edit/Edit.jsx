@@ -16,7 +16,7 @@ class Edit extends React.Component {
         visit_count: 0,
         bento_id: null,
         user_id: null,
-        noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}, id: null}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}, id: null}]
+        noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
     }
     this.handleChange = this.handleChange.bind(this);

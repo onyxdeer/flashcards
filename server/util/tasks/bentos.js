@@ -30,7 +30,6 @@ const post = (req, res) => {
   }
   var norisArray = noris.map(function(nori) {
     var noriInfo = {
-      id: nori.id,
       text_front: nori.Front.text,
       text_back: nori.Back.text,
       audio_url_front: nori.Front.soundFile,
@@ -39,8 +38,7 @@ const post = (req, res) => {
     return noriInfo;
   })
   
-  var p1 = 
-  Bento.upsert(bentoInfo)
+  var p1 = Bento.upsert(bentoInfo)
   .then(function(created) {
     console.log(created);
     return created
@@ -62,22 +60,24 @@ const post = (req, res) => {
   })
   Promise.all([P1])
   .then(function(){
-    
-    res.send(200, bentoId)
+    var n1 = Promise.all(norisArray.map(function(noriInfo){
+      console.log(noriInfo)
+      return Nori.findOrCreate({where: {text_front: noriInfo.text_front, text_back: noriInfo.text_back, audio_url_front : noriInfo.audio_url_front, audio_url_back: noriInfo.audio_url_back}})
+    }))
+    n1.then(function(nori){
+      return nori.map(function(nori, index){
+        return nori[0].dataValues.id
+      })
+    })
+    .then(function(noriIds){
+      Promise.all(noriIds.map(function(noriId){
+        return Bento_nori.findOrCreate({where: {bento_id: bentoId, nori_id: noriId}})
+      })).
+      then(function(){
+        res.send(200, bentoId)
+      })
+    })
   })
-
-    //     .then(function(){
-    //       norisArray.forEach(function(noriInfo){
-    //       Nori.upsert(noriInfo)
-    //       .then(function(created){
-    //         console.log("Nori has been eiterh",created)
-    //       })
-    //     })
-    //   }
-    // .then(function(){
-    //   console.log("Successfully saved all noris into database")
-    //   res.send(200)
-    // })
       .catch((err) => console.log("UNABLE TO SAVE TO DATABASE", err));    
 };
 
