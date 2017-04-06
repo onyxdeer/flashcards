@@ -14,7 +14,7 @@ class Edit extends React.Component {
         description:'',
         category: '',
         visit_count: 0,
-        bento_id: null,
+        bento_id: 6,
         user_id: 1,
         noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
@@ -40,8 +40,12 @@ class Edit extends React.Component {
       alert("Please give your new Bento a name and make sure it's longer than 5 characters")
     } else {
       axios.post('/api/bentos',this.state.bento).then(function(data){
+        console.log(data)
         if(data.status === 200) {
           alert('Your bento has been saved!')
+          // this.setState({
+
+          // })
         }else {
           alert('Your bento was unsuccessfully saved. Please try again later.')
         }

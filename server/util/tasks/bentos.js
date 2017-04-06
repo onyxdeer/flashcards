@@ -58,7 +58,12 @@ const post = (req, res) => {
       })
     } 
   })
-  Promise.all([P1])
+
+  var clearBento_NoriLinks = Bento_nori.destroy({where: {bento_id: bentoId}}).then(function(number){
+    console.log(number)
+  })
+
+  Promise.all([P1, clearBento_NoriLinks])
   .then(function(){
     var n1 = Promise.all(norisArray.map(function(noriInfo){
       console.log(noriInfo)
@@ -72,8 +77,8 @@ const post = (req, res) => {
     .then(function(noriIds){
       Promise.all(noriIds.map(function(noriId){
         return Bento_nori.findOrCreate({where: {bento_id: bentoId, nori_id: noriId}})
-      })).
-      then(function(){
+      }))
+      .then(function(){
         res.send(200, bentoId)
       })
     })
