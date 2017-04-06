@@ -40,12 +40,12 @@ const post = (req, res) => {
   
   var p1 = Bento.upsert(bentoInfo)
   .then(function(created) {
-    console.log(created);
+    console.log("line 42", created);
     return created
   })
   var P1 = Promise.all([p1])
   .then(function(created){
-    if(created) {
+    if(created[0]) {
       return Bento.findOne({
         where: {
           user_id: userId,
