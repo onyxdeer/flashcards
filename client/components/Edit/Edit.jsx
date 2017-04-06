@@ -15,7 +15,7 @@ class Edit extends React.Component {
         category: '',
         visit_count: 0,
         bento_id: null,
-        user_id: null,
+        user_id: 1,
         noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
     }
