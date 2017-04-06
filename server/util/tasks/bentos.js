@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize');
 const Bento = require('../../../db/models/bentos.js');
 const get = (req, res) => {
-  Bento.findOne({where: {name: 'Hack Reactor'}})
+  console.log('req.query:', req.query);
+  Bento.findAll({where: req.query})
     .then(function(bento) {
       console.log('Successfully fetched bento from database: ' + bento.name);
       res.send(bento);
