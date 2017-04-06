@@ -14,15 +14,12 @@ class Search extends Component {
         bento: [{
           front: 'User1 Front 1',
           back: 'User1 Back 1',
-          // isFlipped: false
         }, {
           front: 'User1 Front 2',
           back: 'User1 Back 2',
-          // isFlipped: false
         }, {
           front: 'User1 Front 3',
           back: 'User1 Back 3',
-          // isFlipped: false
         }]
       }, {
         title: 'Userbento 2',
@@ -32,15 +29,12 @@ class Search extends Component {
         bento: [{
           front: 'User2 Front 1',
           back: 'User2 Back 1',
-          // isFlipped: false
         }, {
           front: 'User2 Front 2',
           back: 'User2 Back 2',
-          // isFlipped: false
         }, {
           front: 'User2 Front 3',
           back: 'User2 Back 3',
-          // isFlipped: false
         }]
       }, {
         title: 'Userbento 3',
@@ -50,15 +44,12 @@ class Search extends Component {
         bento: [{
           front: 'User3 Front 1',
           back: 'User3 Back 1',
-          // isFlipped: false
         }, {
           front: 'User3 Front 2',
           back: 'User3 Back 2',
-          // isFlipped: false
         }, {
           front: 'User3 Front 3',
           back: 'User3 Back 3',
-          // isFlipped: false
         }]
       }, {
         title: 'FavoriteBento 1',
@@ -68,15 +59,12 @@ class Search extends Component {
         bento: [{
           front: 'Favorite1 Front 1',
           back: 'Favorite1 Back 1',
-          // isFlipped: false
         }, {
           front: 'Favorite1 Front 2',
           back: 'Favorite1 Back 2',
-          // isFlipped: false
         }, {
           front: 'Favorite1 Front 3',
           back: 'Favorite1 Back 3',
-          // isFlipped: false
         }]
       }, {
         title: 'FavoriteBento 2',
@@ -86,15 +74,12 @@ class Search extends Component {
         bento: [{
           front: 'Favorite2 Front 1',
           back: 'Favorite2 Back 1',
-          // isFlipped: false
         }, {
           front: 'Favorite2 Front 2',
           back: 'Favorite2 Back 2',
-          // isFlipped: false
         }, {
           front: 'Favorite2 Front 3',
           back: 'Favorite2 Back 3',
-          // isFlipped: false
         }]
       }, {
         title: 'FavoriteBento 3',
@@ -104,15 +89,12 @@ class Search extends Component {
         bento: [{
           front: 'Favorite3 Front 1',
           back: 'Favorite3 Back 1',
-          // isFlipped: false
         }, {
           front: 'Favorite3 Front 2',
           back: 'Favorite3 Back 2',
-          // isFlipped: false
         }, {
           front: 'Favorite3 Front 3',
           back: 'Favorite3 Back 3',
-          // isFlipped: false
         }]
       }, {
         title: 'PopularBento 1',
@@ -122,15 +104,12 @@ class Search extends Component {
         bento: [{
           front: 'Popular1 Front 1',
           back: 'Popular1 Back 1',
-          // isFlipped: false
         }, {
           front: 'Popular1 Front 2',
           back: 'Popular1 Back 2',
-          // isFlipped: false
         }, {
           front: 'Popular1 Front 3',
           back: 'Popular1 Back 3',
-          // isFlipped: false
         }]
       }, {
         title: 'PopularBento 2',
@@ -140,15 +119,12 @@ class Search extends Component {
         bento: [{
           front: 'Popular2 Front 1',
           back: 'Popular2 Back 1',
-          // isFlipped: false
         }, {
           front: 'Popular2 Front 2',
           back: 'Popular2 Back 2',
-          // isFlipped: false
         }, {
           front: 'Popular2 Front 3',
           back: 'Popular2 Back 3',
-          // isFlipped: false
         }]
       }, {
         title: 'PopularBento 3',
@@ -158,15 +134,12 @@ class Search extends Component {
         bento: [{
           front: 'Popular3 Front 1',
           back: 'Popular3 Back 1',
-          // isFlipped: false
         }, {
           front: 'Popular3 Front 2',
           back: 'Popular3 Back 2',
-          // isFlipped: false
         }, {
           front: 'Popular3 Front 3',
           back: 'Popular3 Back 3',
-          // isFlipped: false
         }]
       }],
       bentosToDisplay: [],
@@ -192,7 +165,7 @@ class Search extends Component {
             bento.name = response.data[index].name;
             bento.description = response.data[index].description;
             bento.visit_count = response.data[index].visit_count;
-            axios.get('/api/images', {
+            axios.get('/api/thumbnails', {
               params: { bento_id: response.data[index].id }
             })
             .then(function(response) {
@@ -244,7 +217,7 @@ class Search extends Component {
               {
                 this.state.bentosToDisplay.length > 0 ? this.state.bentosToDisplay.map((bento, index) => (
                   <div className='thumbnail' key={index}>
-                    <img src={bento.img_url} />
+                    <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                     <div className='caption'>
                       <h3>{bento.name}</h3>
                       <p className='ellipsis'>{bento.description}</p>

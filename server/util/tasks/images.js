@@ -2,7 +2,8 @@ const Sequelize = require('sequelize');
 const Image = require('../../../db/models/images.js');
 
 const get = (req, res) => {
-  Image.findOne({where: {url: 'https://static.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg  '}})
+  console.log('req.query from images.get:', req.query);
+  Image.findAll({where: {url: 'https://static.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg  '}})
     .then(function(image) {
       console.log('Successfully fetched image from database: ' + image.url);
       res.send(image);
