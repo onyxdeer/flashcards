@@ -40,7 +40,11 @@ const bindRoutes = (app) => {
 
   app.route('/api/noris_tags')
     .get(util.tasks.noris_tags.get)  
-    .post(util.tasks.noris_tags.post);     
+    .post(util.tasks.noris_tags.post);
+
+  app.route('/api/thumbnails')
+    .get(util.tasks.thumbnails.get)
+    .post(util.tasks.thumbnails.post);
 
   app.route('/*')
     .get(util.tasks.redirect.get);   
