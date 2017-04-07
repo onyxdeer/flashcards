@@ -58,11 +58,9 @@ const post = (req, res) => {
       })
     } 
   })
-
   var clearBento_NoriLinks = Bento_nori.destroy({where: {bento_id: bentoId}}).then(function(number){
     console.log(number)
   })
-
   Promise.all([P1, clearBento_NoriLinks])
   .then(function(){
     var n1 = Promise.all(norisArray.map(function(noriInfo){
