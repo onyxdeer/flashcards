@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Search extends Component {
   constructor(props) {
@@ -162,6 +163,7 @@ class Search extends Component {
           if (!response.data[index].private) {
             var bento = {};
             // console.log('bento id:', response.data[index].id);
+            bento.id = response.data[index].id;
             bento.name = response.data[index].name;
             bento.description = response.data[index].description;
             bento.visit_count = response.data[index].visit_count;
@@ -222,7 +224,8 @@ class Search extends Component {
                       <h3>{bento.name}</h3>
                       <p className='ellipsis'>{bento.description}</p>
                       <p><label>View Count:</label> {bento.visit_count} </p>
-                      <p><a href='#' className='btn btn-primary' role='button'>View</a> <a href='#' className='btn btn-default' role='button'>Edit</a></p>
+                      {/*<p><a href='#View' className='btn btn-primary' role='button'>View</a> <a href='#' className='btn btn-default' role='button'>Edit</a></p>*/}
+                      <p><Link className='btn btn-primary' to={'/display/' + bento.id}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit/' + bento.id}>Edit</Link></p>
                     </div>
                   </div>
                 )) : (<h1 className='center-block'>Sorry, no results were found!</h1>)

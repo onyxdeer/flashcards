@@ -410,6 +410,12 @@ p.copyright {
     text-align: center;
 }
 
+.noriImage {
+    margin: 10px;
+    max-width: 50%;
+    max-height: 50%;
+}
+
 /* USER PAGE */
 
 .userBentos {
@@ -533,6 +539,10 @@ p.copyright {
   text-align: center;
   margin: 0;
   overflow: scroll;
+}
+
+.index-card img {
+    margin: 5px;
 }
 
 .deck > :nth-child(1n+0) { transform: rotate(2.02deg); }

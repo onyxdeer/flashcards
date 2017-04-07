@@ -71,7 +71,7 @@ class App extends Component {
             <Nav handleNavSubmit={this.handleNavSubmit} />
             <TargetRoute />
             <Route exact path='/' component={() => <Landing />} />
-            <Route path='/display' component={() => <Display />} />
+            <Route path='/display/:id' component={Display} />
             <Route path='/landing' component={() => <Landing />} />
             <Route path='/edit' component={() => <Edit />} />
             <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} />} />
