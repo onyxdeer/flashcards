@@ -79,6 +79,15 @@ const post = (req, res) => {
         return Bento_nori.findOrCreate({where: {bento_id: bentoId, nori_id: noriId}})
       }))
       .then(function(){
+       return Bento_nori.findAll({attributes: ['nori_id']})
+      })
+      .then(function(result){
+        var idArray = result.map(function(id){
+          return id.dataValues.nori_id
+        })
+        Nori.destroy({where: {id: {$notIn: idArray}}})
+      })
+      .then(function(){ 
         res.send(200, bentoId)
       })
     })
