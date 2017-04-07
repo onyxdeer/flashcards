@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import Deck from 'react-deck';
-import Card from 'react-card';
+// import Deck from 'react-deck';
+// import Card from 'react-card';
 import Carousel from 'react-slick';
 import CarouselTheme from 'slick-carousel';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class User extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      category: "User's",
+      category: "User",
       userBentos: [{
         title: 'Userbento 1',
         description: 'This is user bento 1',
@@ -176,7 +177,8 @@ class User extends Component {
           // isFlipped: false
         }]
       }],
-      bentosToDisplay: []
+      bentosToDisplay: [],
+      test: []
     }
 
     this.fetchPersonal = this.fetchPersonal.bind(this);
@@ -186,13 +188,44 @@ class User extends Component {
   }
 
   fetchPersonal() {
-    this.setState({
-      category: "User's"
+    var context = this;
+    var bentoData = [];
+    var idArray = [];
+    var imgArray = [];
+      // console.log('Calling fetchBentos with keyword:', this.props.query);
+    axios.get('/api/bentos', {
+      params: { user_id: 1 }
+    })
+    .then(function(response) {
+      // console.log('response.data in fetchPersonal:', response.data);
+      for (var i = 0; i < response.data.length; i++ ) {
+        if (!response.data[i].private) {
+          bentoData.push(response.data[i]);
+          idArray.push(response.data[i].id);
+        }
+      }
     });
-    // do a GET PERSONAL api to DB
-    this.setState({
-      bentosToDisplay: this.state.userBentos
-    }, () => { Carousel.slickGoTo(0) } );
+    axios.get('/api/thumbnails', {
+      params: { bento_id: idArray }
+    }).then(function(response) {
+      var imgData = response.data
+      console.log('response.data for /api/thumbnails:', imgData);
+      console.log('idArray:', idArray);
+      console.log('bentoData:', bentoData);
+
+      // populate the ones with images
+      for (var i = 0; i < bentoData.length; i++) {
+        for (var j = 0; j < imgData.length; j++) {
+          if (imgData[j].bento_id === bentoData[i].id) {
+            bentoData[i].img_url = imgData[j].url;
+          }
+        }
+      }
+
+      context.setState({
+        bentosToDisplay: bentoData
+      }, () => console.log('test has been set to:', context.state.bentosToDisplay));
+    });
   }
 
   fetchFavorites() {
@@ -226,12 +259,11 @@ class User extends Component {
 
   componentWillMount() {
     // send an DB GET request for the flash cards here
-    this.setState({
-      bentosToDisplay: this.state.userBentos
-    });
+    this.fetchPersonal();
   }
 
   render() {
+    console.log('length of bentosToDisplay:', this.state.bentosToDisplay);
     const settings = {
       arrows: true,
       accessibility: true,
@@ -254,7 +286,7 @@ class User extends Component {
       <div>
         <div className='row center-block'>
           <div className='create-title'>
-            <h1>{this.state.category} Bentos:</h1>
+            <h1>{this.state.category}'s Bentos:</h1>
           </div>
           <div className='row buttonSection'>
             <label>Categories:</label>
@@ -264,16 +296,19 @@ class User extends Component {
           </div>
           <div className='row'>
             <Carousel {...settings}>   
-                  {this.state.bentosToDisplay.map((data, index) => (
-                    <div data-index={index} key={index}>
-                      <div className='container col-md-12'>
-                        <div className='carousel-card index-card'>
-                            <div className='card-front'>
-                              <p>{data.bento[0].front}</p>
-                            </div>
-                        </div>
-                      </div>
-                    </div> ))}
+              {
+                this.state.bentosToDisplay.length > 0 ? this.state.bentosToDisplay.map((bento, index) => (
+                  <div className='thumbnail' key={index}>
+                    <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
+                    <div className='caption'>
+                      <h3>{bento.name}</h3>
+                      <p className='ellipsis'>{bento.description}</p>
+                      <p><label>View Count:</label> {bento.visit_count} </p>
+                      <p><Link className='btn btn-primary' to={'/display/' + bento.id}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit/' + bento.id}>Edit</Link></p>
+                    </div>
+                  </div>
+                )) : (<h1 className='center-block'>No bentos have been made yet for this category. Go start creating!</h1>)
+              }
             </Carousel>
           </div>
         </div>
@@ -283,3 +318,15 @@ class User extends Component {
 }
 
 export default User;
+
+
+              /*{this.state.bentosToDisplay.map((data, index) => (
+                    <div data-index={index} key={index}>
+                      <div className='container col-md-12'>
+                        <div className='carousel-card index-card'>
+                            <div className='card-front'>
+                              <p>{data.bento[0].front}</p>
+                            </div>
+                        </div>
+                      </div>
+                    </div> ))}*/

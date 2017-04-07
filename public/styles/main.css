@@ -600,8 +600,12 @@ p.copyright {
 }
 
 .filterSection {
-    margin: 10px;
-    text-align: center;
+    margin: 20px;
+    /*text-align: center;*/
+}
+
+.filterButtons {
+    margin-bottom: 5px;
 }
 
 .search-card {
@@ -623,4 +627,10 @@ p.copyright {
 .thumbnail {
     margin: 0 auto;
     width: 200px;
+    max-height: 500px;
+}
+
+.thumbnail img {
+    width: 180px;
+    height: auto;
 }

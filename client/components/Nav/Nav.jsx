@@ -1,17 +1,37 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Navbar, Nav, NavItem, NavDropdown, FormGroup, FormControl, MenuItem, Button, Dropdown, Glyphicon } from 'react-bootstrap';
 
-class Nav extends Component {
+class Navigation extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      input: ''
+      input: '',
+      navExpanded: false,
+      // active: false,
+      // activeKey: 0,
+      // activeHref: null
     }
 
+    // this.setNavExpanded = this.setNavExpanded.bind(this);
+    // this.closeNav = this.closeNav.bind(this);
     this.handleNavSearch = this.handleNavSearch.bind(this);
     this.bringUpInput = this.bringUpInput.bind(this);
+    this.clearText = this.clearText.bind(this);
   }
+
+  // setNavExpanded(expanded) {
+  //   this.setState({ 
+  //     navExpanded: expanded
+  //   });
+  // }
+
+  // closeNav() {
+  //   this.setState({
+  //     navExpanded: false
+  //   });
+  // }
 
   // detects changes to input in navbar searchbar
   handleNavSearch(event) {
@@ -29,6 +49,12 @@ class Nav extends Component {
     }
   }
 
+  // clears text on the search box when it is clicked
+  clearText() {
+    this.setState({
+      input: ''
+    });
+  }
 
   render() {
     return (
@@ -50,16 +76,16 @@ class Nav extends Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul className="nav navbar-nav">
-              <li><Link to="/User"><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
-              <li><Link to="/Display"><span className="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Display</Link></li>
-              <li><Link to="/Edit"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
-              <li><Link to="/Voice"><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>
+              <li><Link to="/User" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
+              {/*<li><Link to="/Display" onSelect={this.closeNav}><span className="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Display</Link></li>*/}
+              <li><Link to="/Edit" onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
+              {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
             </ul>
 
             {/* Search bar */}
             <form className="navbar-form navbar-left" onSubmit={this.bringUpInput(this.state.input)}>
               <div className="form-group">
-                <input type="text" className="form-control" value={this.state.input} placeholder="Find A Bento Here" onChange={this.handleNavSearch} />
+                <input type="text" className="form-control" value={this.state.input} placeholder="Find A Bento Here" onChange={this.handleNavSearch} onClick={this.clearText} />
               </div>
               <button type="submit" className="btn btn-default"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
             </form>
@@ -85,9 +111,40 @@ class Nav extends Component {
         {/* End of nav bar container */}
         </div>
       </nav>
+
     );
   }    
 };
 
-export default Nav;
+export default Navigation;
 
+        /*<Navbar collapseOnSelect fixedTop active activeKey activeHref>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/">Obento</Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav>
+            <NavItem eventKey={1}><Link to="/User"><span className="glyphicon glyphicon-home" aria-hidden="true"></span>User</Link></NavItem>
+            <NavItem eventKey={2}><Link to="/Edit"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>Create/Edit</Link></NavItem>
+            <form className="navbar-form navbar-left" onSubmit={this.bringUpInput(this.state.input)}>
+              <FormGroup>
+                <FormControl type="text" value={this.state.input} placeholder="Find A Bento Here" onChange={this.handleNavSearch} />
+              </FormGroup>
+              {' '}
+              <Button type="submit"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Search</Button>
+            </form>
+          </Nav>
+          <Nav pullRight>
+            <Glyphicon glyph="user" />
+            <NavDropdown eventKey={1} title="Profile" id="basic-nav-dropdown">
+              <MenuItem eventKey={1.1}><span className="glyphicon glyphicon-th" aria-hidden="true"></span>Personal</MenuItem>
+              <MenuItem eventKey={1.2}><span className="glyphicon glyphicon-cog" aria-hidden="true"></span>Settings</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={1.3}><span className="glyphicon glyphicon-log-out" aria-hidden="true"></span>Log Out</MenuItem>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>*/

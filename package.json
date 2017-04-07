@@ -32,6 +32,7 @@
     "mysql": "^2.13.0",
     "path": "^0.12.7",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.30.8",
     "react-card": "^1.0.4",
     "react-deck": "^2.0.2",
     "react-dom": "^15.4.2",

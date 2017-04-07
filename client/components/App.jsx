@@ -73,7 +73,7 @@ class App extends Component {
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display/:id' component={Display} />
             <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit' component={() => <Edit />} />
+            <Route path='/edit/:id' component={Edit} />
             <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} />} />
             <Route path='/user' component={() => <User />} />
             <Route path='/voice' component={() => <Voice />} />
