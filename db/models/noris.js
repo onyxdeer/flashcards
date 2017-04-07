@@ -1,5 +1,14 @@
 const Sequelize = require('sequelize');
 const db = require('../connect.js');
+  // name: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false,
+  // description: Sequelize.STRING,
+  //   unique: {
+  //     args: true,
+  //     msg: 'Nori name already exists!'
+  //   }
+  // },
 
 const Nori = db.define('nori', {
   text_front: Sequelize.TEXT,

@@ -13,9 +13,11 @@ class Edit extends React.Component {
         name: '',
         description:'',
         category: '',
+        visit_count: 0,
+        bento_id: 6,
+        user_id: 1,
         noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
-      value: RichTextEditor.createEmptyValue()
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,16 +39,16 @@ class Edit extends React.Component {
     if(this.state.bento.name.replace(/\s/g,'').length < 5) {
       alert("Please give your new Bento a name and make sure it's longer than 5 characters")
     } else {
-      var bento = {
-        name: this.state.bento.name,
-        description: this.state.bento.description,
-        nori_count: this.state.bento.noris.length,
-        visit_count: 12,
-        user_id: 1,
-        category_id: 1
-      }
-      axios.post('/api/bentos', bento).then(function(data){
-        console.log(data);
+      axios.post('/api/bentos',this.state.bento).then(function(data){
+        console.log(data)
+        if(data.status === 200) {
+          alert('Your bento has been saved!')
+          // this.setState({
+
+          // })
+        }else {
+          alert('Your bento was unsuccessfully saved. Please try again later.')
+        }
       })
     } 
   }
@@ -62,7 +64,7 @@ class Edit extends React.Component {
 
   addNewNori () {
     console.log("adding a new nori")
-    var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}
+    var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}, id: null}
     var tempBento = this.state.bento;
     tempBento.noris.push(newNori);
     this.setState({
