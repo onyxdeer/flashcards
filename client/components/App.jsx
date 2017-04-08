@@ -25,7 +25,8 @@ class App extends Component {
 
     this.state = {
       query: '',
-      searchActive: false
+      searchActive: false,
+      userId: 'guest'
     }
 
     // this.handleNavSearch = this.handleNavSearch.bind(this);
@@ -68,12 +69,12 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Nav handleNavSubmit={this.handleNavSubmit} />
+            <Nav handleNavSubmit={this.handleNavSubmit} userId={this.state.userId}/>
             <TargetRoute />
             <Route exact path='/' component={() => <Landing />} />
-            <Route path='/display' component={() => <Display />} />
+            <Route path='/display/:id' component={Display} />
             <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit' component={() => <Edit />} />
+            <Route path='/edit/:user_id/:bento_id' component={Edit} />
             <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} />} />
             <Route path='/user' component={() => <User />} />
             <Route path='/voice' component={() => <Voice />} />

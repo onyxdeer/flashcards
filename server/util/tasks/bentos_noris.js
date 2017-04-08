@@ -4,7 +4,7 @@ const Bento_nori = require('../../../db/models/bentos_noris.js');
 const get = (req, res) => {
   console.log('req.body:', req.body);
   console.log('req.query:', req.query);
-  Bento_nori.findAll({where: {id: 1}})
+  Bento_nori.findAll({where: req.query})
     .then(function(bento_nori) {
       console.log('Successfully fetched bento_nori from database! id: ' + bento_nori.id);
       res.send(bento_nori);

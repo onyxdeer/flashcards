@@ -5,11 +5,11 @@ const Bento_nori = require('../../../db/models/bentos_noris.js');
 
 
 const get = (req, res) => {
-  console.log('req.query:', req.query);
+  console.log('req.query for /bentos/get:', req.query);
   Bento.findAll({where: req.query})
-    .then(function(bento) {
-      console.log('Successfully fetched bento from database: ' + bento.name);
-      res.send(bento);
+    .then(function(bentos) {
+      // console.log('bento:', bento);
+      res.send(bentos);
     })
     .catch((err) => console.log(err));
 };

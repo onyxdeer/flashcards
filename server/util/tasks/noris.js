@@ -2,7 +2,8 @@ const Sequelize = require('sequelize');
 const Nori = require('../../../db/models/noris.js');
 
 const get = (req, res) => {
-  Nori.findOne({where: {id: 1}})
+  console.log('req.query in noris/get:', req.query);
+  Nori.findAll({where: req.query})
     .then(function(nori) {
       console.log('Successfully fetched nori from database! id: ' + nori.id);
       res.send(nori);
@@ -11,6 +12,7 @@ const get = (req, res) => {
 };
 
 const post = (req, res) => {
+  console.log('req.body:', req.body);
   Nori.create(req.body)
     .then(function(nori) {
       console.log('Successfully saved nori to database! id: ' + nori.id);
