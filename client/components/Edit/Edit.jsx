@@ -15,10 +15,9 @@ class Edit extends React.Component {
         category: '',
         visit_count: 0,
         bento_id: 6,
-        user_id: null,
+        user_id: this.props.userId,
         noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
-      userId: 0
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -82,17 +81,16 @@ class Edit extends React.Component {
   }
 
   componentWillMount() {
-    console.log('this.props.match.params:', this.props.match.params);
     // send an DB GET request for the flash cards here
     var context = this;
     var tempBento = this.state.bento;
-    if (this.props.match.params.user_id === 'guest') {
+    if (this.props.userId === 'guest') {
       tempBento.user_id = 1;
       this.setState({
         bento: tempBento
       }, () => console.log('bento (guest) is now:', context.state.bento));
     } else {
-      tempBento.user_id = Number(this.props.match.params.user_id)
+      tempBento.user_id = Number(this.props.userId)
       this.setState({
         bento: tempBento
       }, () => console.log('bento is now:', context.state.bento));
