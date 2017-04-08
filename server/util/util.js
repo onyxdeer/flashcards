@@ -1,3 +1,6 @@
+const noris = require('./tasks/noris.js')
+const bentos = require('./tasks/bentos.js')
+const speech = require('./tasks/speech.js')
 const users = require('./tasks/users.js');
 const bentos = require('./tasks/bentos.js');
 const noris = require('./tasks/noris.js');

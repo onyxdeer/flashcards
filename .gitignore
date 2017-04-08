@@ -31,3 +31,8 @@ bower_components/
 public/assets/bundles/
 .DS_Store
 .vscode
+
+pats_notes.md
+server/util/tasks/code_sample.js
+server/util/tasks/test.wav
+server/util/tasks/testspeek.js
