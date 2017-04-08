@@ -4,8 +4,9 @@ const Nori = require('../../../db/models/noris.js');
 const Bento_nori = require('../../../db/models/bentos_noris.js');
 
 
-const get = (req, res) => {
-  console.log('req.query for /bentos/get:', req.query);
+
+const get = (req, res) => {//finds all bento depeding query
+  console.log('req.query:', req.query);
   Bento.findAll({where: req.query})
     .then(function(bentos) {
       // console.log('bento:', bento);
@@ -94,3 +95,4 @@ const post = (req, res) => {
 };
 
 module.exports = {get, post};
+

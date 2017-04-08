@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 
+=======
+import {Link} from 'react-router' 
+>>>>>>> preparing for git merge rebase
 class Search extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       bentosToDisplay: [],
+<<<<<<< HEAD
+=======
+      user_id:2,
+      
+>>>>>>> preparing for git merge rebase
     }
 
     this.fetchBentos = this.fetchBentos.bind(this);
