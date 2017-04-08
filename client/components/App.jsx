@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Link,
+  IndexRoute
+} from 'react-router-dom';
 
 import Main from './Main.jsx';
 import Nav from './Nav/Nav.jsx';
@@ -9,22 +16,8 @@ import Search from './Search/Search.jsx';
 import User from './User/User.jsx';
 import Voice from './Voice/Voice.jsx';
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Link
-} from 'react-router-dom';
-
-import createBrowserHistory from 'history/createBrowserHistory';
-
-const history = createBrowserHistory();
-
-const searchRedirectPath = {
-  pathname: 'search'
-}
-
-let TargetRoute = () => ( <Redirect from='/' to='/' /> )
+// Allows redirection from current page to Search page upon search submission
+let TargetRoute = () => ( <Redirect from='/' to='/' /> );
 
 class App extends Component {
   constructor(props) {
@@ -33,29 +26,30 @@ class App extends Component {
     this.state = {
       query: '',
       searchActive: false,
-      searchEnded: false
+      userId: 'guest'
     }
 
-    this.handleNavSearch = this.handleNavSearch.bind(this);
+    // this.handleNavSearch = this.handleNavSearch.bind(this);
     this.handleNavSubmit = this.handleNavSubmit.bind(this);
     this.endNavSubmit = this.endNavSubmit.bind(this);
   }
 
-  handleNavSearch(event) {
+  // gets called when user pushes the submit button or presses enter
+  handleNavSubmit(event, input) {
+    console.log('calling handleNavSubmit with event:', event)
+    console.log('calling handleNavSubmit with input:', input);
+    event.preventDefault();
     var context = this;
     this.setState({
-      query: event.target.value,
-    }, () => { console.log('handleNavSearch query:', context.state.query); } );
-  }
-
-  handleNavSubmit(event) {
-    event.preventDefault();
-    console.log('handleNavSubmit called with', this.state.query);
-    this.setState({
+      query: input,
       searchActive: true
-    });
+    }, () => { 
+      console.log('searchActive in handleNavSubmit:', context.state.searchActive);
+      console.log('query changed to:', context.state.query);
+     });
   }
 
+  // ends the submit action
   endNavSubmit() {
     if (this.state.searchActive === true) {
       this.setState({
@@ -64,9 +58,9 @@ class App extends Component {
     }
   }
 
-
   render() {
 
+    // triggers a redirection to Search page if 'searchActive' state is triggered from submission action
     if (this.state.searchActive) {
       TargetRoute = () => ( <Redirect to='/search' /> )
     }
@@ -75,12 +69,12 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Nav handleNavSearch={this.handleNavSearch} handleNavSubmit={this.handleNavSubmit} query={this.state.query} />
+            <Nav handleNavSubmit={this.handleNavSubmit} userId={this.state.userId}/>
             <TargetRoute />
             <Route exact path='/' component={() => <Landing />} />
-            <Route path='/display' component={() => <Display />} />
+            <Route path='/display/:id' component={Display} />
             <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit' component={() => <Edit />} />
+            <Route path='/edit/:user_id/:bento_id' component={Edit} />
             <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} />} />
             <Route path='/user' component={() => <User />} />
             <Route path='/voice' component={() => <Voice />} />

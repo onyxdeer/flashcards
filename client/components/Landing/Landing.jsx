@@ -78,7 +78,8 @@ class Landing extends Component {
                 <div className="col-lg-12">
                     <div className="intro-message">
                         <h1>Obento</h1>
-                        <h3>The Newest FlashCard Generator Of The 21st Century</h3>
+                        {/*<h3>The Newest FlashCard Generator Of The 21st Century</h3>*/}
+                        <h3>Repetitive Memorization made more fun and less tedious</h3>
                         <hr className="intro-divider"/>
                     </div>
                 </div>
@@ -110,7 +111,7 @@ class Landing extends Component {
                 <div className="col-lg-5 col-sm-6">
                     <hr className="section-heading-spacer"/>
                     <div className="clearfix"></div>
-                    <h2 className="section-heading">Create Your Own Nori(s)<br/>with Awesome Skins and Customizations</h2><p>Unlimited Bentos and Nori(s)! Get started now with your first Nori!</p>
+                    <h2 className="section-heading">Create Your Own Nori(s)<br/>with Awesome Skins and Customizations</h2><p className="lead">Unlimited Bentos and Nori(s)! Get started now with your first Nori!</p>
                 </div>
                 <div className="col-lg-5 col-lg-offset-2 col-sm-6">
                     <img className="img-responsive" src="img/flashcards.png" alt=""/>

@@ -9,7 +9,7 @@ const Nori = require('./models/noris.js');
 const Tag = require('./models/tags.js');
 const Image = require('./models/images.js');
 const Bento_nori = require('./models/bentos_noris.js');
-const Nori_tag = require('./models/noris_tags.js');
+const Nori_tag = require('./models/noris_tags.js');     
 
 // Seed database with test data
 User.create({
@@ -32,7 +32,7 @@ User.create({
     name: 'Hack Reactor',
     description: 'Learn more about Hack Reactor Cohort 71',
     nori_count: 10,
-    private: false,
+    visit_count: 20,
     user_id: 1,
     category_id: 1
   });
@@ -46,9 +46,8 @@ User.create({
 })
 .then(function() {
   Nori.create({
-    name: 'Eric',
-    description: 'Question about Eric',
-    text: 'Who is Eric\'s favorite basketball player?' 
+    text_front: 'Who is Eric\'s favorite basketball player?',
+    text_back: 'Stephen Curry'
   });
 })
 .then(function() {
@@ -59,6 +58,8 @@ User.create({
 .then(function() {
   Image.create({
     url: 'https://static.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg',
+    nori_front: true,
+    nori_back: false,
     bento_id: 1,
     nori_id: 1
   });

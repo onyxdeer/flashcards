@@ -35,7 +35,7 @@
  }
 
 label, button {
-    margin: 2px;
+    margin-left: 2px;
 }
 
 /*Start of Create Page Stylesheet*/
@@ -247,7 +247,7 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/blue-landing.jpg) no-repeat center center;
+    background: url(../img/green-landing.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -385,6 +385,7 @@ p.copyright {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 20px;
 }
 
 .navbar .navbar-collapse.in {
@@ -393,11 +394,11 @@ p.copyright {
     overflow-x: hidden !important;
 }
 
-/* VIEW PAGE */
+/* DISPLAY PAGE */
 
 .cardSection {
-    text-align: center;
-    float: none;
+    width: 500px;
+    margin: 0 auto;
 }
 
 .buttonSection {
@@ -407,6 +408,12 @@ p.copyright {
 
 .changeToNoriSection {
     text-align: center;
+}
+
+.noriImage {
+    margin: 10px;
+    max-width: 50%;
+    max-height: 50%;
 }
 
 /* USER PAGE */
@@ -432,20 +439,28 @@ p.copyright {
     color: #BADA55;    
 }
 
+.bento-metadata {
+    color: black;
+    text-align: center;
+}
+
 /* REACT DECK */
 
 .deck {
   list-style: none;
   /*position: relative;*/
   height: 350px;
-  max-width: 500px;
+  /*max-width: 500px;*/
   padding: 10px;
 }
 
 
 .card {
   display: block;
-  max-width: 500px;
+  /*min-width: 300px;*/
+  /*max-width: 500px;*/
+
+  width: 100%;
   perspective: 1000px;
   position: absolute;
 }
@@ -486,6 +501,7 @@ p.copyright {
 
 .center-within-viewport {
   left: 50%;
+  right: 50%;
   top: 50%;
   margin-top: -150px;
   margin-left: -250px;
@@ -525,6 +541,10 @@ p.copyright {
   overflow: scroll;
 }
 
+.index-card img {
+    margin: 5px;
+}
+
 .deck > :nth-child(1n+0) { transform: rotate(2.02deg); }
 .deck > :nth-child(2n+0) { transform: rotate(-0.87deg); }
 .deck > :nth-child(3n+0) { transform: rotate(-0.16deg); }
@@ -540,8 +560,13 @@ p.copyright {
 
 .carousel-card {
     /*display: block;*/
+    /*margin: 20px;*/
     max-width: 500px;
     perspective: 1000px;
+}
+
+.slick-margin {
+    margin: 20px;
 }
 
 .container {
@@ -560,4 +585,52 @@ p.copyright {
 .slick-next {
     margin-right: 40px;
     z-index: 999;
+}
+
+/* SEARCH PAGE */
+
+.scrollSection {
+    height: 100vh;
+}
+
+.scrollToTopButton {
+    /*position:absolute;
+    bottom:0;*/
+    white-space: normal;
+}
+
+.filterSection {
+    margin: 20px;
+    /*text-align: center;*/
+}
+
+.filterButtons {
+    margin-bottom: 5px;
+}
+
+.search-card {
+    /*display: block;*/
+    margin: 20px;
+    max-width: 500px;
+    perspective: 1000px;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  height: 7.5ex;
+
+  /* Required for text-overflow to do anything */
+  white-space: wrap;
+  overflow: scroll;
+}
+
+.thumbnail {
+    margin: 0 auto;
+    width: 200px;
+    max-height: 500px;
+}
+
+.thumbnail img {
+    width: 180px;
+    height: auto;
 }
