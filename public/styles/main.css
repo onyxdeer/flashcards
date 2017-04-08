@@ -433,6 +433,17 @@ p.copyright {
     color: #BADA55;
 }
 
+.DraftEditor-root {
+    margin: 0 auto;
+    width: 85%
+}
+
+div.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr {
+    /*margin: 0 auto;*/
+    /*width: 80%;*/
+    /*text-align: center;*/
+}
+
 /* SEARCH PAGE */
 
 .searchSection {
@@ -508,7 +519,7 @@ p.copyright {
 }
 
 .index-card {
-  font-family: 'Reenie Beanie', cursive;
+  /*font-family: 'Reenie Beanie', cursive;*/
   text-align: center;
   color: #555;
 }

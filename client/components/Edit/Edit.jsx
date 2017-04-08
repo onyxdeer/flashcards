@@ -7,15 +7,18 @@ import axios from 'axios'
 
 class Edit extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+
+    console.log('this.props.userId:', this.props.userId);
+
     this.state = {
       bento : {
         name: '',
         description:'',
         category: '',
         visit_count: 0,
-        bento_id: 6,
-        user_id: this.props.userId,
+        bento_id: null,
+        user_id: this.props.userId === 'guest' ? 1 : this.props.userId,
         noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
     }
@@ -54,8 +57,8 @@ class Edit extends React.Component {
   }
 
   handleNoriChange(value, side, index) {
-    var data = JSON.stringify(value._editorState.getCurrentContent());
-    var tempBento = this.state.bento
+    var data = JSON.stringify(convertToRaw(value._editorState.getCurrentContent()));
+    var tempBento = this.state.bento;
     tempBento.noris[index][side]["text"] = data;
     this.setState({
       bento: tempBento
