@@ -9,7 +9,24 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/reducers';
 import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
 
-ReactDOM.render( <App />, document.getElementById('app'));
+
+const createStoreWithMiddleWare = applyMiddleware(
+  thunk,
+  promise,
+  createLogger(),
+
+)(createStore)
+
+
+const store = createStoreWithMiddleware(reducers);
+// middleware.listenForReplays(store);
+
+
+ReactDOM.render( 
+  <Provider store={store}>
+    <App />
+  </Provider>, document.getElementById('app'));
 
 console.log('Hello World in console!')
