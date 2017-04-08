@@ -190,7 +190,7 @@ class User extends Component {
     var bentoData = [];
     var idArray = [];
     var imgArray = [];
-      // console.log('Calling fetchBentos with keyword:', this.props.query);
+    // console.log('Calling fetchBentos with keyword:', this.props.query);
     axios.get('/api/bentos', {
       params: { user_id: 1 }
     })
@@ -206,7 +206,7 @@ class User extends Component {
     axios.get('/api/thumbnails', {
       params: { bento_id: idArray }
     }).then(function(response) {
-      var imgData = response.data
+      var imgData = response.data;  
       console.log('response.data for /api/thumbnails:', imgData);
       console.log('idArray:', idArray);
       console.log('bentoData:', bentoData);
