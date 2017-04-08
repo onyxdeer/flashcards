@@ -178,13 +178,11 @@ class User extends Component {
         }]
       }],
       bentosToDisplay: [],
-      test: []
     }
 
     this.fetchPersonal = this.fetchPersonal.bind(this);
     this.fetchFavorites = this.fetchFavorites.bind(this);
     this.fetchPopular = this.fetchPopular.bind(this);
-    // this.getSortedNoris = this.getSortedNoris.bind(this);
   }
 
   fetchPersonal() {
@@ -247,15 +245,6 @@ class User extends Component {
       bentosToDisplay: this.state.popularBentos
     }, () => { Carousel.slickGoTo(0) } );
   }
-
-  // getSortedNoris () {
-  //   let stackSize = this.state.mockData.bento.length >= 10 ? 10 : this.state.mockData.bento.length;
-  //   return this.state.mockData.bento
-  //     .slice(this.state.currentNori)
-  //     .concat(this.state.mockData.bento.slice(0, this.state.currentNori))
-  //     .slice(0, stackSize) // for performance
-  //     .reverse();
-  // }
 
   componentWillMount() {
     // send an DB GET request for the flash cards here

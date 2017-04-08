@@ -37,7 +37,7 @@ class Display extends Component {
 
   fetchImages() {
     var context = this;
-
+    console.log('this.props.match.params in display:', this.props.match.params);
     axios.get('/api/images', {
       params: { bento_id: this.props.match.params.id }
     }).then(function(response) {

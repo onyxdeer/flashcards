@@ -9,29 +9,12 @@ class Navigation extends Component {
     this.state = {
       input: '',
       navExpanded: false,
-      // active: false,
-      // activeKey: 0,
-      // activeHref: null
     }
 
-    // this.setNavExpanded = this.setNavExpanded.bind(this);
-    // this.closeNav = this.closeNav.bind(this);
     this.handleNavSearch = this.handleNavSearch.bind(this);
     this.bringUpInput = this.bringUpInput.bind(this);
     this.clearText = this.clearText.bind(this);
   }
-
-  // setNavExpanded(expanded) {
-  //   this.setState({ 
-  //     navExpanded: expanded
-  //   });
-  // }
-
-  // closeNav() {
-  //   this.setState({
-  //     navExpanded: false
-  //   });
-  // }
 
   // detects changes to input in navbar searchbar
   handleNavSearch(event) {
@@ -77,8 +60,7 @@ class Navigation extends Component {
 
             <ul className="nav navbar-nav">
               <li><Link to="/User" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
-              {/*<li><Link to="/Display" onSelect={this.closeNav}><span className="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Display</Link></li>*/}
-              <li><Link to="/Edit" onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
+              { this.props.userId === 'guest' ? <li><Link to="/Edit/guest/new" onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li> : <li><Link to={"/Edit/" + this.props.userId + "/new"} onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li> }
               {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
             </ul>
 
