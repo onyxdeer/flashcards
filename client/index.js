@@ -9,18 +9,17 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 
 const createStoreWithMiddleWare = applyMiddleware(
   thunk,
-  promise,
   createLogger(),
 
 )(createStore)
 
 
-const store = createStoreWithMiddleware(reducers);
+const store = createStoreWithMiddleWare(reducers);
 // middleware.listenForReplays(store);
 
 
