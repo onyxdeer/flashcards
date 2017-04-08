@@ -4,10 +4,14 @@ import Card from 'react-card';
 import classnames from 'classnames';
 import axios from 'axios';
 import Swipeable from 'react-swipeable';
+import RichTextEditor from 'react-rte';
+import {convertFromRaw, convertToRaw, ContentState, Editor, EditorState} from 'draft-js';
 
 class Display extends Component {
   constructor(props) {
     super(props);
+
+    const content = ContentState.createFromText('Hello World!');
 
     this.state = {
       title: '',
@@ -17,7 +21,8 @@ class Display extends Component {
       currentNori: 0,
       isFlipped: false,
       buttonPressed: false,
-      input: ''
+      input: '',
+      // editorState: EditorState.createWithContent(content)
     }
 
     this.prevNori = this.prevNori.bind(this);
@@ -37,9 +42,8 @@ class Display extends Component {
 
   fetchImages() {
     var context = this;
-    console.log('this.props.match.params in display:', this.props.match.params);
     axios.get('/api/images', {
-      params: { bento_id: this.props.match.params.id }
+      params: { bento_id: this.props.bentoId }
     }).then(function(response) {
       console.log('response from fetchImages:', response.data);
       context.setState({
@@ -53,9 +57,10 @@ class Display extends Component {
     var idArray = [];
 
     // Get title of the bento
-    axios.get('/api/bento', {
-      params: { id: this.props.match.params.id }
+    axios.get('/api/bentos', {
+      params: { id: this.props.bentoId }
     }).then(function(response) {
+      console.log('GETTING TITLE:', response.data[0].name);
       context.setState({
         title: response.data[0].name
       });
@@ -63,20 +68,35 @@ class Display extends Component {
 
     // Get the noris
     axios.get('/api/bentos_noris',{
-        params: { bento_id: this.props.match.params.id }
+        params: { bento_id: this.props.bentoId }
       }).then(function(response) {
       console.log('/api/bentos_noris response:', response.data);
       for (var index = 0; index < response.data.length; index++) {
         idArray.push(response.data[index].nori_id);
       }
-      axios.get('/api/noris', {
-        params: { id: idArray }
-      }).then(function(response) {
-        console.log('/api/noris response:', response.data);
+      if (idArray.length === 0) {
         context.setState({
-          bentoData: response.data
-        },() => console.log('bentoData set to:', context.state.bentoData));
-      });
+          bentoData: [{
+            text_front: 'Sorry, no cards available!',
+            text_back: 'Try another bento!'
+          }]
+        });
+      } else {
+        axios.get('/api/noris', {
+          params: { id: idArray }
+        }).then(function(response) {
+          console.log('/api/noris response:', response.data);
+          // create a copy of the response.data and modify text data to use rich text
+          var noris = [];
+          for (var i = 0; i < response.data.length; i++) {
+            var nori = response.data[i]; // Make a copy of each nori
+            
+          }
+          context.setState({
+            bentoData: response.data
+          },() => console.log('bentoData set to:', context.state.bentoData));
+        });
+      }
     });
   }
 
@@ -225,27 +245,30 @@ class Display extends Component {
     }, () => context.setState({ noriToDisplay: context.state.bentoData[0] }));
   }
 
+  onChange(editorState) {
+    this.setState({
+      editorState
+    })
+  }
+
   componentWillMount() {
     // send an DB GET request for the flash cards here
     this.fetchImages();
     this.fetchBento();
   }
 
-  componentDidUpdate() {
-    
-  }
-
   render() {
 
-    console.log('rendering Display');
+    console.log('rendering Display:', this.state.bentoData);
+    console.log('this.state.editorState:', this.state.editorState);
 
     return (
       <div>
         <div className='row'>
-          <h1 className='create-title'>Bento: {this.state.bentoData.title}</h1>
+          <h1 className='create-title'>Bento: {this.state.title}</h1>
         </div>
         <div className='row'>
-            <Swipeable
+            {this.state.bentoData.length > 0 ? <Swipeable
               onSwipedUp={this.prevNori}
               onSwipedDown={this.nextNori}
               onSwipedLeft={this.prevNori}
@@ -255,7 +278,7 @@ class Display extends Component {
                     {this.getSortedNoris().map(this.renderNori, this)}
                   </Deck>
                 </div> 
-            </Swipeable>
+            </Swipeable> : <h1>Sorry, no cards available!</h1> }
         </div>
           <div className='buttonSection'>
             <button type='button' className='btn btn-success' onClick={this.prevNori}>Previous Nori</button>
@@ -271,26 +294,14 @@ class Display extends Component {
               <input type='text' value={this.state.input} onChange={this.handleInput} placeholder='Enter a number here!' />
             </div>
           </form>
+          <div>
+            {/*<Editor
+              editorState={this.state.editorState}
+            />*/}
+          </div>
       </div>
     )
   }
 }
 
 export default Display;
-
-// {
-//         title: 'Mock Data Title Here',
-//         description: 'This is mock data',
-//         thumbnail: null,
-//         tags: null,
-//         bento: [{
-//           front: 'Front 1',
-//           back: 'Lorem ipsum dolor sit amet, sit eu probo commodo elaboraret, affert persecuti his cu.\nPutant meliore ad qui, nonumy ignota pri et. Eum cibo eligendi evertitur in. Cum no esse\npartem forensibus, est quas quidam mnesarchum an. Sed ne omnium copiosae delectus, eu nec\neligendi placerat vituperatoribus. Mel alterum contentiones id. Eos ferri ceteros ne, impedit\nnostrum at eum, libris ocurreret laboramus id eum. Has dictas insolens et, vel malis dicant\nquaestio an, ne ferri adipisci ius. Sale soluta conceptam an vel, per ex quis putent consequuntur.\nEquidem iudicabit adolescens in nec, exerci tamquam fabulas vis an, ius dolores antiopam percipitur\nno. Nemore sententiae neglegentur ea mei. Iisque integre mentitum sed ad. An aeterno phaedrum nam,\ntritani verterem dignissim per et. Error officiis vis ei. Ad eos consul ceteros elaboraret, veniam\nprodesset duo ad.'
-//         }, {
-//           front: 'Front 2',
-//           back: 'Back 2'
-//         }, {
-//           front: 'Front 3',
-//           back: 'Back 3'
-//         }]
-//       }
