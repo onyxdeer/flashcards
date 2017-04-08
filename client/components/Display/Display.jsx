@@ -22,7 +22,8 @@ class Display extends Component {
       isFlipped: false,
       buttonPressed: false,
       input: '',
-      // editorState: EditorState.createWithContent(content)
+      editorState: EditorState.createWithContent(content),
+      editorStates: []
     }
 
     this.prevNori = this.prevNori.bind(this);
@@ -133,12 +134,21 @@ class Display extends Component {
           <div className='row'>
             <div className={className} onClick={this.flipToBack}>
               <div className='row'>{this.renderImages(nori)}</div>
-              <div className='row'>{nori.text_front}</div>
+              {/*<div className='row'>{nori.text_front}</div>*/}
+              <div className='row'>
+                {console.log('what is text_front parsed:', JSON.parse(nori.text_front))}
+                <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_front)))} readOnly={true} />
+              </div>
             </div>
           </div>
         </Card.Front>
         <Card.Back>
-          <p className={className} onClick={this.flipToFront}>{nori.text_back}</p>
+          {/*<p className={className} onClick={this.flipToFront}>{nori.text_back}</p>*/}
+          <div className='row'>
+            <div className={className} onClick={this.flipToFront}>
+              <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_back)))} readOnly={true} />
+            </div>
+          </div>
         </Card.Back>
       </Card>
     );
@@ -278,7 +288,7 @@ class Display extends Component {
                     {this.getSortedNoris().map(this.renderNori, this)}
                   </Deck>
                 </div> 
-            </Swipeable> : <h1>Sorry, no cards available!</h1> }
+            </Swipeable> : <h1 className='center-block'>Sorry, no cards available!</h1> }
         </div>
           <div className='buttonSection'>
             <button type='button' className='btn btn-success' onClick={this.prevNori}>Previous Nori</button>
@@ -294,11 +304,6 @@ class Display extends Component {
               <input type='text' value={this.state.input} onChange={this.handleInput} placeholder='Enter a number here!' />
             </div>
           </form>
-          <div>
-            {/*<Editor
-              editorState={this.state.editorState}
-            />*/}
-          </div>
       </div>
     )
   }

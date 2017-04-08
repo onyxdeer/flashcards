@@ -11,7 +11,6 @@ const db = require('../connect.js');
   // },
 
 const Nori = db.define('nori', {
-  name: Sequelize.STRING,
   text_front: Sequelize.TEXT,
   text_back: Sequelize.TEXT,
   audio_url_front: Sequelize.STRING,
