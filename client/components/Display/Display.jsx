@@ -53,9 +53,10 @@ class Display extends Component {
     var idArray = [];
 
     // Get title of the bento
-    axios.get('/api/bento', {
+    axios.get('/api/bentos', {
       params: { id: this.props.match.params.id }
     }).then(function(response) {
+      console.log('GETTING TITLE:', response.data[0].name);
       context.setState({
         title: response.data[0].name
       });
@@ -65,18 +66,28 @@ class Display extends Component {
     axios.get('/api/bentos_noris',{
         params: { bento_id: this.props.match.params.id }
       }).then(function(response) {
+      console.log('/api/bentos_noris id:', context.props.match.params.id);
       console.log('/api/bentos_noris response:', response.data);
       for (var index = 0; index < response.data.length; index++) {
         idArray.push(response.data[index].nori_id);
       }
-      axios.get('/api/noris', {
-        params: { id: idArray }
-      }).then(function(response) {
-        console.log('/api/noris response:', response.data);
+      if (idArray.length === 0) {
         context.setState({
-          bentoData: response.data
-        },() => console.log('bentoData set to:', context.state.bentoData));
-      });
+          bentoData: [{
+            text_front: 'Sorry, no cards available!',
+            text_back: 'Try another bento!'
+          }]
+        });
+      } else {
+        axios.get('/api/noris', {
+          params: { id: idArray }
+        }).then(function(response) {
+          console.log('/api/noris response:', response.data);
+          context.setState({
+            bentoData: response.data
+          },() => console.log('bentoData set to:', context.state.bentoData));
+        });
+      }
     });
   }
 
@@ -237,15 +248,15 @@ class Display extends Component {
 
   render() {
 
-    console.log('rendering Display');
+    console.log('rendering Display:', this.state.bentoData);
 
     return (
       <div>
         <div className='row'>
-          <h1 className='create-title'>Bento: {this.state.bentoData.title}</h1>
+          <h1 className='create-title'>Bento: {this.state.title}</h1>
         </div>
         <div className='row'>
-            <Swipeable
+            {this.state.bentoData.length > 0 ? <Swipeable
               onSwipedUp={this.prevNori}
               onSwipedDown={this.nextNori}
               onSwipedLeft={this.prevNori}
@@ -255,7 +266,7 @@ class Display extends Component {
                     {this.getSortedNoris().map(this.renderNori, this)}
                   </Deck>
                 </div> 
-            </Swipeable>
+            </Swipeable> : <h1>Sorry, no cards available!</h1> }
         </div>
           <div className='buttonSection'>
             <button type='button' className='btn btn-success' onClick={this.prevNori}>Previous Nori</button>
