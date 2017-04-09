@@ -230,7 +230,7 @@ h4,
 h5,
 h6 {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
+    /*font-weight: 700;*/
 }
 
 .topnav {
@@ -436,12 +436,6 @@ p.copyright {
 .DraftEditor-root {
     margin: 0 auto;
     width: 85%
-}
-
-div.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr {
-    /*margin: 0 auto;*/
-    /*width: 80%;*/
-    /*text-align: center;*/
 }
 
 /* SEARCH PAGE */
