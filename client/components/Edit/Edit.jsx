@@ -14,8 +14,13 @@ class Edit extends React.Component {
         description:'',
         category: '',
         visit_count: 0,
+<<<<<<< HEAD
         bento_id: 6,
         user_id: null,
+=======
+        bento_id: null,
+        user_id: 1,
+>>>>>>> bento_id state is updated after save request
         noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
       userId: 0
@@ -40,13 +45,14 @@ class Edit extends React.Component {
     if(this.state.bento.name.replace(/\s/g,'').length < 5) {
       alert("Please give your new Bento a name and make sure it's longer than 5 characters")
     } else {
-      axios.post('/api/bentos',this.state.bento).then(function(data){
-        console.log(data)
+      axios.post('/api/bentos',this.state.bento).then((data) => {
         if(data.status === 200) {
+        var tempBento = this.state.bento
+        tempBento.bento_id = data.data
+          this.setState({
+            bento: tempBento
+         })
           alert('Your bento has been saved!')
-          // this.setState({
-
-          // })
         }else {
           alert('Your bento was unsuccessfully saved. Please try again later.')
         }
@@ -100,7 +106,7 @@ class Edit extends React.Component {
   }
 
   render() {
-    console.log("storing into bento", this.state.bento.noris)
+    console.log("storing into bento", this.state.bento.noris, this.state.bento.bento_id)
     return (
       <div>
         <div className="relative fullwidth">
