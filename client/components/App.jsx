@@ -74,9 +74,9 @@ class App extends Component {
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display/:id' component={Display} />
             <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit/:user_id/:bento_id' component={Edit} />
-            <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} />} />
-            <Route path='/user' component={() => <User />} />
+            <Route path='/edit/:bento_id' component={() => <Edit userId = {this.state.userId} match = {{params: {bento_id: null}}}/>}/>
+            <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} userId = {this.state.userId}/>} />
+            <Route path='/user' component={() => <User userId = {this.state.userId}/> } />
             <Route path='/voice' component={() => <Voice />} />
           </div>
         </Router>
