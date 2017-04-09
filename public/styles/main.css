@@ -230,7 +230,23 @@ h4,
 h5,
 h6 {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
+    /*font-weight: 700;*/
+}
+
+.logo-title, .default-font {
+    font-family: Comfortaa;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+    padding-bottom: 10px;
+}
+
+.logo-nav {
+    font-family: Comfortaa;
+    font-style: normal;
+	font-variant: normal;
 }
 
 .topnav {
@@ -438,12 +454,6 @@ p.copyright {
     width: 85%
 }
 
-div.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr {
-    /*margin: 0 auto;*/
-    /*width: 80%;*/
-    /*text-align: center;*/
-}
-
 /* SEARCH PAGE */
 
 .searchSection {
@@ -589,13 +599,11 @@ div.public-DraftStyleDefault-block.public-DraftStyleDefault-ltr {
 }
 
 .slick-prev {
-    margin-left: 40px;
-    z-index: 999;
+    z-index: 1;
   }
 
 .slick-next {
-    margin-right: 40px;
-    z-index: 999;
+    z-index: 1;
 }
 
 /* SEARCH PAGE */
