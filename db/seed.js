@@ -46,8 +46,14 @@ User.create({
 })
 .then(function() {
   Nori.create({
-    text_front: 'Who is Eric\'s favorite basketball player?',
-    text_back: 'Stephen Curry'
+    text_front: '{"entityMap":{},"blocks":[{"key":"a75u3","text":"Another Test for Example","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":12,"style":"ITALIC"},{"offset":0,"length":12,"style":"UNDERLINE"},{"offset":0,"length":12,"style":"BOLD"}],"entityRanges":[],"data":{}}]}',
+    text_back: '{"entityMap":{},"blocks":[{"key":"npdf","text":"Done","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"a3kfc","text":"with example.","type":"ordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}'
+  });
+})
+.then(function() {
+  Nori.create({
+    text_front: '{"entityMap":{},"blocks":[{"key":"iou6","text":"Testing","type":"header-one","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}',
+    text_back: '{"entityMap":{},"blocks":[{"key":"81dt4","text":"123","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}'
   });
 })
 .then(function() {
@@ -65,9 +71,42 @@ User.create({
   });
 })
 .then(function() {
+  Image.create({
+    url: 'https://cdn.pixabay.com/photo/2014/03/29/09/17/cat-300572_960_720.jpg',
+    nori_front: false,
+    nori_back: true,
+    bento_id: 1,
+    nori_id: 1
+  });
+})
+.then(function() {
+  Image.create({
+    url: 'http://www.rd.com/wp-content/uploads/sites/2/2016/04/01-cat-wants-to-tell-you-laptop.jpg',
+    nori_front: true,
+    nori_back: false,
+    bento_id: 1,
+    nori_id: 2
+  });
+})
+.then(function() {
+  Image.create({
+    url: 'https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg',
+    nori_front: false,
+    nori_back: true,
+    bento_id: 1,
+    nori_id: 2
+  });
+})
+.then(function() {
   Bento_nori.create({
     bento_id: 1,
     nori_id: 1
+  });
+})
+.then(function() {
+  Bento_nori.create({
+    bento_id: 1,
+    nori_id: 2
   });
 })
 .then(function() {
