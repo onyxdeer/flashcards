@@ -599,13 +599,11 @@ p.copyright {
 }
 
 .slick-prev {
-    margin-left: 40px;
-    z-index: 999;
+    z-index: 1;
   }
 
 .slick-next {
-    margin-right: 40px;
-    z-index: 999;
+    z-index: 1;
 }
 
 /* SEARCH PAGE */

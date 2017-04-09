@@ -253,13 +253,19 @@ class User extends Component {
     // this.fetchPersonal();
   }
 
+  componentDidMount() {
+    if (this.state.bentosToDisplay.length === 0) {
+      this.fetchPersonal();
+    }
+  }
+
   render() {
     console.log('length of bentosToDisplay:', this.state.bentosToDisplay);
     const settings = {
-      arrows: true,
+      // arrows: true,
       accessibility: true,
       autoplay: false,
-      centerMode: true,
+      // centerMode: true,
       className: 'slick-margin',
       dotsClass: 'slick-dots slick-thumb',
       focusOnSelect: true,
@@ -268,9 +274,11 @@ class User extends Component {
       swipe: true,
       swipeToSlide: true,
       infinite: true,
-      speed: 500,
+      speed: 300,
       slidesToShow: 3,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      initialSlide: 0,
+      touchMove: true
     };
 
     return (
@@ -286,21 +294,25 @@ class User extends Component {
             <button type='button' className='btn btn-success' onClick={this.fetchPopular}>Popular</button>
           </div>
           <div className='row'>
-            <Carousel {...settings}>   
-              {
-                this.state.bentosToDisplay.length > 0 ? this.state.bentosToDisplay.map((bento, index) => (
-                  <div className='thumbnail' key={index}>
-                    <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
-                    <div className='caption'>
-                      <h3>{bento.name}</h3>
-                      <p className='ellipsis'>{bento.description}</p>
-                      <p><label>View Count:</label> {bento.visit_count} </p>
-                      <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.setBentoId(bento.id)}>Edit</Link></p>
+            <div className='col-xs-1'></div>
+            <div className='col-xs-10'>
+              <Carousel {...settings}>   
+                {
+                  this.state.bentosToDisplay.length > 0 ? this.state.bentosToDisplay.map((bento, index) => (
+                    <div className='thumbnail' key={index}>
+                      <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
+                      <div className='caption'>
+                        <h3>{bento.name}</h3>
+                        <p className='ellipsis'>{bento.description}</p>
+                        <p><label>View Count:</label> {bento.visit_count} </p>
+                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.setBentoId(bento.id)}>Edit</Link></p>
+                      </div>
                     </div>
-                  </div>
-                )) : (<h1 className='center-block'>No bentos have been made yet for this category. Go start creating!</h1>)
-              }
-            </Carousel>
+                  )) : (<h1 className='center-block'>No bentos have been made yet for this category. Go start creating!</h1>)
+                }
+              </Carousel>
+            </div>
+            <div className='col-xs-1'></div>
           </div>
         </div>
       </div>
@@ -309,15 +321,3 @@ class User extends Component {
 }
 
 export default User;
-
-
-              /*{this.state.bentosToDisplay.map((data, index) => (
-                    <div data-index={index} key={index}>
-                      <div className='container col-md-12'>
-                        <div className='carousel-card index-card'>
-                            <div className='card-front'>
-                              <p>{data.bento[0].front}</p>
-                            </div>
-                        </div>
-                      </div>
-                    </div> ))}*/
