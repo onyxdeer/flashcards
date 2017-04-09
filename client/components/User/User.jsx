@@ -183,6 +183,8 @@ class User extends Component {
     this.fetchPersonal = this.fetchPersonal.bind(this);
     this.fetchFavorites = this.fetchFavorites.bind(this);
     this.fetchPopular = this.fetchPopular.bind(this);
+
+    this.fetchPersonal();
   }
 
   fetchPersonal() {
@@ -190,7 +192,7 @@ class User extends Component {
     var bentoData = [];
     var idArray = [];
     var imgArray = [];
-      // console.log('Calling fetchBentos with keyword:', this.props.query);
+    // console.log('Calling fetchBentos with keyword:', this.props.query);
     axios.get('/api/bentos', {
       params: { user_id: 1 }
     })
@@ -206,7 +208,7 @@ class User extends Component {
     axios.get('/api/thumbnails', {
       params: { bento_id: idArray }
     }).then(function(response) {
-      var imgData = response.data
+      var imgData = response.data;  
       console.log('response.data for /api/thumbnails:', imgData);
       console.log('idArray:', idArray);
       console.log('bentoData:', bentoData);
@@ -248,7 +250,7 @@ class User extends Component {
 
   componentWillMount() {
     // send an DB GET request for the flash cards here
-    this.fetchPersonal();
+    // this.fetchPersonal();
   }
 
   render() {
@@ -293,7 +295,7 @@ class User extends Component {
                       <h3>{bento.name}</h3>
                       <p className='ellipsis'>{bento.description}</p>
                       <p><label>View Count:</label> {bento.visit_count} </p>
-                      <p><Link className='btn btn-primary' to={'/display/' + bento.id}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit/' + bento.id}>Edit</Link></p>
+                      <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.setBentoId(bento.id)}>Edit</Link></p>
                     </div>
                   </div>
                 )) : (<h1 className='center-block'>No bentos have been made yet for this category. Go start creating!</h1>)
