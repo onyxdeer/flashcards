@@ -52,7 +52,7 @@ class Navigation extends Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link className="navbar-brand" to="/">Obento</Link>
+            <Link className="navbar-brand logo-nav" to="/">Obento</Link>
           </div>
 
           {/* This container allows the navbar contents to be collapsed thus responsive */}

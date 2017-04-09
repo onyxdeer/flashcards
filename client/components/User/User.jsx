@@ -277,7 +277,7 @@ class User extends Component {
       <div>
         <div className='row center-block'>
           <div className='create-title'>
-            <h1>{this.state.category}'s Bentos:</h1>
+            <h1 className='default-font'>{this.state.category}'s Bentos:</h1>
           </div>
           <div className='row buttonSection'>
             <label>Categories:</label>

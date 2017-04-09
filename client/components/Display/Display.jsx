@@ -294,7 +294,7 @@ class Display extends Component {
     return (
       <div>
         <div className='row'>
-          <h1 className='create-title'>Bento: {this.state.title}</h1>
+          <h1 className='default-font create-title'>Bento: {this.state.title}</h1>
         </div>
         <div className='row'>
             {this.state.bentoData.length > 0 ? <Swipeable

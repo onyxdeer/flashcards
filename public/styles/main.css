@@ -233,13 +233,20 @@ h6 {
     /*font-weight: 700;*/
 }
 
-.logo-title {
+.logo-title, .default-font {
     font-family: Comfortaa;
 	font-size: 24px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
 	line-height: 26.4px;
+    padding-bottom: 10px;
+}
+
+.logo-nav {
+    font-family: Comfortaa;
+    font-style: normal;
+	font-variant: normal;
 }
 
 .topnav {
