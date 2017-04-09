@@ -77,7 +77,7 @@ class Landing extends Component {
             <div className="row">
                 <div className="col-lg-12">
                     <div className="intro-message">
-                        <h1>Obento</h1>
+                        <h1 className="logo-title">Obento</h1>
                         {/*<h3>The Newest FlashCard Generator Of The 21st Century</h3>*/}
                         <h3>Repetitive Memorization made more fun and less tedious</h3>
                         <hr className="intro-divider"/>
