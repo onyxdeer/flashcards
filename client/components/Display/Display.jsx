@@ -41,6 +41,7 @@ class Display extends Component {
     this.renderImages = this.renderImages.bind(this);
   }
 
+  // Get all bento image entries for given bento_id
   fetchImages() {
     var context = this;
     axios.get('/api/images', {
@@ -57,7 +58,7 @@ class Display extends Component {
     var context = this;
     var idArray = [];
 
-    // Get title of the bento
+    // Get bento title for given bento_id
     axios.get('/api/bentos', {
       params: { id: this.props.bentoId }
     }).then(function(response) {
@@ -67,7 +68,8 @@ class Display extends Component {
       });
     });
 
-    // Get the noris
+    // Get all the nori_ids for given bento_id
+    // Get all the nori entries for given bento_id
     axios.get('/api/bentos_noris',{
         params: { bento_id: this.props.bentoId }
       }).then(function(response) {
@@ -87,12 +89,6 @@ class Display extends Component {
           params: { id: idArray }
         }).then(function(response) {
           console.log('/api/noris response:', response.data);
-          // create a copy of the response.data and modify text data to use rich text
-          var noris = [];
-          for (var i = 0; i < response.data.length; i++) {
-            var nori = response.data[i]; // Make a copy of each nori
-            
-          }
           context.setState({
             bentoData: response.data
           },() => console.log('bentoData set to:', context.state.bentoData));
