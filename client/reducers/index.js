@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 
 
 
-// INSTRUCTIONS: create reducers in this folder and  export them
+// NOTES: THIS FILE IS where we combine all of the reducers we wrote
 // SO you can import them in here, and add the reducer inside the combineReducer function below
 import sampleReducer from './sampleReducer.js'
 
