@@ -71,6 +71,7 @@ class Display extends Component {
         imgDataBack: response.data
       }, () => console.log('imgData set to:', context.state.imgDataBack));
     })
+    this.fetchBentos = this.fetchBentos.bind(this);
   }
 
   fetchBento() {

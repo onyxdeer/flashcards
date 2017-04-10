@@ -16,6 +16,12 @@ User.create({
   username: 'saungchi',
   password: 'saungchipassword',
 })
+.then(function(){
+  User.create({
+    username: 'wilton',
+    password: 'wiltonpassword'
+  })
+})
 .then(function() {
   Follow.create({
     user_id: 1,
