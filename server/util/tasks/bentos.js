@@ -40,7 +40,6 @@ const post = (req, res) => {
   
   var p1 = Bento.upsert(bentoInfo)
   .then(function(created) {
-    console.log("line 42", created);
     return created
   })
   var P1 = Promise.all([p1])
