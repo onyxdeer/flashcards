@@ -122,12 +122,14 @@ class User extends Component {
           // isFlipped: false
         }]
       }],
-      bentosToDisplay: null,
+      bentosToDisplay: [],
     }
 
     this.fetchPersonal = this.fetchPersonal.bind(this);
     this.fetchFavorites = this.fetchFavorites.bind(this);
     this.fetchPopular = this.fetchPopular.bind(this);
+
+    // this.fetchPersonal();
   }
 
   fetchPersonal() {
@@ -194,15 +196,13 @@ class User extends Component {
 
   componentWillMount() {
     // send an DB GET request for the flash cards here
-    // if (!this.state.bentosToDisplay) {
-      this.fetchPersonal();
-    // }
+    this.fetchPersonal();
   }
 
   componentDidMount() {
-    // if (!this.state.bentosToDisplay) {
-    //   this.fetchPersonal();
-    // }
+    if (this.state.bentosToDisplay.length === 0) {
+      this.fetchPersonal();
+    }
   }
 
   render() {
@@ -240,10 +240,12 @@ class User extends Component {
           <div className='row'>
             <div className='col-xs-1'></div>
             <div className='col-xs-10'>
-              <Carousel {...settings}>   
+                
                 {
-                  this.state.bentosToDisplay ? this.state.bentosToDisplay.map((bento, index) => (
-                    <div className='thumbnail' key={index}>
+                  this.state.bentosToDisplay.length > 0 ? 
+                  (<Carousel {...settings}> 
+                  {this.state.bentosToDisplay.map((bento, index) => (
+                    <div className='thumbnail'>
                       <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                       <div className='caption'>
                         <h3>{bento.name}</h3>
@@ -252,9 +254,11 @@ class User extends Component {
                         <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.setBentoId(bento.id)}>Edit</Link></p>
                       </div>
                     </div>
-                  )) : (<h1 className='center-block'>No bentos have been made yet for this category. Go start creating!</h1>)
+                  ))}
+                  </Carousel>)
+                  : (<div><h1 className='center-block'>No bentos have been made yet for this category. Go start creating!</h1></div>)
                 }
-              </Carousel>
+              
             </div>
             <div className='col-xs-1'></div>
           </div>
