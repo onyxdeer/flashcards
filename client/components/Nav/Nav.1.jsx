@@ -1,13 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, NavDropdown, FormGroup, FormControl, MenuItem, Button, Dropdown, Glyphicon } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import * as actions from '../../actions/navActions.js';
-console.log(actions);
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      input: '',
+      navExpanded: false,
+    }
 
     this.handleNavSearch = this.handleNavSearch.bind(this);
     this.bringUpInput = this.bringUpInput.bind(this);
@@ -17,7 +19,9 @@ class Navigation extends Component {
   // detects changes to input in navbar searchbar
   handleNavSearch(event) {
     var context = this;
-    context.props.nav(event.target.value);
+    this.setState({
+      input: event.target.value,
+    });
   }
 
   // brings up the 'input' to App and will assign to 'query'
@@ -30,8 +34,9 @@ class Navigation extends Component {
 
   // clears text on the search box when it is clicked
   clearText() {
-    console.log(this.props);
-    this.props.nav('');
+    this.setState({
+      input: ''
+    });
   }
 
   render() {
@@ -60,9 +65,9 @@ class Navigation extends Component {
             </ul>
 
             {/* Search bar */}
-            <form className="navbar-form navbar-left" onSubmit={this.bringUpInput(this.props.input)}>
+            <form className="navbar-form navbar-left" onSubmit={this.bringUpInput(this.state.input)}>
               <div className="form-group">
-                <input type="text" className="form-control" value={this.props.input} placeholder="Find A Bento Here" onChange={this.handleNavSearch} onClick={this.clearText} />
+                <input type="text" className="form-control" value={this.state.input} placeholder="Find A Bento Here" onChange={this.handleNavSearch} onClick={this.clearText} />
               </div>
               <button type="submit" className="btn btn-default"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
             </form>
@@ -93,19 +98,7 @@ class Navigation extends Component {
   }    
 };
 
-function mapStateToProps(state) {
-  return { 
-    //these are just sample names
-    // userData: state.recipes.userRecipes,
-    // viewFollows: state.follows.dataForUser,
-    // favorites: state.favorites.dataForUser,
-    // data: state.recipes.data
-    input: state.input,
-    componentPropData: state.data
-  }
-}
-
-export default connect(mapStateToProps, actions)(Navigation);
+export default Navigation;
 
         /*<Navbar collapseOnSelect fixedTop active activeKey activeHref>
         <Navbar.Header>

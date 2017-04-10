@@ -5,10 +5,10 @@ import { browserHistory } from 'react-router';
 
 import { GET_HELLO, WAVE_HELLO, POST_HELLO, SAMPLE_REQUEST_ERROR } from '../actions/actionTypes.js'
 
-
 //an example of a asynchronous redux thunk action.
 export function sample(somedata, someMoreData) {
-  return function(dispatch) {
+  return function(dispatch, getState) {
+    console.log('getstate inside sample action', getState());
     axios.post('/api/sample', { data: somedata, more: someMoreData })
       .then(response => {
         dispatch({ type: POST_HELLO, payload: 'we just got some coolshit' });

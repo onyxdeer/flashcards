@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 // connect is what we use to bind the component to redux store
 import { connect } from 'react-redux';
 
-import * as actions from './actions/sampleActions.js'
+import * as actions from './actions/sampleActions.js';
 
 class SampleReduxComponent extends Component {
   constructor(props) {
