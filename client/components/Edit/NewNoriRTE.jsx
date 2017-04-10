@@ -19,6 +19,7 @@ constructor(props){
 
   componentWillReceiveProps (newProps) {
     console.log('componeWillReceives fires from rte')
+
     if(newProps.nori.text != this.state.rawValue){
       console.log(newProps.nori.text)
       var rawJs = newProps.nori.text
@@ -61,6 +62,11 @@ constructor(props){
     )
   }
 
+  componentDidMount() {
+    console.log("Line 66", this.props)
+      var newValue = this.updateValue(this.props.nori.text)
+      this.setState({value: newValue})
+  }
 
   render () {
     console.log(this.props)
