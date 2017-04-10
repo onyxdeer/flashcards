@@ -30,11 +30,6 @@ class App extends Component {
       bentoId: null
     }
 
-<<<<<<< HEAD
-    // this.handleNavSearch = this.handleNavSearch.bind(this);
-    this.setBentoId = this.setBentoId.bind(this);
-=======
->>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
     this.handleNavSubmit = this.handleNavSubmit.bind(this);
     this.endNavSubmit = this.endNavSubmit.bind(this);
     this.setBentoId = this.setBentoId.bind(this);
@@ -54,11 +49,6 @@ class App extends Component {
       console.log('searchActive in handleNavSubmit:', context.state.searchActive);
       console.log('query changed to:', context.state.query);
      });
-  }
-
-  setBentoId(id) {
-    console.log('does this fire?')
-    this.setState({bentoId: id})
   }
 
   // ends the submit action
@@ -98,15 +88,9 @@ class App extends Component {
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display' component={() => <Display bentoId={this.state.bentoId}/>} />
             <Route path='/landing' component={() => <Landing />} />
-<<<<<<< HEAD
             <Route path='/edit' component={() => <Edit userId = {this.state.userId} bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/>}/>
             <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} userId = {this.state.userId}  bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/>} />
             <Route path='/user' component={() => <User userId = {this.state.userId} bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/> } />
-=======
-            <Route path='/edit' component={() => <Edit userId={this.state.userId} bentoId={this.state.bentoId} setBentoId={this.setBentoId} />} />
-            <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} setBentoId={this.setBentoId} />} />
-            <Route path='/user' component={() => <User userId={this.state.userId} setBentoId={this.setBentoId} />} />
->>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
             <Route path='/voice' component={() => <Voice />} />
           </div>
         </Router>

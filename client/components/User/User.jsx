@@ -11,8 +11,6 @@ class User extends Component {
     super(props);
 
     this.state = {
-<<<<<<< HEAD
-=======
       category: 'Personal',
       favoriteBentos: [{
         title: 'FavoriteBento 1',
@@ -124,7 +122,6 @@ class User extends Component {
           // isFlipped: false
         }]
       }],
->>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
       bentosToDisplay: [],
     }
 
@@ -241,18 +238,6 @@ class User extends Component {
             <button type='button' className='btn btn-success' onClick={this.fetchPopular}>Popular</button>
           </div>
           <div className='row'>
-<<<<<<< HEAD
-            <Carousel {...settings}>   
-              {
-                this.state.bentosToDisplay.length > 0 ? this.state.bentosToDisplay.map((bento, index) => (
-                  <div className='thumbnail' key={index}>
-                    <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
-                    <div className='caption'>
-                      <h3>{bento.name}</h3>
-                      <p className='ellipsis'>{bento.description}</p>
-                      <p><label>View Count:</label> {bento.visit_count} </p>
-                      <p><Link className='btn btn-primary' to={'/display/' + bento.id}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit/'} onClick = {() => {this.props.setBentoId(bento.id)}}>Edit</Link></p>
-=======
             <div className='col-xs-1'></div>
             <div className='col-xs-10'>
                 
@@ -268,7 +253,6 @@ class User extends Component {
                         <p><label>View Count:</label> {bento.visit_count} </p>
                         <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.setBentoId(bento.id)}>Edit</Link></p>
                       </div>
->>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
                     </div>
                   ))}
                   </Carousel>)

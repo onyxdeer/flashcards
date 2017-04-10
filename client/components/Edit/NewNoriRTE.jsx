@@ -7,12 +7,8 @@ constructor(props){
   super(props)    
   this.state = {
     value: RichTextEditor.createEmptyValue(),
-<<<<<<< HEAD
     rawValue: props.value,
     showTB : true,
-=======
-    showTB : true
->>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
   }
   this.updateValue = this.updateValue.bind(this)
   this.onFocus = this.onFocus.bind(this)
