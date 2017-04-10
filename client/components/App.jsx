@@ -30,10 +30,10 @@ class App extends Component {
       bentoId: null
     }
 
-    // this.handleNavSearch = this.handleNavSearch.bind(this);
     this.handleNavSubmit = this.handleNavSubmit.bind(this);
     this.endNavSubmit = this.endNavSubmit.bind(this);
     this.setBentoId = this.setBentoId.bind(this);
+    this.setUserId = this.setUserId.bind(this);
   }
 
   // gets called when user pushes the submit button or presses enter
@@ -63,6 +63,12 @@ class App extends Component {
   setBentoId(id) {
     this.setState({
       bentoId: id
+    });
+  }
+
+  setUserId(id) {
+    this.setState({
+      userId: id
     });
   }
 

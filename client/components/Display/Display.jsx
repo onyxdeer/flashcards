@@ -81,7 +81,6 @@ class Display extends Component {
     axios.get('/api/bentos', {
       params: { id: this.props.bentoId }
     }).then(function(response) {
-      console.log('GETTING TITLE:', response.data[0].name);
       context.setState({
         title: response.data[0].name
       });
@@ -155,8 +154,6 @@ class Display extends Component {
       'card-flipped': index === noris.length - 1 && this.state.isFlipped && !this.state.buttonPressed,
       'no-animation': this.state.buttonPressed
     });
-    console.log('className in render:', className);
-    console.log('nori: ', nori, 'index: ', index, 'noris: ', noris)
     return (
       <Card key={nori.text_front} className={className}>
         <Card.Front>
@@ -180,54 +177,56 @@ class Display extends Component {
   }
 
   nextNori() {
-    this.flipToFront();
     if (this.state.currentNori < this.state.bentoData.length - 1) {
       this.setState({
         currentNori: this.state.currentNori+=1
       });
+      this.flipToFront();
+      // set buttonPressed back to true from this.flipToFront
+      this.setState({
+        buttonPressed: true
+      });
     }
     this.setState({
-      noriToDisplay: this.state.bentoData[this.state.currentNori],
-      buttonPressed: true
+      noriToDisplay: this.state.bentoData[this.state.currentNori]
     });
   }
 
   prevNori() {
-    this.flipToFront();
     if (this.state.currentNori > 0) {
       this.setState({
         currentNori: this.state.currentNori-=1
       });
+      this.flipToFront();
+      // set buttonPressed back to true from this.flipToFront
+      this.setState({
+        buttonPressed: true
+      });
     }
     this.setState({  
-      noriToDisplay: this.state.bentoData[this.state.currentNori],
-      buttonPressed: true
+      noriToDisplay: this.state.bentoData[this.state.currentNori]
     });
   }
 
   showBack() {
-    console.log('Calling showBack');
     this.setState({
       isFlipped: true
     });
   }
 
   showFront() {
-    console.log('Calling showFront');
     this.setState({
       isFlipped: false
     });
   }
 
   flip() {
-    console.log('Toggling isFlipped to:', this.state.isFlipped);
     this.setState({
       isFlipped: !this.state.isFlipped,
     });
   }
 
   flipToFront() {
-    console.log('Toggling isFlippedToFront');
     this.setState({
       isFlipped: false,
       buttonPressed: false
@@ -235,7 +234,6 @@ class Display extends Component {
   }
 
   flipToBack() {
-    console.log('Toggling isFlippedToBack');
     this.setState({
       isFlipped: true,
       buttonPressed: false
@@ -270,7 +268,6 @@ class Display extends Component {
       result.push(temp[randomIndex]);
       temp.splice(randomIndex, 1);
     }
-    console.log('shuffleNori:', result);
     this.flipToFront();
     this.setState({
       bentoData: result,
@@ -287,10 +284,6 @@ class Display extends Component {
   }
 
   render() {
-
-    console.log('rendering Display:', this.state.bentoData);
-    console.log('this.state.editorState:', this.state.editorState);
-
     return (
       <div>
         <div className='row'>
