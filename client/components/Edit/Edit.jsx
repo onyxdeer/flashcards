@@ -14,7 +14,7 @@ class Edit extends React.Component {
         description:'',
         category: '',
         visit_count: 0,
-        bento_id: null,
+        bento_id: this.props.bentoId,
         user_id: this.props.userId,
         noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
@@ -92,10 +92,10 @@ class Edit extends React.Component {
   // }
 
   componentWillMount() {
-    console.log('componentWillMount fires from Edit Parent', this.props);
+    console.log('componentWillMount fires from Edit Parent', this.props, this.props.match);
     var context = this;
     var tempBento = this.state.bento;
-    tempBento.bento_id = Number(this.props.match.params.bento_id);
+    tempBento.bento_id = Number(this.props.bentoId);
     if (this.props.userId === 'guest') {
       tempBento.user_id = 1;
       this.setState({

@@ -26,10 +26,12 @@ class App extends Component {
     this.state = {
       query: '',
       searchActive: false,
-      userId: 'guest'
+      userId: 'guest',
+      bentoId: null
     }
 
     // this.handleNavSearch = this.handleNavSearch.bind(this);
+    this.setBentoId = this.setBentoId.bind(this);
     this.handleNavSubmit = this.handleNavSubmit.bind(this);
     this.endNavSubmit = this.endNavSubmit.bind(this);
   }
@@ -47,6 +49,11 @@ class App extends Component {
       console.log('searchActive in handleNavSubmit:', context.state.searchActive);
       console.log('query changed to:', context.state.query);
      });
+  }
+
+  setBentoId(id) {
+    console.log('does this fire?')
+    this.setState({bentoId: id})
   }
 
   // ends the submit action
@@ -69,14 +76,14 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Nav handleNavSubmit={this.handleNavSubmit} userId={this.state.userId}/>
+            <Nav handleNavSubmit={this.handleNavSubmit} userId={this.state.userId} setBentoId = {this.setBentoId}/>
             <TargetRoute />
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display/:id' component={Display} />
             <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit/:bento_id' component={() => <Edit userId = {this.state.userId} match = {{params: {bento_id: null}}}/>}/>
-            <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} userId = {this.state.userId}/>} />
-            <Route path='/user' component={() => <User userId = {this.state.userId}/> } />
+            <Route path='/edit' component={() => <Edit userId = {this.state.userId} bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/>}/>
+            <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} userId = {this.state.userId}  bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/>} />
+            <Route path='/user' component={() => <User userId = {this.state.userId} bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/> } />
             <Route path='/voice' component={() => <Voice />} />
           </div>
         </Router>

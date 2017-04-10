@@ -127,7 +127,7 @@ class User extends Component {
                       <h3>{bento.name}</h3>
                       <p className='ellipsis'>{bento.description}</p>
                       <p><label>View Count:</label> {bento.visit_count} </p>
-                      <p><Link className='btn btn-primary' to={'/display/' + bento.id}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit/' + bento.id}>Edit</Link></p>
+                      <p><Link className='btn btn-primary' to={'/display/' + bento.id}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit/'} onClick = {() => {this.props.setBentoId(bento.id)}}>Edit</Link></p>
                     </div>
                   </div>
                 )) : (<h1 className='center-block'>No bentos have been made yet for this category. Go start creating!</h1>)
