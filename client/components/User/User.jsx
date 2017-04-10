@@ -11,7 +11,7 @@ class User extends Component {
     super(props);
 
     this.state = {
-      category: null,
+      category: 'Personal',
       favoriteBentos: [{
         title: 'FavoriteBento 1',
         description: 'This is favorite bento 1',
@@ -128,8 +128,6 @@ class User extends Component {
     this.fetchPersonal = this.fetchPersonal.bind(this);
     this.fetchFavorites = this.fetchFavorites.bind(this);
     this.fetchPopular = this.fetchPopular.bind(this);
-
-    // this.fetchPersonal();
   }
 
   fetchPersonal() {
@@ -156,7 +154,7 @@ class User extends Component {
     })
     .then(function(response) {
       var imgData = response.data;  
-      console.log('response.data for /api/thumbnails:', imgData);
+      // console.log('response.data for /api/thumbnails:', imgData);
       console.log('idArray:', idArray);
       console.log('bentoData:', bentoData);
 
@@ -168,7 +166,6 @@ class User extends Component {
           }
         }
       }
-
       context.setState({
         bentosToDisplay: bentoData
       }, () => console.log('test has been set to:', context.state.bentosToDisplay));
@@ -197,11 +194,15 @@ class User extends Component {
 
   componentWillMount() {
     // send an DB GET request for the flash cards here
-    this.fetchPersonal();
+    // if (!this.state.bentosToDisplay) {
+      this.fetchPersonal();
+    // }
   }
 
   componentDidMount() {
-
+    // if (!this.state.bentosToDisplay) {
+    //   this.fetchPersonal();
+    // }
   }
 
   render() {
