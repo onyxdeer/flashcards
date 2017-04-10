@@ -11,62 +11,7 @@ class User extends Component {
     super(props);
 
     this.state = {
-      category: "User",
-      userBentos: [{
-        title: 'Userbento 1',
-        description: 'This is user bento 1',
-        thumbnail: null,
-        tags: null,
-        bento: [{
-          front: 'User1 Front 1',
-          back: 'User1 Back 1',
-          // isFlipped: false
-        }, {
-          front: 'User1 Front 2',
-          back: 'User1 Back 2',
-          // isFlipped: false
-        }, {
-          front: 'User1 Front 3',
-          back: 'User1 Back 3',
-          // isFlipped: false
-        }]
-      }, {
-        title: 'Userbento 2',
-        description: 'This is user bento 2',
-        thumbnail: null,
-        tags: null,
-        bento: [{
-          front: 'User2 Front 1',
-          back: 'User2 Back 1',
-          // isFlipped: false
-        }, {
-          front: 'User2 Front 2',
-          back: 'User2 Back 2',
-          // isFlipped: false
-        }, {
-          front: 'User2 Front 3',
-          back: 'User2 Back 3',
-          // isFlipped: false
-        }]
-      }, {
-        title: 'Userbento 3',
-        description: 'This is user bento 3',
-        thumbnail: null,
-        tags: null,
-        bento: [{
-          front: 'User3 Front 1',
-          back: 'User3 Back 1',
-          // isFlipped: false
-        }, {
-          front: 'User3 Front 2',
-          back: 'User3 Back 2',
-          // isFlipped: false
-        }, {
-          front: 'User3 Front 3',
-          back: 'User3 Back 3',
-          // isFlipped: false
-        }]
-      }],
+      category: null,
       favoriteBentos: [{
         title: 'FavoriteBento 1',
         description: 'This is favorite bento 1',
@@ -177,27 +122,28 @@ class User extends Component {
           // isFlipped: false
         }]
       }],
-      bentosToDisplay: [],
+      bentosToDisplay: null,
     }
 
     this.fetchPersonal = this.fetchPersonal.bind(this);
     this.fetchFavorites = this.fetchFavorites.bind(this);
     this.fetchPopular = this.fetchPopular.bind(this);
 
-    this.fetchPersonal();
+    // this.fetchPersonal();
   }
 
   fetchPersonal() {
+    this.setState({
+      category: "Personal"
+    });
     var context = this;
     var bentoData = [];
     var idArray = [];
     var imgArray = [];
-    // console.log('Calling fetchBentos with keyword:', this.props.query);
     axios.get('/api/bentos', {
       params: { user_id: 1 }
     })
     .then(function(response) {
-      // console.log('response.data in fetchPersonal:', response.data);
       for (var i = 0; i < response.data.length; i++ ) {
         if (!response.data[i].private) {
           bentoData.push(response.data[i]);
@@ -207,7 +153,8 @@ class User extends Component {
     });
     axios.get('/api/thumbnails', {
       params: { bento_id: idArray }
-    }).then(function(response) {
+    })
+    .then(function(response) {
       var imgData = response.data;  
       console.log('response.data for /api/thumbnails:', imgData);
       console.log('idArray:', idArray);
@@ -235,7 +182,7 @@ class User extends Component {
     // do a GET FAVORITES api to DB
     this.setState({
       bentosToDisplay: this.state.favoriteBentos
-    }, () => { Carousel.slickGoTo(0) } );
+    });
   }
 
   fetchPopular() {
@@ -245,27 +192,23 @@ class User extends Component {
     // do a GET POPULAR api to DB
     this.setState({
       bentosToDisplay: this.state.popularBentos
-    }, () => { Carousel.slickGoTo(0) } );
+    });
   }
 
   componentWillMount() {
     // send an DB GET request for the flash cards here
-    // this.fetchPersonal();
+    this.fetchPersonal();
   }
 
   componentDidMount() {
-    if (this.state.bentosToDisplay.length === 0) {
-      this.fetchPersonal();
-    }
+
   }
 
   render() {
-    console.log('length of bentosToDisplay:', this.state.bentosToDisplay);
+    console.log('bentosToDisplay in render:', this.state.bentosToDisplay);
     const settings = {
-      // arrows: true,
       accessibility: true,
       autoplay: false,
-      // centerMode: true,
       className: 'slick-margin',
       dotsClass: 'slick-dots slick-thumb',
       focusOnSelect: true,
@@ -285,7 +228,7 @@ class User extends Component {
       <div>
         <div className='row center-block'>
           <div className='create-title'>
-            <h1 className='default-font'>{this.state.category}'s Bentos:</h1>
+            <h1 className='default-font'>{this.state.category} Bentos:</h1>
           </div>
           <div className='row buttonSection'>
             <label>Categories:</label>
@@ -298,7 +241,7 @@ class User extends Component {
             <div className='col-xs-10'>
               <Carousel {...settings}>   
                 {
-                  this.state.bentosToDisplay.length > 0 ? this.state.bentosToDisplay.map((bento, index) => (
+                  this.state.bentosToDisplay ? this.state.bentosToDisplay.map((bento, index) => (
                     <div className='thumbnail' key={index}>
                       <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                       <div className='caption'>
