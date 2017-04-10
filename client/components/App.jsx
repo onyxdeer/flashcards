@@ -30,10 +30,15 @@ class App extends Component {
       bentoId: null
     }
 
+<<<<<<< HEAD
     // this.handleNavSearch = this.handleNavSearch.bind(this);
     this.setBentoId = this.setBentoId.bind(this);
+=======
+>>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
     this.handleNavSubmit = this.handleNavSubmit.bind(this);
     this.endNavSubmit = this.endNavSubmit.bind(this);
+    this.setBentoId = this.setBentoId.bind(this);
+    this.setUserId = this.setUserId.bind(this);
   }
 
   // gets called when user pushes the submit button or presses enter
@@ -65,6 +70,18 @@ class App extends Component {
     }
   }
 
+  setBentoId(id) {
+    this.setState({
+      bentoId: id
+    });
+  }
+
+  setUserId(id) {
+    this.setState({
+      userId: id
+    });
+  }
+
   render() {
 
     // triggers a redirection to Search page if 'searchActive' state is triggered from submission action
@@ -79,11 +96,17 @@ class App extends Component {
             <Nav handleNavSubmit={this.handleNavSubmit} userId={this.state.userId} setBentoId = {this.setBentoId}/>
             <TargetRoute />
             <Route exact path='/' component={() => <Landing />} />
-            <Route path='/display/:id' component={Display} />
+            <Route path='/display' component={() => <Display bentoId={this.state.bentoId}/>} />
             <Route path='/landing' component={() => <Landing />} />
+<<<<<<< HEAD
             <Route path='/edit' component={() => <Edit userId = {this.state.userId} bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/>}/>
             <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} userId = {this.state.userId}  bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/>} />
             <Route path='/user' component={() => <User userId = {this.state.userId} bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/> } />
+=======
+            <Route path='/edit' component={() => <Edit userId={this.state.userId} bentoId={this.state.bentoId} setBentoId={this.setBentoId} />} />
+            <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} setBentoId={this.setBentoId} />} />
+            <Route path='/user' component={() => <User userId={this.state.userId} setBentoId={this.setBentoId} />} />
+>>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
             <Route path='/voice' component={() => <Voice />} />
           </div>
         </Router>

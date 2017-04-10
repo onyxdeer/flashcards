@@ -230,7 +230,23 @@ h4,
 h5,
 h6 {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
+    /*font-weight: 700;*/
+}
+
+.logo-title, .default-font {
+    font-family: Comfortaa;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+    padding-bottom: 10px;
+}
+
+.logo-nav {
+    font-family: Comfortaa;
+    font-style: normal;
+	font-variant: normal;
 }
 
 .topnav {
@@ -433,6 +449,11 @@ p.copyright {
     color: #BADA55;
 }
 
+.DraftEditor-root {
+    margin: 0 auto;
+    width: 85%
+}
+
 /* SEARCH PAGE */
 
 .searchSection {
@@ -508,7 +529,7 @@ p.copyright {
 }
 
 .index-card {
-  font-family: 'Reenie Beanie', cursive;
+  /*font-family: 'Reenie Beanie', cursive;*/
   text-align: center;
   color: #555;
 }
@@ -578,13 +599,11 @@ p.copyright {
 }
 
 .slick-prev {
-    margin-left: 40px;
-    z-index: 999;
+    z-index: 1;
   }
 
 .slick-next {
-    margin-right: 40px;
-    z-index: 999;
+    z-index: 1;
 }
 
 /* SEARCH PAGE */

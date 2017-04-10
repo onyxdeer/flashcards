@@ -4,20 +4,27 @@ import Card from 'react-card';
 import classnames from 'classnames';
 import axios from 'axios';
 import Swipeable from 'react-swipeable';
+import RichTextEditor from 'react-rte';
+import {convertFromRaw, convertToRaw, ContentState, Editor, EditorState} from 'draft-js';
 
 class Display extends Component {
   constructor(props) {
     super(props);
 
+    const content = ContentState.createFromText('Hello World!');
+
     this.state = {
       title: '',
       bentoData: [],
-      imgData: [],
+      imgDataFront: [],
+      imgDataBack: [],
       noriToDisplay: null,
       currentNori: 0,
       isFlipped: false,
       buttonPressed: false,
-      input: ''
+      input: '',
+      editorState: EditorState.createWithContent(content),
+      editorStates: []
     }
 
     this.prevNori = this.prevNori.bind(this);
@@ -31,20 +38,38 @@ class Display extends Component {
     this.setNori = this.setNori.bind(this);
     this.shuffleNori = this.shuffleNori.bind(this);
     this.fetchBento = this.fetchBento.bind(this);
-    this.fetchImages = this.fetchImages.bind(this);
+    this.fetchFrontImages = this.fetchFrontImages.bind(this);
+    this.fetchBackImages = this.fetchBackImages.bind(this);
     this.renderImages = this.renderImages.bind(this);
   }
 
-  fetchImages() {
+  fetchFrontImages() {
     var context = this;
-    console.log('this.props.match.params in display:', this.props.match.params);
     axios.get('/api/images', {
-      params: { bento_id: this.props.match.params.id }
+      params: { 
+        bento_id: this.props.bentoId,
+        nori_front: true
+       }
     }).then(function(response) {
-      console.log('response from fetchImages:', response.data);
+      console.log('response from fetchFrontImages:', response.data);
       context.setState({
-        imgData: response.data
-      }, () => console.log('imgData set to:', context.state.imgData));
+        imgDataFront: response.data
+      }, () => console.log('imgData set to:', context.state.imgDataFront));
+    })
+  }
+
+  fetchBackImages() {
+    var context = this;
+    axios.get('/api/images', {
+      params: { 
+        bento_id: this.props.bentoId,
+        nori_back: true
+       }
+    }).then(function(response) {
+      console.log('response from fetchBackImages:', response.data);
+      context.setState({
+        imgDataBack: response.data
+      }, () => console.log('imgData set to:', context.state.imgDataBack));
     })
   }
 
@@ -52,31 +77,48 @@ class Display extends Component {
     var context = this;
     var idArray = [];
 
-    // Get title of the bento
-    axios.get('/api/bento', {
-      params: { id: this.props.match.params.id }
+    // Get bento title for given bento_id
+    axios.get('/api/bentos', {
+      params: { id: this.props.bentoId }
     }).then(function(response) {
       context.setState({
         title: response.data[0].name
       });
     });
 
-    // Get the noris
+    // Get all the nori_ids for given bento_id
+    // Get all the nori entries for given bento_id
     axios.get('/api/bentos_noris',{
-        params: { bento_id: this.props.match.params.id }
+        params: { bento_id: this.props.bentoId }
       }).then(function(response) {
       console.log('/api/bentos_noris response:', response.data);
       for (var index = 0; index < response.data.length; index++) {
         idArray.push(response.data[index].nori_id);
       }
-      axios.get('/api/noris', {
-        params: { id: idArray }
-      }).then(function(response) {
-        console.log('/api/noris response:', response.data);
+      // for (var i = 0; i < that.state.imgData.length; i++) {
+      //    if (imgData[i].nori_front === true) {
+      //      response.data[index][imagesFront].push(imgData(i));
+      //    } else (imgData[i].nori_back === true)
+      //      response.data[index][imagesBack].push(imgData(i));
+      //    }
+      //  }
+      if (idArray.length === 0) {
         context.setState({
-          bentoData: response.data
-        },() => console.log('bentoData set to:', context.state.bentoData));
-      });
+          bentoData: [{
+            text_front: 'Sorry, no cards available!',
+            text_back: 'Try another bento!'
+          }]
+        });
+      } else {
+        axios.get('/api/noris', {
+          params: { id: idArray }
+        }).then(function(response) {
+          console.log('/api/noris response:', response.data);
+          context.setState({
+            bentoData: response.data
+          },() => console.log('bentoData set to:', context.state.bentoData));
+        });
+      }
     });
   }
 
@@ -89,10 +131,17 @@ class Display extends Component {
       .reverse();
   }
 
-  renderImages(nori) {
-    let noriImages = this.state.imgData.filter(function(image) {
-      return image.nori_id === nori.id;
-    });
+  renderImages(nori, front) {
+    let noriImages;
+    if (front) {
+      noriImages = this.state.imgDataFront.filter(function(image) {
+        return image.nori_id === nori.id;
+      });
+    } else {
+      noriImages = this.state.imgDataBack.filter(function(image) {
+        return image.nori_id === nori.id;
+      });
+    }
     if (noriImages.length > 0) {
       return noriImages.map((image) => (<img className='noriImage' key={nori.id} src={image.url}></img>));
     } else {
@@ -105,75 +154,79 @@ class Display extends Component {
       'card-flipped': index === noris.length - 1 && this.state.isFlipped && !this.state.buttonPressed,
       'no-animation': this.state.buttonPressed
     });
-    console.log('className in render:', className);
-    console.log('nori: ', nori, 'index: ', index, 'noris: ', noris)
     return (
       <Card key={nori.text_front} className={className}>
         <Card.Front>
-          <div className='row'>
             <div className={className} onClick={this.flipToBack}>
-              <div className='row'>{this.renderImages(nori)}</div>
-              <div className='row'>{nori.text_front}</div>
+              <div className='row'>{this.renderImages(nori, true)}</div>
+              <div className='row'>
+                <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_front)))} readOnly={true} />
+              </div>
             </div>
-          </div>
         </Card.Front>
         <Card.Back>
-          <p className={className} onClick={this.flipToFront}>{nori.text_back}</p>
+          <div className={className} onClick={this.flipToFront}>
+            <div className='row'>{this.renderImages(nori, false)}</div>
+            <div className='row'>
+              <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_back)))} readOnly={true} />
+            </div>
+          </div>
         </Card.Back>
       </Card>
     );
   }
 
   nextNori() {
-    this.flipToFront();
     if (this.state.currentNori < this.state.bentoData.length - 1) {
       this.setState({
         currentNori: this.state.currentNori+=1
       });
+      this.flipToFront();
+      // set buttonPressed back to true from this.flipToFront
+      this.setState({
+        buttonPressed: true
+      });
     }
     this.setState({
-      noriToDisplay: this.state.bentoData[this.state.currentNori],
-      buttonPressed: true
+      noriToDisplay: this.state.bentoData[this.state.currentNori]
     });
   }
 
   prevNori() {
-    this.flipToFront();
     if (this.state.currentNori > 0) {
       this.setState({
         currentNori: this.state.currentNori-=1
       });
+      this.flipToFront();
+      // set buttonPressed back to true from this.flipToFront
+      this.setState({
+        buttonPressed: true
+      });
     }
     this.setState({  
-      noriToDisplay: this.state.bentoData[this.state.currentNori],
-      buttonPressed: true
+      noriToDisplay: this.state.bentoData[this.state.currentNori]
     });
   }
 
   showBack() {
-    console.log('Calling showBack');
     this.setState({
       isFlipped: true
     });
   }
 
   showFront() {
-    console.log('Calling showFront');
     this.setState({
       isFlipped: false
     });
   }
 
   flip() {
-    console.log('Toggling isFlipped to:', this.state.isFlipped);
     this.setState({
       isFlipped: !this.state.isFlipped,
-      // buttonPressed: false
     });
   }
 
   flipToFront() {
-    console.log('Toggling isFlippedToFront');
     this.setState({
       isFlipped: false,
       buttonPressed: false
@@ -181,7 +234,6 @@ class Display extends Component {
   }
 
   flipToBack() {
-    console.log('Toggling isFlippedToBack');
     this.setState({
       isFlipped: true,
       buttonPressed: false
@@ -216,7 +268,6 @@ class Display extends Component {
       result.push(temp[randomIndex]);
       temp.splice(randomIndex, 1);
     }
-    console.log('shuffleNori:', result);
     this.flipToFront();
     this.setState({
       bentoData: result,
@@ -227,25 +278,19 @@ class Display extends Component {
 
   componentWillMount() {
     // send an DB GET request for the flash cards here
-    this.fetchImages();
+    this.fetchFrontImages();
+    this.fetchBackImages();
     this.fetchBento();
   }
 
-  componentDidUpdate() {
-    
-  }
-
   render() {
-
-    console.log('rendering Display');
-
     return (
       <div>
         <div className='row'>
-          <h1 className='create-title'>Bento: {this.state.bentoData.title}</h1>
+          <h1 className='default-font create-title'>Bento: {this.state.title}</h1>
         </div>
         <div className='row'>
-            <Swipeable
+            {this.state.bentoData.length > 0 ? <Swipeable
               onSwipedUp={this.prevNori}
               onSwipedDown={this.nextNori}
               onSwipedLeft={this.prevNori}
@@ -255,7 +300,7 @@ class Display extends Component {
                     {this.getSortedNoris().map(this.renderNori, this)}
                   </Deck>
                 </div> 
-            </Swipeable>
+            </Swipeable> : <h1 className='center-block'>Sorry, no cards available!</h1> }
         </div>
           <div className='buttonSection'>
             <button type='button' className='btn btn-success' onClick={this.prevNori}>Previous Nori</button>
@@ -277,20 +322,3 @@ class Display extends Component {
 }
 
 export default Display;
-
-// {
-//         title: 'Mock Data Title Here',
-//         description: 'This is mock data',
-//         thumbnail: null,
-//         tags: null,
-//         bento: [{
-//           front: 'Front 1',
-//           back: 'Lorem ipsum dolor sit amet, sit eu probo commodo elaboraret, affert persecuti his cu.\nPutant meliore ad qui, nonumy ignota pri et. Eum cibo eligendi evertitur in. Cum no esse\npartem forensibus, est quas quidam mnesarchum an. Sed ne omnium copiosae delectus, eu nec\neligendi placerat vituperatoribus. Mel alterum contentiones id. Eos ferri ceteros ne, impedit\nnostrum at eum, libris ocurreret laboramus id eum. Has dictas insolens et, vel malis dicant\nquaestio an, ne ferri adipisci ius. Sale soluta conceptam an vel, per ex quis putent consequuntur.\nEquidem iudicabit adolescens in nec, exerci tamquam fabulas vis an, ius dolores antiopam percipitur\nno. Nemore sententiae neglegentur ea mei. Iisque integre mentitum sed ad. An aeterno phaedrum nam,\ntritani verterem dignissim per et. Error officiis vis ei. Ad eos consul ceteros elaboraret, veniam\nprodesset duo ad.'
-//         }, {
-//           front: 'Front 2',
-//           back: 'Back 2'
-//         }, {
-//           front: 'Front 3',
-//           back: 'Back 3'
-//         }]
-//       }

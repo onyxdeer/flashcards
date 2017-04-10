@@ -7,15 +7,23 @@ import axios from 'axios'
 
 class Edit extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+
+    console.log('this.props.userId:', this.props.userId);
+
     this.state = {
       bento : {
         name: '',
         description:'',
         category: '',
         visit_count: 0,
+<<<<<<< HEAD
         bento_id: this.props.bentoId,
         user_id: this.props.userId,
+=======
+        bento_id: null,
+        user_id: this.props.userId === 'guest' ? 1 : this.props.userId,
+>>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
         noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
     }
@@ -54,10 +62,16 @@ class Edit extends React.Component {
     } 
   }
 
+<<<<<<< HEAD
   handleNoriChange(data, side, index) {
     console.log(data)
     console.log("Line 60 from Edit parent", data)
     var tempBento = this.state.bento
+=======
+  handleNoriChange(value, side, index) {
+    var data = JSON.stringify(convertToRaw(value._editorState.getCurrentContent()));
+    var tempBento = this.state.bento;
+>>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
     tempBento.noris[index][side]["text"] = data;
     this.setState({
       bento: tempBento
@@ -92,17 +106,27 @@ class Edit extends React.Component {
   // }
 
   componentWillMount() {
+<<<<<<< HEAD
     console.log('componentWillMount fires from Edit Parent', this.props, this.props.match);
     var context = this;
     var tempBento = this.state.bento;
     tempBento.bento_id = Number(this.props.bentoId);
+=======
+    // send an DB GET request for the flash cards here
+    var context = this;
+    var tempBento = this.state.bento;
+>>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
     if (this.props.userId === 'guest') {
       tempBento.user_id = 1;
       this.setState({
         bento: tempBento
       }, () => console.log('bento (guest) is now:', context.state.bento));
     } else {
+<<<<<<< HEAD
       tempBento.user_id = this.state.userId;
+=======
+      tempBento.user_id = Number(this.props.userId)
+>>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
       this.setState({
         bento: tempBento
       }, () => console.log('bento is now:', context.state.bento));

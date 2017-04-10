@@ -20,4 +20,9 @@
 # GET http://google.com HTTP/1.1
 
 # GET http://localhost:8000/api/noris
-GET http://localhost:8000/hello
+# GET http://localhost:8000/hello
+
+GET http://localhost:8000/api/speech
+
+# curl -X POST -d '"i think google is located in mountain view, and they have some new android phones and consumer electronics show. I know the ceo Sundar said in a presentation that all their users absolutely love all the phones they make
+# "' -H 'Content-Type: application/json' -H 'Authorization: Simple simAdm0S41R/eZj44DYaHM+Ye5z1' https://api.algorithmia.com/v1/algo/nlp/Summarizer/0.1.6

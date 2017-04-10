@@ -52,7 +52,7 @@ class Navigation extends Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link className="navbar-brand" to="/">Obento</Link>
+            <Link className="navbar-brand logo-nav" to="/">Obento</Link>
           </div>
 
           {/* This container allows the navbar contents to be collapsed thus responsive */}
@@ -60,7 +60,11 @@ class Navigation extends Component {
 
             <ul className="nav navbar-nav">
               <li><Link to="/User" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
+<<<<<<< HEAD
                <li><Link to={"/Edit"} onClick={() => this.props.setBentoId(null)} onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li> 
+=======
+              <li><Link to="/Edit/new" onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
+>>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
               {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
             </ul>
 

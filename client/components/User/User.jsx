@@ -11,25 +11,142 @@ class User extends Component {
     super(props);
 
     this.state = {
+<<<<<<< HEAD
+=======
+      category: 'Personal',
+      favoriteBentos: [{
+        title: 'FavoriteBento 1',
+        description: 'This is favorite bento 1',
+        thumbnail: null,
+        tags: null,
+        bento: [{
+          front: 'Favorite1 Front 1',
+          back: 'Favorite1 Back 1',
+          // isFlipped: false
+        }, {
+          front: 'Favorite1 Front 2',
+          back: 'Favorite1 Back 2',
+          // isFlipped: false
+        }, {
+          front: 'Favorite1 Front 3',
+          back: 'Favorite1 Back 3',
+          // isFlipped: false
+        }]
+      }, {
+        title: 'FavoriteBento 2',
+        description: 'This is favorite bento 2',
+        thumbnail: null,
+        tags: null,
+        bento: [{
+          front: 'Favorite2 Front 1',
+          back: 'Favorite2 Back 1',
+          // isFlipped: false
+        }, {
+          front: 'Favorite2 Front 2',
+          back: 'Favorite2 Back 2',
+          // isFlipped: false
+        }, {
+          front: 'Favorite2 Front 3',
+          back: 'Favorite2 Back 3',
+          // isFlipped: false
+        }]
+      }, {
+        title: 'FavoriteBento 3',
+        description: 'This is favorite bento 3',
+        thumbnail: null,
+        tags: null,
+        bento: [{
+          front: 'Favorite3 Front 1',
+          back: 'Favorite3 Back 1',
+          // isFlipped: false
+        }, {
+          front: 'Favorite3 Front 2',
+          back: 'Favorite3 Back 2',
+          // isFlipped: false
+        }, {
+          front: 'Favorite3 Front 3',
+          back: 'Favorite3 Back 3',
+          // isFlipped: false
+        }]
+      }],
+      popularBentos: [{
+        title: 'PopularBento 1',
+        description: 'This is popular bento 1',
+        thumbnail: null,
+        tags: null,
+        bento: [{
+          front: 'Popular1 Front 1',
+          back: 'Popular1 Back 1',
+          // isFlipped: false
+        }, {
+          front: 'Popular1 Front 2',
+          back: 'Popular1 Back 2',
+          // isFlipped: false
+        }, {
+          front: 'Popular1 Front 3',
+          back: 'Popular1 Back 3',
+          // isFlipped: false
+        }]
+      }, {
+        title: 'PopularBento 2',
+        description: 'This is popular bento 2',
+        thumbnail: null,
+        tags: null,
+        bento: [{
+          front: 'Popular2 Front 1',
+          back: 'Popular2 Back 1',
+          // isFlipped: false
+        }, {
+          front: 'Popular2 Front 2',
+          back: 'Popular2 Back 2',
+          // isFlipped: false
+        }, {
+          front: 'Popular2 Front 3',
+          back: 'Popular2 Back 3',
+          // isFlipped: false
+        }]
+      }, {
+        title: 'PopularBento 3',
+        description: 'This is popular bento 3',
+        thumbnail: null,
+        tags: null,
+        bento: [{
+          front: 'Popular3 Front 1',
+          back: 'Popular3 Back 1',
+          // isFlipped: false
+        }, {
+          front: 'Popular3 Front 2',
+          back: 'Popular3 Back 2',
+          // isFlipped: false
+        }, {
+          front: 'Popular3 Front 3',
+          back: 'Popular3 Back 3',
+          // isFlipped: false
+        }]
+      }],
+>>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
       bentosToDisplay: [],
     }
 
     this.fetchPersonal = this.fetchPersonal.bind(this);
     this.fetchFavorites = this.fetchFavorites.bind(this);
     this.fetchPopular = this.fetchPopular.bind(this);
+
+    // this.fetchPersonal();
   }
 
   fetchPersonal() {
+    this.setState({
+      category: "Personal"
+    });
     var context = this;
     var bentoData = [];
     var idArray = [];
     var imgArray = [];
-      // console.log('Calling fetchBentos with keyword:', this.props.query);
     axios.get('/api/bentos', {
       params: { user_id: 1 }
     })
     .then(function(response) {
-      // console.log('response.data in fetchPersonal:', response.data);
       for (var i = 0; i < response.data.length; i++ ) {
         if (!response.data[i].private) {
           bentoData.push(response.data[i]);
@@ -39,9 +156,10 @@ class User extends Component {
     });
     axios.get('/api/thumbnails', {
       params: { bento_id: idArray }
-    }).then(function(response) {
-      var imgData = response.data
-      console.log('response.data for /api/thumbnails:', imgData);
+    })
+    .then(function(response) {
+      var imgData = response.data;  
+      // console.log('response.data for /api/thumbnails:', imgData);
       console.log('idArray:', idArray);
       console.log('bentoData:', bentoData);
 
@@ -53,7 +171,6 @@ class User extends Component {
           }
         }
       }
-
       context.setState({
         bentosToDisplay: bentoData
       }, () => console.log('test has been set to:', context.state.bentosToDisplay));
@@ -67,7 +184,7 @@ class User extends Component {
     // do a GET FAVORITES api to DB
     this.setState({
       bentosToDisplay: this.state.favoriteBentos
-    }, () => { Carousel.slickGoTo(0) } );
+    });
   }
 
   fetchPopular() {
@@ -77,7 +194,7 @@ class User extends Component {
     // do a GET POPULAR api to DB
     this.setState({
       bentosToDisplay: this.state.popularBentos
-    }, () => { Carousel.slickGoTo(0) } );
+    });
   }
 
   componentWillMount() {
@@ -85,13 +202,17 @@ class User extends Component {
     this.fetchPersonal();
   }
 
+  componentDidMount() {
+    if (this.state.bentosToDisplay.length === 0) {
+      this.fetchPersonal();
+    }
+  }
+
   render() {
-    console.log('length of bentosToDisplay:', this.state.bentosToDisplay);
+    console.log('bentosToDisplay in render:', this.state.bentosToDisplay);
     const settings = {
-      arrows: true,
       accessibility: true,
       autoplay: false,
-      centerMode: true,
       className: 'slick-margin',
       dotsClass: 'slick-dots slick-thumb',
       focusOnSelect: true,
@@ -100,16 +221,18 @@ class User extends Component {
       swipe: true,
       swipeToSlide: true,
       infinite: true,
-      speed: 500,
+      speed: 300,
       slidesToShow: 3,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      initialSlide: 0,
+      touchMove: true
     };
 
     return (
       <div>
         <div className='row center-block'>
           <div className='create-title'>
-            <h1>{this.state.category}'s Bentos:</h1>
+            <h1 className='default-font'>{this.state.category} Bentos:</h1>
           </div>
           <div className='row buttonSection'>
             <label>Categories:</label>
@@ -118,6 +241,7 @@ class User extends Component {
             <button type='button' className='btn btn-success' onClick={this.fetchPopular}>Popular</button>
           </div>
           <div className='row'>
+<<<<<<< HEAD
             <Carousel {...settings}>   
               {
                 this.state.bentosToDisplay.length > 0 ? this.state.bentosToDisplay.map((bento, index) => (
@@ -128,11 +252,31 @@ class User extends Component {
                       <p className='ellipsis'>{bento.description}</p>
                       <p><label>View Count:</label> {bento.visit_count} </p>
                       <p><Link className='btn btn-primary' to={'/display/' + bento.id}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit/'} onClick = {() => {this.props.setBentoId(bento.id)}}>Edit</Link></p>
+=======
+            <div className='col-xs-1'></div>
+            <div className='col-xs-10'>
+                
+                {
+                  this.state.bentosToDisplay.length > 0 ? 
+                  (<Carousel {...settings}> 
+                  {this.state.bentosToDisplay.map((bento, index) => (
+                    <div className='thumbnail'>
+                      <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
+                      <div className='caption'>
+                        <h3>{bento.name}</h3>
+                        <p className='ellipsis'>{bento.description}</p>
+                        <p><label>View Count:</label> {bento.visit_count} </p>
+                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.setBentoId(bento.id)}>Edit</Link></p>
+                      </div>
+>>>>>>> 4d872766f8d05e45e0bcdc1ebfd7142a315a92ad
                     </div>
-                  </div>
-                )) : (<h1 className='center-block'>No bentos have been made yet for this category. Go start creating!</h1>)
-              }
-            </Carousel>
+                  ))}
+                  </Carousel>)
+                  : (<div><h1 className='center-block'>No bentos have been made yet for this category. Go start creating!</h1></div>)
+                }
+              
+            </div>
+            <div className='col-xs-1'></div>
           </div>
         </div>
       </div>
@@ -141,15 +285,3 @@ class User extends Component {
 }
 
 export default User;
-
-
-              /*{this.state.bentosToDisplay.map((data, index) => (
-                    <div data-index={index} key={index}>
-                      <div className='container col-md-12'>
-                        <div className='carousel-card index-card'>
-                            <div className='card-front'>
-                              <p>{data.bento[0].front}</p>
-                            </div>
-                        </div>
-                      </div>
-                    </div> ))}*/
