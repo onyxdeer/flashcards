@@ -83,14 +83,14 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Nav handleNavSubmit={this.handleNavSubmit} userId={this.state.userId}/>
+            <Nav handleNavSubmit={this.handleNavSubmit} userId={this.state.userId} setBentoId = {this.setBentoId}/>
             <TargetRoute />
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display' component={() => <Display bentoId={this.state.bentoId}/>} />
             <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit' component={() => <Edit userId={this.state.userId} bentoId={this.state.bentoId} setBentoId={this.setBentoId} />} />
-            <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} setBentoId={this.setBentoId} />} />
-            <Route path='/user' component={() => <User userId={this.state.userId} setBentoId={this.setBentoId} />} />
+            <Route path='/edit' component={() => <Edit userId = {this.state.userId} bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/>}/>
+            <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} userId = {this.state.userId}  bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/>} />
+            <Route path='/user' component={() => <User userId = {this.state.userId} bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/> } />
             <Route path='/voice' component={() => <Voice />} />
           </div>
         </Router>

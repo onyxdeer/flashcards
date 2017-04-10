@@ -1,7 +1,7 @@
 import React from 'react';
 import NewBentoInfo from './NewBentoInfo.jsx'
 import NewNori from './NewNori.jsx'
-import RichTextEditor from 'react-rte';
+import RichTextEditor, {EditorValue} from 'react-rte';
 import {convertFromRaw, convertToRaw} from 'draft-js'
 import axios from 'axios'
 
@@ -17,8 +17,8 @@ class Edit extends React.Component {
         description:'',
         category: '',
         visit_count: 0,
-        bento_id: null,
-        user_id: this.props.userId === 'guest' ? 1 : this.props.userId,
+        bento_id: this.props.bentoId,
+        user_id: this.props.userId,
         noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
     }
@@ -42,13 +42,14 @@ class Edit extends React.Component {
     if(this.state.bento.name.replace(/\s/g,'').length < 5) {
       alert("Please give your new Bento a name and make sure it's longer than 5 characters")
     } else {
-      axios.post('/api/bentos',this.state.bento).then(function(data){
-        console.log(data)
+      axios.post('/api/bentos',this.state.bento).then((data) => {
         if(data.status === 200) {
+        var tempBento = this.state.bento
+        tempBento.bento_id = data.data
+          this.setState({
+            bento: tempBento
+         })
           alert('Your bento has been saved!')
-          // this.setState({
-
-          // })
         }else {
           alert('Your bento was unsuccessfully saved. Please try again later.')
         }
@@ -56,9 +57,10 @@ class Edit extends React.Component {
     } 
   }
 
-  handleNoriChange(value, side, index) {
-    var data = JSON.stringify(convertToRaw(value._editorState.getCurrentContent()));
-    var tempBento = this.state.bento;
+  handleNoriChange(data, side, index) {
+    console.log(data)
+    console.log("Line 60 from Edit parent", data)
+    var tempBento = this.state.bento
     tempBento.noris[index][side]["text"] = data;
     this.setState({
       bento: tempBento
@@ -82,26 +84,75 @@ class Edit extends React.Component {
       bento:tempBento
     })
   }
+  
+  // componentWillReceiveProps(newProp) {
+  //   console.log("Does Edit receive props:", newProp)
+  //   if(newProp.userId != this.state.bento.user_id) {
+  //     var tempBento = this.state.bento
+  //     tempBento.user_id = newProp.userId
+  //     this.setState({bento: tempBento})
+  //   }
+  // }
 
   componentWillMount() {
-    // send an DB GET request for the flash cards here
+    console.log('componentWillMount fires from Edit Parent', this.props, this.props.match);
     var context = this;
     var tempBento = this.state.bento;
+    tempBento.bento_id = Number(this.props.bentoId);
     if (this.props.userId === 'guest') {
       tempBento.user_id = 1;
       this.setState({
         bento: tempBento
       }, () => console.log('bento (guest) is now:', context.state.bento));
     } else {
-      tempBento.user_id = Number(this.props.userId)
+      tempBento.user_id = this.state.userId;
       this.setState({
         bento: tempBento
       }, () => console.log('bento is now:', context.state.bento));
     }
+    if(tempBento.bento_id){
+      console.log(tempBento.bento_id, tempBento.user_id)
+      axios.get('/api/bentos', {params :{id: tempBento.bento_id, user_id: tempBento.user_id}})
+      .then((response) => {
+        console.log("Line 104",   response.data[0])
+        var data = response.data[0]; 
+        tempBento.name = data.name;
+        tempBento.description = data.description;
+        this.setState({
+          bento: tempBento
+        }, () => console.log('bento is now populated with', context.state.bento))
+      })
+      .then(() =>{
+        axios.get('/api/bentos_noris', {params: {bento_id: tempBento.bento_id}})
+        .then((response) => {
+          console.log("Retrieving all noris of bento", response.data)
+          return  response.data.map(function(data){
+            return data.nori_id;
+          })
+        })
+        .then((reqNoriArr) =>{
+          axios.get('/api/noris', {params: {id : reqNoriArr}})
+          .then((response) => {
+            console.log("What am I holding onto", response.data)
+            var savedNorisArray = response.data.map(function(nori){
+              var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}
+              newNori.Front.text = nori.text_front;
+              newNori.Back.text = nori.text_back;
+              newNori.Front.soundFile = nori.audio_url_front;
+              newNori.Back.soundFile = nori.audio_url_back;
+              return newNori
+            })
+            tempBento.noris = savedNorisArray;
+            this.setState({
+              bento: tempBento 
+            }, () => {console.log(this.state)})
+          })
+        })
+      })
+    }
   }
 
   render() {
-    console.log("storing into bento", this.state.bento.noris)
     return (
       <div>
         <div className="relative fullwidth">
@@ -111,7 +162,8 @@ class Edit extends React.Component {
           <NewBentoInfo bento = {this.state.bento} handleChange = {this.handleChange} handleSubmit = {this.handleSubmit}/>
         </div>
         {this.state.bento.noris.map((nori, index) => 
-          <NewNori key={index} number = {index} nori = {nori} addNewNori = {this.addNewNori} deleteNori = {this.deleteNori} handleNoriChange = {this.handleNoriChange}/>
+          <NewNori key={index} number = {index} nori = {nori} addNewNori = {this.addNewNori} deleteNori = {this.deleteNori} handleNoriChange = {this.handleNoriChange}
+           />
         )}
         <div className="ops-div relative fullwidth col-xs-12">
           <button type="submit" id="submit" name="submit" className="form-btn semibold pull-right" onClick = {this.handleSubmit}>Save Bento</button> 
