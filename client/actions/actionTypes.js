@@ -23,3 +23,4 @@ export const POPULAR_BENTOS_FETCHED = 'POPULAR_BENTOS_FETCHED';
 // export const UPDATE_QUERY = 'UPDATE_QUERY';
 // export const GET_USER_ID = 'GET_USER_ID';
 // export const GET_BENTO_ID = 'GET_BENTO_ID';
+// export const CHANGE_SEARCH_ACTIVE = 'CHANGE_SEARCH_ACTIVE';
