@@ -1,20 +1,23 @@
 import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS } from '../actions/actionTypes.js';
 
-const handleFetchUserBentos = (state, action) => ({
-  ...state, data: action.payload;
-})
+const stateDefault = [];
 
-const handleFetchFavoriteBentos = (state, action) => ({
-  ...state, data: action.payload;
-})
+const handleFetchUserBentos = (state, action) => {
+  return action.payload;
+}
 
-const handleFetchPopularBentos = (state, action) => ({
-  ...state, data: action.payload;
-})
+const handleFetchFavoriteBentos = (state, action) => {
+  return action.payload;
+}
 
-export default function(state = null, action) {
+const handleFetchPopularBentos = (state, action) => {
+  return action.payload;
+}
+
+export default function(state = stateDefault, action) {
     switch (action.type) {
       case FETCH_USER_BENTOS:
+      console.log('Calling FETCH_USER_BENTOS with new state:', state);
         return handleFetchUserBentos(state, action);
         break;
       case FETCH_FAVORITE_BENTOS:

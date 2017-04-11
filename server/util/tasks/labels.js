@@ -2,7 +2,11 @@ const Sequelize = require('sequelize');
 const Label = require('../../../db/models/labels.js');
 
 const get = (req, res) => {
-  Label.findOne({where: {id: 1}})
+  // gets all bento_id with favorites marked and from a particular user_id in req.query
+  Label.findAll({
+    where: req.query,
+    attributes: ['bento_id'],
+  })
     .then(function(label) {
       console.log('Successfully fetched label from database! id:' + label.id);
       res.send(label);
