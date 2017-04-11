@@ -1,8 +1,9 @@
-import { combineReducers } from 'redux';
-// import { routeReducer } from 'react-router-redux';
 // import bentoReducer from './bentoReducer.jsx';
 import searchReducer from './searchReducer.jsx';
 // import personalReducer from './personalReducer.jsx';
+
+import { combineReducers } from 'redux';
+// import { routeReducer } from 'react-router-redux';
 
 
 // NOTES: THIS FILE IS where we combine all of the reducers we wrote
@@ -14,12 +15,9 @@ const combinedReducer = combineReducers({
   // routing: routeReducer
   // test: testReducer
   // sampleReducer : sampleReducer which can be written just as sampleReducer
-<<<<<<< HEAD
   sampleReducer,
-  editBentoInfo: editBentoReducer
-=======
-  searchReducer: searchReducer,
->>>>>>> 847b1f67fa5de549c3aa96bd35587faaedbbc474
+  editBentoInfo: editBentoReducer,
+  searchReducer: searchReducer
 });
 
 export default combinedReducer;

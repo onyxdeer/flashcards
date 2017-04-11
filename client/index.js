@@ -11,21 +11,20 @@ import reducers from './reducers';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
+// import {routerMiddleware, browserHistory, syncHistoryWithStore} from 'react-router-redux'
 
 const createStoreWithMiddleWare = applyMiddleware(
   thunk,
-  createLogger(),
-  
+  createLogger()
 )(createStore)
 
 
 const store = createStoreWithMiddleWare(reducers);
 // middleware.listenForReplays(store);
 
-
 ReactDOM.render( 
   <Provider store={store}>
-    <App />
+      <App />
   </Provider>, document.getElementById('app'));
 
 console.log('Hello World in console!')

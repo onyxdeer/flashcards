@@ -6,6 +6,9 @@ import CarouselTheme from 'slick-carousel';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import {connect} from 'react-redux'
+import handleFetchBentoForEdit from '../../actions/editPageActions.js'
+
 class User extends Component {
   constructor(props) {
     super(props);
@@ -251,7 +254,7 @@ class User extends Component {
                         <h3>{bento.name}</h3>
                         <p className='ellipsis'>{bento.description}</p>
                         <p><label>View Count:</label> {bento.visit_count} </p>
-                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.setBentoId(bento.id)}>Edit</Link></p>
+                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' onClick={() => this.props.handleFetchBentoForEdit(this.props.bento,bento.id, 1)} >Edit</Link></p>
                       </div>
                     </div>
                   ))}
@@ -267,5 +270,11 @@ class User extends Component {
     )
   }
 }
+ 
+function mapStateToProps (state) {
+  return {
+    bento:state.editBentoInfo
+  }
+}
+export default connect(mapStateToProps, {handleFetchBentoForEdit})(User);
 
-export default User;

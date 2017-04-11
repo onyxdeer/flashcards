@@ -44,6 +44,7 @@
     "react-flipcard": "^0.2.1",
     "react-redux": "^5.0.3",
     "react-router-dom": "^4.0.0",
+    "react-router-redux": "^5.0.0-alpha.4",
     "react-rte": "^0.11.0",
     "react-slick": "^0.14.7",
     "react-swipeable": "^3.9.2",

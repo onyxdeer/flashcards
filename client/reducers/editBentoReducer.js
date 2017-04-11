@@ -1,5 +1,4 @@
-import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI} from '../actions/actionTypes.js'
-import RichTextEditor from 'react-rte'
+import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_FETCH_BENTO_FOR_EDIT} from '../actions/actionTypes.js'
 
 //This is the default state y
 const DEFAULT_STATE =  {
@@ -13,6 +12,10 @@ const DEFAULT_STATE =  {
   noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
 
 }
+function handleFetchBentoForEdit(state, action) {
+  return {...state, ...action.payload}
+}
+
 //-------------------------------------------------------------
 
 function handleUpdateRTEState(state, action) {
@@ -57,6 +60,9 @@ export default function(state = DEFAULT_STATE, action) {
 
     case HANDLE_NORI_CHANGE:
     return handleNoriChange(state, action)
+
+    case HANDLE_FETCH_BENTO_FOR_EDIT:
+    return handleFetchBentoForEdit(state, action)
   }
 
 
