@@ -12,14 +12,7 @@ import { bindActionCreators } from 'redux';
 class Search extends Component {
   constructor(props) {
     super(props);
-    // this.props.endNavSubmit();
     this.props.searchBentos(this.props.query);
-  }
-
-  componentWillMount() {
-    // this.props.endNavSubmit();
-    console.log('this.props.query:', this.props.query);
-    // this.props.searchBentos(this.props.query);
   }
 
   render() {

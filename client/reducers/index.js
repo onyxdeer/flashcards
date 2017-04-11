@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 
 // import bentoReducer from './bentoReducer.jsx';
 import searchReducer from './searchReducer.jsx';
-// import personalReducer from './personalReducer.jsx';
+import personalReducer from './personalReducer.jsx';
 
 // NOTES: THIS FILE IS where we combine all of the reducers we wrote
 // SO you can import them in here, and add the reducer inside the combineReducer function below
@@ -17,6 +17,7 @@ const combinedReducer = combineReducers({
   sampleReducer,
   navReducer,
   searchReducer,
+  personalReducer
 });
 
 export default combinedReducer;

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import Deck from 'react-deck';
-// import Card from 'react-card';
 import Carousel from 'react-slick';
-import CarouselTheme from 'slick-carousel';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
