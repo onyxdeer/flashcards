@@ -9,6 +9,7 @@ import searchReducer from './searchReducer.jsx';
 // SO you can import them in here, and add the reducer inside the combineReducer function below
 import sampleReducer from './sampleReducer.js'
 import navReducer from './navReducer.jsx'
+import appReducer from './appReducer.jsx'
 
 const combinedReducer = combineReducers({
   // routing: routeReducer
@@ -17,6 +18,7 @@ const combinedReducer = combineReducers({
   sampleReducer,
   navReducer,
   searchReducer,
+  appReducer
 });
 
 export default combinedReducer;
