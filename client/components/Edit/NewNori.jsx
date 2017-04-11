@@ -13,10 +13,10 @@ class NewNori extends React.Component {
     return (
       <center className="new-nori">
         <div className='nori-textarea'>
-          <NewNoriRTE side = 'Front' handleNoriChange = {this.props.handleNoriChange} nori = {this.props.nori} number = {this.props.number}/>
+          <NewNoriRTE side = 'Front' handleNoriChange = {this.props.handleNoriChange} nori = {this.props.nori["Front"]} number = {this.props.number}/>
           </div>
           <div className='nori-textarea'>
-          <NewNoriRTE side = 'Back' handleNoriChange = {this.props.handleNoriChange} nori ={this.props.nori} number  = {this.props.number}/>
+          <NewNoriRTE side = 'Back' handleNoriChange = {this.props.handleNoriChange} nori ={this.props.nori["Back"]} number  = {this.props.number} />
           </div>
           <center className="add-delete-nori">
       <button type="submit" className="btn add-nori-button"  onClick={this.props.addNewNori}>Add</button>

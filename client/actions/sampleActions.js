@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 
 
-import { GET_HELLO, WAVE_HELLO, POST_HELLO, SAMPLE_REQUEST_ERROR } from '../actions/actionTypes.js'
+import { GET_HELLO, WAVE_HELLO, POST_HELLO, SAMPLE_REQUEST_ERROR, KEYWORD_BENTOS_FOUND } from '../actions/actionTypes.js'
 
 //an example of a asynchronous redux thunk action.
 export function sample(somedata, someMoreData) {

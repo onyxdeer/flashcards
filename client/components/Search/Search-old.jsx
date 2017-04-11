@@ -1,30 +1,60 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
-// connect is what we use to bind the component to redux store
-import { connect } from 'react-redux';
-
-import { searchBentos } from '../../actions/searchActions.jsx'
-
-import { bindActionCreators } from 'redux';
 
 class Search extends Component {
   constructor(props) {
     super(props);
-    // this.props.endNavSubmit();
-    this.props.searchBentos(this.props.query);
+
+    this.state = {
+      bentosToDisplay: [],
+    }
+
+    this.fetchBentos = this.fetchBentos.bind(this);
+  }
+
+  fetchBentos() {
+    var context = this;
+    var bentoData = [];
+    var idArray = [];
+    var imgArray = [];
+    axios.get('/api/bentos', {
+      params: { name: this.props.query }
+    })
+    .then(function(response) {
+      for (var i = 0; i < response.data.length; i++ ) {
+        if (!response.data[i].private) {
+          bentoData.push(response.data[i]);
+          idArray.push(response.data[i].id);
+        }
+      }
+    });
+    axios.get('/api/thumbnails', {
+      params: { bento_id: idArray }
+    }).then(function(response) {
+      var imgData = response.data;
+      // populate the ones with images
+      for (var i = 0; i < bentoData.length; i++) {
+        for (var j = 0; j < imgData.length; j++) {
+          if (imgData[j].bento_id === bentoData[i].id) {
+            bentoData[i].img_url = imgData[j].url;
+          }
+        }
+      }
+      context.setState({
+        bentosToDisplay: bentoData
+      });
+    });
   }
 
   componentWillMount() {
-    // this.props.endNavSubmit();
-    console.log('this.props.query:', this.props.query);
-    // this.props.searchBentos(this.props.query);
+    this.props.endNavSubmit();
+    this.fetchBentos();
   }
 
   render() {
 
-    console.log('bentosToDisplay in render:', this.props.bentos);
+    console.log('bentosToDisplay in render:', this.state.bentosToDisplay);
 
     return (
       <div>
@@ -52,7 +82,7 @@ class Search extends Component {
 
             {/*Search results*/}
               {
-                this.props.bentos&&(this.props.bentos.length > 0 )? this.props.bentos.map((bento, index) => (
+                this.state.bentosToDisplay.length > 0 ? this.state.bentosToDisplay.map((bento, index) => (
                   <div className='thumbnail' key={index}>
                     <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                     <div className='caption'>
@@ -75,10 +105,4 @@ class Search extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { 
-    bentos: state.searchReducer
-  }
-}
-
-export default connect(mapStateToProps, {searchBentos})(Search);
+export default Search;
