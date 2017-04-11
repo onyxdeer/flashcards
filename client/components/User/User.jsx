@@ -122,14 +122,14 @@ class User extends Component {
           // isFlipped: false
         }]
       }],
-      bentosToDisplay: [],
+      bentosToDisplay: []
     }
 
     this.fetchPersonal = this.fetchPersonal.bind(this);
     this.fetchFavorites = this.fetchFavorites.bind(this);
     this.fetchPopular = this.fetchPopular.bind(this);
 
-    // this.fetchPersonal();
+    this.fetchPersonal();
   }
 
   fetchPersonal() {
@@ -196,7 +196,7 @@ class User extends Component {
 
   componentWillMount() {
     // send an DB GET request for the flash cards here
-    this.fetchPersonal();
+    // this.fetchPersonal();
   }
 
   componentDidMount() {
@@ -245,7 +245,7 @@ class User extends Component {
                   this.state.bentosToDisplay.length > 0 ? 
                   (<Carousel {...settings}> 
                   {this.state.bentosToDisplay.map((bento, index) => (
-                    <div className='thumbnail'>
+                    <div className='thumbnail' key={index}>
                       <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                       <div className='caption'>
                         <h3>{bento.name}</h3>
