@@ -1,9 +1,10 @@
-import { UPDATE_QUERY, GET_USER_ID, GET_BENTO_ID } from '../actions/actionTypes.js'
+import { UPDATE_QUERY, GET_USER_ID, GET_BENTO_ID, CHANGE_SEARCH_ACTIVE } from '../actions/actionTypes.js'
 
 const stateDefault = {
   update_query: '',
   get_user_id: '',
-  get_bento_id: ''
+  get_bento_id: '',
+  change_search_active: false
 };
 
 const handleQuery = (state, action) => {
@@ -27,6 +28,13 @@ const handleBentoId = (state, action) => {
   };
 };
 
+const handleSearch = (state, action) => {
+  return {
+    ...state,
+    change_search_active: action.change_search_active
+  };
+};
+
 export default (state = stateDefault, action) => {
   // Identical: state = state || stateDefault;
   switch (action.type) {
@@ -35,7 +43,9 @@ export default (state = stateDefault, action) => {
     case GET_USER_ID: 
       return handleUserId(state, action);
     case GET_BENTO_ID: 
-      return handleBentoId(state, action);      
+      return handleBentoId(state, action);
+    case CHANGE_SEARCH_ACTIVE: 
+      return handleSearchActive(state, action);      
   }
   return state;
 };
