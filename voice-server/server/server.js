@@ -1,21 +1,43 @@
 /**
  * Created by noamc on 8/31/14.
  */
- var binaryServer = require('binaryjs').BinaryServer,
-     https = require('https'),
-     wav = require('wav'),
-     opener = require('opener'),
-     fs = require('fs'),
-     connect = require('connect'),
-     serveStatic = require('serve-static'),
-     UAParser = require('./ua-parser'),
-     CONFIG = require("../config.json"),
-     lame = require('lame');
+var binaryServer = require('binaryjs').BinaryServer,
+    https = require('https'),
+    wav = require('wav'),
+    opener = require('opener'),
+    fs = require('fs'),
+    connect = require('connect'),
+    serveStatic = require('serve-static'),
+    UAParser = require('./ua-parser'),
+    CONFIG = require("../config.json"),
+    lame = require('lame');
 
- var uaParser = new UAParser();
+// Imports the Google Cloud client library
+const Speech = require('@google-cloud/speech');
+// The encoding of the audio file, e.g. 'LINEAR16'
+const encoding = 'LINEAR16';
+// The sample rate of the audio file, e.g. 16000
+const sampleRate = 44100;
 
- if(!fs.existsSync("recordings"))
-    fs.mkdirSync("recordings");
+const request = {
+  config: {
+    encoding: encoding,
+    sampleRate: sampleRate
+  },
+  interimResults: true
+};
+
+const recognizeStream = speech.createRecognizeStream(request)
+  .on('error', (err) => console.log('GOOGLE: ', error))
+  .on('data', (data) => {
+      console.log('GOOGLE: ', data)
+      process.stdout.write(data.results)});
+
+var uaParser = new UAParser();
+
+if(!fs.existsSync("recordings")){
+    fs.mkdirSync("recordings");  
+}
 
 var options = {
     key:    fs.readFileSync('ssl/server.key'),
@@ -29,7 +51,7 @@ app.use(serveStatic('public'));
 var server = https.createServer(options,app);
 server.listen(9191);
 
-opener("https://localhost:9191");
+// opener("https://localhost:9191");
 
 var server = binaryServer({server:server});
 
@@ -53,7 +75,7 @@ server.on('connection', function(client) {
                     channels: 1,
                     sampleRate: meta.sampleRate,
                     bitDepth: 16 });
-                stream.pipe(fileWriter);
+                stream.pipe(fileWriter).pipe(recognizeStream);
             break;
 
             case "MP3":
