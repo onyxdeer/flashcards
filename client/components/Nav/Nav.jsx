@@ -101,7 +101,6 @@ function mapStateToProps(state) {
     // favorites: state.favorites.dataForUser,
     // data: state.recipes.data
     input: state.input,
-    componentPropData: state.data
   }
 }
 

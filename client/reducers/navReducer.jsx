@@ -1,4 +1,3 @@
-import redux from 'redux';
 import { CHANGE_INPUT } from '../actions/actionTypes.js'
 
 const stateDefault = {
@@ -17,7 +16,6 @@ export default (state = stateDefault, action) => {
   switch (action.type) {
     case 'CHANGE_INPUT': 
       return handleInput(state, action);  
-    default:
-      return state;
-    }
+  }
+  return state;
 };

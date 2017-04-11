@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-
-
 import { CHANGE_INPUT } from './actionTypes.js'
 
 //an example of a asynchronous redux thunk action.
