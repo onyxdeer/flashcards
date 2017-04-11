@@ -1,9 +1,9 @@
 import { FIND_BENTOS } from '../actions/actionTypes.js';
 
-const stateDefault = []
+const stateDefault = [];
 
 const handleSearchBentos = (state, action) => {
-    return action.payload
+    return action.payload;
 }
 
 export default function(state = stateDefault, action) {
