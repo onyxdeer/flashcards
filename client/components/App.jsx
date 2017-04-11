@@ -7,7 +7,6 @@ import {
   IndexRoute
 } from 'react-router-dom';
 
-import Main from './Main.jsx';
 import Nav from './Nav/Nav.jsx';
 import Display from './Display/Display.jsx';
 import Landing from './Landing/Landing.jsx';

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Deck from 'react-deck';
+import Card from 'react-card';
 import classnames from 'classnames';
 import axios from 'axios';
 import Swipeable from 'react-swipeable';
@@ -154,24 +155,24 @@ class Display extends Component {
       'no-animation': this.state.buttonPressed
     });
     return (
-      <Deck.Card key={nori.text_front} className={className}>
-        <Deck.Card.Front>
+      <Card key={nori.text_front} className={className}>
+        <Card.Front>
             <div className={className} onClick={this.flipToBack}>
               <div className='row'>{this.renderImages(nori, true)}</div>
               <div className='row'>
                 <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_front)))} readOnly={true} />
               </div>
             </div>
-        </Deck.Card.Front>
-        <Deck.Card.Back>
+        </Card.Front>
+        <Card.Back>
           <div className={className} onClick={this.flipToFront}>
             <div className='row'>{this.renderImages(nori, false)}</div>
             <div className='row'>
               <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_back)))} readOnly={true} />
             </div>
           </div>
-        </Deck.Card.Back>
-      </Deck.Card>
+        </Card.Back>
+      </Card>
     );
   }
 
