@@ -7,6 +7,9 @@
 //but if you misspell a variable it'll throw an error which you can then debug
 export const GET_HELLO = 'GET_HELLO';
 export const POST_HELLO = 'POST_HELLO';
+export const WAVE_HELLO = 'WAVE_HELLO'
+export const SAMPLE_REQUEST_ERROR = 'SAMPLE_REQUEST_ERROR'
+export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const WAVE_HELLO = 'WAVE_HELLO';
 export const SAMPLE_REQUEST_ERROR = 'SAMPLE_REQUEST_ERROR';
 export const SEARCH_BENTOS = 'SEARCH_KEYWORD_BENTOS';
