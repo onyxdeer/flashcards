@@ -11,21 +11,12 @@ import reducers from './reducers';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
-<<<<<<< HEAD
 // import {routerMiddleware, browserHistory, syncHistoryWithStore} from 'react-router-redux'
 
 const createStoreWithMiddleWare = applyMiddleware(
   thunk,
-  createLogger()
-)(createStore)
-
-=======
-const createStoreWithMiddleWare = applyMiddleware(
-  thunk,
   createLogger(),
-
-)(createStore);
->>>>>>> eb0e272311568fa0dc05b153b38e6f14086e6462
+)(createStore)
 
 const store = createStoreWithMiddleWare(reducers);
 // middleware.listenForReplays(store);

@@ -13,6 +13,7 @@ const DEFAULT_STATE =  {
 
 }
 function handleFetchBentoForEdit(state, action) {
+  console.log('helloo?? line 16 of editBentoReducer', action.payload)
   return {...state, ...action.payload}
 }
 
