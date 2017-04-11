@@ -17,16 +17,16 @@ constructor(props){
   this.handleNoriChange = this.props.handleNoriChange
 }
 
-  componentWillReceiveProps (newProps) {
-    console.log('componeWillReceives fires from rte')
+  // componentWillReceiveProps (newProps) {
+  //   console.log('componeWillReceives fires from rte')
 
-    if(newProps.nori.text != this.state.rawValue){
-      console.log(newProps.nori.text)
-      var rawJs = newProps.nori.text
-      var newValue = this.updateValue(rawJs)
-      this.setState({value: newValue})
-    }
-  }
+  //   if(newProps.nori.text != this.state.rawValue){
+  //     console.log(newProps.nori.text)
+  //     var rawJs = newProps.nori.text
+  //     var newValue = this.updateValue(rawJs)
+  //     this.setState({value: newValue})
+  //   }
+  // }
 
   updateValue (rawJs) {
     console.log(rawJs)
@@ -62,11 +62,11 @@ constructor(props){
     )
   }
 
-  componentDidMount() {
-    console.log("Line 66", this.props)
-      var newValue = this.updateValue(this.props.nori.text)
-      this.setState({value: newValue})
-  }
+  // componentDidMount() {
+  //   console.log("Line 66", this.props)
+  //     var newValue = this.updateValue(this.props.nori.text)
+  //     this.setState({value: newValue})
+  // }
 
   render () {
     console.log(this.props)

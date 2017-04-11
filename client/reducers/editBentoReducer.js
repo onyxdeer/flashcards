@@ -13,22 +13,37 @@ const DEFAULT_STATE =  {
 
 function handleEditBentoInfo(state, action) {
   let val = action.payload.target.value
-  return {
-    ...state, 
-    [action.payload.target.name] : val
-  }
+  return {...state, [action.payload.target.name] : val}
 }
 
 function handleSaveBento (state, action) {
-        return {...state, bento_id: action.payload}
+  return {...state, bento_id: action.payload}
+}
+
+function handleAddNewNori (state, action) {
+  return {...state, noris: action.payload}
+}
+
+function handleDeleteNori (state, action) {
+  return {...state, noris: action.payload}
 }
 
 export default function(state = DEFAULT_STATE, action) {
   switch(action.type) {
     case HANDLE_EDIT_BENTO_INFO:
     return handleEditBentoInfo(state, action)
+
     case HANDLE_SAVE_BENTO:
     return handleSaveBento(state, action)
+
+    case HANDLE_ADD_NEW_NORI:
+    return handleAddNewNori(state, action)
+
+    case HANDLE_DELETE_NORI:
+    return handleDeleteNori(state,action)
+
+    case HANDLE_NORI_CHANGE:
+    return handleNoriChange(state, action)
   }
 
 

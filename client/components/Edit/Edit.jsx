@@ -2,14 +2,15 @@ import React from 'react';
 // import NewBentoInfo from './NewBentoInfo.jsx' --vanilla react
 import EditBentoInfo from './editBentoInfo.jsx'
 import NewNori from './NewNori.jsx'
-import RichTextEditor, {EditorValue} from 'react-rte';
+import EditNewNori from './editNewNori.jsx'
 //redux dependencies
 import {convertFromRaw, convertToRaw} from 'draft-js'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from '../../actions/editPageActions.js'
-//axios dependency
+//miscellaneous dependencies
 import axios from 'axios'
+import RichTextEditor, {EditorValue} from 'react-rte';
 
 class Edit extends React.Component {
   constructor(props) {
@@ -164,11 +165,9 @@ class Edit extends React.Component {
         </div>
         <div className="newbentoinfo">
           <EditBentoInfo />
-          {/*<NewBentoInfo bento = {this.state.bento} handleChange = {this.handleChange} handleSubmit = {this.handleSubmit}/>*/}
         </div>
         {this.props.bento.noris.map((nori, index) => 
-          <NewNori key={index} number = {index} nori = {nori} addNewNori = {this.addNewNori} deleteNori = {this.deleteNori} handleNoriChange = {this.handleNoriChange}
-           />
+          <EditNewNori key={index} number = {index} />
         )}
         <div className="ops-div relative fullwidth col-xs-12">
           <button type="submit" id="submit" name="submit" className="form-btn semibold pull-right" onClick ={() => {this.handleSaveBento(this.props.bento)}}>Save Bento</button> 
