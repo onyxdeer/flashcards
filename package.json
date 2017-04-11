@@ -11,7 +11,8 @@
     "create:db": "echo This script requires admin password, please enter the password now:; sudo mysql -u root < ./db/createdb.sql",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-server": "mocha test/test-server || true",
-    "seed": "node db/seed.js"
+    "seed": "node db/seed.js",
+    "voice": "cd voice-server && npm start"
   },
   "repository": {
     "type": "git",
