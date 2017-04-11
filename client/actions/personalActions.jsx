@@ -127,10 +127,6 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch, category) {
     } else {
       console.log('Invalid dispatch in personalActions:', type);
     }
-    dispatch({
-      type: CHANGE_CATEGORY,
-      payload: category
-    });
   });
 }
 

@@ -82,8 +82,8 @@ class User extends Component {
 
 function mapStateToProps(state) {
   return { 
-    bentos: state.personalReducer,
-    category: state.categoryReducer
+    bentos: state.personalReducer.bentos,
+    category: state.personalReducer.category
   }
 }
 

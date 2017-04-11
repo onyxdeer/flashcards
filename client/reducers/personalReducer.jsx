@@ -3,15 +3,15 @@ import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS } from '
 const stateDefault = [];
 
 const handleFetchUserBentos = (state, action) => {
-  return action.payload;
+  return { bentos: action.payload, category: 'Personal' };
 }
 
 const handleFetchFavoriteBentos = (state, action) => {
-  return action.payload;
+  return { bentos: action.payload, category: 'Favorite' };
 }
 
 const handleFetchPopularBentos = (state, action) => {
-  return action.payload;
+  return { bentos: action.payload, category: 'Popular' };
 }
 
 export default function(state = stateDefault, action) {
