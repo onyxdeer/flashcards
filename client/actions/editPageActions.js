@@ -11,8 +11,11 @@ export function handleChange(event) {
 
 
 //this handle function is used for the changes of state in each nori with rich text in the RTE+++++++++++++++++++++++++
-export function handleNoriChange() {
-
+export function handleNoriChange(noris, rawValue, side, index) {
+  noris[index][side]['text'] = rawValue;
+  return function(dispatch) {
+    dispatch({type: HANDLE_NORI_CHANGE, payload: noris})
+  }
 }
 //+++++++++++++++++++++++++++++++++++++++++++++++++
 

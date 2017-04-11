@@ -1,7 +1,5 @@
 import React from 'react';
-// import NewBentoInfo from './NewBentoInfo.jsx' --vanilla react
 import EditBentoInfo from './editBentoInfo.jsx'
-import NewNori from './NewNori.jsx'
 import EditNewNori from './editNewNori.jsx'
 //redux dependencies
 import {convertFromRaw, convertToRaw} from 'draft-js'
@@ -27,77 +25,7 @@ class Edit extends React.Component {
         noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
       },
     }
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleNoriChange = this.handleNoriChange.bind(this);
-    this.addNewNori = this.addNewNori.bind(this);
-    this.deleteNori = this.deleteNori.bind(this);
   }
-
-  // handleChange(event) {
-  //   var tempBento = this.state.bento;
-  //   tempBento[event.target.name] = event.target.value
-  //   this.setState({
-  //     bento : tempBento
-  //   });
-  // }
-
-  // handleSubmit(event) {
-  //   event.preventDefault();
-  //   if(this.state.bento.name.replace(/\s/g,'').length < 5) {
-  //     alert("Please give your new Bento a name and make sure it's longer than 5 characters")
-  //   } else {
-  //     axios.post('/api/bentos',this.state.bento).then((data) => {
-  //       if(data.status === 200) {
-  //       var tempBento = this.state.bento
-  //       tempBento.bento_id = data.data
-  //         this.setState({
-  //           bento: tempBento
-  //        })
-  //         alert('Your bento has been saved!')
-  //       }else {
-  //         alert('Your bento was unsuccessfully saved. Please try again later.')
-  //       }
-  //     })
-  //   } 
-  // }
-
-  handleNoriChange(data, side, index) {
-    console.log(data)
-    console.log("Line 60 from Edit parent", data)
-    var tempBento = this.state.bento
-    tempBento.noris[index][side]["text"] = data;
-    this.setState({
-      bento: tempBento
-    })
-  }
-
-  addNewNori () {
-    console.log("adding a new nori")
-    var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}, id: null}
-    var tempBento = this.state.bento;
-    tempBento.noris.push(newNori);
-    this.setState({
-      bento: tempBento
-    })
-  }
-
-  deleteNori(event) {
-    var tempBento = this.state.bento;
-    tempBento.noris.splice(event.target.value, 1)
-    this.setState({
-      bento:tempBento
-    })
-  }
-  
-  // componentWillReceiveProps(newProp) {
-  //   console.log("Does Edit receive props:", newProp)
-  //   if(newProp.userId != this.state.bento.user_id) {
-  //     var tempBento = this.state.bento
-  //     tempBento.user_id = newProp.userId
-  //     this.setState({bento: tempBento})
-  //   }
-  // }
 
   componentWillMount() {
     console.log('componentWillMount fires from Edit Parent', this.props, this.props.match);

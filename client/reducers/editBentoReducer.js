@@ -1,4 +1,5 @@
 import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI} from '../actions/actionTypes.js'
+import RichTextEditor from 'react-rte'
 
 //This is the default state y
 const DEFAULT_STATE =  {
@@ -8,8 +9,20 @@ const DEFAULT_STATE =  {
   visit_count: 0,
   bento_id: null,
   user_id: 1 || 'guest',
+
   noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
+
 }
+//-------------------------------------------------------------
+
+function handleUpdateRTEState(state, action) {
+  return {...state, value: action.payload}
+} 
+
+function handleNoriChange(state, action) {
+  return {...state, noris: action.payload}
+}
+//-------------------------------------------------------------
 
 function handleEditBentoInfo(state, action) {
   let val = action.payload.target.value
