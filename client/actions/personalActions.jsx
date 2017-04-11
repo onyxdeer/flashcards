@@ -3,9 +3,9 @@ import { browserHistory } from 'react-router';
 
 import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS } from './actionTypes.js';
 
-const fetchBentos = {
+const personalActions = {
   
-    user: function(someData, someMoreData) {
+    fetchUser: function(someData, someMoreData) {
       return function(dispatch) {
         var bentoData = [];
         var idArray = [];
@@ -22,7 +22,7 @@ const fetchBentos = {
       }
     },
 
-    favorites: function(someData, someMoreData) {
+    fetchFavorites: function(someData, someMoreData) {
       return function(dispatch) {
         var bentoData = [];
         var idArray = [];
@@ -36,11 +36,21 @@ const fetchBentos = {
           }
         })
         // get bento data
-        .then(response => axios.get('/api/bentos', {
-          params: {
-            id: response.data
+        .then(response => {
+          console.log('getting bentos with bento_ids:', response.data);
+          if (response.data.length === 0) {
+            dispatch({
+              type: FETCH_FAVORITE_BENTOS,
+              payload: []
+            });
+          } else {
+            return axios.get('/api/bentos', {
+              params: {
+                id: response.data
+              }
+            });
           }
-        }))
+        })
         // pushes bento_ids into an array for fetchThumbnails to use
         .then(response => storeBentoIds(response, idArray, bentoData))
         // gets the thumbnails and then finally dispatch
@@ -48,19 +58,14 @@ const fetchBentos = {
       }
     },
 
-    popular: function(someData, someMoreData) {
+    fetchPopular: function(someData, someMoreData) {
       return function(dispatch) {
         var bentoData = [];
         var idArray = [];
         var imgArray = [];
         console.log('Calling api from popularBentos with:', someData);
         // gets first 10 bentos with descending order of visit count
-        axios.get('/api/bentos', {
-          params: {
-            order: 'visit_count DESC',
-            limit: 10
-          }
-        })
+        axios.get('/api/popular')
         // pushes bento_ids into an array for fetchThumbnails to use
         .then(response => storeBentoIds(response, idArray, bentoData))
         // gets the thumbnails and then finally dispatch
@@ -71,16 +76,25 @@ const fetchBentos = {
 }
 
 function storeBentoIds(response, idArray, bentoData, personal) {
+  if (!response) return;
+  console.log('storeBentoIds has repsonse.data:', response.data);
   for (var i = 0; i < response.data.length; i++ ) {
-    if (!response.data[i].private && !personal) {
+    if (personal) {
+      bentoData.push(response.data[i]);
+      idArray.push(response.data[i].id);
+    } else if (!response.data[i].private) {
       bentoData.push(response.data[i]);
       idArray.push(response.data[i].id);
     }
   }
+  console.log('bentoData in storeBentoIds is now:', bentoData);
+  console.log('idArray in storeBentoIds is now:', idArray);
 }
 
 function fetchThumbnails(idArray, imgArray, bentoData, dispatch, type) {
-  console.log('calling fetchThumbnails');
+  console.log('idArray in fetchThumbnails:', idArray);
+  console.log('bentoData in fetchThumbnails:', bentoData);
+  if (idArray.length === 0) return;
   return axios.get('/api/thumbnails', {
     params: { bento_id: idArray }
   })
@@ -96,6 +110,7 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch, type) {
     }
     // dispatch to proper reducer
     if (type === 'User') {
+      console.log('fetched thumbnails for Users:', bentoData);
       dispatch({
         type: FETCH_USER_BENTOS,
         payload: bentoData
@@ -116,4 +131,4 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch, type) {
   });
 }
 
-export default fetchBentos;
+export default personalActions;

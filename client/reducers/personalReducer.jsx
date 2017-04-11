@@ -17,6 +17,7 @@ const handleFetchPopularBentos = (state, action) => {
 export default function(state = stateDefault, action) {
     switch (action.type) {
       case FETCH_USER_BENTOS:
+      console.log('Calling FETCH_USER_BENTOS with new state:', state);
         return handleFetchUserBentos(state, action);
         break;
       case FETCH_FAVORITE_BENTOS:

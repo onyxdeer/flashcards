@@ -1,13 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Carousel from 'react-slick';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
-import { connect } from 'react-redux';
-
-import personalActions from '../../actions/personalActions.jsx';
-
-let userId = 1;
 
 class User extends Component {
   constructor(props) {
@@ -114,13 +108,7 @@ class User extends Component {
     this.fetchFavorites = this.fetchFavorites.bind(this);
     this.fetchPopular = this.fetchPopular.bind(this);
 
-    // this.fetchPersonal();
-
-    if (this.props.userId !== 'guest') {
-      userId = this.props.userId;
-    }
-
-    this.props.fetchUser(userId);
+    this.fetchPersonal();
   }
 
   fetchPersonal() {
@@ -191,13 +179,13 @@ class User extends Component {
   }
 
   componentDidMount() {
-    // if (this.state.bentosToDisplay.length === 0) {
-    //   this.fetchPersonal();
-    // }
+    if (this.state.bentosToDisplay.length === 0) {
+      this.fetchPersonal();
+    }
   }
 
   render() {
-    console.log('bentos in User page render:', this.props.bentos);
+    console.log('bentosToDisplay in render:', this.state.bentosToDisplay);
     const settings = {
       accessibility: true,
       autoplay: false,
@@ -224,18 +212,18 @@ class User extends Component {
           </div>
           <div className='row buttonSection'>
             <label>Categories:</label>
-            <button type='button' className='btn btn-success' onClick={() => this.props.fetchUser(userId)}>Personal</button>
-            <button type='button' className='btn btn-success' onClick={() => this.props.fetchFavorites(userId)}>Favorites</button>
-            <button type='button' className='btn btn-success' onClick={this.props.fetchPopular}>Popular</button>
+            <button type='button' className='btn btn-success' onClick={this.fetchPersonal}>Personal</button>
+            <button type='button' className='btn btn-success' onClick={this.fetchFavorites}>Favorites</button>
+            <button type='button' className='btn btn-success' onClick={this.fetchPopular}>Popular</button>
           </div>
           <div className='row'>
             <div className='col-xs-1'></div>
             <div className='col-xs-10'>
                 
                 {
-                  this.props.bentos&&(this.props.bentos.length > 0 ) ? 
+                  this.state.bentosToDisplay.length > 0 ? 
                   (<Carousel {...settings}> 
-                  {this.props.bentos.map((bento, index) => (
+                  {this.state.bentosToDisplay.map((bento, index) => (
                     <div className='thumbnail' key={index}>
                       <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                       <div className='caption'>
@@ -259,10 +247,4 @@ class User extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { 
-    bentos: state.personalReducer
-  }
-}
-
-export default connect(mapStateToProps, personalActions)(User);
+export default User;

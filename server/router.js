@@ -46,9 +46,8 @@ const bindRoutes = (app) => {
     .get(util.tasks.thumbnails.get)
     .post(util.tasks.thumbnails.post);
 
-  app.route('/api/favorites')
-  .get(util.tasks.favorites.get)
-  .post(util.tasks.favorites.post); 
+  app.route('/api/popular')
+    .get(util.tasks.popular.get);
 
   app.route('/*')
     .get(util.tasks.redirect.get);   
