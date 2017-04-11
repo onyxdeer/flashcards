@@ -15,7 +15,7 @@ import { createLogger } from 'redux-logger';
 const createStoreWithMiddleWare = applyMiddleware(
   thunk,
   createLogger(),
-
+  
 )(createStore)
 
 

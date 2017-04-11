@@ -1,5 +1,6 @@
 import React from 'react';
-import NewBentoInfo from './NewBentoInfo.jsx'
+// import NewBentoInfo from './NewBentoInfo.jsx' --vanilla react
+import EditBentoInfo from './editBentoInfo.jsx'
 import NewNori from './NewNori.jsx'
 import RichTextEditor, {EditorValue} from 'react-rte';
 import {convertFromRaw, convertToRaw} from 'draft-js'
@@ -158,8 +159,9 @@ class Edit extends React.Component {
         <div className="relative fullwidth">
           <h1 className="create-title">Create A New Bento</h1>
         </div>
+          <EditBentoInfo />
         <div className="newbentoinfo">
-          <NewBentoInfo bento = {this.state.bento} handleChange = {this.handleChange} handleSubmit = {this.handleSubmit}/>
+          {/*<NewBentoInfo bento = {this.state.bento} handleChange = {this.handleChange} handleSubmit = {this.handleSubmit}/>*/}
         </div>
         {this.state.bento.noris.map((nori, index) => 
           <NewNori key={index} number = {index} nori = {nori} addNewNori = {this.addNewNori} deleteNori = {this.deleteNori} handleNoriChange = {this.handleNoriChange}
