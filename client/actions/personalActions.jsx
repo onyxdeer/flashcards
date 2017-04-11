@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS } from './actionTypes.js';
+import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS, CHANGE_CATEGORY } from './actionTypes.js';
 
 const personalActions = {
   
@@ -18,7 +18,7 @@ const personalActions = {
         // stores all bento_ids belonging to user for use in fetchThumbnails
         .then(response => storeBentoIds(response, idArray, bentoData, true))
         // gets the thumbnails and then finally dispatch
-        .then(() => fetchThumbnails(idArray, imgArray, bentoData, dispatch, 'User'));
+        .then(() => fetchThumbnails(idArray, imgArray, bentoData, dispatch, 'Personal'));
       }
     },
 
@@ -54,7 +54,7 @@ const personalActions = {
         // pushes bento_ids into an array for fetchThumbnails to use
         .then(response => storeBentoIds(response, idArray, bentoData))
         // gets the thumbnails and then finally dispatch
-        .then(() => fetchThumbnails(idArray, imgArray, bentoData, dispatch, 'Favorites'));
+        .then(() => fetchThumbnails(idArray, imgArray, bentoData, dispatch, 'Favorite'));
       }
     },
 
@@ -91,10 +91,9 @@ function storeBentoIds(response, idArray, bentoData, personal) {
   console.log('idArray in storeBentoIds is now:', idArray);
 }
 
-function fetchThumbnails(idArray, imgArray, bentoData, dispatch, type) {
+function fetchThumbnails(idArray, imgArray, bentoData, dispatch, category) {
   console.log('idArray in fetchThumbnails:', idArray);
   console.log('bentoData in fetchThumbnails:', bentoData);
-  if (idArray.length === 0) return;
   return axios.get('/api/thumbnails', {
     params: { bento_id: idArray }
   })
@@ -109,18 +108,18 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch, type) {
       }
     }
     // dispatch to proper reducer
-    if (type === 'User') {
+    if (category === 'Personal') {
       console.log('fetched thumbnails for Users:', bentoData);
       dispatch({
         type: FETCH_USER_BENTOS,
         payload: bentoData
       });
-    } else if (type === 'Favorites') {
+    } else if (category === 'Favorite') {
       dispatch({
         type: FETCH_FAVORITE_BENTOS,
         payload: bentoData
       });
-    } else if (type === 'Popular') {
+    } else if (category === 'Popular') {
       dispatch({
         type: FETCH_POPULAR_BENTOS,
         payload: bentoData
@@ -128,6 +127,10 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch, type) {
     } else {
       console.log('Invalid dispatch in personalActions:', type);
     }
+    dispatch({
+      type: CHANGE_CATEGORY,
+      payload: category
+    });
   });
 }
 
