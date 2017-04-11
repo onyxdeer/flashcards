@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/noamtcohen/AudioStreamer",
   "dependencies": {
-    "@google-cloud/speech": "^0.9.0",
+    "@google-cloud/speech": "^0.8.0",
     "binaryjs": "^0.2.1",
     "connect": "^3.3.4",
     "lame": "^1.2.3",
+    "linear16": "^1.0.1",
+    "node-record-lpcm16": "^0.3.0",
     "opener": "^1.4.1",
     "serve-static": "^1.9.1",
     "uaparser": "0.0.2",

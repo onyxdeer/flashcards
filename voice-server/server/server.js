@@ -14,6 +14,8 @@ var binaryServer = require('binaryjs').BinaryServer,
 
 // Imports the Google Cloud client library
 const Speech = require('@google-cloud/speech');
+// Instantiates a client
+const speech = Speech();
 // The encoding of the audio file, e.g. 'LINEAR16'
 const encoding = 'LINEAR16';
 // The sample rate of the audio file, e.g. 16000
@@ -22,13 +24,14 @@ const sampleRate = 44100;
 const request = {
   config: {
     encoding: encoding,
-    sampleRate: sampleRate
+    sampleRate: sampleRate,
+    // languageCode: 'en-US'
   },
   interimResults: true
 };
 
 const recognizeStream = speech.createRecognizeStream(request)
-  .on('error', (err) => console.log('GOOGLE: ', error))
+  .on('error', (err) => console.log('GOOGLE: ', err))
   .on('data', (data) => {
       console.log('GOOGLE: ', data)
       process.stdout.write(data.results)});
@@ -51,7 +54,7 @@ app.use(serveStatic('public'));
 var server = https.createServer(options,app);
 server.listen(9191);
 
-// opener("https://localhost:9191");
+opener("https://localhost:9191");
 
 var server = binaryServer({server:server});
 
