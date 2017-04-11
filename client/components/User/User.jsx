@@ -2,9 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Carousel from 'react-slick';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
 import { connect } from 'react-redux';
-
 import personalActions from '../../actions/personalActions.jsx';
 
 let userId = 1;
@@ -13,109 +11,6 @@ class User extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      category: 'Personal',
-      favoriteBentos: [{
-        title: 'FavoriteBento 1',
-        description: 'This is favorite bento 1',
-        thumbnail: null,
-        tags: null,
-        bento: [{
-          front: 'Favorite1 Front 1',
-          back: 'Favorite1 Back 1',
-        }, {
-          front: 'Favorite1 Front 2',
-          back: 'Favorite1 Back 2',
-        }, {
-          front: 'Favorite1 Front 3',
-          back: 'Favorite1 Back 3',
-        }]
-      }, {
-        title: 'FavoriteBento 2',
-        description: 'This is favorite bento 2',
-        thumbnail: null,
-        tags: null,
-        bento: [{
-          front: 'Favorite2 Front 1',
-          back: 'Favorite2 Back 1',
-        }, {
-          front: 'Favorite2 Front 2',
-          back: 'Favorite2 Back 2',
-        }, {
-          front: 'Favorite2 Front 3',
-          back: 'Favorite2 Back 3',
-        }]
-      }, {
-        title: 'FavoriteBento 3',
-        description: 'This is favorite bento 3',
-        thumbnail: null,
-        tags: null,
-        bento: [{
-          front: 'Favorite3 Front 1',
-          back: 'Favorite3 Back 1',
-        }, {
-          front: 'Favorite3 Front 2',
-          back: 'Favorite3 Back 2',
-        }, {
-          front: 'Favorite3 Front 3',
-          back: 'Favorite3 Back 3',
-        }]
-      }],
-      popularBentos: [{
-        title: 'PopularBento 1',
-        description: 'This is popular bento 1',
-        thumbnail: null,
-        tags: null,
-        bento: [{
-          front: 'Popular1 Front 1',
-          back: 'Popular1 Back 1',
-        }, {
-          front: 'Popular1 Front 2',
-          back: 'Popular1 Back 2',
-        }, {
-          front: 'Popular1 Front 3',
-          back: 'Popular1 Back 3',
-        }]
-      }, {
-        title: 'PopularBento 2',
-        description: 'This is popular bento 2',
-        thumbnail: null,
-        tags: null,
-        bento: [{
-          front: 'Popular2 Front 1',
-          back: 'Popular2 Back 1',
-        }, {
-          front: 'Popular2 Front 2',
-          back: 'Popular2 Back 2',
-        }, {
-          front: 'Popular2 Front 3',
-          back: 'Popular2 Back 3',
-        }]
-      }, {
-        title: 'PopularBento 3',
-        description: 'This is popular bento 3',
-        thumbnail: null,
-        tags: null,
-        bento: [{
-          front: 'Popular3 Front 1',
-          back: 'Popular3 Back 1',
-        }, {
-          front: 'Popular3 Front 2',
-          back: 'Popular3 Back 2',
-        }, {
-          front: 'Popular3 Front 3',
-          back: 'Popular3 Back 3',
-        }]
-      }],
-      bentosToDisplay: []
-    }
-
-    this.fetchPersonal = this.fetchPersonal.bind(this);
-    this.fetchFavorites = this.fetchFavorites.bind(this);
-    this.fetchPopular = this.fetchPopular.bind(this);
-
-    // this.fetchPersonal();
-
     if (this.props.userId !== 'guest') {
       userId = this.props.userId;
     }
@@ -123,81 +18,7 @@ class User extends Component {
     this.props.fetchUser(userId);
   }
 
-  fetchPersonal() {
-    this.setState({
-      category: "Personal"
-    });
-    var context = this;
-    var bentoData = [];
-    var idArray = [];
-    var imgArray = [];
-    axios.get('/api/bentos', {
-      params: { user_id: 1 }
-    })
-    .then(function(response) {
-      for (var i = 0; i < response.data.length; i++ ) {
-        if (!response.data[i].private) {
-          bentoData.push(response.data[i]);
-          idArray.push(response.data[i].id);
-        }
-      }
-    });
-    axios.get('/api/thumbnails', {
-      params: { bento_id: idArray }
-    })
-    .then(function(response) {
-      var imgData = response.data;  
-      // console.log('response.data for /api/thumbnails:', imgData);
-      console.log('idArray:', idArray);
-      console.log('bentoData:', bentoData);
-
-      // populate the ones with images
-      for (var i = 0; i < bentoData.length; i++) {
-        for (var j = 0; j < imgData.length; j++) {
-          if (imgData[j].bento_id === bentoData[i].id) {
-            bentoData[i].img_url = imgData[j].url;
-          }
-        }
-      }
-      context.setState({
-        bentosToDisplay: bentoData
-      }, () => console.log('test has been set to:', context.state.bentosToDisplay));
-    });
-  }
-
-  fetchFavorites() {
-    this.setState({
-      category: "Favorite"
-    });
-    // do a GET FAVORITES api to DB
-    this.setState({
-      bentosToDisplay: this.state.favoriteBentos
-    });
-  }
-
-  fetchPopular() {
-    this.setState({
-      category: "Most Popular"
-    });
-    // do a GET POPULAR api to DB
-    this.setState({
-      bentosToDisplay: this.state.popularBentos
-    });
-  }
-
-  componentWillMount() {
-    // send an DB GET request for the flash cards here
-    // this.fetchPersonal();
-  }
-
-  componentDidMount() {
-    // if (this.state.bentosToDisplay.length === 0) {
-    //   this.fetchPersonal();
-    // }
-  }
-
   render() {
-    console.log('bentos in User page render:', this.props.bentos);
     const settings = {
       accessibility: true,
       autoplay: false,
@@ -220,7 +41,7 @@ class User extends Component {
       <div>
         <div className='row center-block'>
           <div className='create-title'>
-            <h1 className='default-font'>{this.state.category} Bentos:</h1>
+            <h1 className='default-font'>{this.props.category} Bentos:</h1>
           </div>
           <div className='row buttonSection'>
             <label>Categories:</label>
@@ -261,7 +82,8 @@ class User extends Component {
 
 function mapStateToProps(state) {
   return { 
-    bentos: state.personalReducer
+    bentos: state.personalReducer,
+    category: state.categoryReducer
   }
 }
 
