@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import * as actions from '../actions/handleChange'
+import * as actions from '../../actions/editPageActions.js'
 
-class bentoInfo extends React.Component {
+
+class editBentoInfo extends React.Component {
   render() {
     return (
      <div className="inner-contact">
@@ -23,7 +24,7 @@ class bentoInfo extends React.Component {
                         </div>
                         <div className="clear"></div>
                     </form>
-                            <button  id="submit" name="submit" className="form-btn semibold pull-right" onClick={this.props.handleSubmit}>Save Bento</button> 
+                            <button  id="submit" name="submit" className="form-btn semibold pull-right" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
 
                     <div className="mail-message-area">
                         <div className="alert gray-bg mail-message not-visible-message">
@@ -44,4 +45,4 @@ function mapStateToProps(state) {
 
 
 
-export default connect(mapStateToProps, actions)(bentoInfo);
+export default connect(mapStateToProps, actions)(editBentoInfo);

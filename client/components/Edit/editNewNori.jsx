@@ -1,5 +1,14 @@
 import React from 'react' 
 import NewNoriRTE from './NewNoriRTE.jsx'
+
+//redux dependencies
+import {convertFromRaw, convertToRaw} from 'draft-js'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import * as actions from '../../actions/editPageActions.js'
+
+
+
 class NewNori extends React.Component {
   render() {
     return (
@@ -19,4 +28,4 @@ class NewNori extends React.Component {
   }
 }
 
-export default NewNori
+export default connect(actions)(NewNori)
