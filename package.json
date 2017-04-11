@@ -25,17 +25,13 @@
   },
   "homepage": "https://github.com/david-zou/flashcards#readme",
   "dependencies": {
-    "@google-cloud/speech": "^0.8.0",
     "axios": "^0.15.3",
     "bcryptjs": "^2.4.3",
-    "binaryjs": "^0.2.1",
     "body-parser": "^1.17.1",
     "classnames": "^2.2.5",
     "express": "^4.15.2",
-    "linear16": "^1.0.1",
     "morgan": "^1.8.1",
     "mysql": "^2.13.0",
-    "node-record-lpcm16": "^0.2.0",
     "path": "^0.12.7",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.8",
@@ -54,7 +50,6 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^3.30.4",
     "slick-carousel": "^1.6.0",
-    "wav": "^1.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
