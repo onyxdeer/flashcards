@@ -1,0 +1,28 @@
+{
+  "name": "AudioStreamer",
+  "version": "1.0.0",
+  "description": "Audio Streamer Web Server",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noamtcohen/AudioStreamer.git"
+  },
+  "author": "noamtcohen",
+  "license": "none",
+  "bugs": {
+    "url": "https://github.com/noamtcohen/AudioStreamer/issues"
+  },
+  "homepage": "https://github.com/noamtcohen/AudioStreamer",
+  "dependencies": {
+    "binaryjs": "^0.2.1",
+    "connect": "^3.3.4",
+    "lame": "^1.2.3",
+    "opener": "^1.4.1",
+    "serve-static": "^1.9.1",
+    "uaparser": "0.0.2",
+    "wav": "^0.1.2"
+  }
+}
