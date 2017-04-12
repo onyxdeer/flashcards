@@ -71,7 +71,7 @@ console.log("Line 46 User.jsx,", this.props.bentos)
                         <h3>{bento.name}</h3>
                         <p className='ellipsis'>{bento.description}</p>
                         <p><label>View Count:</label> {bento.visit_count} </p>
-                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><button className='btn btn-default' onClick={() => this.props.handleFetchBentoForEdit(this.props.bento,bento.id, 1)} >Edit</button></p>
+                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><button className='btn btn-default' onClick={() => this.props.handleFetchBentoForEdit(this.props.bento,bento.id, 1)} ><Link to={'/edit'} className='btn btn-default'>Edit</Link></button></p>
                       </div>
                     </div>
                   ))}

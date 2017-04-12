@@ -3,7 +3,7 @@ import searchReducer from './searchReducer.jsx';
 // import personalReducer from './personalReducer.jsx';
 
 import { combineReducers } from 'redux';
-// import { routeReducer } from 'react-router-redux';
+import { routeReducer } from 'react-router-redux';
 import personalReducer from './personalReducer.jsx';
 
 // NOTES: THIS FILE IS where we combine all of the reducers we wrote
@@ -13,7 +13,7 @@ import editBentoReducer from './editBentoReducer.js'
 import navReducer from './navReducer.jsx'
 
 const combinedReducer = combineReducers({
-  // routing: routeReducer
+  // routing: routeReducer,
   // test: testReducer
   // sampleReducer : sampleReducer which can be written just as sampleReducer
   sampleReducer,
