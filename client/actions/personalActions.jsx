@@ -4,11 +4,9 @@ import {  push } from 'react-router-redux'
 import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS, HANDLE_FETCH_BENTO_FOR_EDIT } from './actionTypes.js';
 const personalActions = {
   handleFetchBentoForEdit: function (bento, bentoId, userId) {
-  console.log(bento, bentoId, userId)
   return function(dispatch) {
     axios.get('/api/bentos', {params: {id: bentoId, user_id: userId}})
     .then((response)=>{
-      console.log('line 11', response)
       var data = response.data[0];
       bento.name = data.name;
       bento.description = data.description;
@@ -18,11 +16,9 @@ const personalActions = {
     .then(() => {
       axios.get('/api/bentos_noris', {params: {bento_id: bentoId}})
       .then((response) => {
-        console.log(response.data)
         return response.data.map((data) => {return data.nori_id})
       })
       .then((arrayNorisId) => {
-        console.log(arrayNorisId)
         axios.get('/api/noris', {params: {id: arrayNorisId}})
         .then((response) => {
           var savedNorisArray = response.data.map(function(nori){
@@ -49,7 +45,6 @@ const personalActions = {
         var bentoData = [];
         var idArray = [];
         var imgArray = [];
-        console.log('Calling api from userBentos with:', someData);
         // gets all bentos with particular user_id
         axios.get('/api/bentos', {
           params: { user_id: someData }
@@ -65,8 +60,7 @@ const personalActions = {
       return function(dispatch) {
         var bentoData = [];
         var idArray = [];
-        var imgArray = [];
-        console.log('Calling api from favoriteBentos with:', someData);
+        var imgArray = [];;
         // get all bento_ids that are user's favorites
         axios.get('/api/labels', {
           params: {
@@ -75,8 +69,7 @@ const personalActions = {
           }
         })
         // get bento data
-        .then(response => {
-          console.log('getting bentos with bento_ids:', response.data);
+        .then(response => {;
           if (response.data.length === 0) {
             dispatch({
               type: FETCH_FAVORITE_BENTOS,
@@ -102,7 +95,6 @@ const personalActions = {
         var bentoData = [];
         var idArray = [];
         var imgArray = [];
-        console.log('Calling api from popularBentos with:', someData);
         // gets first 10 bentos with descending order of visit count
         axios.get('/api/popular')
         // pushes bento_ids into an array for fetchThumbnails to use
@@ -116,7 +108,6 @@ const personalActions = {
 
 function storeBentoIds(response, idArray, bentoData, personal) {
   if (!response) return;
-  console.log('storeBentoIds has repsonse.data:', response.data);
   for (var i = 0; i < response.data.length; i++ ) {
     if (personal) {
       bentoData.push(response.data[i]);
@@ -126,13 +117,9 @@ function storeBentoIds(response, idArray, bentoData, personal) {
       idArray.push(response.data[i].id);
     }
   }
-  console.log('bentoData in storeBentoIds is now:', bentoData);
-  console.log('idArray in storeBentoIds is now:', idArray);
 }
 
 function fetchThumbnails(idArray, imgArray, bentoData, dispatch, category) {
-  console.log('idArray in fetchThumbnails:', idArray);
-  console.log('bentoData in fetchThumbnails:', bentoData);
   return axios.get('/api/thumbnails', {
     params: { bento_id: idArray }
   })
@@ -148,7 +135,6 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch, category) {
     }
     // dispatch to proper reducer
     if (category === 'Personal') {
-      console.log('fetched thumbnails for Users:', bentoData);
       dispatch({
         type: FETCH_USER_BENTOS,
         payload: bentoData

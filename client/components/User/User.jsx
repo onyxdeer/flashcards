@@ -41,7 +41,7 @@ class User extends Component {
       initialSlide: 0,
       touchMove: true
     };
-console.log("Line 46 User.jsx,", this.props.bentos)
+    
     return (
       <div>
         <div className='row center-block'>

@@ -23,7 +23,10 @@ constructor(props){
   componentWillReceiveProps (newProps) {
     var text = newProps.bento.noris[this.props.number][this.props.side]['text'] 
     // var rawValue = newProps.bento.noris[this.props.number][this.props.side]['rawValue']
-    console.log(text,"----", this.state.rawValue, "-----", this.props)
+    console.log("Component has received newProps and the current state of component is, " ,this.state.rawValue)
+    if(!text && !this.state.rawValue){
+      this.setState({value: RichTextEditor.createEmptyValue()})
+    } 
     if(text != this.state.rawValue){
       var rawJs = text;
       var newValue = this.convertFromRawJs(rawJs)

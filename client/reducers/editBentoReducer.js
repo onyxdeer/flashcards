@@ -13,8 +13,9 @@ const DEFAULT_STATE =  {
 
 }
 
+//this handler resets the create page back to default whenever a user clicks create
+
 function handleRenderCreatePage(state, action) {
-  console.log("handleRenderCreatePage fired")
   var def = {
   name: 'Test Name Default Redux',
   description:'Testing Default Redux',
@@ -26,6 +27,8 @@ function handleRenderCreatePage(state, action) {
 }
   return {...state, ...def}
 }
+//---------------------------------------------------------------
+
 
 function handleFetchBentoForEdit(state, action) {
   console.log('helloo?? line 16 of editBentoReducer', action.payload)

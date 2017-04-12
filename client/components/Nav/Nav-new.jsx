@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, NavDropdown, FormGroup, FormControl, MenuItem, Button, Dropdown, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/navActions.js';
-console.log(actions);
 
 class Navigation extends Component {
   constructor(props) {
