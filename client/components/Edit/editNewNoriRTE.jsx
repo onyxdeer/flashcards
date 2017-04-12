@@ -12,8 +12,8 @@ constructor(props){
   super(props)    
   this.state = {
     value: RichTextEditor.createEmptyValue(),
-    rawValue: props.value,
-    showTB : true,
+    rawValue : null,
+    showTB : true
   }
   this.convertFromRawJs = this.convertFromRawJs.bind(this)
   this.onChange = this.onChange.bind(this)
@@ -22,6 +22,7 @@ constructor(props){
 
   componentWillReceiveProps (newProps) {
     var text = newProps.bento.noris[this.props.number][this.props.side]['text'] 
+    // var rawValue = newProps.bento.noris[this.props.number][this.props.side]['rawValue']
     console.log(text,"----", this.state.rawValue, "-----", this.props)
     if(text != this.state.rawValue){
       var rawJs = text;
@@ -47,13 +48,14 @@ constructor(props){
 
   onChange (value) {
     var rawValue = JSON.stringify(convertToRaw(value._editorState.getCurrentContent()))
-    this.setState({value,  rawValue: rawValue}, () => {
+    this.setState({value, rawValue: rawValue}, () => {
     this.props.handleNoriChange(this.props.bento.noris, rawValue, this.props.side, this.props.number)}
     )
   }
 
 
   render () {
+    console.log("This props of line 57", this.props )
     const ToolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
     display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],

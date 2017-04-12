@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux'
 import personalActions from '../../actions/personalActions.jsx';
-import handleFetchBentoForEdit from '../../actions/editPageActions.js'
 
 
 let userId = 1;

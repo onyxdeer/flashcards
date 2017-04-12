@@ -41,6 +41,8 @@ import axios from 'axios';
 //+++++++++++++++++++++++++++++++++++++++++++++
 
 
+
+
 //this handle function can be used to change the state of any input/textarea field++++++++++++++++++++++++++++++++++++
 export function handleChange(event) {
   return function(dispatch) {
@@ -53,6 +55,7 @@ export function handleChange(event) {
 //this handle function is used for the changes of state in each nori with rich text in the RTE+++++++++++++++++++++++++
 export function handleNoriChange(noris, rawValue, side, index) {
   noris[index][side]['text'] = rawValue;
+  // noris[index][side]['rawValue'] = rawValue;
   return function(dispatch) {
     dispatch({type: HANDLE_NORI_CHANGE, payload: noris})
   }
