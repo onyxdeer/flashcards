@@ -30,7 +30,6 @@ class Display extends Component {
     this.nextNori = this.nextNori.bind(this);
     this.showBack = this.showBack.bind(this);
     this.showFront = this.showFront.bind(this);
-    this.flip = this.flip.bind(this);
     this.flipToBack = this.flipToBack.bind(this);
     this.flipToFront = this.flipToFront.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -216,12 +215,6 @@ class Display extends Component {
   showFront() {
     this.setState({
       isFlipped: false
-    });
-  }
-
-  flip() {
-    this.setState({
-      isFlipped: !this.state.isFlipped,
     });
   }
 
