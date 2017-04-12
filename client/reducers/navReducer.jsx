@@ -4,7 +4,7 @@ const stateDefault = {
   input: ''
 };
 
-let handleInput = (state, action) => {
+const handleInput = (state, action) => {
   return {
     ...state,
     input: action.input
