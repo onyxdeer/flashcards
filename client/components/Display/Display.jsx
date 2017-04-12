@@ -30,7 +30,6 @@ class Display extends Component {
     this.nextNori = this.nextNori.bind(this);
     this.showBack = this.showBack.bind(this);
     this.showFront = this.showFront.bind(this);
-    this.flip = this.flip.bind(this);
     this.flipToBack = this.flipToBack.bind(this);
     this.flipToFront = this.flipToFront.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -219,12 +218,6 @@ class Display extends Component {
     });
   }
 
-  flip() {
-    this.setState({
-      isFlipped: !this.state.isFlipped,
-    });
-  }
-
   flipToFront() {
     this.setState({
       isFlipped: false,
@@ -283,6 +276,7 @@ class Display extends Component {
   }
 
   render() {
+
     return (
       <div>
         <div className='row'>
@@ -304,7 +298,8 @@ class Display extends Component {
           <div className='buttonSection'>
             <button type='button' className='btn btn-success' onClick={this.prevNori}>Previous Nori</button>
             <button type='button' className='btn btn-success' onClick={this.nextNori}>Next Nori</button>
-            <button type='button' className='btn btn-success' onClick={this.shuffleNori}>Shuffle Bento</button>
+            {/*<button type='button' className='btn btn-success' onClick={this.shuffleNori}>Shuffle Bento</button>*/}
+            <a tabIndex="0" className='btn btn-success popover-dismiss' role="button" data-toggle="popover" data-trigger="focus" title="Shuffling..." data-content="Bento has been shuffled.">Shuffle Bentos</a>
           </div>
           <form className='changeToNoriSection' onSubmit={this.setNori}>
             <div className='row'>

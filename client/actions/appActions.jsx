@@ -24,12 +24,12 @@ export function handleNavSearch(event) {
 }
 
 // ends the submit action
-export function endNavSubmit() {
-  return function(dispatch, getState) {
-    if (searchActive === true) {      
+export function endNavSubmit() {  
+  return (function(dispatch, getState) {
+    if (searchActive === true) {
       dispatch({ type: CHANGE_SEARCHACTIVE, searchActive: false });
     }
-  }
+  })(dispatch, getState);
 }
 
 export function setBentoId(id) {

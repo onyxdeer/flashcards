@@ -4,7 +4,8 @@ import {
   Route,
   Redirect,
   Link,
-  IndexRoute
+  IndexRoute,
+  browserHistory
 } from 'react-router-dom';
 
 import Nav from './Nav/Nav.jsx';
@@ -78,13 +79,12 @@ class App extends Component {
 
     // triggers a redirection to Search page if 'searchActive' state is triggered from submission action
     if (this.props.searchActive) {
-      console.log('YOYOYO');
       TargetRoute = () => ( <Redirect to='/search' /> )
     }
 
     return (
       <div>
-        <Router>
+        <Router history = {browserHistory}>
           <div>
             <Nav handleNavSubmit={this.handleNavSubmit} userId={this.props.userId} setBentoId = {this.setBentoId}/>
             <TargetRoute />
@@ -95,9 +95,9 @@ class App extends Component {
             <Route path='/search' component={() => <Search query={this.props.query} endNavSubmit={this.endNavSubmit} userId = {this.props.userId}  bentoId = {this.props.bentoId} setBentoId = {this.setBentoId}/>} />
             <Route path='/user' component={() => <User userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.setBentoId}/> } />
             <Route path='/voice' component={() => <Voice />} />
-          </div>
-        </Router>
-      </div>
+            </div>
+          </Router>
+    </div>
     )
   }
 }
