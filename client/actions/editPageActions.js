@@ -65,7 +65,7 @@ export function handleAddNewNori (bento, index) {
   console.log("Does this fire", bento, index)
   var noris = bento.noris;
   var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}, id: null}
-  noris.splice(index, 0, newNori)
+  noris.splice(index+1, 0, newNori)
   var norisAfterAddition = noris;
   console.log(norisAfterAddition)
   return function(dispatch){

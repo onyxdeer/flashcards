@@ -16,5 +16,3 @@ ReactDOM.render(
   <Provider store={store}>
       <App />
   </Provider>, document.getElementById('app'));
-
-console.log('Hello World in console!');

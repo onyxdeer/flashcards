@@ -11,6 +11,7 @@ import RichTextEditor, {EditorValue} from 'react-rte';
 
 class Edit extends React.Component {
   render() {
+    console.log(this.props.bento.noris)
     return (
       <div>
         <div className="relative fullwidth">

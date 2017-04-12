@@ -22,6 +22,7 @@ constructor(props){
 
   componentWillReceiveProps (newProps) {
     var text = newProps.bento.noris[this.props.number][this.props.side]['text'] 
+    console.log(text,"----", this.state.rawValue, "-----", this.props)
     if(text != this.state.rawValue){
       var rawJs = text;
       var newValue = this.convertFromRawJs(rawJs)
