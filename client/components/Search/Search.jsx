@@ -12,7 +12,7 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.props.searchBentos(this.props.query);
-    endNavSubmit();
+    this.props.endNavSubmit();
   }
 
   render() {
@@ -74,4 +74,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {searchBentos})(Search);
+export default connect(mapStateToProps, {searchBentos, endNavSubmit})(Search);
