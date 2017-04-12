@@ -1,37 +1,37 @@
-import { UPDATE_QUERY, GET_USER_ID, GET_BENTO_ID, CHANGE_SEARCH_ACTIVE } from '../actions/actionTypes.js'
+import { UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE } from '../actions/actionTypes.js'
 
 const stateDefault = {
-  update_query: '',
-  get_user_id: '',
-  get_bento_id: '',
-  change_search_active: false
+  query: '',
+  userId: '',
+  bentoId: '',
+  searchActive: false
 };
 
 const handleQuery = (state, action) => {
   return {
     ...state,
-    update_query: action.update_query
+    query: action.query
   };
 };
 
 const handleUserId = (state, action) => {
   return {
     ...state,
-    get_user_id: action.get_user_id
+    userId: action.userId
   };
 };
 
 const handleBentoId = (state, action) => {
   return {
     ...state,
-    get_bento_id: action.get_bento_id
+    bentoId: action.bentoId
   };
 };
 
-const handleSearch = (state, action) => {
+const handleSearchActive = (state, action) => {
   return {
     ...state,
-    change_search_active: action.change_search_active
+    searchActive: action.searchActive
   };
 };
 
@@ -40,11 +40,11 @@ export default (state = stateDefault, action) => {
   switch (action.type) {
     case UPDATE_QUERY: 
       return handleQuery(state, action);
-    case GET_USER_ID: 
+    case GET_USERID: 
       return handleUserId(state, action);
-    case GET_BENTO_ID: 
+    case GET_BENTOID: 
       return handleBentoId(state, action);
-    case CHANGE_SEARCH_ACTIVE: 
+    case CHANGE_SEARCHACTIVE: 
       return handleSearchActive(state, action);      
   }
   return state;
