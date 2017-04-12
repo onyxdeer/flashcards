@@ -8,15 +8,9 @@ import personalReducer from './personalReducer.jsx';
 
 // NOTES: THIS FILE IS where we combine all of the reducers we wrote
 // SO you can import them in here, and add the reducer inside the combineReducer function below
-<<<<<<< HEAD
 import sampleReducer from './sampleReducer.js'
 import editBentoReducer from './editBentoReducer.js'
 import navReducer from './navReducer.jsx'
-=======
-import sampleReducer from './sampleReducer.js';
-import navReducer from './navReducer.jsx';
->>>>>>> c8f68577becbce93cb751ad6a446166321ad1051
-
 const combinedReducer = combineReducers({
   // routing: routeReducer,
   // test: testReducer

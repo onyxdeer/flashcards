@@ -1,14 +1,7 @@
 import axios from 'axios';
-<<<<<<< HEAD
 import { browserHistory , path} from 'react-router';
 import {  push } from 'react-router-redux'
 import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS, HANDLE_FETCH_BENTO_FOR_EDIT } from './actionTypes.js';
-=======
-import { browserHistory } from 'react-router';
-
-import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS, CHANGE_CATEGORY } from './actionTypes.js';
->>>>>>> c8f68577becbce93cb751ad6a446166321ad1051
-
 const personalActions = {
   handleFetchBentoForEdit: function (bento, bentoId, userId) {
   console.log(bento, bentoId, userId)

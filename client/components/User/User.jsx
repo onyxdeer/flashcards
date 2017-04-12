@@ -2,11 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Carousel from 'react-slick';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import {connect} from 'react-redux'
-=======
-import { connect } from 'react-redux';
->>>>>>> c8f68577becbce93cb751ad6a446166321ad1051
 import personalActions from '../../actions/personalActions.jsx';
 import handleFetchBentoForEdit from '../../actions/editPageActions.js'
 
@@ -17,13 +13,10 @@ class User extends Component {
   constructor(props) {
     super(props);
 
-<<<<<<< HEAD
     this.state = {
       category: 'Personal',
     }
 
-=======
->>>>>>> c8f68577becbce93cb751ad6a446166321ad1051
     if (this.props.userId !== 'guest') {
       userId = this.props.userId;
     }
@@ -93,19 +86,12 @@ console.log("Line 46 User.jsx,", this.props.bentos)
     )
   }
 }
-<<<<<<< HEAD
- 
-function mapStateToProps (state) {
-  return {
-    bentos: state.personalReducer,
-    bento: state.editBentoInfo
-=======
 
 function mapStateToProps(state) {
   return { 
+    bento: state.editBentoInfo,
     bentos: state.personalReducer.bentos,
     category: state.personalReducer.category
->>>>>>> c8f68577becbce93cb751ad6a446166321ad1051
   }
 }
 
