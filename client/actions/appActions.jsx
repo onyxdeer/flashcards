@@ -8,9 +8,12 @@ export function handleNavSubmit(event, input) {
   return function(dispatch, getState) {
     dispatch({
       type: UPDATE_QUERY,
-      query: input,
-      searchActive: true
+      query: input
     });
+    dispatch({
+      type: CHANGE_SEARCHACTIVE,
+      searchActive: true
+    }); 
   }    
 }
 
