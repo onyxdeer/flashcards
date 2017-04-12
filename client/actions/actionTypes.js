@@ -7,8 +7,6 @@
 //but if you misspell a variable it'll throw an error which you can then debug
 export const GET_HELLO = 'GET_HELLO';
 export const POST_HELLO = 'POST_HELLO';
-export const WAVE_HELLO = 'WAVE_HELLO'
-export const SAMPLE_REQUEST_ERROR = 'SAMPLE_REQUEST_ERROR'
 export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const WAVE_HELLO = 'WAVE_HELLO';
 export const SAMPLE_REQUEST_ERROR = 'SAMPLE_REQUEST_ERROR';
@@ -20,7 +18,7 @@ export const FIND_BENTOS = 'FIND_BENTOS';
 export const USER_BENTOS_FETCHED = 'USER_BENTOS_FETCHED'
 export const FAVORITE_BENTOS_FETCHED = 'FAVORITE_BENTOS_FETCHED';
 export const POPULAR_BENTOS_FETCHED = 'POPULAR_BENTOS_FETCHED';
-// export const UPDATE_QUERY = 'UPDATE_QUERY';
-// export const GET_USER_ID = 'GET_USER_ID';
-// export const GET_BENTO_ID = 'GET_BENTO_ID';
-// export const CHANGE_SEARCH_ACTIVE = 'CHANGE_SEARCH_ACTIVE';
+export const UPDATE_QUERY = 'UPDATE_QUERY';
+export const GET_USERID = 'GET_USERID';
+export const GET_BENTOID = 'GET_BENTOID';
+export const CHANGE_SEARCHACTIVE = 'CHANGE_SEARCHACTIVE';
