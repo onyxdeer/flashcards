@@ -2,10 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import Carousel from 'react-slick';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux'
-import personalActions from '../../actions/personalActions.jsx';
-import handleFetchBentoForEdit from '../../actions/editPageActions.js'
-
+import { connect } from 'react-redux';
+import personalActions from '../../actions/personalActions.js';
 
 let userId = 1;
 

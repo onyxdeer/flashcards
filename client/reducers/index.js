@@ -1,16 +1,16 @@
-// import bentoReducer from './bentoReducer.jsx';
-import searchReducer from './searchReducer.jsx';
-// import personalReducer from './personalReducer.jsx';
-
 import { combineReducers } from 'redux';
 import { routeReducer } from 'react-router-redux';
-import personalReducer from './personalReducer.jsx';
+
+import navReducer from './navReducer.jsx';
+import personalReducer from './personalReducer.js';
+import displayReducer from './displayReducer.js';
+import searchReducer from './searchReducer.js';
+import editBentoReducer from './editBentoReducer.js'
 
 // NOTES: THIS FILE IS where we combine all of the reducers we wrote
 // SO you can import them in here, and add the reducer inside the combineReducer function below
-import sampleReducer from './sampleReducer.js'
-import editBentoReducer from './editBentoReducer.js'
-import navReducer from './navReducer.jsx'
+import sampleReducer from './sampleReducer.js';
+
 const combinedReducer = combineReducers({
   // routing: routeReducer,
   // test: testReducer
@@ -18,8 +18,9 @@ const combinedReducer = combineReducers({
   sampleReducer,
   editBentoInfo: editBentoReducer,
   navReducer,
-  searchReducer,
-  personalReducer
+  personalReducer,
+  displayReducer,
+  searchReducer
 });
 
 export default combinedReducer;
