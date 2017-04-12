@@ -2,14 +2,20 @@ import React, { Component, PropTypes } from 'react';
 import Carousel from 'react-slick';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux'
 import personalActions from '../../actions/personalActions.jsx';
+import handleFetchBentoForEdit from '../../actions/editPageActions.js'
+
 
 let userId = 1;
 
 class User extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      category: 'Personal',
+    }
 
     if (this.props.userId !== 'guest') {
       userId = this.props.userId;
@@ -36,7 +42,7 @@ class User extends Component {
       initialSlide: 0,
       touchMove: true
     };
-
+console.log("Line 46 User.jsx,", this.props.bentos)
     return (
       <div>
         <div className='row center-block'>
@@ -55,6 +61,7 @@ class User extends Component {
                 
                 {
                   this.props.bentos&&(this.props.bentos.length > 0 ) ? 
+
                   (<Carousel {...settings}> 
                   {this.props.bentos.map((bento, index) => (
                     <div className='thumbnail' key={index}>
@@ -63,7 +70,7 @@ class User extends Component {
                         <h3>{bento.name}</h3>
                         <p className='ellipsis'>{bento.description}</p>
                         <p><label>View Count:</label> {bento.visit_count} </p>
-                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.setBentoId(bento.id)}>Edit</Link></p>
+                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><button className='btn btn-default' onClick={() => this.props.handleFetchBentoForEdit(this.props.bento,bento.id, 1)} ><Link to={'/edit'} className='btn btn-default'>Edit</Link></button></p>
                       </div>
                     </div>
                   ))}
@@ -82,6 +89,7 @@ class User extends Component {
 
 function mapStateToProps(state) {
   return { 
+    bento: state.editBentoInfo,
     bentos: state.personalReducer.bentos,
     category: state.personalReducer.category
   }

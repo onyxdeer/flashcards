@@ -1,9 +1,48 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
-
-import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS, CHANGE_CATEGORY } from './actionTypes.js';
-
+import { browserHistory , path} from 'react-router';
+import {  push } from 'react-router-redux'
+import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS, HANDLE_FETCH_BENTO_FOR_EDIT } from './actionTypes.js';
 const personalActions = {
+  handleFetchBentoForEdit: function (bento, bentoId, userId) {
+  console.log(bento, bentoId, userId)
+  return function(dispatch) {
+    axios.get('/api/bentos', {params: {id: bentoId, user_id: userId}})
+    .then((response)=>{
+      console.log('line 11', response)
+      var data = response.data[0];
+      bento.name = data.name;
+      bento.description = data.description;
+      bento.bento_id = bentoId;
+      bento.user_id = userId;
+    })
+    .then(() => {
+      axios.get('/api/bentos_noris', {params: {bento_id: bentoId}})
+      .then((response) => {
+        console.log(response.data)
+        return response.data.map((data) => {return data.nori_id})
+      })
+      .then((arrayNorisId) => {
+        console.log(arrayNorisId)
+        axios.get('/api/noris', {params: {id: arrayNorisId}})
+        .then((response) => {
+          var savedNorisArray = response.data.map(function(nori){
+            var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}
+            newNori.Front.text = nori.text_front;
+            newNori.Back.text = nori.text_back;
+            newNori.Front.soundFile = nori.audio_url_front;
+            newNori.Back.soundFile = nori.audio_url_back;
+            return newNori
+          })
+          bento.noris = savedNorisArray;
+        })
+        .then(() => {
+            dispatch({type: HANDLE_FETCH_BENTO_FOR_EDIT, payload: bento});
+            browserHistory.push('/edit')
+            console.log(browserHistory)
+        })
+      })
+    })
+  }},
   
     fetchUser: function(someData, someMoreData) {
       return function(dispatch) {
