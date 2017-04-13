@@ -2,8 +2,8 @@ import { UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE } from '../a
 
 const stateDefault = {
   query: '',
-  userId: '',
-  bentoId: '',
+  userId: 'guest',
+  bentoId: null,
   searchActive: false
 };
 
