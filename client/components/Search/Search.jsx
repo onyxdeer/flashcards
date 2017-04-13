@@ -7,11 +7,22 @@ import { connect } from 'react-redux';
 
 import { endNavSubmit, setBentoId } from '../../actions/appActions.js';
 import { searchBentos } from '../../actions/searchActions.js';
+import personalActions from '../../actions/personalActions.js';
+
+let userId = 1;
 
 class Search extends Component {
   constructor(props) {
     super(props);
+
+    if (this.props.userId !== 'guest') {
+      userId = this.props.userId;
+    }
+
     this.props.searchBentos(this.props.query);
+  }
+
+  componentWillMount() {
     this.props.endNavSubmit();
   }
 
@@ -52,7 +63,7 @@ class Search extends Component {
                       <h3>{bento.name}</h3>
                       <p className='ellipsis'>{bento.description}</p>
                       <p><label>View Count:</label> {bento.visit_count} </p>
-                      <p><Link className='btn btn-primary' to={'/display/' + bento.id}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.setBentoId(bento.id)}>Edit</Link></p>
+                      <p><Link className='btn btn-primary' to={'/display/' + bento.id}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
                     </div>
                   </div>
                 )) : (<h1 className='center-block'>Sorry, no results were found!</h1>)
@@ -70,8 +81,9 @@ class Search extends Component {
 
 function mapStateToProps(state) {
   return { 
+    bento: state.editBentoInfo,
     bentos: state.searchReducer
   }
 }
 
-export default connect(mapStateToProps, {searchBentos, endNavSubmit, setBentoId})(Search);
+export default connect(mapStateToProps, { ...personalActions, searchBentos, endNavSubmit, setBentoId })(Search);
