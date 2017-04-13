@@ -47,7 +47,7 @@ class App extends Component {
     // this.setBentoId = this.setBentoId.bind(this);
     // this.setUserId = this.setUserId.bind(this);
 
-    if (location.pathname.includes('id=')) {
+    if (location.pathname.startsWith('/id=')) {
       console.log('DETECTED SHORTENED LINK:', location.pathname.slice(4, location.pathname.length));
     } else if (location.pathname === '/edit' || location.pathname === '/Edit' || location.pathname === '/create' || location.pathname === '/Create') {
       TargetRoute = () => ( <Redirect to='/edit' /> )
@@ -114,7 +114,7 @@ class App extends Component {
             <Route path='/voice' component={() => <Voice />} />
           </div>
         </Router>
-    </div>
+      </div>
     )
   }
 }
