@@ -1,42 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, NavDropdown, FormGroup, FormControl, MenuItem, Button, Dropdown, Glyphicon } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/navActions.js';
+import { handleNavSubmit, handleNavSearch } from '../../actions/appActions.js'
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      input: '',
-      navExpanded: false,
-    }
-
-    this.handleNavSearch = this.handleNavSearch.bind(this);
-    this.bringUpInput = this.bringUpInput.bind(this);
-    this.clearText = this.clearText.bind(this);
+  this.handleBringUpInput = this.handleBringUpInput.bind(this);   
   }
-
-  // detects changes to input in navbar searchbar
-  handleNavSearch(event) {
-    var context = this;
-    this.setState({
-      input: event.target.value,
-    });
-  }
-
+  
   // brings up the 'input' to App and will assign to 'query'
-  bringUpInput(input) {
+  handleBringUpInput(input) {
     var context = this;
+    
     return function(event) {
-      context.props.handleNavSubmit(event, input);
+      context.props.bringUpInput(event, input);
     }
-  }
-
-  // clears text on the search box when it is clicked
-  clearText() {
-    this.setState({
-      input: ''
-    });
   }
 
   render() {
@@ -57,17 +39,17 @@ class Navigation extends Component {
 
           {/* This container allows the navbar contents to be collapsed thus responsive */}
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
+            
             <ul className="nav navbar-nav">
               <li><Link to="/User" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
-              <li><Link to="/Edit" onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
+              <li><Link to="/Edit/new" onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
               {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
-            </ul>
+            </ul>            
 
             {/* Search bar */}
-            <form className="navbar-form navbar-left" onSubmit={this.bringUpInput(this.state.input)}>
+            <form className="navbar-form navbar-left" onSubmit={this.handleBringUpInput(this.props.input)}>
               <div className="form-group">
-                <input type="text" className="form-control" value={this.state.input} placeholder="Find A Bento Here" onChange={this.handleNavSearch} onClick={this.clearText} />
+                <input type="text" className="form-control" value={this.props.input} placeholder="Find A Bento Here" onChange={this.props.handleNavSearch} onClick={this.props.clearText} />
               </div>
               <button type="submit" className="btn btn-default"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
             </form>
@@ -98,7 +80,13 @@ class Navigation extends Component {
   }    
 };
 
-export default Navigation;
+function mapStateToProps(state) {
+  return { 
+    input: state.navReducer.input
+  }
+}
+
+export default connect(mapStateToProps, { ...actions, handleNavSubmit, handleNavSearch })(Navigation);
 
         /*<Navbar collapseOnSelect fixedTop active activeKey activeHref>
         <Navbar.Header>

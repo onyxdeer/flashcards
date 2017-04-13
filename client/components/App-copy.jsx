@@ -4,8 +4,7 @@ import {
   Route,
   Redirect,
   Link,
-  IndexRoute,
-  browserHistory
+  IndexRoute
 } from 'react-router-dom';
 
 import Nav from './Nav/Nav.jsx';
@@ -17,7 +16,7 @@ import User from './User/User.jsx';
 import Voice from './Voice/Voice.jsx';
 
 import { connect } from 'react-redux';
-import * as actions from '../actions/appActions.js';
+import * as actions from '../actions/appActions.jsx';
 
 // Allows redirection from current page to Search page upon search submission
 let TargetRoute = () => ( <Redirect from='/' to='/' /> );
@@ -25,14 +24,6 @@ let TargetRoute = () => ( <Redirect from='/' to='/' /> );
 class App extends Component {
   constructor(props) {
     super(props);
-
-    // if (location.pathname.startsWith('/id=')) {
-    //   console.log('DETECTED SHORTENED LINK:', location.pathname.slice(4, location.pathname.length));
-    // } else if (location.pathname === '/edit' || location.pathname === '/Edit' || location.pathname === '/create' || location.pathname === '/Create') {
-    //   TargetRoute = () => ( <Redirect to='/edit' /> )
-    // } else if (location.pathname === '/user' || location.pathname === '/User' || location.pathname === '/home' || location.pathname === '/Home') {
-    //   TargetRoute = () => ( <Redirect to='/user' /> )
-    // }    
 
     // this.state = {
     //   query: '',
@@ -87,25 +78,26 @@ class App extends Component {
 
     // triggers a redirection to Search page if 'searchActive' state is triggered from submission action
     if (this.props.searchActive) {
+      console.log('YOYOYO');
       TargetRoute = () => ( <Redirect to='/search' /> )
     }
 
     return (
       <div>
-        <Router history = {browserHistory}>
+        <Router>
           <div>
-            <Nav handleNavSubmit={this.props.handleNavSubmit} userId={this.props.userId} setBentoId = {this.props.setBentoId}/>
+            <Nav handleNavSubmit={this.handleNavSubmit} userId={this.props.userId} setBentoId = {this.setBentoId}/>
             <TargetRoute />
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display' component={() => <Display bentoId={this.props.bentoId}/>} />
             <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit' component={() => <Edit userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/>}/>
-            <Route path='/search' component={() => <Search query={this.props.query} endNavSubmit={this.props.endNavSubmit} userId = {this.props.userId}  bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/>} />
-            <Route path='/user' component={() => <User userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/> } />
+            <Route path='/edit' component={() => <Edit userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.setBentoId}/>}/>
+            <Route path='/search' component={() => <Search query={this.props.query} endNavSubmit={this.endNavSubmit} userId = {this.props.userId}  bentoId = {this.props.bentoId} setBentoId = {this.setBentoId}/>} />
+            <Route path='/user' component={() => <User userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.setBentoId}/> } />
             <Route path='/voice' component={() => <Voice />} />
-            </div>
-          </Router>
-    </div>
+          </div>
+        </Router>
+      </div>
     )
   }
 }
