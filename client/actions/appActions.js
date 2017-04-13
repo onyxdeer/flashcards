@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-import { UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE } from './actionTypes.js'
+import { UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE, CHANGE_INPUT } from './actionTypes.js'
 
 export function handleNavSubmit(event, input) {
   event.preventDefault();
