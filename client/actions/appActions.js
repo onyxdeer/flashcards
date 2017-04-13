@@ -42,6 +42,7 @@ export function endNavSubmit() {
 export function setBentoId(id) {
   return function(dispatch, getState) {
     dispatch({ type: GET_BENTOID, bentoId: id });
+    dispatch({ type: GET_SHORTENER_ID, shortenerId: null });
   }
 }
 
