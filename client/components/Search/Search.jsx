@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 // connect is what we use to bind the component to redux store
 import { connect } from 'react-redux';
 
-import { searchBentos } from '../../actions/searchActions.jsx';
-import { endNavSubmit } from '../../actions/appActions.jsx';
+import { endNavSubmit } from '../../actions/appActions.js';
+import { searchBentos } from '../../actions/searchActions.js';
 
 class Search extends Component {
   constructor(props) {

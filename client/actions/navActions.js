@@ -2,7 +2,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 import { CHANGE_INPUT } from './actionTypes.js'
-import { handleNavSubmit } from './appActions.jsx'
+import { handleNavSubmit } from './appActions.js'
 
 //an example of a asynchronous redux thunk action.
 // export function nav(somedata, someMoreData) {

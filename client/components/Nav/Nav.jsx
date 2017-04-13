@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, NavDropdown, FormGroup, FormControl, MenuItem, Button, Dropdown, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/navActions.jsx';
-import { handleNavSubmit } from '../../actions/appActions.jsx'
+import * as actions from '../../actions/navActions.js';
+import { handleNavSubmit } from '../../actions/appActions.js'
 
 class Navigation extends Component {
   constructor(props) {

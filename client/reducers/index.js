@@ -5,12 +5,11 @@ import { routeReducer } from 'react-router-redux';
 // SO you can import them in here, and add the reducer inside the combineReducer function below
 import sampleReducer from './sampleReducer.js'
 import editBentoReducer from './editBentoReducer.js'
-import navReducer from './navReducer.jsx'
-import appReducer from './appReducer.jsx'
-import personalReducer from './personalReducer.jsx';
-import searchReducer from './searchReducer.jsx';
-// import bentoReducer from './bentoReducer.jsx';
-// import personalReducer from './personalReducer.jsx';
+import navReducer from './navReducer.js'
+import appReducer from './appReducer.js'
+import personalReducer from './personalReducer.js';
+import displayReducer from './displayReducer.js';
+import searchReducer from './searchReducer.js';
 
 const combinedReducer = combineReducers({
   // routing: routeReducer,
@@ -21,7 +20,8 @@ const combinedReducer = combineReducers({
   navReducer,
   searchReducer,
   appReducer,
-  personalReducer
+  personalReducer,
+  displayReducer
 });
 
 export default combinedReducer;
