@@ -49,6 +49,8 @@ class App extends Component {
 
     if (location.pathname.startsWith('/id=')) {
       console.log('DETECTED SHORTENED LINK:', location.pathname.slice(4, location.pathname.length));
+      this.props.getShortenerId(location.pathname.slice(4, location.pathname.length));
+      TargetRoute = () => ( <Redirect to='/display' /> )
     } else if (location.pathname === '/edit' || location.pathname === '/Edit' || location.pathname === '/create' || location.pathname === '/Create') {
       TargetRoute = () => ( <Redirect to='/edit' /> )
     } else if (location.pathname === '/user' || location.pathname === '/User' || location.pathname === '/home' || location.pathname === '/Home') {
@@ -108,9 +110,9 @@ class App extends Component {
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display' component={() => <Display bentoId={this.props.bentoId}/>} />
             <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit' component={() => <Edit />}/>
-            <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} userId = {this.state.userId}  bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/>} />
-            <Route path='/user' component={() => <User userId = {this.state.userId} bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/> } />
+            <Route path='/edit' component={() => <Edit />} />
+            <Route path='/search' component={() => <Search query={this.props.query} endNavSubmit={this.props.endNavSubmit} userId = {this.props.userId}  bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/>} />
+            <Route path='/user' component={() => <User userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/> } />
             <Route path='/voice' component={() => <Voice />} />
           </div>
         </Router>
@@ -121,6 +123,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return { 
+    shortenerId: state.appReducer.shortenerId,
     query: state.appReducer.query,
     userId: state.appReducer.userId,
     bentoId: state.appReducer.bentoId,

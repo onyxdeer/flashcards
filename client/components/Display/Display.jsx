@@ -7,20 +7,26 @@ import RichTextEditor from 'react-rte';
 import {convertFromRaw, convertToRaw, ContentState, Editor, EditorState} from 'draft-js';
 import displayActions from '../../actions/displayActions.js';
 import { connect } from 'react-redux';
+import KeyHandler, { KEYPRESS } from 'react-key-handler';
 
 class Display extends Component {
   constructor(props) {
     super(props);
 
+    if (this.props.shortenerId) {
+      console.log('SHORTEN ID DETECTED:', this.props.shortenerId);
+    }
+
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.getSortedNoris = this.getSortedNoris.bind(this);
     this.renderImages = this.renderImages.bind(this);
     this.renderNori = this.renderNori.bind(this);
     this.handleSetNori = this.handleSetNori.bind(this);
 
-    this.props.fetchBentoTitle(this.props.bentoId);
-    this.props.fetchFrontImages(this.props.bentoId);
-    this.props.fetchBackImages(this.props.bentoId);
-    this.props.fetchNoris(this.props.bentoId);
+    this.props.fetchBentoTitle(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
+    this.props.fetchFrontImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
+    this.props.fetchBackImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
+    this.props.fetchNoris(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
   }
 
   getSortedNoris () {
@@ -82,6 +88,35 @@ class Display extends Component {
     return this.props.setNori(this.props.input, this.props.bentoData);
   }
 
+  handleKeyDown(e) {
+    switch (e.keyCode) {
+        case 37:
+            console.log('left');
+            this.props.prevNori(this.props.bentoData, this.props.currentNori);
+            break;
+        case 38:
+            console.log('up');
+            this.props.flipToBack();
+            break;
+        case 39:
+            console.log('right');
+            this.props.nextNori(this.props.bentoData, this.props.currentNori)
+            break;
+        case 40:
+            console.log('down');
+            this.props.flipToFront();
+            break;
+    }
+  }
+
+  componentWillMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   render() {
     return (
       <div>
@@ -122,6 +157,7 @@ class Display extends Component {
 
 function mapStateToProps(state) {
   return { 
+    shortenerId: state.appReducer.shortenerId,
     bentoData: state.displayReducer.bentoData,
     imgDataFront: state.displayReducer.imgDataFront,
     imgDataBack: state.displayReducer.imgDataBack,
