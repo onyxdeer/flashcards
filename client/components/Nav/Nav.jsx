@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, NavDropdown, FormGroup, FormControl, MenuItem, Button, Dropdown, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/navActions.js';
-import { handleNavSubmit } from '../../actions/appActions.js'
+import { handleNavSubmit, handleNavSearch } from '../../actions/appActions.js'
 
 class Navigation extends Component {
   constructor(props) {
@@ -86,7 +86,7 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, actions)(Navigation);
+export default connect(mapStateToProps, { ...actions, handleNavSubmit, handleNavSearch })(Navigation);
 
         /*<Navbar collapseOnSelect fixedTop active activeKey activeHref>
         <Navbar.Header>
