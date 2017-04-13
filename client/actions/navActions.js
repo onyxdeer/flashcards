@@ -1,12 +1,9 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-<<<<<<< HEAD
 import { CHANGE_INPUT, HANDLE_RENDER_CREATE_PAGE } from './actionTypes.js'
-=======
-import { CHANGE_INPUT } from './actionTypes.js'
 import { handleNavSubmit } from './appActions.js'
->>>>>>> e60b7d34bf8a80ab726a5bd4c3cf19fbc4b356aa
+
 
 //an example of a asynchronous redux thunk action.
 // export function nav(somedata, someMoreData) {
@@ -23,7 +20,6 @@ export function handleNavSearch(event) {
   }
 }
 
-<<<<<<< HEAD
 export function handleRenderCreatePage() {
   return function(dispatch) {
     dispatch({type: HANDLE_RENDER_CREATE_PAGE, payload: null})
@@ -35,12 +31,12 @@ function handleError(error){
   return {
     type: SAMPLE_REQUEST_ERROR,
     payload: error
-=======
+  }
+}
 // clears text on the search box when it is clicked
 export function clearText() {
   return function(dispatch, getState) {
     dispatch({ type: CHANGE_INPUT, input: '' });
->>>>>>> e60b7d34bf8a80ab726a5bd4c3cf19fbc4b356aa
   }
 }
 

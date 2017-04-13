@@ -108,15 +108,9 @@ class App extends Component {
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display' component={() => <Display bentoId={this.props.bentoId}/>} />
             <Route path='/landing' component={() => <Landing />} />
-<<<<<<< HEAD
             <Route path='/edit' component={() => <Edit />}/>
             <Route path='/search' component={() => <Search query={this.state.query} endNavSubmit={this.endNavSubmit} userId = {this.state.userId}  bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/>} />
             <Route path='/user' component={() => <User userId = {this.state.userId} bentoId = {this.state.bentoId} setBentoId = {this.setBentoId}/> } />
-=======
-            <Route path='/edit' component={() => <Edit userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/>}/>
-            <Route path='/search' component={() => <Search query={this.props.query} endNavSubmit={this.props.endNavSubmit} userId = {this.props.userId}  bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/>} />
-            <Route path='/user' component={() => <User userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/> } />
->>>>>>> e60b7d34bf8a80ab726a5bd4c3cf19fbc4b356aa
             <Route path='/voice' component={() => <Voice />} />
           </div>
         </Router>
