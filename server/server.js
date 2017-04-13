@@ -6,6 +6,7 @@ const database = require('../db/index.js');
 const bindrouter = require('./router.js');
 const util = require('./util/util.js');
 const morgan = require('morgan');
+var history = require('connect-history-api-fallback');
 
 const PORT = process.env.PORT || 8000;
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(morgan('combined'));
+app.use(history());
 
 bindrouter(app);
 

@@ -7,6 +7,7 @@ import {
   IndexRoute,
   browserHistory
 } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 import Nav from './Nav/Nav.jsx';
 import Display from './Display/Display.jsx';
@@ -45,6 +46,14 @@ class App extends Component {
     // this.endNavSubmit = this.endNavSubmit.bind(this);
     // this.setBentoId = this.setBentoId.bind(this);
     // this.setUserId = this.setUserId.bind(this);
+
+    if (location.pathname.startsWith('/id=')) {
+      console.log('DETECTED SHORTENED LINK:', location.pathname.slice(4, location.pathname.length));
+    } else if (location.pathname === '/edit' || location.pathname === '/Edit' || location.pathname === '/create' || location.pathname === '/Create') {
+      TargetRoute = () => ( <Redirect to='/edit' /> )
+    } else if (location.pathname === '/user' || location.pathname === '/User' || location.pathname === '/home' || location.pathname === '/Home') {
+      TargetRoute = () => ( <Redirect to='/user' /> )
+    }
   }
 
   // gets called when user pushes the submit button or presses enter
@@ -92,7 +101,7 @@ class App extends Component {
 
     return (
       <div>
-        <Router history = {browserHistory}>
+        <Router history = {createBrowserHistory()}>
           <div>
             <Nav handleNavSubmit={this.props.handleNavSubmit} userId={this.props.userId} setBentoId = {this.props.setBentoId}/>
             <TargetRoute />
@@ -103,9 +112,9 @@ class App extends Component {
             <Route path='/search' component={() => <Search query={this.props.query} endNavSubmit={this.props.endNavSubmit} userId = {this.props.userId}  bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/>} />
             <Route path='/user' component={() => <User userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/> } />
             <Route path='/voice' component={() => <Voice />} />
-            </div>
-          </Router>
-    </div>
+          </div>
+        </Router>
+      </div>
     )
   }
 }
