@@ -26,6 +26,14 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    // if (location.pathname.startsWith('/id=')) {
+    //   console.log('DETECTED SHORTENED LINK:', location.pathname.slice(4, location.pathname.length));
+    // } else if (location.pathname === '/edit' || location.pathname === '/Edit' || location.pathname === '/create' || location.pathname === '/Create') {
+    //   TargetRoute = () => ( <Redirect to='/edit' /> )
+    // } else if (location.pathname === '/user' || location.pathname === '/User' || location.pathname === '/home' || location.pathname === '/Home') {
+    //   TargetRoute = () => ( <Redirect to='/user' /> )
+    // }    
+
     // this.state = {
     //   query: '',
     //   searchActive: false,
@@ -86,14 +94,14 @@ class App extends Component {
       <div>
         <Router history = {browserHistory}>
           <div>
-            <Nav handleNavSubmit={this.handleNavSubmit} userId={this.props.userId} setBentoId = {this.setBentoId}/>
+            <Nav handleNavSubmit={this.props.handleNavSubmit} userId={this.props.userId} setBentoId = {this.props.setBentoId}/>
             <TargetRoute />
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display' component={() => <Display bentoId={this.props.bentoId}/>} />
             <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit' component={() => <Edit userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.setBentoId}/>}/>
-            <Route path='/search' component={() => <Search query={this.props.query} endNavSubmit={this.endNavSubmit} userId = {this.props.userId}  bentoId = {this.props.bentoId} setBentoId = {this.setBentoId}/>} />
-            <Route path='/user' component={() => <User userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.setBentoId}/> } />
+            <Route path='/edit' component={() => <Edit userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/>}/>
+            <Route path='/search' component={() => <Search query={this.props.query} endNavSubmit={this.props.endNavSubmit} userId = {this.props.userId}  bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/>} />
+            <Route path='/user' component={() => <User userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/> } />
             <Route path='/voice' component={() => <Voice />} />
             </div>
           </Router>
