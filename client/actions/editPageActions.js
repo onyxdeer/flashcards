@@ -1,47 +1,5 @@
 import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI} from '../actions/actionTypes.js'
 import axios from 'axios';
-//this handle function is used to fetch the bento data(including noris) after a user has clicked an Edit+++++++++++++++++++++++++++++++++++++++++++++ HAS BEEN MOVED TO PERSONALACTIONS
-// export function handleFetchBentoForEdit (bento, bentoId, userId) {
-//   console.log("This function has fired")
-//   return function(dispatch) {
-//     axios.get('/api/bentos', {params: {id: bentoId, user_id: userId}})
-//     .then((response)=>{
-//       var data = response.data[0];
-//       bento.name = data.name;
-//       bento.description = data.description;
-//       bento.bento_id = bentoId;
-//       bento.user_id = userId;
-//     })
-//     .then(() => {
-//       axios.get('/api/bentos_noris', {params: {bento_id: bentoId}})
-//       .then((response) => {
-//         return response.data.map((data) => {data.nori_id})
-//       })
-//       .then((arrayNorisId) => {
-//         axios.get('/api/noris', {params: {id: arrayNorisId}})
-//         .then((response) => {
-//           var savedNorisArray = response.data.map(function(nori){
-//             var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}
-//             newNori.Front.text = nori.text_front;
-//             newNori.Back.text = nori.text_back;
-//             newNori.Front.soundFile = nori.audio_url_front;
-//             newNori.Back.soundFile = nori.audio_url_back;
-//             return newNori
-//           })
-//           bento.noris = savedNorisArray;
-//         })
-//         .then(() => {
-//             dispatch({type: HANDLE_FETCH_BENTO_FOR_EDIT, payload: bento});
-//             dispatch(push('/edit'))
-//         })
-//       })
-//     })
-//   }
-// }
-//+++++++++++++++++++++++++++++++++++++++++++++
-
-
-
 
 //this handle function can be used to change the state of any input/textarea field++++++++++++++++++++++++++++++++++++
 export function handleChange(event) {

@@ -22,8 +22,6 @@ constructor(props){
 
   componentWillReceiveProps (newProps) {
     var text = newProps.bento.noris[this.props.number][this.props.side]['text'] 
-    // var rawValue = newProps.bento.noris[this.props.number][this.props.side]['rawValue']
-    console.log("Component has received newProps and the current state of component is, " ,this.state.rawValue)
     if(!text && !this.state.rawValue){
       this.setState({value: RichTextEditor.createEmptyValue()})
     } 
@@ -61,7 +59,7 @@ constructor(props){
     console.log("This props of line 57", this.props )
     const ToolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
-    display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
+    display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'IMAGE_BUTTON', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
     INLINE_STYLE_BUTTONS: [
       {label: 'Bold', style: 'BOLD', className: 'custom-css-class'},
       {label: 'Italic', style: 'ITALIC'},
@@ -102,19 +100,3 @@ function mapStateToProps (state) {
   }
 }
 export default connect(mapStateToProps, actions)(editNewNoriRTE)
-
-
-
-
-  // this.onFocus = this.onFocus.bind(this)
-  // this.onBlur = this.onBlur.bind(this)
-  // onFocus (){
-  //   this.setState({
-  //     showTB : true
-  //   })
-  // }
-  // onBlur () {
-  //   this.setState({
-  //     showTB: true
-  //   })
-  // }

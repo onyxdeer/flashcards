@@ -3,6 +3,9 @@ import { browserHistory , path} from 'react-router';
 import {  push } from 'react-router-redux'
 import { FETCH_USER_BENTOS, FETCH_FAVORITE_BENTOS, FETCH_POPULAR_BENTOS, HANDLE_FETCH_BENTO_FOR_EDIT } from './actionTypes.js';
 const personalActions = {
+
+  //this handle function is used to fetch the bento data(including noris) after a user has clicked an Edit++++++++++++
+
   handleFetchBentoForEdit: function (bento, bentoId, userId) {
   return function(dispatch) {
     axios.get('/api/bentos', {params: {id: bentoId, user_id: userId}})
