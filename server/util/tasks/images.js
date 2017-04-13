@@ -5,7 +5,7 @@ const get = (req, res) => {
   console.log('req.query from images.get:', req.query);
   Image.findAll({where: req.query})
     .then(function(image) {
-      console.log('Successfully fetched image from database: ' + image.url);
+      console.log('Successfully fetched image from database: ' + image);
       res.send(image);
     })
     .catch((err) => console.log(err));
@@ -14,7 +14,7 @@ const get = (req, res) => {
 const post = (req, res) => {
   Image.create(req.body)
     .then(function(image) {
-      console.log('Successfully saved image to database: ' + image.url);
+      console.log('Successfully saved image to database: ' + image);
       res.send(req.body);
     })
     .catch((err) => console.log(err));    

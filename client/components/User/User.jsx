@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import Carousel from 'react-slick';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux'
-import personalActions from '../../actions/personalActions.jsx';
+import { connect } from 'react-redux';
+import personalActions from '../../actions/personalActions.js';
+import { setBentoId } from '../../actions/appActions.js';
 
 
 let userId = 1;
@@ -69,7 +70,7 @@ class User extends Component {
                         <h3>{bento.name}</h3>
                         <p className='ellipsis'>{bento.description}</p>
                         <p><label>View Count:</label> {bento.visit_count} </p>
-                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><button className='btn btn-default' onClick={() => this.props.handleFetchBentoForEdit(this.props.bento,bento.id, 1)} ><Link to={'/edit'} className='btn btn-default'>Edit</Link></button></p>
+                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
                       </div>
                     </div>
                   ))}
@@ -94,4 +95,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, personalActions)(User);
+export default connect(mapStateToProps, { ...personalActions, setBentoId })(User);

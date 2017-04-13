@@ -5,7 +5,7 @@ const get = (req, res) => {
   console.log('req.query in noris/get:', req.query);
   Nori.findAll({where: req.query})
     .then(function(nori) {
-      console.log('Successfully fetched nori from database!:', nori.id);
+      console.log('Successfully fetched nori from database!:', nori);
       res.send(nori);
     })
     .catch((err) => console.log(err));

@@ -1,12 +1,20 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, NavDropdown, FormGroup, FormControl, MenuItem, Button, Dropdown, Glyphicon } from 'react-bootstrap';
+<<<<<<< HEAD:client/components/Nav/Nav-new.jsx
 import { connect } from 'react-redux';
 import * as actions from '../../actions/navActions.js';
+=======
+>>>>>>> e60b7d34bf8a80ab726a5bd4c3cf19fbc4b356aa:client/components/Nav/Nav-old.jsx
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      input: '',
+      navExpanded: false,
+    }
 
     this.handleNavSearch = this.handleNavSearch.bind(this);
     this.bringUpInput = this.bringUpInput.bind(this);
@@ -16,7 +24,9 @@ class Navigation extends Component {
   // detects changes to input in navbar searchbar
   handleNavSearch(event) {
     var context = this;
-    context.props.nav(event.target.value);
+    this.setState({
+      input: event.target.value,
+    });
   }
 
   // brings up the 'input' to App and will assign to 'query'
@@ -29,8 +39,9 @@ class Navigation extends Component {
 
   // clears text on the search box when it is clicked
   clearText() {
-    console.log(this.props);
-    this.props.nav('');
+    this.setState({
+      input: ''
+    });
   }
 
   render() {
@@ -54,13 +65,18 @@ class Navigation extends Component {
 
             <ul className="nav navbar-nav">
               <li><Link to="/User" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
+<<<<<<< HEAD:client/components/Nav/Nav-new.jsx
                <li><Link to={"/edit"} onSelect={this.closeNav} onClick={() => this.props.handleRenderCreatePage(this.props.bento)}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li> 
+=======
+              <li><Link to="/Edit/new" onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
+              {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
+>>>>>>> e60b7d34bf8a80ab726a5bd4c3cf19fbc4b356aa:client/components/Nav/Nav-old.jsx
             </ul>
 
             {/* Search bar */}
-            <form className="navbar-form navbar-left" onSubmit={this.bringUpInput(this.props.input)}>
+            <form className="navbar-form navbar-left" onSubmit={this.bringUpInput(this.state.input)}>
               <div className="form-group">
-                <input type="text" className="form-control" value={this.props.input} placeholder="Find A Bento Here" onChange={this.handleNavSearch} onClick={this.clearText} />
+                <input type="text" className="form-control" value={this.state.input} placeholder="Find A Bento Here" onChange={this.handleNavSearch} onClick={this.clearText} />
               </div>
               <button type="submit" className="btn btn-default"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
             </form>
@@ -91,6 +107,7 @@ class Navigation extends Component {
   }    
 };
 
+<<<<<<< HEAD:client/components/Nav/Nav-new.jsx
 function mapStateToProps(state) {
   return { 
     //these are just sample names
@@ -104,6 +121,9 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, actions)(Navigation);
+=======
+export default Navigation;
+>>>>>>> e60b7d34bf8a80ab726a5bd4c3cf19fbc4b356aa:client/components/Nav/Nav-old.jsx
 
         /*<Navbar collapseOnSelect fixedTop active activeKey activeHref>
         <Navbar.Header>
