@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-import Nav from './Nav/Nav-new.jsx';
+import Nav from './Nav/Nav.jsx';
 import Display from './Display/Display.jsx';
 import Landing from './Landing/Landing.jsx';
 import Edit from './Edit/Edit.jsx';
