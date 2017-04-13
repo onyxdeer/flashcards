@@ -16,7 +16,7 @@ const combinedReducer = combineReducers({
   // test: testReducer
   // sampleReducer : sampleReducer which can be written just as sampleReducer
   sampleReducer,
-  editBentoReducer,
+  editBentoInfo: editBentoReducer,
   navReducer,
   searchReducer,
   appReducer,
