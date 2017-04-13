@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, NavDropdown, FormGroup, FormControl, MenuItem, Button, Dropdown, Glyphicon } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/navActions.js';
 
 class Navigation extends Component {
   constructor(props) {
@@ -60,8 +62,7 @@ class Navigation extends Component {
 
             <ul className="nav navbar-nav">
               <li><Link to="/User" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
-              <li><Link to="/Edit/new" onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
-              {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
+               <li><Link to={"/edit"} onSelect={this.closeNav} onClick={() => this.props.handleRenderCreatePage(this.props.bento)}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li> 
             </ul>
 
             {/* Search bar */}
@@ -98,7 +99,19 @@ class Navigation extends Component {
   }    
 };
 
-export default Navigation;
+function mapStateToProps(state) {
+  return { 
+    //these are just sample names
+    // userData: state.recipes.userRecipes,
+    // viewFollows: state.follows.dataForUser,
+    // favorites: state.favorites.dataForUser,
+    // data: state.recipes.data
+    input: state.input,
+    bento: state.editBentoInfo
+  }
+}
+
+export default connect(mapStateToProps, actions)(Navigation);
 
         /*<Navbar collapseOnSelect fixedTop active activeKey activeHref>
         <Navbar.Header>

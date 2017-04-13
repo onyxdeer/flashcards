@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import personalActions from '../../actions/personalActions.js';
 import { setBentoId } from '../../actions/appActions.js';
 
+
 let userId = 1;
 
 class User extends Component {
@@ -41,7 +42,7 @@ class User extends Component {
       initialSlide: 0,
       touchMove: true
     };
-console.log("Line 46 User.jsx,", this.props.bentos)
+    
     return (
       <div>
         <div className='row center-block'>

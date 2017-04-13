@@ -1,4 +1,4 @@
-import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_FETCH_BENTO_FOR_EDIT} from '../actions/actionTypes.js'
+import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_FETCH_BENTO_FOR_EDIT, HANDLE_RENDER_CREATE_PAGE} from '../actions/actionTypes.js'
 
 //This is the default state y
 const DEFAULT_STATE =  {
@@ -12,6 +12,24 @@ const DEFAULT_STATE =  {
   noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
 
 }
+
+//this handler resets the create page back to default whenever a user clicks create
+
+function handleRenderCreatePage(state, action) {
+  var def = {
+  name: 'Test Name Default Redux',
+  description:'Testing Default Redux',
+  category: '',
+  visit_count: 0,
+  bento_id: null,
+  user_id: 1 || 'guest',
+  noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
+}
+  return {...state, ...def}
+}
+//---------------------------------------------------------------
+
+
 function handleFetchBentoForEdit(state, action) {
   console.log('helloo?? line 16 of editBentoReducer', action.payload)
   return {...state, ...action.payload}
@@ -64,6 +82,9 @@ export default function(state = DEFAULT_STATE, action) {
 
     case HANDLE_FETCH_BENTO_FOR_EDIT:
     return handleFetchBentoForEdit(state, action)
+
+    case HANDLE_RENDER_CREATE_PAGE:
+    return handleRenderCreatePage(state, action)
   }
 
 

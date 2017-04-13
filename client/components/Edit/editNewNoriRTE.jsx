@@ -12,8 +12,8 @@ constructor(props){
   super(props)    
   this.state = {
     value: RichTextEditor.createEmptyValue(),
-    rawValue: props.value,
-    showTB : true,
+    rawValue : null,
+    showTB : true
   }
   this.convertFromRawJs = this.convertFromRawJs.bind(this)
   this.onChange = this.onChange.bind(this)
@@ -22,6 +22,9 @@ constructor(props){
 
   componentWillReceiveProps (newProps) {
     var text = newProps.bento.noris[this.props.number][this.props.side]['text'] 
+    if(!text && !this.state.rawValue){
+      this.setState({value: RichTextEditor.createEmptyValue()})
+    } 
     if(text != this.state.rawValue){
       var rawJs = text;
       var newValue = this.convertFromRawJs(rawJs)
@@ -46,16 +49,17 @@ constructor(props){
 
   onChange (value) {
     var rawValue = JSON.stringify(convertToRaw(value._editorState.getCurrentContent()))
-    this.setState({value,  rawValue: rawValue}, () => {
+    this.setState({value, rawValue: rawValue}, () => {
     this.props.handleNoriChange(this.props.bento.noris, rawValue, this.props.side, this.props.number)}
     )
   }
 
 
   render () {
+    console.log("This props of line 57", this.props )
     const ToolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
-    display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
+    display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'IMAGE_BUTTON', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
     INLINE_STYLE_BUTTONS: [
       {label: 'Bold', style: 'BOLD', className: 'custom-css-class'},
       {label: 'Italic', style: 'ITALIC'},
@@ -96,19 +100,3 @@ function mapStateToProps (state) {
   }
 }
 export default connect(mapStateToProps, actions)(editNewNoriRTE)
-
-
-
-
-  // this.onFocus = this.onFocus.bind(this)
-  // this.onBlur = this.onBlur.bind(this)
-  // onFocus (){
-  //   this.setState({
-  //     showTB : true
-  //   })
-  // }
-  // onBlur () {
-  //   this.setState({
-  //     showTB: true
-  //   })
-  // }

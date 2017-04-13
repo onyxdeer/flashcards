@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-import { CHANGE_INPUT } from './actionTypes.js'
+import { CHANGE_INPUT, HANDLE_RENDER_CREATE_PAGE } from './actionTypes.js'
 import { handleNavSubmit } from './appActions.js'
+
 
 //an example of a asynchronous redux thunk action.
 // export function nav(somedata, someMoreData) {
@@ -19,6 +20,19 @@ export function handleNavSearch(event) {
   }
 }
 
+export function handleRenderCreatePage() {
+  return function(dispatch) {
+    dispatch({type: HANDLE_RENDER_CREATE_PAGE, payload: null})
+    browserHistory.push('/edit')
+  }
+}
+
+function handleError(error){
+  return {
+    type: SAMPLE_REQUEST_ERROR,
+    payload: error
+  }
+}
 // clears text on the search box when it is clicked
 export function clearText() {
   return function(dispatch, getState) {
