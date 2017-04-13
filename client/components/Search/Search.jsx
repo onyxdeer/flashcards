@@ -5,21 +5,25 @@ import { Link } from 'react-router-dom';
 // connect is what we use to bind the component to redux store
 import { connect } from 'react-redux';
 
-import { searchBentos } from '../../actions/searchActions.jsx'
+import { endNavSubmit, setBentoId } from '../../actions/appActions.js';
+import { searchBentos } from '../../actions/searchActions.js';
+import personalActions from '../../actions/personalActions.js';
 
-import { bindActionCreators } from 'redux';
+let userId = 1;
 
 class Search extends Component {
   constructor(props) {
     super(props);
-    // this.props.endNavSubmit();
+
+    if (this.props.userId !== 'guest') {
+      userId = this.props.userId;
+    }
+
     this.props.searchBentos(this.props.query);
   }
 
   componentWillMount() {
-    // this.props.endNavSubmit();
-    console.log('this.props.query:', this.props.query);
-    // this.props.searchBentos(this.props.query);
+    this.props.endNavSubmit();
   }
 
   render() {
@@ -59,7 +63,7 @@ class Search extends Component {
                       <h3>{bento.name}</h3>
                       <p className='ellipsis'>{bento.description}</p>
                       <p><label>View Count:</label> {bento.visit_count} </p>
-                      <p><Link className='btn btn-primary' to={'/display/' + bento.id}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.setBentoId(bento.id)}>Edit</Link></p>
+                      <p><Link className='btn btn-primary' to={'/display/' + bento.id} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
                     </div>
                   </div>
                 )) : (<h1 className='center-block'>Sorry, no results were found!</h1>)
@@ -77,8 +81,9 @@ class Search extends Component {
 
 function mapStateToProps(state) {
   return { 
+    bento: state.editBentoInfo,
     bentos: state.searchReducer
   }
 }
 
-export default connect(mapStateToProps, {searchBentos})(Search);
+export default connect(mapStateToProps, { ...personalActions, searchBentos, endNavSubmit, setBentoId })(Search);

@@ -220,6 +220,8 @@ html {
     width: 100%;
     height: 100%;
     padding-top: 25px;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body,
@@ -491,6 +493,12 @@ p.copyright {
   transform-style: preserve-3d;
   position: relative;
 }
+
+/*.card-transform {
+  transition: 0s;
+  transform-style: preserve-3d;
+  position: relative;
+}*/
 
 /* starts the animation */
 .card-flipped .card-transform {

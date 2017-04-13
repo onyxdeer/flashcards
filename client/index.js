@@ -3,29 +3,16 @@ import 'babel-polyfill';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
 import App from './components/App.jsx';
 
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { Provider} from 'react-redux';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-
-
-const createStoreWithMiddleWare = applyMiddleware(
-  thunk,
-  createLogger(),
-
-)(createStore)
-
-
-const store = createStoreWithMiddleWare(reducers);
-// middleware.listenForReplays(store);
-
+const store = applyMiddleware(thunk, createLogger())(createStore)(reducers)
 
 ReactDOM.render( 
   <Provider store={store}>
-    <App />
+      <App />
   </Provider>, document.getElementById('app'));
-
-console.log('Hello World in console!')
