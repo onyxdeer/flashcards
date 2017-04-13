@@ -37,6 +37,7 @@ module.exports = {
     hot: true,
     // enable HMR on the server
     port: 8080,
+    historyApiFallback: true,
     host: '0.0.0.0',
 
     contentBase: resolve(__dirname, 'public/assets/bundles'),
