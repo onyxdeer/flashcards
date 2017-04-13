@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import personalActions from '../../actions/personalActions.js';
+import { setBentoId } from '../../actions/appActions.js';
 
 let userId = 1;
 
@@ -93,4 +94,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, personalActions)(User);
+export default connect(mapStateToProps, { ...personalActions, setBentoId })(User);
