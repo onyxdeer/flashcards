@@ -2,7 +2,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 import { FETCH_NORIS, FETCH_FRONT_IMAGES,
-         FETCH_BACK_IMAGES, CHANGE_BENTO_TITLE,
+         FETCH_BACK_IMAGES, FETCH_BENTO_METADATA,
          GOTO_PREV_NORI, GOTO_NEXT_NORI,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
@@ -44,15 +44,16 @@ function fetchBackImages(bentoId) {
   }
 }
 
-function fetchBentoTitle(bentoId) {
+function fetchBentoMetaData(bentoId) {
   return function(dispatch) {
     // Get bento title for given bento_id
     axios.get('/api/bentos', {
       params: { id: bentoId }
     }).then(function(response) {
       dispatch({
-        type: CHANGE_BENTO_TITLE,
-        payload: response.data[0].name
+        type: FETCH_BENTO_METADATA,
+        title: response.data[0].name,
+        id_hash: response.data[0].id_hash
       })
     });
   }
@@ -185,6 +186,6 @@ function flipToBack() {
   }
 }
 
-const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoTitle, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack };
+const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack };
 
 export default displayActions;
