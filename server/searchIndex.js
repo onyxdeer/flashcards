@@ -1,8 +1,8 @@
-const $search = require('./elasticSearch')
-const db = require('../db/db')
-const Promise = require('bluebird');
+const $search = require('./elasticSearch');
 const _ = require('lodash');
-const query = Promise.promisify(db.query.bind(db));
+// const Promise = require('bluebird');
+// const db = require('../db/db')
+// const query = Promise.promisify(db.query.bind(db));
 
 function returnRecipe(id) {
   const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
