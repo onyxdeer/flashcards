@@ -9,7 +9,7 @@ const DEFAULT_STATE =  {
   bento_id: null,
   user_id: 1 || 'guest',
 
-  noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
+  noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
 
 }
 
@@ -23,7 +23,7 @@ function handleRenderCreatePage(state, action) {
   visit_count: 0,
   bento_id: null,
   user_id: 1 || 'guest',
-  noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
+  noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
 }
   return {...state, ...def}
 }

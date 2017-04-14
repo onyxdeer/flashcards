@@ -653,3 +653,39 @@ p.copyright {
     width: 180px;
     height: auto;
 }
+
+
+
+/*CSS FOR DROPZONE*/
+.dropzone {
+    border: 4px dashed #ccc;
+    height: 200px;
+    margin: 0 10px;
+    position: relative;
+    width: auto;
+}
+
+.dropzone p {
+    height: 100%;
+    line-height: 200px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.dropzone input[type="file"] {
+    height: 100%;
+    left: 0;
+    outline: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.dropzone + .status {
+    border-radius: 5px;
+    margin: 10px 10px 0;
+    padding: 15px;
+    text-align: center;
+}

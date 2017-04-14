@@ -23,7 +23,6 @@ export function handleNavSearch(event) {
 export function handleRenderCreatePage() {
   return function(dispatch) {
     dispatch({type: HANDLE_RENDER_CREATE_PAGE, payload: null})
-    browserHistory.push('/edit')
   }
 }
 
