@@ -4,7 +4,7 @@ const User = require('./users.js');
 const Category = require('./categories.js');
 
 const Bento = db.define('bento', {
-   id: {
+  id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true,
