@@ -23,7 +23,7 @@ class Display extends Component {
     this.renderNori = this.renderNori.bind(this);
     this.handleSetNori = this.handleSetNori.bind(this);
 
-    this.props.fetchBentoTitle(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
+    this.props.fetchBentoMetaData(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchFrontImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchBackImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchNoris(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
@@ -118,6 +118,8 @@ class Display extends Component {
   }
 
   render() {
+
+    console.log('bentoData in render:', this.props.bentoData);
     return (
       <div>
         <div className='row'>
@@ -147,7 +149,11 @@ class Display extends Component {
             </div>
             <div className='row'>
               <label>Enter from 0 to {this.props.bentoData ? this.props.bentoData.length - 1 : 0} to go to that Nori: </label>
-              <input type='text' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder='Enter a number here!' />
+                <span>  </span>
+              <input type='text' className='cardNumberField' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder='Enter a number here!' />
+            </div>
+            <div className='row'>
+              <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`localhost:8000/id=${this.props.id_hash}`} />
             </div>
           </form>
       </div>
@@ -166,7 +172,8 @@ function mapStateToProps(state) {
     isFlipped: state.displayReducer.isFlipped,
     buttonPressed: state.displayReducer.buttonPressed,
     input: state.displayReducer.input,
-    title: state.displayReducer.title
+    title: state.displayReducer.title,
+    id_hash: state.displayReducer.id_hash
   }
 }
 

@@ -434,6 +434,16 @@ p.copyright {
     max-height: 50%;
 }
 
+.cardNumberField {
+    width: 40px;
+}
+
+.shortenURLField {
+    width: 200px;
+}
+
+
+
 /* USER PAGE */
 
 .userBentos {
