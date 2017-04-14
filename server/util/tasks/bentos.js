@@ -2,6 +2,11 @@ const Sequelize = require('sequelize');
 const Bento = require('../../../db/models/bentos.js');
 const Nori = require('../../../db/models/noris.js');
 const Bento_nori = require('../../../db/models/bentos_noris.js');
+const crypto = require('crypto');
+
+const idToHash = (id) => {
+  return crypto.createHash('md5').update(id.toString()).digest("hex").slice(0,9);
+}
 
 const get = (req, res) => {
   console.log('req.query for /bentos/get:', req.query);
@@ -18,9 +23,8 @@ const post = (req, res) => {
   var data = req.body;
   var noris = data.noris;
   var userId = data.user_id;
-  var bentoId = data.bento_id;
+  var bentoId;
   var bentoInfo = { 
-    id: bentoId,
     name: data.name,
     description: data.description,
     nori_count: noris.length,
@@ -52,7 +56,14 @@ const post = (req, res) => {
       })
       .then(function(bento){
         console.log("Here is your bento that was just created", bento.dataValues.id)
-        bentoId = bento.dataValues.id
+        bentoId = bento.dataValues.id;
+        return Bento.update({
+            id_hash: idToHash(bentoId)
+          }, {
+          where: {
+            id: bentoId
+          }
+        });
       })
     } 
   })

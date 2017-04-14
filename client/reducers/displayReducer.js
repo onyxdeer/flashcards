@@ -1,5 +1,5 @@
 import { FETCH_NORIS, FETCH_FRONT_IMAGES,
-         FETCH_BACK_IMAGES, CHANGE_BENTO_TITLE,
+         FETCH_BACK_IMAGES, FETCH_BENTO_METADATA,
          GOTO_PREV_NORI, GOTO_NEXT_NORI,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
@@ -14,23 +14,24 @@ const stateDefault = {
   currentNori: 0,
   isFlipped: false,
   buttonPressed: false,
-  input: ''
+  input: '',
+  id_hash: ''
 };
 
 const handleFetchNoris = (state, action) => {
-  return {...state, bentoData: action.payload };
+  return {...state, bentoData: action.payload};
 }
 
 const handleFetchFrontImages = (state, action) => {
-  return {...state, imgDataFront: action.payload };
+  return {...state, imgDataFront: action.payload};
 }
 
 const handleFetchBackImages = (state, action) => {
-  return {...state, imgDataBack: action.payload };
+  return {...state, imgDataBack: action.payload};
 }
 
-const handleChangeBentoTitle = (state, action) => {
-  return {...state, title: action.payload};
+const handleGetBentoMetaData = (state, action) => {
+  return {...state, title: action.title, id_hash: action.id_hash};
 }
 
 const handleGoToPrevNori = (state, action) => {
@@ -72,8 +73,8 @@ export default function (state = stateDefault, action) {
       case FETCH_BACK_IMAGES:
         return handleFetchBackImages(state, action);
         break;
-      case CHANGE_BENTO_TITLE:
-        return handleChangeBentoTitle(state, action);
+      case FETCH_BENTO_METADATA:
+        return handleGetBentoMetaData(state, action);
         break;
       case GOTO_PREV_NORI:
         return handleGoToPrevNori(state, action);

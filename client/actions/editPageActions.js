@@ -1,4 +1,4 @@
-import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI} from '../actions/actionTypes.js'
+import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, SAMPLE_REQUEST_ERROR} from '../actions/actionTypes.js'
 import axios from 'axios';
 
 //this handle function can be used to change the state of any input/textarea field++++++++++++++++++++++++++++++++++++

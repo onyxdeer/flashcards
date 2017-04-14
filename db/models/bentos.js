@@ -13,6 +13,7 @@ const Bento = db.define('bento', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  id_hash: Sequelize.STRING,
   description: Sequelize.STRING,
   nori_count: Sequelize.INTEGER,
   private: {
