@@ -6,7 +6,8 @@ import { FETCH_NORIS, FETCH_FRONT_IMAGES,
          GOTO_PREV_NORI, GOTO_NEXT_NORI,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
-         SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT } from './actionTypes.js';
+         SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT,
+         CLEAR_PHONE_NUMBER_INPUT } from './actionTypes.js';
 
 
 
@@ -140,6 +141,15 @@ function handlePhoneNumberInput(event) {
   }
 }
 
+function clearPhoneNumberInput() {
+  return function(dispatch) {
+    dispatch({
+      type: CLEAR_PHONE_NUMBER_INPUT,
+      phoneNumberInput: ''
+    });
+  }
+}
+
 function setNori(input, bentoData) {
   return function(dispatch) {
     if (input >= 0 && input < bentoData.length) {
@@ -212,6 +222,6 @@ function shareUrlToSMS(event, url, phoneNumber) {
   }
 }
 
-const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput };
+const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput, clearPhoneNumberInput };
 
 export default displayActions;
