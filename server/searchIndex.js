@@ -57,7 +57,7 @@ Bento.findAll()
     })
   })
 
-// Update AWS ES images index
+// Update AWS ES thumbnails index
 Image.findAll()
   .then(images => {
     return Promise.all(images.map(image => returnImage(image.id)));
