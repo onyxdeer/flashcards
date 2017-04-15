@@ -1,7 +1,7 @@
-const $search = require('./elasticSearch');
 const Sequelize = require('sequelize');
 const Promise = require('bluebird'); // Save to dependency
 
+const $search = require('./elasticSearch');
 const Bento = require('../db/models/bentos.js');
 const Image = require('../db/models/images.js');
 

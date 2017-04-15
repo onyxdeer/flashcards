@@ -34,7 +34,7 @@
    color: #BADA55;
  }
 
-label, button {
+label, button, a {
     margin-left: 2px;
 }
 
@@ -424,7 +424,7 @@ p.copyright {
     margin: 3px;
 }
 
-.changeToNoriSection {
+.changeToNoriSection, .sharingSection {
     text-align: center;
 }
 

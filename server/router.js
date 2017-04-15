@@ -55,6 +55,9 @@ const bindRoutes = (app) => {
   app.route('/api/search_thumbnails')
     .get(util.tasks.search_thumbnails.get);    
 
+  app.route('/api/sms')
+    .post(util.tasks.sms.post)
+
   app.route('/*')
     .get(util.tasks.redirect.get);       
 };

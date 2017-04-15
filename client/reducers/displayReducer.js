@@ -3,7 +3,8 @@ import { FETCH_NORIS, FETCH_FRONT_IMAGES,
          GOTO_PREV_NORI, GOTO_NEXT_NORI,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
-         SHUFFLE_NORIS } from '../actions/actionTypes.js';
+         SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT,
+         CLEAR_PHONE_NUMBER_INPUT } from '../actions/actionTypes.js';
 
 const stateDefault = {
   title: '',
@@ -15,7 +16,10 @@ const stateDefault = {
   isFlipped: false,
   buttonPressed: false,
   input: '',
-  id_hash: ''
+  id_hash: '',
+  url: '',
+  phoneNumber: '',
+  phoneNumberInput: ''
 };
 
 const handleFetchNoris = (state, action) => {
@@ -52,6 +56,18 @@ const handleFlipNoriToBack = (state, action) => {
 
 const handleViewPageInputHandler = (state, action) => {
   return {...state, input: action.input};
+}
+
+const handlePhoneNumberInput = (state, action) => {
+  return {...state, phoneNumberInput: action.phoneNumberInput};
+}
+
+const handleClearPhoneNumberInput = (state, action) => {
+  return {...state, phoneNumberInput: action.phoneNumberInput};
+}
+
+const handleSendSMS = (state, action) => {
+    return {...state, url: action.url, phoneNumber: action.phoneNumber};
 }
 
 const handleSetNoriNumber = (state, action) => {
@@ -96,6 +112,15 @@ export default function (state = stateDefault, action) {
         break;
       case SHUFFLE_NORIS:
         return handleShuffleNoris(state, action);
+        break;
+      case SEND_SMS:
+        return handleSendSMS(state, action);
+        break;
+      case HANDLE_PHONE_NUMBER_INPUT:
+        return handlePhoneNumberInput(state, action);
+        break;
+      case CLEAR_PHONE_NUMBER_INPUT:
+        return handleClearPhoneNumberInput(state, action);
         break;
     }
     return state;
