@@ -195,7 +195,8 @@ function flipToBack() {
   }
 }
 
-function shareUrlToSMS(url, phoneNumber) {
+function shareUrlToSMS(event, url, phoneNumber) {
+  event.preventDefault();
   return function(dispatch) {
     return axios.post('/api/sms', {
       url: url,

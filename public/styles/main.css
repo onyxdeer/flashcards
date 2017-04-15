@@ -424,7 +424,7 @@ p.copyright {
     margin: 3px;
 }
 
-.changeToNoriSection {
+.changeToNoriSection, .sharingSection {
     text-align: center;
 }
 
