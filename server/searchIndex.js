@@ -1,20 +1,21 @@
 const $search = require('./elasticSearch');
-const _ = require('lodash');
+const sequelize = require('sequelize');
 // const Promise = require('bluebird');
 // const db = require('../db/db')
 // const query = Promise.promisify(db.query.bind(db));
 
 function returnRecipe(id) {
-  const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
-  const tagsQuery = `SELECT * from tags WHERE recipe_id = ${id};`;
-  const recipeQuery = `SELECT * from recipes WHERE id = ${id};`
-  const userQuery = `SELECT username FROM users WHERE id = (SELECT user_id FROM recipes WHERE id = ${id})`
+  // const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
+  // const tagsQuery = `SELECT * from tags WHERE recipe_id = ${id};`;
+  // const recipeQuery = `SELECT * from recipes WHERE id = ${id};`
+  // const userQuery = `SELECT username FROM users WHERE id = (SELECT user_id FROM recipes WHERE id = ${id})`
 
+  
   query(recipeQuery).then(([recipe]) => {
     if(!recipe) return res.status(422).send({ error: 'Recipe does not exist' });
   })
 
-  return Promise.all([query(ingredientsQuery), query(tagsQuery), query(recipeQuery), query(userQuery)])
+  return Promise.all([sequelize.query(ingredientsQuery), query(tagsQuery), query(recipeQuery), query(userQuery)])
     .then(([ ingredients, tagList, [ recipe ], [ user ] ]) => {
     const [ quantity, items ] = ingredients.reduce((acc, { quantity, ingredient }) => {
       return [ [...acc[0], quantity], [...acc[1], ingredient] ];
@@ -49,7 +50,7 @@ query(getAllRecipesQuery)
   .then(details => {
     details.map((item, i) => {
       $search.index({
-        index: 'recipes',
+        index: 'bentos',
         type: 'Object',
         id: i,
         body: item

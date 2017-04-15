@@ -49,6 +49,9 @@ const bindRoutes = (app) => {
   app.route('/api/popular')
     .get(util.tasks.popular.get);
 
+  app.route('/api/sms')
+    .post(util.tasks.sms.post)
+
   app.route('/*')
     .get(util.tasks.redirect.get);   
 };
