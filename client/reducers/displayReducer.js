@@ -1,9 +1,10 @@
 import { FETCH_NORIS, FETCH_FRONT_IMAGES,
-         FETCH_BACK_IMAGES, CHANGE_BENTO_TITLE,
+         FETCH_BACK_IMAGES, FETCH_BENTO_METADATA,
          GOTO_PREV_NORI, GOTO_NEXT_NORI,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
-         SHUFFLE_NORIS } from '../actions/actionTypes.js';
+         SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT,
+         CLEAR_PHONE_NUMBER_INPUT } from '../actions/actionTypes.js';
 
 const stateDefault = {
   title: '',
@@ -14,23 +15,27 @@ const stateDefault = {
   currentNori: 0,
   isFlipped: false,
   buttonPressed: false,
-  input: ''
+  input: '',
+  id_hash: '',
+  url: '',
+  phoneNumber: '',
+  phoneNumberInput: ''
 };
 
 const handleFetchNoris = (state, action) => {
-  return {...state, bentoData: action.payload };
+  return {...state, bentoData: action.payload};
 }
 
 const handleFetchFrontImages = (state, action) => {
-  return {...state, imgDataFront: action.payload };
+  return {...state, imgDataFront: action.payload};
 }
 
 const handleFetchBackImages = (state, action) => {
-  return {...state, imgDataBack: action.payload };
+  return {...state, imgDataBack: action.payload};
 }
 
-const handleChangeBentoTitle = (state, action) => {
-  return {...state, title: action.payload};
+const handleGetBentoMetaData = (state, action) => {
+  return {...state, title: action.title, id_hash: action.id_hash};
 }
 
 const handleGoToPrevNori = (state, action) => {
@@ -53,6 +58,18 @@ const handleViewPageInputHandler = (state, action) => {
   return {...state, input: action.input};
 }
 
+const handlePhoneNumberInput = (state, action) => {
+  return {...state, phoneNumberInput: action.phoneNumberInput};
+}
+
+const handleClearPhoneNumberInput = (state, action) => {
+  return {...state, phoneNumberInput: action.phoneNumberInput};
+}
+
+const handleSendSMS = (state, action) => {
+    return {...state, url: action.url, phoneNumber: action.phoneNumber};
+}
+
 const handleSetNoriNumber = (state, action) => {
   return {...state, currentNori: action.currentNori, noriToDisplay: action.noriToDisplay};
 }
@@ -72,8 +89,8 @@ export default function (state = stateDefault, action) {
       case FETCH_BACK_IMAGES:
         return handleFetchBackImages(state, action);
         break;
-      case CHANGE_BENTO_TITLE:
-        return handleChangeBentoTitle(state, action);
+      case FETCH_BENTO_METADATA:
+        return handleGetBentoMetaData(state, action);
         break;
       case GOTO_PREV_NORI:
         return handleGoToPrevNori(state, action);
@@ -95,6 +112,15 @@ export default function (state = stateDefault, action) {
         break;
       case SHUFFLE_NORIS:
         return handleShuffleNoris(state, action);
+        break;
+      case SEND_SMS:
+        return handleSendSMS(state, action);
+        break;
+      case HANDLE_PHONE_NUMBER_INPUT:
+        return handlePhoneNumberInput(state, action);
+        break;
+      case CLEAR_PHONE_NUMBER_INPUT:
+        return handleClearPhoneNumberInput(state, action);
         break;
     }
     return state;

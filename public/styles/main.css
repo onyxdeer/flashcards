@@ -34,7 +34,7 @@
    color: #BADA55;
  }
 
-label, button {
+label, button, a {
     margin-left: 2px;
 }
 
@@ -220,6 +220,8 @@ html {
     width: 100%;
     height: 100%;
     padding-top: 25px;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body,
@@ -422,7 +424,7 @@ p.copyright {
     margin: 3px;
 }
 
-.changeToNoriSection {
+.changeToNoriSection, .sharingSection {
     text-align: center;
 }
 
@@ -431,6 +433,16 @@ p.copyright {
     max-width: 50%;
     max-height: 50%;
 }
+
+.cardNumberField {
+    width: 40px;
+}
+
+.shortenURLField {
+    width: 200px;
+}
+
+
 
 /* USER PAGE */
 
@@ -491,6 +503,12 @@ p.copyright {
   transform-style: preserve-3d;
   position: relative;
 }
+
+/*.card-transform {
+  transition: 0s;
+  transform-style: preserve-3d;
+  position: relative;
+}*/
 
 /* starts the animation */
 .card-flipped .card-transform {

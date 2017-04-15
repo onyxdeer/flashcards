@@ -2,8 +2,15 @@ const Sequelize = require('sequelize');
 const Bento = require('../../../db/models/bentos.js');
 const Nori = require('../../../db/models/noris.js');
 const Bento_nori = require('../../../db/models/bentos_noris.js');
+<<<<<<< HEAD
 const Image = require('../../../db/models/images.js');
+=======
+const crypto = require('crypto');
+>>>>>>> 37d73b4cc49fbad03e3e0395c178b2e508eb993d
 
+const idToHash = (id) => {
+  return crypto.createHash('md5').update(id.toString()).digest("hex").slice(0,9);
+}
 
 const get = (req, res) => {
   console.log('req.query for /bentos/get:', req.query);
@@ -20,9 +27,14 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
   var data = req.body;                  
   var noris = data.noris;                //We separate the data to fit the schemas we  build
   var userId = data.user_id;
+<<<<<<< HEAD
   var bentoId = data.bento_id;
   var bentoInfo = {                          //this is the bento columns
     id: bentoId,
+=======
+  var bentoId;
+  var bentoInfo = { 
+>>>>>>> 37d73b4cc49fbad03e3e0395c178b2e508eb993d
     name: data.name,
     description: data.description,
     nori_count: noris.length,
@@ -59,7 +71,18 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
       })
       .then(function(bento){
         console.log("Here is your bento that was just created", bento.dataValues.id)
+<<<<<<< HEAD
         bentoId = bento.dataValues.id                         //use the bento id in order to have it for use and update the store state at the end 
+=======
+        bentoId = bento.dataValues.id;
+        return Bento.update({
+            id_hash: idToHash(bentoId)
+          }, {
+          where: {
+            id: bentoId
+          }
+        });
+>>>>>>> 37d73b4cc49fbad03e3e0395c178b2e508eb993d
       })
     } 
   })

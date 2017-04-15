@@ -1,10 +1,19 @@
-import { UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE } from '../actions/actionTypes.js'
+import { GET_SHORTENER_ID, UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE } from '../actions/actionTypes.js'
 
 const stateDefault = {
   query: '',
   userId: 'guest',
   bentoId: null,
-  searchActive: false
+  searchActive: false,
+  shortenerId: null
+};
+
+const handleShortenerId = (state, action) => {
+  console.log('Calling handleShortenerId:', action.shortenerId);
+  return {
+    ...state,
+    shortenerId: action.shortenerId
+  };
 };
 
 const handleQuery = (state, action) => {
@@ -38,6 +47,8 @@ const handleSearchActive = (state, action) => {
 export default (state = stateDefault, action) => {
   // Identical: state = state || stateDefault;
   switch (action.type) {
+    case GET_SHORTENER_ID:
+      return handleShortenerId(state, action);
     case UPDATE_QUERY: 
       return handleQuery(state, action);
     case GET_USERID: 

@@ -2,11 +2,12 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 import { FETCH_NORIS, FETCH_FRONT_IMAGES,
-         FETCH_BACK_IMAGES, CHANGE_BENTO_TITLE,
+         FETCH_BACK_IMAGES, FETCH_BENTO_METADATA,
          GOTO_PREV_NORI, GOTO_NEXT_NORI,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
-         SHUFFLE_NORIS } from './actionTypes.js';
+         SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT,
+         CLEAR_PHONE_NUMBER_INPUT } from './actionTypes.js';
 
 
 
@@ -44,15 +45,16 @@ function fetchBackImages(bentoId) {
   }
 }
 
-function fetchBentoTitle(bentoId) {
+function fetchBentoMetaData(bentoId) {
   return function(dispatch) {
     // Get bento title for given bento_id
     axios.get('/api/bentos', {
       params: { id: bentoId }
     }).then(function(response) {
       dispatch({
-        type: CHANGE_BENTO_TITLE,
-        payload: response.data[0].name
+        type: FETCH_BENTO_METADATA,
+        title: response.data[0].name,
+        id_hash: response.data[0].id_hash
       })
     });
   }
@@ -130,6 +132,24 @@ function handleInput(event) {
   }
 }
 
+function handlePhoneNumberInput(event) {
+  return function(dispatch) {
+    dispatch({
+      type: HANDLE_PHONE_NUMBER_INPUT,
+      phoneNumberInput: event.target.value
+    });
+  }
+}
+
+function clearPhoneNumberInput() {
+  return function(dispatch) {
+    dispatch({
+      type: CLEAR_PHONE_NUMBER_INPUT,
+      phoneNumberInput: ''
+    });
+  }
+}
+
 function setNori(input, bentoData) {
   return function(dispatch) {
     if (input >= 0 && input < bentoData.length) {
@@ -146,6 +166,8 @@ function setNori(input, bentoData) {
 
 function shuffleNori(bentoData) {
   return function(dispatch) {
+    $('[data-toggle="popover"]').popover('show');
+    setTimeout(function() {$('[data-toggle="popover"]').popover('hide')}, 3000);
     var context = this;
     var temp = bentoData.slice();
     var result = [];
@@ -185,6 +207,21 @@ function flipToBack() {
   }
 }
 
-const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoTitle, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack };
+function shareUrlToSMS(event, url, phoneNumber) {
+  event.preventDefault();
+  return function(dispatch) {
+    return axios.post('/api/sms', {
+      url: url,
+      phoneNumber: phoneNumber
+    })
+    dispatch({
+      type: SEND_SMS,
+      url: url,
+      phoneNumber: phoneNumber
+    });
+  }
+}
+
+const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput, clearPhoneNumberInput };
 
 export default displayActions;
