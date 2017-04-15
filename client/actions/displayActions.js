@@ -6,7 +6,7 @@ import { FETCH_NORIS, FETCH_FRONT_IMAGES,
          GOTO_PREV_NORI, GOTO_NEXT_NORI,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
-         SHUFFLE_NORIS } from './actionTypes.js';
+         SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT } from './actionTypes.js';
 
 
 
@@ -131,6 +131,15 @@ function handleInput(event) {
   }
 }
 
+function handlePhoneNumberInput(event) {
+  return function(dispatch) {
+    dispatch({
+      type: HANDLE_PHONE_NUMBER_INPUT,
+      phoneNumberInput: event.target.value
+    });
+  }
+}
+
 function setNori(input, bentoData) {
   return function(dispatch) {
     if (input >= 0 && input < bentoData.length) {
@@ -186,6 +195,20 @@ function flipToBack() {
   }
 }
 
-const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack };
+function shareUrlToSMS(url, phoneNumber) {
+  return function(dispatch) {
+    return axios.post('/api/sms', {
+      url: url,
+      phoneNumber: phoneNumber
+    })
+    dispatch({
+      type: SEND_SMS,
+      url: url,
+      phoneNumber: phoneNumber
+    });
+  }
+}
+
+const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput };
 
 export default displayActions;

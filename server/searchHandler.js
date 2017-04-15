@@ -9,7 +9,7 @@ const $search = require('../services/elasticSearch')
 exports.search = function(req, res) {
   const { query }  = req.query
   $search.search({
-    index: 'recipes',
+    index: 'bentos',
     q: `*${query}*`
   }, function (error, response) {
     if (error) return res.status(422).send({ error: 'Could not fetch results' })

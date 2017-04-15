@@ -113,6 +113,18 @@ class Display extends Component {
     window.addEventListener('keydown', this.handleKeyDown);
   }
 
+  componentDidMount() {
+    $('[data-toggle="popover"]').popover();
+
+    $("#alert-target").click(function () {
+        toastr["info"]("SMS Sent!")
+    });
+  }
+
+  componentDidUpdate() {
+    $('[data-toggle="popover"]').popover();
+  }
+
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
@@ -141,7 +153,7 @@ class Display extends Component {
           <div className='buttonSection'>
             <button type='button' className='btn btn-success' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori)}>Previous Nori</button>
             <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori)}>Next Nori</button>
-            <button type='button' className='btn btn-success' onClick={() => this.props.shuffleNori(this.props.bentoData)}>Shuffle Bento</button>
+            <a href='#' className='btn btn-success' data-toggle='popover' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData)}>Shuffle Bento</a>
           </div>
           <form className='changeToNoriSection' onSubmit={this.handleSetNori}>
             <div className='row'>
@@ -153,9 +165,36 @@ class Display extends Component {
               <input type='text' className='cardNumberField' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder='Enter a number here!' />
             </div>
             <div className='row'>
-              <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`localhost:8000/id=${this.props.id_hash}`} />
+              <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`localhost:8000/id=${this.props.id_hash}`} readOnly />
+              <button type='button' className='btn btn-success' data-toggle='modal' data-target='#sendSMS'>Send via SMS</button>
             </div>
           </form>
+
+            <div className='modal fade' id='sendSMS' tabIndex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+              <div className='modal-dialog' role='document'>
+                <div className='modal-content'>
+                  <div className='modal-header'>
+                    <h5 className='modal-title' id='exampleModalLabel'>Share via SMS</h5>
+                    <button type='button' className='close' data-dismiss='modal' aria-label='Close'>
+                      <span aria-hidden='true'>&times;</span>
+                    </button>
+                  </div>
+                  <div className='modal-body'>
+                    <form>
+                      <div className='form-group'>
+                        <label className='form-control-label'>Recipient's Phone Number:</label>
+                        <input type='text' className='form-control' id='recipient-name' value={this.props.phoneNumberInput} placeholder='+14151234567' onChange={(event) => this.props.handlePhoneNumberInput(event)} />
+                      </div>
+                    </form>
+                  </div>
+                  <div className='modal-footer'>
+                    <button type='button' className='btn btn-secondary' data-dismiss='modal'>Close</button>
+                    <button type='button' id='alert-target' className='btn btn-primary' onClick={() => this.props.shareUrlToSMS(`http://localhost:8000/id=${this.props.id_hash}`, '14156086596')} data-dismiss='modal'>Share</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
       </div>
     )
   }
@@ -173,7 +212,8 @@ function mapStateToProps(state) {
     buttonPressed: state.displayReducer.buttonPressed,
     input: state.displayReducer.input,
     title: state.displayReducer.title,
-    id_hash: state.displayReducer.id_hash
+    id_hash: state.displayReducer.id_hash,
+    phoneNumberInput: state.displayReducer.phoneNumberInput
   }
 }
 
