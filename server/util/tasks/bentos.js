@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize');
+const crypto = require('crypto');
+
 const Bento = require('../../../db/models/bentos.js');
 const Nori = require('../../../db/models/noris.js');
 const Bento_nori = require('../../../db/models/bentos_noris.js');
-const crypto = require('crypto');
 
 const idToHash = (id) => {
   return crypto.createHash('md5').update(id.toString()).digest("hex").slice(0,9);
@@ -12,7 +13,6 @@ const get = (req, res) => {
   console.log('req.query for /bentos/get:', req.query);
   Bento.findAll({where: req.query})
     .then(function(bentos) {
-      // console.log('bento:', bento);
       res.send(bentos);
     })
     .catch((err) => console.log(err));
