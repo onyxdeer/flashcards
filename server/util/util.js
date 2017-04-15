@@ -12,5 +12,7 @@ const noris_tags = require('./tasks/noris_tags.js');
 const redirect = require('./tasks/redirect.js');
 const thumbnails = require('./tasks/thumbnails.js');
 const popular = require('./tasks/popular.js');
+const search = require('./tasks/search.js');
+const search_thumbnails = require('./tasks/search_thumbnails.js');
 
-module.exports.tasks = {users, bentos, noris, follows, categories, labels, tags, images, bentos_noris, noris_tags, redirect, thumbnails, popular};
+module.exports.tasks = {users, bentos, noris, follows, categories, labels, tags, images, bentos_noris, noris_tags, redirect, thumbnails, popular, search, search_thumbnails};
