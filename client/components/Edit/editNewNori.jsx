@@ -6,40 +6,12 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from '../../actions/editPageActions.js'
 class editNewNori extends React.Component {
-
-  constructor(props){
-    super(props)
-    this.state = {
-      url: ''
-    }
-    this.uploadImage = this.uploadImage.bind(this)
-  }
-
-
-uploadImage (url) {
-  this.setState({url: url})
-}
-
-
-
-// componentDidMount() {
-//       var callback = function (res) {
-//         if (res.success === true) {
-//             console.log(res.data.link);
-//         }
-//     };
-
-//     new Imgur({
-//         clientid: '8887909661837b4',
-//         callback: callback
-//     });
-// }
   render() {
     return (
       <div>
       <center className="new-nori">
         <div className='nori-textarea'>
-          <ImageDropzone />
+          <ImageDropzone number = {this.props.number}/>
           <EditNewNoriRTE side = 'Front' number = {this.props.number}/>
           </div>
           <div className='nori-textarea'>

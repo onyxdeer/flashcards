@@ -1,4 +1,5 @@
-import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_FETCH_BENTO_FOR_EDIT, HANDLE_RENDER_CREATE_PAGE} from '../actions/actionTypes.js'
+import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_FETCH_BENTO_FOR_EDIT, HANDLE_RENDER_CREATE_PAGE,
+HANDLE_IMAGE_UPLOAD} from '../actions/actionTypes.js'
 
 //This is the default state y
 const DEFAULT_STATE =  {
@@ -27,6 +28,16 @@ function handleRenderCreatePage(state, action) {
 }
   return {...state, ...def}
 }
+
+
+//---------------------------------------------------------------
+
+
+function handleImageUpload(state, action) {
+  return{...state, noris: action.payload}
+}
+
+
 //---------------------------------------------------------------
 
 
@@ -85,6 +96,9 @@ export default function(state = DEFAULT_STATE, action) {
 
     case HANDLE_RENDER_CREATE_PAGE:
     return handleRenderCreatePage(state, action)
+
+    case HANDLE_IMAGE_UPLOAD:
+    return handleImageUpload(state, action)
   }
 
 

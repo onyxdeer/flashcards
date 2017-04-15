@@ -1,5 +1,13 @@
-import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI} from '../actions/actionTypes.js'
+import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_IMAGE_UPLOAD} from '../actions/actionTypes.js'
 import axios from 'axios';
+
+
+export function handleImageUpload(noris, link, index) {
+  noris[index]["Front"]['image'] = link;
+  return function(dispatch) {
+    dispatch({type: HANDLE_IMAGE_UPLOAD, payload: noris})
+  }
+}
 
 //this handle function can be used to change the state of any input/textarea field++++++++++++++++++++++++++++++++++++
 export function handleChange(event) {
