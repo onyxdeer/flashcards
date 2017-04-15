@@ -1,7 +1,6 @@
 const elasticsearch = require('elasticsearch');
 const { ES_ACCESS_KEY, ES_SECRET_KEY } = require('../config/config.js');
 
-// https://www.npmjs.com/package/http-aws-es
 const client = new elasticsearch.Client({
   host:'search-obento-2pbfskuhe4thki26tye6rfqwli.us-east-1.es.amazonaws.com',
   connectionClass: require('http-aws-es'),
@@ -23,3 +22,8 @@ client.ping({
 });
 
 module.exports = client;
+
+// Documentation
+// https://www.npmjs.com/package/elasticsearch
+// https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html
+// https://www.npmjs.com/package/http-aws-es
