@@ -26,7 +26,6 @@
         this.endpoint = 'https://api.imgur.com/3/image';
         this.callback = options.callback || undefined;
         this.dropzone = document.querySelectorAll('.dropzone');
-
         this.run();
     };
 
@@ -83,13 +82,12 @@
             }.bind(this));
         },
         loading: function () {
-            var div, img;
+            // var div, img;
+            // div = this.createEls('div', {className: 'loading-modal'});
+            // img = this.createEls('img', {className: 'loading-image', src: './svg/loading-spin.svg'});
 
-            div = this.createEls('div', {className: 'loading-modal'});
-            img = this.createEls('img', {className: 'loading-image', src: './svg/loading-spin.svg'});
-
-            div.appendChild(img);
-            document.body.appendChild(div);
+            // div.appendChild(img);
+            // document.body.appendChild(div);
         },
         status: function (el) {
             var div = this.createEls('div', {className: 'status'});
@@ -145,11 +143,10 @@
             });
         },
         run: function () {
-            var loadingModal = document.querySelector('.loading-modal');
-
-            if (!loadingModal) {
-                this.loading();
-            }
+            // var loadingModal = document.querySelector('.loading-modal');
+            // if (!loadingModal) {
+            //     this.loading();
+            // }
             this.createDragZone();
         }
     };
