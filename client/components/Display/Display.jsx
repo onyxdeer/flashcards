@@ -129,7 +129,7 @@ class Display extends Component {
   }
 
   componentDidUpdate() {
-    
+
   }
 
   componentWillUnmount() {
@@ -175,7 +175,7 @@ class Display extends Component {
           <div className='row'>
             <div className='sharingSection'>
               <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`localhost:8000/id=${this.props.id_hash}`} readOnly />
-              <button type='button' className='btn btn-success' data-toggle='modal' data-target='#sendSMS'>Send via SMS</button>
+              <button type='button' className='btn btn-success' data-toggle='modal' data-target='#sendSMS' onClick={this.props.clearPhoneNumberInput}>Send via SMS</button>
             </div>
           </div>
 
