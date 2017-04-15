@@ -4,7 +4,7 @@ const Image = require('../../../db/models/images.js');
 const $search = require('../../elasticSearch');
 
 const get = (req, res) => {
-  console.log('THUMBNAIL: Req.query: ', req.query.idArray);    
+  console.log('THUMBNAIL: Req.query.idArray: ', req.query.idArray);    
   $search.search({
     index: 'thumbnails',
     body: {
