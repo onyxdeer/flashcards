@@ -156,6 +156,8 @@ function setNori(input, bentoData) {
 
 function shuffleNori(bentoData) {
   return function(dispatch) {
+    $('[data-toggle="popover"]').popover('show');
+    setTimeout(function() {$('[data-toggle="popover"]').popover('hide')}, 3000);
     var context = this;
     var temp = bentoData.slice();
     var result = [];

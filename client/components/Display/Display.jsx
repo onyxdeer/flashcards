@@ -115,7 +115,6 @@ class Display extends Component {
   }
 
   componentDidMount() {
-    $('[data-toggle="popover"]').popover();
 
     $("#alert-target").click(function () {
         toastr["info"]("SMS Sent!")
@@ -123,13 +122,14 @@ class Display extends Component {
 
     $('#smsForm').submit(function(e) {
       $('#sendSMS').modal('hide');
+      toastr["info"]("SMS Sent!")
       return false;
     });
 
   }
 
   componentDidUpdate() {
-    $('[data-toggle="popover"]').popover();
+    
   }
 
   componentWillUnmount() {
