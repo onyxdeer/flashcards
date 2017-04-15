@@ -84,8 +84,9 @@ class Display extends Component {
   }
 
   handleSetNori(event) {
+    console.log('CALLING HANDLESETNORI');
     event.preventDefault();
-    return this.props.setNori(this.props.input, this.props.bentoData);
+    this.props.setNori(this.props.input, this.props.bentoData);
   }
 
   handleKeyDown(e) {
@@ -119,6 +120,12 @@ class Display extends Component {
     $("#alert-target").click(function () {
         toastr["info"]("SMS Sent!")
     });
+
+    $('#smsForm').submit(function(e) {
+      $('#sendSMS').modal('hide');
+      return false;
+    });
+
   }
 
   componentDidUpdate() {
@@ -164,11 +171,13 @@ class Display extends Component {
                 <span>  </span>
               <input type='text' className='cardNumberField' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder='Enter a number here!' />
             </div>
-            <div className='row'>
+          </form>
+          <div className='row'>
+            <div className='sharingSection'>
               <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`localhost:8000/id=${this.props.id_hash}`} readOnly />
               <button type='button' className='btn btn-success' data-toggle='modal' data-target='#sendSMS'>Send via SMS</button>
             </div>
-          </form>
+          </div>
 
             <div className='modal fade' id='sendSMS' tabIndex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
               <div className='modal-dialog' role='document'>
@@ -180,7 +189,7 @@ class Display extends Component {
                     </button>
                   </div>
                   <div className='modal-body'>
-                    <form>
+                    <form id='smsForm' onSubmit={(event) => this.props.shareUrlToSMS(event, `http://localhost:8000/id=${this.props.id_hash}`, this.props.phoneNumberInput)}>
                       <div className='form-group'>
                         <label className='form-control-label'>Recipient's Phone Number:</label>
                         <input type='text' className='form-control' id='recipient-name' value={this.props.phoneNumberInput} placeholder='+14151234567' onChange={(event) => this.props.handlePhoneNumberInput(event)} />
@@ -189,7 +198,7 @@ class Display extends Component {
                   </div>
                   <div className='modal-footer'>
                     <button type='button' className='btn btn-secondary' data-dismiss='modal'>Close</button>
-                    <button type='button' id='alert-target' className='btn btn-primary' onClick={() => this.props.shareUrlToSMS(`http://localhost:8000/id=${this.props.id_hash}`, '14156086596')} data-dismiss='modal'>Share</button>
+                    <button type='button' id='alert-target' className='btn btn-primary' onClick={(event) => this.props.shareUrlToSMS(event, `http://localhost:8000/id=${this.props.id_hash}`, this.props.phoneNumberInput)} data-dismiss='modal'>Share</button>
                   </div>
                 </div>
               </div>
