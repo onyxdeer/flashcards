@@ -49,8 +49,14 @@ const bindRoutes = (app) => {
   app.route('/api/popular')
     .get(util.tasks.popular.get);
 
+  app.route('/api/search')
+    .get(util.tasks.search.get);
+
+  app.route('/api/search_thumbnails')
+    .get(util.tasks.search_thumbnails.get);    
+
   app.route('/*')
-    .get(util.tasks.redirect.get);   
+    .get(util.tasks.redirect.get);       
 };
 
 module.exports = bindRoutes;
