@@ -134,6 +134,7 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch, category) {
       for (var j = 0; j < imgData.length; j++) {
         if (imgData[j].bento_id === bentoData[i].id) {
           bentoData[i].img_url = imgData[j].url;
+          break;
         }
       }
     }
