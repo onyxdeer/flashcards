@@ -104,15 +104,15 @@ class App extends Component {
       <div>
         <Router history = {createBrowserHistory()}>
           <div>
-            <Nav handleNavSubmit={this.props.handleNavSubmit} userId={this.props.userId} setBentoId = {this.props.setBentoId}/>
+            <Nav />
             <TargetRoute />
-            <Route exact path='/' component={() => <Landing />} />
-            <Route path='/display' component={() => <Display bentoId={this.props.bentoId}/>} />
-            <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit' component={() => <Edit />}/>
-            <Route path='/search' component={() => <Search query={this.props.query} endNavSubmit={this.props.endNavSubmit} userId = {this.props.userId}  bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/>} />
-            <Route path='/user' component={() => <User userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/> } />
-            <Route path='/voice' component={() => <Voice />} />
+            <Route exact path='/' component={Landing} />
+            <Route path='/display' component={Display} />
+            <Route path='/landing' component={Landing} />
+            <Route path='/edit' component={Edit} />
+            <Route path='/search' component={Search} />
+            <Route path='/user' component={User} />
+            <Route path='/voice' component={Voice} />
           </div>
         </Router>
       </div>
@@ -121,13 +121,13 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return { 
+  return {
     shortenerId: state.appReducer.shortenerId,
     query: state.appReducer.query,
     userId: state.appReducer.userId,
     bentoId: state.appReducer.bentoId,
-    searchActive: state.appReducer.searchActive
-  }
+    searchActive: state.appReducer.searchActive,
+  };
 }
 
 export default connect(mapStateToProps, actions)(App);

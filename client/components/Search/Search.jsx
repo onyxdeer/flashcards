@@ -82,7 +82,8 @@ class Search extends Component {
 function mapStateToProps(state) {
   return { 
     bento: state.editBentoInfo,
-    bentos: state.searchReducer
+    bentos: state.searchReducer,
+    query: state.appReducer.query,
   }
 }
 
