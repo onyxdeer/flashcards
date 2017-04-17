@@ -3,8 +3,8 @@ HANDLE_IMAGE_UPLOAD} from '../actions/actionTypes.js'
 
 //This is the default state y
 const DEFAULT_STATE =  {
-  name: 'Test Name Default Redux',
-  description:'Testing Default Redux',
+  name: '',
+  description: '',
   category: '',
   visit_count: 0,
   bento_id: null,
@@ -18,8 +18,8 @@ const DEFAULT_STATE =  {
 
 function handleRenderCreatePage(state, action) {
   var def = {
-  name: 'Test Name Default Redux',
-  description:'Testing Default Redux',
+  name: '',
+  description: '',
   category: '',
   visit_count: 0,
   bento_id: null,

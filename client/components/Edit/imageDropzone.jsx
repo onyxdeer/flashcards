@@ -4,21 +4,36 @@ import * as actions from '../../actions/editPageActions.js'
 import Imgur from "../../imgur.js";
 
 class imageDropzone extends React.Component {
-  componentDidMount() {
-      var callback = res =>  {
+  constructor(props) {
+    super(props)
+    this.callback = this.callback.bind(this)
+  }
+  callback (res) {
+    console.log("This function fires at component number ", this.props.number, res.data.link )
         if (res.success === true) {
-            console.log(res.data.link);
             this.props.handleImageUpload(this.props.bento.noris, res.data.link, this.props.number)
         }
     };
 
+  componentDidUpdate(){
+    console.log("Component did Update")
+        new Imgur({
+        clientid: '8887909661837b4',
+        callback: this.callback,
+        index: this.props.number
+    })
+    return true
+  }
+
+  componentDidMount() {
     new Imgur({
         clientid: '8887909661837b4',
-        callback: callback
-    });
+        callback: this.callback,
+        index: this.props.number
+    })
 }
   render() {
-    console.log(this.props.bento, this.props.number)
+    (console.log(this.props))
     if(this.props.bento.noris[this.props.number]["Front"]["image"]) {
       return (
         <img src = {this.props.bento.noris[this.props.number]["Front"]["image"]} />
@@ -26,7 +41,7 @@ class imageDropzone extends React.Component {
     } else {
       console.log(this.props.bento.noris)
       return (
-        <div className='dropzone'></div>
+        <div className={'dropzone'  + ' dz' + this.props.number}></div>
       )
     }
   }

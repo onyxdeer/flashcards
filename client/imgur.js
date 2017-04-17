@@ -25,7 +25,7 @@
         this.clientid = options.clientid;
         this.endpoint = 'https://api.imgur.com/3/image';
         this.callback = options.callback || undefined;
-        this.dropzone = document.querySelectorAll('.dropzone');
+        this.dropzone = document.querySelectorAll('.dz' + options.index); //might be here
         this.run();
     };
 
@@ -73,11 +73,12 @@
 
             p     = this.createEls('p', {}, 'Drag your files Or Click Here');
             input = this.createEls('input', {type: 'file', accept: 'image/*'});
+            console.log("Line 76 of IMGUR.JS", this.dropzone)
 
-            Array.prototype.forEach.call(this.dropzone, function (zone) {
+            Array.prototype.forEach.call(this.dropzone, function (zone, index) {
                 zone.appendChild(p);
                 zone.appendChild(input);
-                this.status(zone);
+                this.status(zone, index);
                 this.upload(zone);
             }.bind(this));
         },
@@ -89,8 +90,9 @@
             // div.appendChild(img);
             // document.body.appendChild(div);
         },
-        status: function (el) {
-            var div = this.createEls('div', {className: 'status'});
+        status: function (el, index) {
+           
+            var div = this.createEls('div', {className: 'status'+index});
 
             this.insertAfter(el, div);
         },
@@ -122,6 +124,7 @@
             zone.addEventListener('change', function (e) {
                 if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
                     target = e.target.files;
+                    console.log(target)
 
                     for (i = 0, len = target.length; i < len; i += 1) {
                         file = target[i];

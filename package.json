@@ -59,10 +59,7 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^3.30.4",
     "slick-carousel": "^1.6.0",
-<<<<<<< HEAD
-=======
     "twilio": "^2.11.1",
->>>>>>> 37d73b4cc49fbad03e3e0395c178b2e508eb993d
     "wav": "^1.0.1"
   },
   "devDependencies": {
