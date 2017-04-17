@@ -1,7 +1,7 @@
 'use strict';
 
-import util from './util.js'
-
+import util from './util.js';
+import request from 'axios';
 /*
   AI class responsible with the following functionalities:
   speech to text and speech recognition (via google API)
@@ -11,8 +11,8 @@ import util from './util.js'
 const AI = class {
   constructor(name) {
     this.name = name;
-    this.commands = this._getCommands();
-    this._initAnnyang(this.commands);
+    this.commands = util.commands;
+    this._initAnnyang(util.commands);
   }
 
   /*
@@ -23,12 +23,26 @@ const AI = class {
   */
   _initAnnyang(commands) {
     console.log(commands)
-    if (annyang) {
-      annyang.addCommands(commands);
-      annyang.start();
-      annyang.debug(true);
+    if (window.annyang) {
+      window.annyang.addCommands(commands);
+      window.annyang.start();
+      window.annyang.debug(true);
     };
   }
+
+  /*
+    Retrieves all the necessary bento & noris in order to have a Voice Review Session
+    @private
+    @return {Promise:object} bento & corresponding noris and relevant display information wrapped in Promise
+  */
+  _getBento(bentoId) {
+    const URL = '/api/bentos';
+    const params = { 
+      bentoId
+    }
+    return request.get(URL, { params })
+  }
+
 
   /*
     Retrieves all the methods in AI class
@@ -78,6 +92,7 @@ const AI = class {
   */
   say(text) {
     console.log('i am speaking: ', text)
+    window.responsiveVoice.speak(text, "UK English Female");
     return this;
   }
 
