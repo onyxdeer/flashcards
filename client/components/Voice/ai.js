@@ -81,28 +81,28 @@ const AI = class {
         console.log('hello function called')
         this.say('hello there, my name is norica, here to help you memorize your noris ')
       },
-      'next': function(){
+      'next': () => {
         console.log('next function called!')
       },
-      'go' : function(){
+      'go' : () => {
         console.log('go fucntion called')
       },
-      'repeat': function(){
+      'repeat': () => {
         console.log('repeat function called')
       },
-      'redo': function(){
+      'redo': () => {
         console.log('redo function called')
       },
-      'previous': function(){
+      'previous': () => {
         console.log('previous function called')
       },
-      'retry': function(){
+      'retry': () => {
         console.log('retry function called')
       },
-      'answer': function(){
+      'answer': () => {
         console.log('answer function called')
       },
-      'accent': function(){
+      'accent': () => {
         //another function alias called
         //say it as if you are *country name
         console.log('accent function called')
