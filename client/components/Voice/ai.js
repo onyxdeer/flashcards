@@ -1,36 +1,78 @@
+'use strict';
+
+
+/*
+  AI class responsible with the following functionalities:
+  speech to text and speech recognition (via google API)
+  text to speech (via responsiveVoice.js)
+  and active command listening (via annyang.js)
+*/
 const AI = class {
   constructor(name) {
     this.name = name;
-    // if (annyang) {
-    //   annyang.addCommands(this.commands);
-    //   annyang.start();
-    // };
-    // this.commands = Object.getOwnPropertyNames( AI.prototype );
     this.commands = this._getCommands();
+    this._initAnnyang(this.commands);
   }
 
-  _getCommands(){
-    commandNames = Object.getOwnPropertyNames( AI.prototype );
-    // commandNames.map( command => { command : AI.prototype[command] })
-    // let copy = { ...AI.prototype };
+  /*
+   Inits annyang voice listener with the commands inside AI class
+   @private
+   @param {object} key: function names, value: functions to be executed with the names are 
+      spoken
+  */
+  _initAnnyang(commands) {
+    console.log(commands)
+    if (annyang) {
+      annyang.addCommands(commands);
+      annyang.start();
+    };
+  }
+
+  /*
+    Retrieves all the methods in AI class
+    removes all the non voice triggering methods
+    @private
+    @return {object} used to initialize annyang
+  */
+  _getCommands() {
+    let commandNames = Object.getOwnPropertyNames( AI.prototype );
     let commandObj = {};
-    filteredCommands = this.removedPrivateMethods(commandNames);
-    filteredCommands.map(command => commandObj[command] = AI.prototype[command] );
+    let voiceCommands = this._removePrivateMethods(commandNames);
+    voiceCommands.map(command => commandObj[command] = AI.prototype[command] );
     return commandObj;
   }
 
-  _checkUnderScore(methodName){
+  /*
+    Helper function to check private methods via the underscore convention
+    @private
+    @param {string} the command name to be checked
+    @return {boolean} true if it contains _
+  */
+  _isUnderScore(methodName) {
     return methodName[0] === '_';
   }
 
-  _removePrivateMethods(CommandsToRemove){
+  /*
+    Private helper function to filter all private methods
+    starting from constructor, and then all 
+    @private
+    @param {array} all the method names in AI class
+    @return {array} all the method in AI class that isn't a private method or constuctor
+  */
+  _removePrivateMethods(CommandsToRemove) {
     let isConstructor = 'constructor';
-    getNoneUnderScoreMethods = CommandsToRemove
-                        .filter(command => this._checkUnderScore(command))
-                        .filter(command => command === isConstructor );
+    let nonePrivateMethods = CommandsToRemove
+                        .filter(command => !this._isUnderScore(command))
+                        .filter(command => command !== isConstructor );
     
-    return getNoneUnderScoreMethods;
+    return nonePrivateMethods;
   }
+
+  /*
+    Command to voice text to speech using Responsive Voice
+    @param {string} the string to transform to speech
+    @return {AI instance}
+  */
 
   say(text) {
     console.log('i am speaking: ', text)
@@ -38,6 +80,9 @@ const AI = class {
   }
   
 };
+
+
+// var a = new AI('joe')
 
 
 export default AI;

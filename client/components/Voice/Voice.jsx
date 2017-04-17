@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { commands, noris, responses } from './util.js';
+import AI from './ai.js';
 
 class Voice extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Voice extends Component {
     }
 
 
-
+    var a = new AI('joe')
 
     
 
