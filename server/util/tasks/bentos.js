@@ -87,7 +87,7 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
       .then(function(savedNori){
         console.log("line 78", savedNori, noriInfo)
         var noriId = savedNori[0].dataValues.id;
-        Image.findOrCreate({where: {bento_id: bentoId, nori_id: noriId, url: noriInfo.image}})
+        Image.findOrCreate({where: {bento_id: bentoId, nori_id: noriId, url: noriInfo.image, nori_front: true}})
         return savedNori
       })
     }))
