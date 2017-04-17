@@ -1,5 +1,6 @@
 'use strict';
 
+import util from './util.js'
 
 /*
   AI class responsible with the following functionalities:
@@ -25,6 +26,7 @@ const AI = class {
     if (annyang) {
       annyang.addCommands(commands);
       annyang.start();
+      annyang.debug(true);
     };
   }
 
@@ -35,7 +37,7 @@ const AI = class {
     @return {object} used to initialize annyang
   */
   _getCommands() {
-    let commandNames = Object.getOwnPropertyNames( AI.prototype );
+    const commandNames = Object.getOwnPropertyNames( AI.prototype );
     let commandObj = {};
     let voiceCommands = this._removePrivateMethods(commandNames);
     voiceCommands.map(command => commandObj[command] = AI.prototype[command] );
@@ -49,7 +51,8 @@ const AI = class {
     @return {boolean} true if it contains _
   */
   _isUnderScore(methodName) {
-    return methodName[0] === '_';
+    firstCharIsUnderScore = methodName[0] === '_'
+    return firstCharIsUnderScore;
   }
 
   /*
@@ -60,10 +63,10 @@ const AI = class {
     @return {array} all the method in AI class that isn't a private method or constuctor
   */
   _removePrivateMethods(CommandsToRemove) {
-    let isConstructor = 'constructor';
+    const CONSTRUCTOR = 'constructor';
     let nonePrivateMethods = CommandsToRemove
                         .filter(command => !this._isUnderScore(command))
-                        .filter(command => command !== isConstructor );
+                        .filter(command => command !== CONSTRUCTOR );
     
     return nonePrivateMethods;
   }
@@ -73,10 +76,15 @@ const AI = class {
     @param {string} the string to transform to speech
     @return {AI instance}
   */
-
   say(text) {
     console.log('i am speaking: ', text)
     return this;
+  }
+
+  listen() {
+    return new Promise( (resolve, reject) => {
+
+    });
   }
   
 };
