@@ -7,7 +7,7 @@ import RichTextEditor from 'react-rte';
 import {convertFromRaw, convertToRaw, ContentState, Editor, EditorState} from 'draft-js';
 import displayActions from '../../actions/displayActions.js';
 import { connect } from 'react-redux';
-import KeyHandler, { KEYPRESS } from 'react-key-handler';
+
 
 class Display extends Component {
   constructor(props) {

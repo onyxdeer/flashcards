@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/david-zou/flashcards.git"
+    "url": "git+https://github.com/onyxdeer/flashcards"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/david-zou/flashcards/issues"
+    "url": "https://github.com/onyxdeer/flashcards"
   },
-  "homepage": "https://github.com/david-zou/flashcards#readme",
+  "homepage": "https://github.com/onyxdeer/flashcards#readme",
   "dependencies": {
     "axios": "^0.15.3",
     "bcryptjs": "^2.4.3",
