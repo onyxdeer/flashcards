@@ -35,7 +35,7 @@ class imageDropzone extends React.Component {
     (console.log(this.props))
     if(this.props.bento.noris[this.props.number]["Front"]["image"]) {
       return (
-        <img src = {this.props.bento.noris[this.props.number]["Front"]["image"]} />
+        <img className={"nori-image"} src = {this.props.bento.noris[this.props.number]["Front"]["image"]}/>
       )
     } else {
       console.log(this.props.bento.noris)
@@ -45,7 +45,6 @@ class imageDropzone extends React.Component {
     }
   }
 }
-
 function mapStateToProps(state) {
   return {
     bento: state.editBentoInfo

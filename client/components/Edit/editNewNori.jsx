@@ -9,21 +9,27 @@ class editNewNori extends React.Component {
   render() {
     return (
       <div>
-      <center className="new-nori">
-        <div className='nori-textarea'>
+      <div className="new-nori" style = {{display: 'flex', justifyContent: 'center'}}>
+        <div style = {{flex: "flex-start", minWidth: 210}}>
           <ImageDropzone number = {this.props.number}/>
+        </div>
+        <div className="nori-edit-right" style = {{display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
+          <div style ={{display: 'flex', flexFlow: 'row nowrap'}}>
+        <div className='nori-textarea'  >
           <EditNewNoriRTE side = 'Front' number = {this.props.number}/>
           </div>
           <div className='nori-textarea'>
           <EditNewNoriRTE side = 'Back'  number  = {this.props.number} />
           </div>
-          <center className="add-delete-nori">
+          </div>
+          <div className="add-delete-nori" style = {{display: 'flex', justifyContent:'flex-end'}}>
       <button type="submit" className="btn add-nori-button"  onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}>Add</button>
       <button type="submit" className="btn add-nori-button" value={this.props.number}  onDoubleClick= {() => 
         {this.props.handleDeleteNori(this.props.bento, this.props.number)}
         }>Del</button>
-      </center>
-      </center> 
+        </div>
+      </div>
+      </div> 
       </div>
     );
   }
