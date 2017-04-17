@@ -11,8 +11,10 @@ class Voice extends Component {
     }
 
 
-    var a = new AI('joe')
-
+    var joe = new AI('joe')
+    joe.listen()
+    // joe.startSesssion()  //should check if annyang and responsive voice are enabled, retrieves data from the server
+    // joe.startReading()           //takes the first nori, reads the front message.               
     
 
   }

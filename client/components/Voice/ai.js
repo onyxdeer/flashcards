@@ -9,10 +9,12 @@ import request from 'axios';
   and active command listening (via annyang.js)
 */
 const AI = class {
-  constructor(name) {
+  constructor(name, bentoId) {
     this.name = name;
     this.commands = util.commands;
     this._initAnnyang(util.commands);
+    this._getBento(bentoId)
+                    .then( data => this.data = data );
   }
 
   /*
@@ -86,6 +88,19 @@ const AI = class {
   }
 
   /*
+    Starts the Voice Review Session by initializing all necessary dependencies
+    @param {object} any configurations for this session
+    @return {AI instance} 
+  */
+  startSession(config) {
+    if( !this.data ) {
+      console.error('data is yet to be retrieved')
+      return this;
+    }
+    return this;
+  }
+
+  /*
     Command to voice text to speech using Responsive Voice
     @param {string} the string to transform to speech
     @return {AI instance}
@@ -95,16 +110,23 @@ const AI = class {
     window.responsiveVoice.speak(text, "UK English Female");
     return this;
   }
+  // speakable(target){
+  //   console.log('target func: ', target)
+  // }
 
   listen() {
     return new Promise( (resolve, reject) => {
 
     });
   }
+
+
   
 };
 
-
+function speakable(target){
+  console.log('target: ', target)
+}
 // var a = new AI('joe')
 
 
