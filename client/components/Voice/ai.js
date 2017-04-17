@@ -14,7 +14,8 @@ const AI = class {
     // this.commands = util.commands;
     // this._initAnnyang(util.commands);
     this._getBento(bentoId)
-                    .then( data => this.data = data );
+                    .then( data => this._processData(data) )
+                    .then( processed => this.data = processed );
     this.commands = this._getCommands();
     this._initAnnyang(this.commands);
   }
@@ -26,7 +27,6 @@ const AI = class {
       spoken
   */
   _initAnnyang(commands) {
-    console.log(commands)
     if (window.annyang) {
       window.annyang.addCommands(commands);
       window.annyang.start();
@@ -45,6 +45,16 @@ const AI = class {
       bentoId
     }
     return request.get(URL, { params })
+  }
+
+  /*
+    @private
+    @param {object} the data to be processed to the correct format for AI to iterate through
+    @return {object} 
+  */
+  _processData( data ) {
+
+    return data
   }
 
 
@@ -184,6 +194,10 @@ const AI = class {
     return new Promise( (resolve, reject) => {
 
     });
+  }
+
+  next() {
+
   }
 
 
