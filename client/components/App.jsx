@@ -19,7 +19,6 @@ import Voice from './Voice/Voice.jsx';
 
 import { connect } from 'react-redux';
 import * as actions from '../actions/appActions.js';
-
 // Allows redirection from current page to Search page upon search submission
 let TargetRoute = () => ( <Redirect from='/' to='/' /> );
 
@@ -110,7 +109,7 @@ class App extends Component {
             <Route exact path='/' component={() => <Landing />} />
             <Route path='/display' component={() => <Display bentoId={this.props.bentoId}/>} />
             <Route path='/landing' component={() => <Landing />} />
-            <Route path='/edit' component={() => <Edit />} />
+            <Route path='/edit' component={() => <Edit />}/>
             <Route path='/search' component={() => <Search query={this.props.query} endNavSubmit={this.props.endNavSubmit} userId = {this.props.userId}  bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/>} />
             <Route path='/user' component={() => <User userId = {this.props.userId} bentoId = {this.props.bentoId} setBentoId = {this.props.setBentoId}/> } />
             <Route path='/voice' component={() => <Voice />} />

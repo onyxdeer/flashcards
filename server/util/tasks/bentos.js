@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const crypto = require('crypto');
-
 const Bento = require('../../../db/models/bentos.js');
 const Nori = require('../../../db/models/noris.js');
 const Bento_nori = require('../../../db/models/bentos_noris.js');
+const Image = require('../../../db/models/images.js');
 
 const idToHash = (id) => {
   return crypto.createHash('md5').update(id.toString()).digest("hex").slice(0,9);
@@ -18,35 +18,41 @@ const get = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-const post = (req, res) => {
-  console.log(req.body);
-  var data = req.body;
-  var noris = data.noris;
+const post = (req, res) => {      //Okay this is a bit disgusting but works
+  console.log(req.body);           //We are sending a post request to api/bento with a huge bento data                                     
+  var data = req.body;                  
+  var noris = data.noris;                //We separate the data to fit the schemas we  build
   var userId = data.user_id;
-  var bentoId;
-  var bentoInfo = { 
+  var bentoId = data.bento_id;
+  var bentoInfo = {                          //this is the bento columns
+    id: bentoId,
     name: data.name,
     description: data.description,
     nori_count: noris.length,
     visit_count: data.visit_count,
     user_id: userId
   }
-  var norisArray = noris.map(function(nori) {
+
+
+  var norisArray = noris.map(function(nori) {           //this is the noris columns
     var noriInfo = {
       text_front: nori.Front.text,
       text_back: nori.Back.text,
       audio_url_front: nori.Front.soundFile,
-      audio_url_back: nori.Back.soundFile
+      audio_url_back: nori.Back.soundFile,
+      image: nori.Front.image                                 //the image is saved in on the Front side always *for now*  this should be in order from 
     }
     return noriInfo;
   })
   
-  var p1 = Bento.upsert(bentoInfo)
+
+
+  var p1 = Bento.upsert(bentoInfo)                           //We either update or the insert the bento
   .then(function(created) {
     return created
   })
-  var P1 = Promise.all([p1])
-  .then(function(created){
+  var P1 = Promise.all([p1])                                 //we want to makesure p1 is done then decide what to do based on whether it was created or not
+  .then(function(created){                                    // if it was created return the most recent bento created by using the userid
     if(created[0]) {
       return Bento.findOne({
         where: {
@@ -67,17 +73,27 @@ const post = (req, res) => {
       })
     } 
   })
-  var clearBento_NoriLinks = Bento_nori.destroy({where: {bento_id: bentoId}}).then(function(number){
+  var clearImage_BentoLinks = Image.destroy({where: {bento_id: bentoId}}).then(function(number){   //destroys all the image urls saved that is related to the bento_id
     console.log(number)
   })
-  Promise.all([P1, clearBento_NoriLinks])
+  var clearBento_NoriLinks = Bento_nori.destroy({where: {bento_id: bentoId}}).then(function(number){
+    console.log(number)                                                 //we then create a promise called clearBento_NoriLinks that wipes the joint table of any reference of that bento_id and the nori-ids associated with that
+  })
+  Promise.all([P1, clearBento_NoriLinks, clearImage_BentoLinks])                 //So once P1 and the above promise are done 
   .then(function(){
-    var n1 = Promise.all(norisArray.map(function(noriInfo){
-      console.log(noriInfo)
+    var n1 = Promise.all(norisArray.map(function(noriInfo){        //we create the all the cards and if we find the same we DONT make a duplicate
+      console.log(noriInfo)                                                               //n1 is the Promise.all so basically we make sure we do the above for all the cards
       return Nori.findOrCreate({where: {text_front: noriInfo.text_front, text_back: noriInfo.text_back, audio_url_front : noriInfo.audio_url_front, audio_url_back: noriInfo.audio_url_back}})
+      .then(function(savedNori){
+        console.log("line 78", savedNori, noriInfo)
+        var noriId = savedNori[0].dataValues.id;
+        Image.findOrCreate({where: {bento_id: bentoId, nori_id: noriId, url: noriInfo.image}})
+        return savedNori
+      })
     }))
-    n1.then(function(nori){
-      return nori.map(function(nori, index){
+    n1.then(function(nori){                                                               //nori represensts an array of the noris in the database, then we extract all those nori_ids 
+      console.log("line 85", nori)
+      return nori.map(function(nori){
         return nori[0].dataValues.id
       })
     })
@@ -86,7 +102,7 @@ const post = (req, res) => {
         return Bento_nori.findOrCreate({where: {bento_id: bentoId, nori_id: noriId}})
       }))
       .then(function(){
-       return Bento_nori.findAll({attributes: ['nori_id']})
+        return Bento_nori.findAll({attributes: ['nori_id']})
       })
       .then(function(result){
         var idArray = result.map(function(id){
