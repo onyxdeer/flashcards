@@ -44,7 +44,7 @@ const startPipingToBackend = () => { console.log('piping data started')}
 const endPipingToBackend = () => { console.log('piping data ended')} 
 
 const prompt = (text) => {
-  responsiveVoice.speak(text, "UK English Female", { onend: recordAnswer });
+  window.responsiveVoice.speak(text, "UK English Female", { onend: recordAnswer });
 }
 
 const recordAnswer = () => {
@@ -53,7 +53,7 @@ const recordAnswer = () => {
 }
 
 const say = (text, callbacks ) => {
-  responsiveVoice.speak(text, "UK English Female", callbacks );
+  window.responsiveVoice.speak(text, "UK English Female", callbacks );
 }
 
 

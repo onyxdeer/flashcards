@@ -11,10 +11,12 @@ import request from 'axios';
 const AI = class {
   constructor(name, bentoId) {
     this.name = name;
-    this.commands = util.commands;
-    this._initAnnyang(util.commands);
+    // this.commands = util.commands;
+    // this._initAnnyang(util.commands);
     this._getBento(bentoId)
                     .then( data => this.data = data );
+    this.commands = this._getCommands();
+    this._initAnnyang(this.commands);
   }
 
   /*
@@ -53,11 +55,50 @@ const AI = class {
     @return {object} used to initialize annyang
   */
   _getCommands() {
-    const commandNames = Object.getOwnPropertyNames( AI.prototype );
-    let commandObj = {};
-    let voiceCommands = this._removePrivateMethods(commandNames);
-    voiceCommands.map(command => commandObj[command] = AI.prototype[command] );
-    return commandObj;
+    // const commandNames = Object.getOwnPropertyNames( AI.prototype );
+    // let commandObj = {};
+    // let voiceCommands = this._removePrivateMethods(commandNames);
+    // voiceCommands.map(command => commandObj[command] = AI.prototype[command] );
+    // return commandObj;
+
+    const commands = {
+      'start': () => {
+        console.log('start triggered')
+        let configs = {}
+        this.startSession( configs );
+      },
+      'hello': function(){
+        console.log('hello function called')
+        say('hello there, my name is norica, here to help you memorize your ')
+      },
+      'next': function(){
+        console.log('next function called!')
+      },
+      'go' : function(){
+        console.log('go fucntion called')
+      },
+      'repeat': function(){
+        console.log('repeat function called')
+      },
+      'redo': function(){
+        console.log('redo function called')
+      },
+      'previous': function(){
+        console.log('previous function called')
+      },
+      'retry': function(){
+        console.log('retry function called')
+      },
+      'answer': function(){
+        console.log('answer function called')
+      },
+      'accent': function(){
+        //another function alias called
+        //say it as if you are *country name
+        console.log('accent function called')
+      }
+    };
+    return commands;
   }
 
   /*
@@ -97,6 +138,7 @@ const AI = class {
       console.error('data is yet to be retrieved')
       return this;
     }
+    console.log('we have data: ', this.data)
     return this;
   }
 
