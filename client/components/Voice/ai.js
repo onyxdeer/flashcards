@@ -67,9 +67,9 @@ const AI = class {
         let configs = {}
         this.startSession( configs );
       },
-      'hello': function(){
+      'hello': () => {
         console.log('hello function called')
-        say('hello there, my name is norica, here to help you memorize your ')
+        this.say('hello there, my name is norica, here to help you memorize your noris ')
       },
       'next': function(){
         console.log('next function called!')
@@ -134,12 +134,36 @@ const AI = class {
     @return {AI instance} 
   */
   startSession(config) {
+    window.annyang.resume()
     if( !this.data ) {
       console.error('data is yet to be retrieved')
       return this;
     }
     console.log('we have data: ', this.data)
     return this;
+  }
+  /*
+    ends the voice session and gracefully shut down all the clients
+  */
+  endSession() {
+    window.annyang.pause()
+    //speech client stop
+  }
+
+  /*
+    resumes the current annyang session, invoked when finished listening for 
+    microphone input from user to transfer data to speech server
+  */
+  resume() {
+    window.annyang.resume();
+  }
+
+  /*
+    temporarily pauses the session in order to allow recording microphone
+    input from user to transfer data to speech server
+  */
+  pause() {
+    window.annyang.pause();
   }
 
   /*

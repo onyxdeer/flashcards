@@ -10,21 +10,25 @@ class Voice extends Component {
 
     }
 
-
+    this.joe = new AI('joe')
  
 
   }
 
   handleStart(){
-    var joe = new AI('joe')
+    
     // joe.listen()    
-    joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
+    this.joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
     // setTimeout(function(){
     //   joe.startSession({}) 
 
     // }, 300);
     // joe.startReading()           //takes the first nori, reads the front message.               
     
+  }
+
+  handleEnd(){
+    this.joe.endSession()
   }
 
   render() {
@@ -34,8 +38,8 @@ class Voice extends Component {
             <h1><span className="glyphicon glyphicon-record"></span> Obento with sound</h1>
           </div>
 
-          <button className="btn btn-primary" id="start-rec-btn" onClick={this.handleStart}>Start Recording</button>
-          <button className="btn btn-primary" id="stop-rec-btn">Stop Recording</button>
+          <button className="btn btn-primary" id="start-rec-btn" onClick={this.handleStart}>Start Session</button>
+          <button className="btn btn-primary" id="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>
 
           <div id="canvas-container">
               <canvas width="600" height="100" id="canvas"></canvas>
