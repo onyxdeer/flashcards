@@ -234,6 +234,12 @@ function shareUrlToSMS(event, url, phoneNumber) {
   }
 }
 
+function incrementVisitCount() {
+  return function(dispatch) {
+    
+  }
+}
+
 const displayActions = { fetchFrontImages, fetchBackImages,
                          fetchBentoMetaData, fetchNoris,
                          nextNori, prevNori, handleInput,

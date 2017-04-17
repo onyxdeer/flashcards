@@ -1,18 +1,18 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-import { GET_SHORTENER_ID, UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE, CHANGE_INPUT } from './actionTypes.js'
+import { GET_SHORTENER_ID, UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE, CHANGE_INPUT } from './actionTypes';
 
 export function getShortenerId(hash) {
-  return function(dispatch, getState) {
+  return function (dispatch) {
     return axios.get('/api/bentos', {
-      params: { id_hash: hash }
+      params: { id_hash: hash },
     })
     .then(function(response) {
       console.log('GOT RESPONSE BACK FROM GETSHORTENERID:', response);
       dispatch({
         type: GET_SHORTENER_ID,
-        shortenerId: response.data[0].id
+        shortenerId: response.data[0].id,
       });
     });
   }
@@ -20,10 +20,10 @@ export function getShortenerId(hash) {
 
 export function handleNavSubmit(event, input) {
   event.preventDefault();
-  return function(dispatch, getState) {
+  return function (dispatch) {
     dispatch({
       type: UPDATE_QUERY,
-      query: input
+      query: input,
     });
     dispatch({
       type: CHANGE_SEARCHACTIVE,
