@@ -21,7 +21,7 @@
         if (!options.clientid) {
             throw 'Provide a valid Client Id here: http://api.imgur.com/';
         }
-
+        this.index = options.index;
         this.clientid = options.clientid;
         this.endpoint = 'https://api.imgur.com/3/image';
         this.callback = options.callback || undefined;
@@ -76,8 +76,11 @@
             console.log("Line 76 of IMGUR.JS", this.dropzone)
 
             Array.prototype.forEach.call(this.dropzone, function (zone, index) {
+                console.log("Line 79 imgur ",this.dropzone, zone)
+               if(!zone.hasChildNodes()){
                 zone.appendChild(p);
                 zone.appendChild(input);
+               }
                 this.status(zone, index);
                 this.upload(zone);
             }.bind(this));
