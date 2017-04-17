@@ -28,6 +28,7 @@
     "axios": "^0.15.3",
     "bcryptjs": "^2.4.3",
     "binaryjs": "^0.2.1",
+    "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "classnames": "^2.2.5",
     "elasticsearch": "^13.0.0-rc2",

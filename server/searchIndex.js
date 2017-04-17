@@ -1,64 +1,75 @@
+const Sequelize = require('sequelize');
+const Promise = require('bluebird'); // Save to dependency
+
 const $search = require('./elasticSearch');
-const sequelize = require('sequelize');
-// const Promise = require('bluebird');
-// const db = require('../db/db')
-// const query = Promise.promisify(db.query.bind(db));
+const Bento = require('../db/models/bentos.js');
+const Image = require('../db/models/images.js');
 
-function returnRecipe(id) {
-  // const ingredientsQuery = `SELECT * from ingredients WHERE recipe_id = ${id};`;
-  // const tagsQuery = `SELECT * from tags WHERE recipe_id = ${id};`;
-  // const recipeQuery = `SELECT * from recipes WHERE id = ${id};`
-  // const userQuery = `SELECT username FROM users WHERE id = (SELECT user_id FROM recipes WHERE id = ${id})`
+function returnBento(id) {
+  return Bento.findOne({where: {id: id}})
+    .then((bento) => {
+      const { id, name, id_hash, description, nori_count, private, visit_count, user_id, category_id } = bento;
+      return {
+        id,
+        name,
+        id_hash,
+        description,
+        nori_count,
+        private,
+        visit_count,
+        user_id,
+        category_id        
+      }
+    })
+    .catch((err) => console.log(err));
+};
 
-  
-  query(recipeQuery).then(([recipe]) => {
-    if(!recipe) return res.status(422).send({ error: 'Recipe does not exist' });
-  })
+function returnImage(id) {
+  return Image.findOne({where: {id: id}})
+    .then((image) => {
+      const { id, url, nori_front, nori_back, bento_id, nori_id } = image;
+      return {
+        id,
+        url,
+        nori_front,
+        nori_back,
+        bento_id,
+        nori_id
+      }
+    })
+    .catch((err) => console.log(err));
+};
 
-  return Promise.all([sequelize.query(ingredientsQuery), query(tagsQuery), query(recipeQuery), query(userQuery)])
-    .then(([ ingredients, tagList, [ recipe ], [ user ] ]) => {
-    const [ quantity, items ] = ingredients.reduce((acc, { quantity, ingredient }) => {
-      return [ [...acc[0], quantity], [...acc[1], ingredient] ];
-    }, [[], []])
-    const tags = tagList.reduce((arr, obj) => {
-      return [...arr, obj.tag_name]
-    },[])
-    const { id, name, image, difficulty, cook_time, prep_time, servings, instructions, user_id, description, parent_id } = recipe;
-    const { username } = user;
-    return {
-      id,
-      parent_id,
-      image,
-      username, 
-      name, 
-      difficulty, 
-      description,
-      cook_time, 
-      prep_time, 
-      servings, 
-      instructions, 
-      ingredients: { quantity, items },
-      user_id,
-      tags
-    }
-  })
-}
-const getAllRecipesQuery = `SELECT * from recipes;`
-
-query(getAllRecipesQuery)
-  .then(recipes => Promise.all(recipes.map(recipe => returnRecipe(recipe.id))))
-  .then(details => {
-    details.map((item, i) => {
+// Update AWS ES bentos index
+Bento.findAll()
+  .then(bentos => {
+    return Promise.all(bentos.map(bento => returnBento(bento.id)));
+   })
+  .then(bentosES => {
+    console.log('BentosES: ', bentosES);
+    return bentosES.map((bentoES, i) => {
       $search.index({
         index: 'bentos',
         type: 'Object',
         id: i,
-        body: item
+        body: bentoES
       }, (error, response) => {});
     })
   })
 
-
-// $search.indices.delete({
-//   index: 'recipes'
-// })
+// Update AWS ES thumbnails index
+Image.findAll()
+  .then(images => {
+    return Promise.all(images.map(image => returnImage(image.id)));
+  })
+  .then(imagesES => {
+    console.log('ImagesES: ', imagesES);
+    return imagesES.map((imageES, i) => {
+      $search.index({
+        index: 'thumbnails',
+        type: 'Object',
+        id: i,
+        body: imageES
+      }, (error, response) => {});
+    })
+  })      

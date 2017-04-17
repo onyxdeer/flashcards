@@ -7,6 +7,7 @@ import RichTextEditor from 'react-rte';
 import {convertFromRaw, convertToRaw, ContentState, Editor, EditorState} from 'draft-js';
 import displayActions from '../../actions/displayActions.js';
 import { connect } from 'react-redux';
+import ReactTransitions from 'react-transitions';
 
 class Display extends Component {
   constructor(props) {
@@ -58,7 +59,9 @@ class Display extends Component {
   renderNori (nori, index , noris) {
     const className = classnames('index-card', {
       'card-flipped': index === noris.length - 1 && this.props.isFlipped && !this.props.buttonPressed,
-      'no-animation': this.props.buttonPressed
+      'no-animation': this.props.buttonPressed,
+      'moveFromRight': index === noris.length - 1 && this.props.direction,
+      'moveFromLeft': index === noris.length - 1 && !this.props.direction
     });
     return (
       <Deck.Card key={nori.text_front} className={className}>
@@ -92,7 +95,7 @@ class Display extends Component {
     switch (e.keyCode) {
         case 37:
             console.log('left');
-            this.props.prevNori(this.props.bentoData, this.props.currentNori);
+            this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction);
             break;
         case 38:
             console.log('up');
@@ -100,7 +103,7 @@ class Display extends Component {
             break;
         case 39:
             console.log('right');
-            this.props.nextNori(this.props.bentoData, this.props.currentNori)
+            this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)
             break;
         case 40:
             console.log('down');
@@ -128,7 +131,6 @@ class Display extends Component {
   }
 
   componentDidUpdate() {
-
   }
 
   componentWillUnmount() {
@@ -138,6 +140,7 @@ class Display extends Component {
   render() {
 
     console.log('bentoData in render:', this.props.bentoData);
+
     return (
       <div>
         <div className='row'>
@@ -145,21 +148,21 @@ class Display extends Component {
         </div>
         <div className='row'>
             {this.props.bentoData&&(this.props.bentoData.length > 0) ? <Swipeable
-              onSwipedUp={() => this.props.prevNori(this.props.bentoData, this.props.currentNori)}
-              onSwipedDown={() => this.props.nextNori(this.props.bentoData, this.props.currentNori)}
-              onSwipedLeft={() => this.props.prevNori(this.props.bentoData, this.props.currentNori)}
-              onSwipedRight={() => this.props.nextNori(this.props.bentoData, this.props.currentNori)}>
+              onSwipedUp={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
+              onSwipedDown={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
+              onSwipedLeft={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
+              onSwipedRight={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>
                 <div className='cardSection'>
                   <Deck>
                     {this.getSortedNoris().map(this.renderNori, this)}
                   </Deck>
-                </div> 
+                </div>
             </Swipeable> : <h1 className='center-block'>Sorry, no cards available!</h1> }
         </div>
           <div className='buttonSection'>
-            <button type='button' className='btn btn-success' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori)}>Previous Nori</button>
-            <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori)}>Next Nori</button>
-            <a href='#' className='btn btn-success' data-toggle='popover' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData)}>Shuffle Bento</a>
+            <button type='button' className='btn btn-success' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button>
+            <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>
+            <a href='#' className='btn btn-success' data-toggle='popover' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
           </div>
           <form className='changeToNoriSection' onSubmit={this.handleSetNori}>
             <div className='row'>
@@ -182,7 +185,7 @@ class Display extends Component {
               <div className='modal-dialog' role='document'>
                 <div className='modal-content'>
                   <div className='modal-header'>
-                    <h5 className='modal-title' id='exampleModalLabel'>Share via SMS</h5>
+                    <h3 className='modal-title' id='exampleModalLabel'>Share via SMS</h3>
                     <button type='button' className='close' data-dismiss='modal' aria-label='Close'>
                       <span aria-hidden='true'>&times;</span>
                     </button>
@@ -212,6 +215,7 @@ function mapStateToProps(state) {
   return { 
     shortenerId: state.appReducer.shortenerId,
     bentoData: state.displayReducer.bentoData,
+    direction: state.displayReducer.direction,
     imgDataFront: state.displayReducer.imgDataFront,
     imgDataBack: state.displayReducer.imgDataBack,
     noriToDisplay: state.displayReducer.noriToDisplay,

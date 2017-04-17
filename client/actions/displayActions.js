@@ -7,7 +7,7 @@ import { FETCH_NORIS, FETCH_FRONT_IMAGES,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
          SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT,
-         CLEAR_PHONE_NUMBER_INPUT } from './actionTypes.js';
+         CLEAR_PHONE_NUMBER_INPUT, ANIMATE_BENTO_TRAVERSAL } from './actionTypes.js';
 
 
 
@@ -16,7 +16,7 @@ function fetchFrontImages(bentoId) {
     return axios.get('/api/images', {
       params: { 
         bento_id: bentoId,
-        nori_front: true
+        nori_front: 1
       }
     }).then(function(response) {
       console.log('response from fetchFrontImages:', response.data);
@@ -33,7 +33,7 @@ function fetchBackImages(bentoId) {
     return axios.get('/api/images', {
       params: { 
         bento_id: bentoId,
-        nori_back: true
+        nori_back: 1
       }
     }).then(function(response) {
       console.log('response from fetchBackImages:', response.data);
@@ -95,7 +95,7 @@ function fetchNoris(bentoId) {
     }
 }
 
-function nextNori(bentoData, currentNori) {
+function nextNori(bentoData, currentNori, direction) {
   return function(dispatch) {
     if (currentNori < bentoData.length - 1) {
       dispatch({
@@ -105,11 +105,15 @@ function nextNori(bentoData, currentNori) {
         noriToDisplay: bentoData[currentNori]
       });
       flipToFront();
+      dispatch({
+        type: ANIMATE_BENTO_TRAVERSAL,
+        direction: !direction
+      });
     }
   }
 }
 
-function prevNori(bentoData, currentNori) {
+function prevNori(bentoData, currentNori, direction) {
   return function(dispatch) {
     if (currentNori > 0) {
       dispatch({
@@ -119,6 +123,10 @@ function prevNori(bentoData, currentNori) {
         noriToDisplay: bentoData[currentNori]
       });
       flipToFront();
+      dispatch({
+        type: ANIMATE_BENTO_TRAVERSAL,
+        direction: !direction
+      });
     }
   }
 }
@@ -164,7 +172,7 @@ function setNori(input, bentoData) {
   }
 }
 
-function shuffleNori(bentoData) {
+function shuffleNori(bentoData, direction) {
   return function(dispatch) {
     $('[data-toggle="popover"]').popover('show');
     setTimeout(function() {$('[data-toggle="popover"]').popover('hide')}, 3000);
@@ -183,6 +191,10 @@ function shuffleNori(bentoData) {
       bentoData: result,
       currentNori: 0,
       buttonPressed: true
+    });
+    dispatch({
+      type: ANIMATE_BENTO_TRAVERSAL,
+      direction: !direction
     });
   }
 }
@@ -222,6 +234,11 @@ function shareUrlToSMS(event, url, phoneNumber) {
   }
 }
 
-const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput, clearPhoneNumberInput };
+const displayActions = { fetchFrontImages, fetchBackImages,
+                         fetchBentoMetaData, fetchNoris,
+                         nextNori, prevNori, handleInput,
+                         setNori, shuffleNori, flipToFront,
+                         flipToBack, shareUrlToSMS,
+                         handlePhoneNumberInput, clearPhoneNumberInput };
 
 export default displayActions;

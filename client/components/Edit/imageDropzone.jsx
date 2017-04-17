@@ -16,7 +16,6 @@ class imageDropzone extends React.Component {
     };
 
   componentDidUpdate(){
-    console.log("Component did Update")
         new Imgur({
         clientid: '8887909661837b4',
         callback: this.callback,

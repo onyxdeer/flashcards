@@ -442,7 +442,24 @@ p.copyright {
     width: 200px;
 }
 
+.DraftEditor-root {
+    margin: 0 auto;
+    width: 85%
+}
 
+.modal-title {
+    display: inline-block;
+}
+
+.moveFromLeft {
+    -webkit-animation: moveFromLeft .6s ease both;
+    animation: moveFromLeft .6s ease both;
+}
+
+.moveFromRight {
+    -webkit-animation: moveFromRight .6s ease both;
+    animation: moveFromRight .6s ease both;
+}
 
 /* USER PAGE */
 
@@ -459,11 +476,6 @@ p.copyright {
 .popularBentos {
     text-align: center;
     color: #BADA55;
-}
-
-.DraftEditor-root {
-    margin: 0 auto;
-    width: 85%
 }
 
 /* SEARCH PAGE */
@@ -662,7 +674,6 @@ p.copyright {
 }
 
 .thumbnail {
-    margin: 0 auto;
     width: 200px;
     max-height: 500px;
 }

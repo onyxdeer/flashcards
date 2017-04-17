@@ -4,7 +4,7 @@ import { FETCH_NORIS, FETCH_FRONT_IMAGES,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
          SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT,
-         CLEAR_PHONE_NUMBER_INPUT } from '../actions/actionTypes.js';
+         CLEAR_PHONE_NUMBER_INPUT, ANIMATE_BENTO_TRAVERSAL } from '../actions/actionTypes.js';
 
 const stateDefault = {
   title: '',
@@ -19,7 +19,8 @@ const stateDefault = {
   id_hash: '',
   url: '',
   phoneNumber: '',
-  phoneNumberInput: ''
+  phoneNumberInput: '',
+  direction: true
 };
 
 const handleFetchNoris = (state, action) => {
@@ -78,6 +79,10 @@ const handleShuffleNoris = (state, action) => {
   return {...state, bentoData: action.bentoData, currentNori: action.currentNori, buttonPressed: action.buttonPressed};
 }
 
+const handleBentoTraversalAnimation = (state, action) => {
+  return {...state, direction: action.direction};
+}
+
 export default function (state = stateDefault, action) {
     switch (action.type) {
       case FETCH_NORIS:
@@ -121,6 +126,9 @@ export default function (state = stateDefault, action) {
         break;
       case CLEAR_PHONE_NUMBER_INPUT:
         return handleClearPhoneNumberInput(state, action);
+        break;
+      case ANIMATE_BENTO_TRAVERSAL:
+        return handleBentoTraversalAnimation(state, action);
         break;
     }
     return state;
