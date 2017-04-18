@@ -115,7 +115,7 @@ class App extends Component {
             <Route path="/display" component={Display} />
             <Route path="/landing" component={Landing} />
             <Route path="/edit" component={Edit} />
-            <Route path="/search" component={Search} />
+            <Route path="/search" component={() => <Search />} />
             <Route path="/explore" component={Explore} />
             <Route path="/user" component={User} />
             <Route path="/login" component={Login} />
