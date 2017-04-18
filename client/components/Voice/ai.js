@@ -2,6 +2,7 @@
 
 import util from './util.js';
 import request from 'axios';
+import client from './client.js';
 /*
   AI class responsible with the following functionalities:
   speech to text and speech recognition (via google API)
@@ -198,6 +199,10 @@ const AI = class {
 
   next() {
 
+  }
+
+  validateStream(){
+    // import google client here
   }
 
 
