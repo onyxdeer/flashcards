@@ -16,15 +16,16 @@ class Voice extends Component {
   }
 
   handleStart(){
-    
-    // joe.listen()    
+
     this.joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
+
+
     // setTimeout(function(){
-    //   joe.startSession({}) 
+    //   joe.startSession({})
 
     // }, 300);
-    // joe.startReading()           //takes the first nori, reads the front message.               
-    
+    // joe.startReading()           //takes the first nori, reads the front message.
+
   }
 
   handleEnd(){

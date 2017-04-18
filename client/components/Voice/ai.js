@@ -54,7 +54,7 @@ const AI = class {
     @return {object} 
   */
   _processData( data ) {
-
+    console.log('data received in _processData function is : ', data)
     return data
   }
 
