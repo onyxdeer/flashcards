@@ -41,8 +41,8 @@ class NavigationGuest extends Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
             <ul className="nav navbar-nav">
-              <li><Link to="Explore" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Explore</Link></li>
-              <li><Link to="Edit"onClick = {()=> {this.props.handleRenderCreatePage()}} onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
+              <li><Link to="/Explore" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Explore</Link></li>
+              <li><Link to="/Edit"onClick = {()=> {this.props.handleRenderCreatePage()}} onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
               {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
             </ul>            
 
