@@ -1,28 +1,37 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const path = require('path');
-const axios = require('axios');
 const database = require('../db/index.js');
 const bindrouter = require('./router.js');
-const util = require('./util/util.js');
 const morgan = require('morgan');
-var history = require('connect-history-api-fallback');
+const history = require('connect-history-api-fallback');
+const passport = require('passport');
+const { SESSION_SECRET } = require('../config/config.js');
+const flash = require('connect-flash');
 
 const PORT = process.env.PORT || 8000;
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
-
 app.use(morgan('combined'));
 app.use(history());
+
+app.use(session({ secret: SESSION_SECRET }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 bindrouter(app);
 
 database();
 
-app.listen(PORT, function() {
+app.listen(PORT, () => {
   console.log('Obento express server connection established at:', PORT);
 });
 
