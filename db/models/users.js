@@ -5,19 +5,35 @@ const bcrypt = require('bcryptjs');
 const User = db.define('user', {
   username: {
     type: Sequelize.STRING,
-    allowNull: false,
     unique: {
       args: true,
-      msg: 'Username already exists!'
-    }
+      msg: 'Username already exists!',
+    },
+    validate: {
+      notNull: true,
+      notEmpty: true,
+    },
   },
-  password: Sequelize.STRING,
+  password: {
+    type: Sequelize.STRING,
+    validate: {
+      notNull: true,
+      notEmpty: true,
+    },
+  },
 }, {
-  hooks: {
-    afterValidate: function(user) {
-      user.password = bcrypt.hashSync(user.password, 8);
-    }
-  }
+  classMethods: {
+    validPassword: function (user, password) {
+      bcrypt.compareSync(password, user.password);
+    },
+  },
+// }, {
+//   hooks: {
+//     afterValidate: function (user) {
+//       user.password = bcrypt.hashSync(user.password, 8);
+//     },
+//   },
+// });
 });
 
 module.exports = User;

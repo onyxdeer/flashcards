@@ -9,7 +9,7 @@ import { setBentoId } from '../../actions/appActions.js';
 
 let userId = 1;
 
-class User extends Component {
+class Explore extends Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +21,7 @@ class User extends Component {
       userId = this.props.userId;
     }
 
-    this.props.fetchUser(userId);
+    this.props.fetchPopular(userId);
   }
 
   render() {
@@ -47,13 +47,7 @@ class User extends Component {
       <div>
         <div className='row center-block'>
           <div className='create-title'>
-            <h1 className='default-font'>{this.props.category} Bentos:</h1>
-          </div>
-          <div className='row buttonSection'>
-            <label>Categories:</label>
-            <button type='button' className='btn btn-success' onClick={() => this.props.fetchUser(userId)}>Personal</button>
-            <button type='button' className='btn btn-success' onClick={() => this.props.fetchFavorites(userId)}>Favorites</button>
-            <button type='button' className='btn btn-success' onClick={this.props.fetchPopular}>Popular</button>
+            <h1 className='default-font'>Explore Bentos</h1>
           </div>
           <div className='row'>
             <div className='col-xs-1'></div>
@@ -96,4 +90,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { ...personalActions, setBentoId })(User);
+export default connect(mapStateToProps, { ...personalActions, setBentoId })(Explore);

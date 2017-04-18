@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavItem, NavDropdown, FormGroup, FormControl, MenuItem, Button, Dropdown, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/navActions.js';
-import { handleNavSubmit, handleNavSearch } from '../../actions/appActions.js'
+import { handleNavSearch } from '../../actions/appActions.js';
 
-class Navigation extends Component {
+class NavigationUser extends Component {
   constructor(props) {
     super(props);
 
@@ -42,7 +42,7 @@ class Navigation extends Component {
             
             <ul className="nav navbar-nav">
               <li><Link to="/User" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
-              <li><Link to="/Edit/new" onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
+              <li><Link to="/Edit" onClick = {()=> {this.props.handleRenderCreatePage()}} onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
               {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
             </ul>            
 
@@ -82,11 +82,12 @@ class Navigation extends Component {
 
 function mapStateToProps(state) {
   return { 
-    input: state.navReducer.input
-  }
+    input: state.navReducer.input,
+    userId: state.appReducer.userId,
+  };
 }
 
-export default connect(mapStateToProps, { ...actions, handleNavSubmit, handleNavSearch })(Navigation);
+export default connect(mapStateToProps, { ...actions, handleNavSearch })(NavigationUser);
 
         /*<Navbar collapseOnSelect fixedTop active activeKey activeHref>
         <Navbar.Header>

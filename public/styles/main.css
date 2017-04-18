@@ -111,9 +111,9 @@ label, button, a {
   }
 
   .nori-textarea{
-    height: 10%;
+    height: 50%;
     max-height: 120px;
-    width: 30%;
+    width: auto;
     margin: 0 auto;
     position: relative;
     display: inline-block
@@ -189,6 +189,7 @@ input {
     margin: 0 auto;
     padding: 5px;
     height: 10%;
+    min-height: 210px;
 }
 
 .add-nori-button{
@@ -442,7 +443,24 @@ p.copyright {
     width: 200px;
 }
 
+.DraftEditor-root {
+    margin: 0 auto;
+    width: 85%
+}
 
+.modal-title {
+    display: inline-block;
+}
+
+.moveFromLeft {
+    -webkit-animation: moveFromLeft .6s ease both;
+    animation: moveFromLeft .6s ease both;
+}
+
+.moveFromRight {
+    -webkit-animation: moveFromRight .6s ease both;
+    animation: moveFromRight .6s ease both;
+}
 
 /* USER PAGE */
 
@@ -459,11 +477,6 @@ p.copyright {
 .popularBentos {
     text-align: center;
     color: #BADA55;
-}
-
-.DraftEditor-root {
-    margin: 0 auto;
-    width: 85%
 }
 
 /* SEARCH PAGE */
@@ -604,6 +617,12 @@ p.copyright {
     perspective: 1000px;
 }
 
+.caption {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
 .slick-margin {
     margin: 20px;
 }
@@ -653,16 +672,18 @@ p.copyright {
 }
 
 .ellipsis {
-  text-overflow: ellipsis;
-  height: 7.5ex;
+    width: 100%;
+    height: 100%;
+    text-overflow: ellipsis;
+    height: 7.5ex;
+    padding-right: 17px;
 
   /* Required for text-overflow to do anything */
-  white-space: wrap;
-  overflow: scroll;
+    white-space: wrap;
+    /*overflow-y: scroll;*/
 }
 
 .thumbnail {
-    margin: 0 auto;
     width: 200px;
     max-height: 500px;
 }
@@ -670,4 +691,58 @@ p.copyright {
 .thumbnail img {
     width: 180px;
     height: auto;
+}
+
+
+
+/*CSS FOR DROPZONE*/
+.dropzone {
+    border: 4px dashed #ccc;
+    height: 200px;
+    margin: 0 10px;
+    position: relative;
+    width: auto;
+}
+
+.dropzone p {
+  display: inline-block;
+    height: 100%;
+    line-height: 200px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.dropzone input[type="file"] {
+    height: 100%;
+    left: 0;
+    outline: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.dropzone + .status {
+    border-radius: 5px;
+    margin: 10px 10px 0;
+    padding: 15px;
+    text-align: center;
+}
+
+.dz {
+  
+}
+
+.nori-image {
+  max-height: 182px; 
+  max-width: 162px
+}
+
+.RichTextEditor__editor___1QqIU {
+  height: 90px
+}
+
+.RichTextEditor__root___2QXK- {
+  min-width: 460px
 }
