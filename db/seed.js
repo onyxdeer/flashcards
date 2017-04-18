@@ -84,6 +84,15 @@ User.create({
 })
 .then(function() {
   return Image.create({
+    url: 'http://r.ddmcdn.com/s_f/o_1/cx_633/cy_0/cw_1725/ch_1725/w_720/APL/uploads/2014/11/too-cute-doggone-it-video-playlist.jpg',
+    nori_front: false,
+    nori_back: false,
+    bento_id: 1,
+    nori_id: null
+  });
+})
+.then(function() {
+  return Image.create({
     url: 'https://static.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg',
     nori_front: true,
     nori_back: false,
