@@ -48,12 +48,13 @@ function storeBentoIds(response, idArray, bentoData) {
 //     params: { idArray }
 //   })
 //   .then(function(response) {
-//     console.log('IMGDATA: ', response.data);
+//     console.log('fetchTHumbnails response: ', response.data);
+//     console.log('fetchthumbnails bento data: ', bentoData);    
 //     var imgData = response.data;
 //     // populate the ones with images
 //     for (var i = 0; i < bentoData.length; i++) {
 //       for (var j = 0; j < imgData.length; j++) {
-//         if (imgData[j]._source.bento_id === bentoData[i].id) {
+//         if (imgData[j].bento_id === bentoData[i].id && imgData[j].nori_id === null) {
 //           bentoData[i].img_url = imgData[j]._source.url;
 //         }
 //       }
@@ -72,11 +73,13 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch) {
     params: { bento_id: idArray }
   })
   .then(function(response) {
+    console.log('fetchTHumbnails response: ', response.data);
+    console.log('fetchthumbnails bento data: ', bentoData);
     var imgData = response.data;
     // populate the ones with images
     for (var i = 0; i < bentoData.length; i++) {
       for (var j = 0; j < imgData.length; j++) {
-        if (imgData[j].bento_id === bentoData[i].id) {
+        if (imgData[j].bento_id === bentoData[i].id && imgData[j].nori_id === null) {
           bentoData[i].img_url = imgData[j].url;
         }
       }
