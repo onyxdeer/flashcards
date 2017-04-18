@@ -11,8 +11,8 @@ class Voice extends Component {
     }
 
     this.joe = new AI('joe')
- 
-
+    this.handleStart = this.handleStart.bind(this);
+    this.handleEnd = this.handleEnd.bind(this);
   }
 
   handleStart(){

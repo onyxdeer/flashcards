@@ -11,7 +11,7 @@
 //         // resampleRate = contextSampleRate,
 //         resampleRate = 44100,
 //         // contextSampleRate = 16000,
-//         worker = new Worker('js/worker/resampler-worker.js');
+//         worker = new Worker('./worker/resampler-worker.js');
 
 
 //     console.log('what is contextSampleRate: ', contextSampleRate)
