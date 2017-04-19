@@ -1,8 +1,10 @@
 /**
  * Created by noamc on 8/31/14.
  */
+import BinaryClient from './binary.js';
 
-$(function () {
+module.exports = function (config) {
+   console.log('is this function ran at all??::', config)
     var client,
         recorder,
         context,
@@ -12,6 +14,7 @@ $(function () {
         var resampleRate = 44100,
         // contextSampleRate = 16000,
         worker = new Worker('./worker/resampler-worker.js');
+    
 
 
     console.log('what is contextSampleRate: ', contextSampleRate)
@@ -22,7 +25,8 @@ $(function () {
             bStream.write(convertFloat32ToInt16(e.data.buffer));
     }, false);
 
-    $("#start-rec-btn").click(function () {
+    $(".start-rec-btn").click(function () {
+        console.log('hELLLO', config)
         close();
         client = new BinaryClient('wss://'+location.host);
         client.on('open', function () {
@@ -100,7 +104,7 @@ $(function () {
         }
     }
 
-    $("#stop-rec-btn").click(function () {
+    $(".stop-rec-btn").click(function () {
         close();
     });
 
@@ -111,7 +115,7 @@ $(function () {
         if(client)
             client.close();
     }
-});
+};
 
 navigator.getUserMedia = navigator.getUserMedia ||
     navigator.webkitGetUserMedia ||

@@ -73,3 +73,20 @@ VM3119:1 Thai Female
 VM3119:1 Turkish Female
 
 VM3119:1 Fallback UK Female
+
+
+if i merge this it 
+
+willl do x
+where x is your commit message
+
+
+use present tense
+start with verb
+
+add nanemeessapce qualiftication
+[docs]
+[bug]
+[feature]
+
+doc, bug, fix, feature, work in progress, 

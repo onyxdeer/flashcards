@@ -34,6 +34,11 @@ const AI = class {
       window.annyang.debug(true);
     };
   }
+  
+
+  _initClient(configs){
+    client(configs);
+  }
 
   /*
     Retrieves all the necessary bento & noris in order to have a Voice Review Session
@@ -196,9 +201,13 @@ const AI = class {
 
     });
   }
-
-  next() {
-
+  /**
+   * 
+   * @param {*data} data 
+   * @return {some more data}
+   */
+  next(data) {
+    return nextObj
   }
 
   validateStream(){
