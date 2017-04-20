@@ -14,6 +14,9 @@ class Voice extends Component {
     this.joe = new AI('joe')
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
+    this.transfer = this.transfer.bind(this);
+    this.endTransfer = this.endTransfer.bind(this);
+    
   }
 
   handleStart(){
@@ -33,6 +36,16 @@ class Voice extends Component {
     this.joe.endSession()
   }
 
+  transfer(){
+
+    this.joe.startTransfer()
+  }
+
+  endTransfer(){
+    this.joe.endTransfer()
+  }
+
+
   render() {
     return (
       <div className="container">
@@ -41,7 +54,8 @@ class Voice extends Component {
           </div>
           <button className="start-rec-btn" onClick={this.handleStart}>Start Session</button>
           <button className="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>
-
+          <button className="startTransfer" onClick={this.transfer}>Start Session</button>
+          <button className="endTransfer" onClick={this.endTransfer}>Stop Session</button>
           {/*<button className="btn btn-primary" id="start-rec-btn" onClick={this.handleStart}>Start Session</button>
           <button className="btn btn-primary" id="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>*/}
 
