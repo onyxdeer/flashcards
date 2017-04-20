@@ -97,19 +97,19 @@ User.create({
 }))
 
 // Nori
-.then(() => Nori.create({
+.then(() => Nori.create({ // Hack Reactor React
   text_front: '{"entityMap":{},"blocks":[{"key":"a75u3","text":"Another Test for Example","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":12,"style":"ITALIC"},{"offset":0,"length":12,"style":"UNDERLINE"},{"offset":0,"length":12,"style":"BOLD"}],"entityRanges":[],"data":{}}]}',
   text_back: '{"entityMap":{},"blocks":[{"key":"npdf","text":"Done","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"a3kfc","text":"with example.","type":"ordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}',
 }))
-.then(() => Nori.create({
+.then(() => Nori.create({ // Hack Reactor Node
   text_front: '{"entityMap":{},"blocks":[{"key":"iou6","text":"Testing","type":"header-one","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}',
   text_back: '{"entityMap":{},"blocks":[{"key":"81dt4","text":"123","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}',
 }))
-.then(() => Nori.create({
+.then(() => Nori.create({ // Basketball Curry
   text_front: '{"entityMap":{},"blocks":[{"key":"a75u3","text":"Another Test for Example","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":12,"style":"ITALIC"},{"offset":0,"length":12,"style":"UNDERLINE"},{"offset":0,"length":12,"style":"BOLD"}],"entityRanges":[],"data":{}}]}',
   text_back: '{"entityMap":{},"blocks":[{"key":"npdf","text":"Done","type":"unordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"a3kfc","text":"with example.","type":"ordered-list-item","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}',
 }))
-.then(() => Nori.create({
+.then(() => Nori.create({ // Basketball Green
   text_front: '{"entityMap":{},"blocks":[{"key":"iou6","text":"Testing","type":"header-one","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}',
   text_back: '{"entityMap":{},"blocks":[{"key":"81dt4","text":"123","type":"header-two","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}',
 }))
