@@ -8,16 +8,16 @@ const BentoNori = db.define('bentoNori', {
     type: Sequelize.INTEGER,
     references: {
       model: Bento,
-      key: 'id'
-    }
+      key: 'id',
+    },
   },
   nori_id: {
     type: Sequelize.INTEGER,
     references: {
       model: Nori,
-      key: 'id'
-    }
-  }
+      key: 'id',
+    },
+  },
 });
 
 module.exports = BentoNori;
