@@ -71,7 +71,7 @@
         createDragZone: function () {
             var p, input;
 
-            p     = this.createEls('p', {}, 'Drag your files Or Click Here');
+            p     = this.createEls('p', {}, 'Drag/Click Your Images Here');
             input = this.createEls('input', {type: 'file', accept: 'image/*'});
             console.log("Line 76 of IMGUR.JS", this.dropzone)
 

@@ -9,7 +9,7 @@ class editNewNori extends React.Component {
   render() {
     return (
       <div>
-      <div className="new-nori" style = {{display: 'flex', justifyContent: 'center'}}>
+      <div className="new-nori  wow animated slideInLeft" data-wow-delay=".4s" style = {{display: 'flex', justifyContent: 'center'}}>
         <div style = {{flex: "flex-start", minWidth: 210}}>
           <ImageDropzone number = {this.props.number}/>
         </div>
@@ -23,10 +23,10 @@ class editNewNori extends React.Component {
           </div>
           </div>
           <div className="add-delete-nori" style = {{display: 'flex', justifyContent:'flex-end'}}>
-      <button type="submit" className="btn add-nori-button"  onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}>Add</button>
+      <button type="submit" className="btn add-nori-button"  onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}>+</button>
       <button type="submit" className="btn add-nori-button" value={this.props.number}  onDoubleClick= {() => 
         {this.props.handleDeleteNori(this.props.bento, this.props.number)}
-        }>Del</button>
+        }>-</button>
         </div>
       </div>
       </div> 

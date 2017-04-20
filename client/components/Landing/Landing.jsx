@@ -1,146 +1,52 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
+
+import {connect} from 'react-redux'
+import * as actions from '../../actions/landingActions.js'
+import {setBentoId} from '../../actions/appActions.js'
 
 class Landing extends Component {
-  constructor(props){
-    super(props);
+
+  componentDidMount() {
+    this.props.handleGetAlotBentos()
   }
 
-                        // <ul className="list-inline intro-social-buttons">
-                        //     <li>
-                        //         <a href="https://twitter.com/SBootstrap" className="btn btn-default btn-lg"><i className="fa fa-twitter fa-fw"></i> <span className="network-name">Twitter</span></a>
-                        //     </li>
-                        //     <li>
-                        //         <a href="https://github.com/IronSummitMedia/startbootstrap" className="btn btn-default btn-lg"><i className="fa fa-github fa-fw"></i> <span className="network-name">Github</span></a>
-                        //     </li>
-                        //     <li>
-                        //         <a href="#" className="btn btn-default btn-lg"><i className="fa fa-linkedin fa-fw"></i> <span className="network-name">Linkedin</span></a>
-                        //     </li>
-                        // </ul>
 
-	// <a  name="contact"></a>
-  //   <div className="banner">
-
-  //       <div className="container">
-
-  //           <div className="row">
-  //               <div className="col-lg-6">
-  //                   <h2>Connect to Start Bootstrap:</h2>
-  //               </div>
-  //               <div className="col-lg-6">
-  //                   <ul className="list-inline banner-social-buttons">
-  //                       <li>
-  //                           <a href="https://twitter.com/SBootstrap" className="btn btn-default btn-lg"><i className ="fa fa-twitter fa-fw"></i> <span className ="network-name">Twitter</span></a>
-  //                       </li>
-  //                       <li>
-  //                           <a href="https://github.com/IronSummitMedia/startbootstrap" className="btn btn-default btn-lg"><i className="fa fa-github fa-fw"></i> <span className="network-name">Github</span></a>
-  //                       </li>
-  //                       <li>
-  //                           <a href="#" className="btn btn-default btn-lg"><i className="fa fa-linkedin fa-fw"></i> <span className="network-name">Linkedin</span></a>
-  //                       </li>
-  //                   </ul>
-  //               </div>
-  //           </div>
-  //       </div>
-  //   </div>
-    // <footer>
-    //     <div className="container">
-    //         <div className="row">
-    //             <div className="col-lg-12">
-    //                 <ul className="list-inline">
-    //                     <li>
-    //                         <a href="#">Home</a>
-    //                     </li>
-    //                     <li className="footer-menu-divider">&sdot;</li>
-    //                     <li>
-    //                         <a href="#about">About</a>
-    //                     </li>
-    //                     <li className="footer-menu-divider">&sdot;</li>
-    //                     <li>
-    //                         <a href="#services">Services</a>
-    //                     </li>
-    //                     <li className="footer-menu-divider">&sdot;</li>
-    //                     <li>
-    //                         <a href="#contact">Contact</a>
-    //                     </li>
-    //                 </ul>
-    //                 <p className="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
-    //             </div>
-    //         </div>
-    //     </div>
-    // </footer>
   render() {
+    console.log(this.props.landing)
     return (
-    <div>
-    <a name="about"></a>
-    <div className="intro-header">
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-lg-12">
-                    <div className="intro-message">
-                        <h1 className="logo-title">Obento</h1>
-                        <hr className="intro-divider"/>
-                        {/*<h3 className="default-font">Repetitive Memorization made more fun and less tedious</h3>   */}
-                        <h3 className="default-font">Memorization made smarter and more fun</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div>
+	    <section id="hero-area">
+	        <div className="container">
+	            <div className="row">
+	                <div className="col-md-8">
+	                    <div className="block">
+                          <h1 className="wow fadeInDown">Welcome to Obento!</h1>
+	                        <h2 className="wow fadeInDown">A Fun Modern Day Memorization Service</h2>
+	                        <p className="wow fadeInDown" data-wow-delay="0.3s">Get started by creating a bento - deck - of noris ("nor - reez'') - cards - right now!</p>
+	                        <div className="wow fadeInDown" data-wow-delay="0.3s">
+	                        	< Link to="/edit"><a className="btn btn-default btn-home"  role="button">Create Your Own Bento!</a></Link>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+      <section id = "bento-area">
+        {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => <Link to = "/display" onClick = {() => this.props.setBentoId(bento.id)} key = {index}><div className = "landing-nori col-md-3"  >{bento.name}</div></Link>) : null}
+
+      </section>
 
 
-	<a  name="services"></a>
-    <div className="content-section-a">
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-5 col-sm-6">
-                    <hr className="section-heading-spacer"/>
-                    <div className="clearfix"></div>
-                    <h2 className="section-heading">Discover Popular Bentos Made By Other Creators:<br/></h2>
-                    <p className="lead">Discover Popular Bentos Made By Other Creators for providing the photographs that you see in this template. Visit their website to become a member.</p>
-                </div>
-                <div className="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img className="img-responsive" src="img/landingImage.jpg" alt=""/>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div className="content-section-a">
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-5 col-sm-6">
-                    <hr className="section-heading-spacer"/>
-                    <div className="clearfix"></div>
-                    <h2 className="section-heading">Create Your Own Nori(s)<br/>with Awesome Skins and Customizations</h2><p className="lead">Unlimited Bentos and Nori(s)! Get started now with your first Nori!</p>
-                </div>
-                <div className="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img className="img-responsive" src="img/flashcards.png" alt=""/>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div className="content-section-b">
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr className="section-heading-spacer"/>
-                    <div className="clearfix"></div>
-                    <h2 className="section-heading">Study With Alexa<br/>from Amazon</h2>
-                    <p className="lead">Take your headphones off and finish your study bento when you get home. Check out how to take your learning to the next level</p>
-                </div>
-                <div className="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img className="img-responsive" src="img/Amazon-Echo.jpg" alt=""/>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    </div>
+      </div>
     )
   }
 }
 
-export default Landing;
+function mapStateToProps(state) {
+  return {
+    landing: state.landingReducer
+  }
+}
+
+export default connect(mapStateToProps, {...actions, setBentoId})(Landing);

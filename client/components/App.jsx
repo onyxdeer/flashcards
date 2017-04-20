@@ -17,6 +17,7 @@ import Search from './Search/Search.jsx';
 import User from './User/User.jsx';
 import Voice from './Voice/Voice.jsx';
 
+
 import { connect } from 'react-redux';
 import * as actions from '../actions/appActions.js';
 // Allows redirection from current page to Search page upon search submission
