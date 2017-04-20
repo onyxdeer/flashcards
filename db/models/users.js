@@ -9,18 +9,8 @@ const User = db.define('user', {
       args: true,
       msg: 'Username already exists!',
     },
-    validate: {
-      notNull: true,
-      notEmpty: true,
-    },
   },
-  password: {
-    type: Sequelize.STRING,
-    validate: {
-      notNull: true,
-      notEmpty: true,
-    },
-  },
+  password: Sequelize.STRING,
 }, {
   classMethods: {
     validPassword: function (user, password) {
