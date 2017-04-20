@@ -7,9 +7,9 @@ const Tag = db.define('tag', {
     allowNull: false,
     unique: {
       args: true,
-      msg: 'Tag name already exists!'
-    }
-  }
+      msg: 'Tag name already exists!',
+    },
+  },
 });
 
 module.exports = Tag;

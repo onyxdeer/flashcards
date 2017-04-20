@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const db = require('../connect.js');
-const Bento = require('./bentos.js');
 
 const Category = db.define('category', {
   name: {
@@ -8,9 +7,9 @@ const Category = db.define('category', {
     allowNull: false,
     unique: {
       args: true,
-      msg: 'Category name already exists!'
-    }
-  }
+      msg: 'Category name already exists!',
+    },
+  },
 });
 
 module.exports = Category;

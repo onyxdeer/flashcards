@@ -8,16 +8,16 @@ const NoriTag = db.define('noriTag', {
     type: Sequelize.INTEGER,
     references: {
       model: Nori,
-      key: 'id'
-    }
+      key: 'id',
+    },
   },
   tag_id: {
     type: Sequelize.INTEGER,
     references: {
       model: Tag,
-      key: 'id'
-    }
-  }
+      key: 'id',
+    },
+  },
 });
 
 module.exports = NoriTag;

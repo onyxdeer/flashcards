@@ -8,20 +8,20 @@ const Label = db.define('label', {
     type: Sequelize.INTEGER,
     references: {
       model: User,
-      key: 'id'
-    }
+      key: 'id',
+    },
   },
   bento_id: {
     type: Sequelize.INTEGER,
     references: {
       model: Bento,
-      key: 'id'
-    }
+      key: 'id',
+    },
   },
   favorite: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false
-  }
+    defaultValue: false,
+  },
 });
 
 module.exports = Label;

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-const db = require('../connect.js');
 const bcrypt = require('bcryptjs');
+const db = require('../connect.js');
 
 const User = db.define('user', {
   username: {
@@ -13,7 +13,7 @@ const User = db.define('user', {
   password: Sequelize.STRING,
 }, {
   classMethods: {
-    validPassword: function (user, password) {
+    validPassword: (user, password) => {
       bcrypt.compareSync(password, user.password);
     },
   },

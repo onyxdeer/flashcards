@@ -7,16 +7,16 @@ const Follow = db.define('follow', {
     type: Sequelize.INTEGER,
     references: {
       model: User,
-      key: 'id'
-    }
+      key: 'id',
+    },
   },
   follow_id: {
     type: Sequelize.INTEGER,
     references: {
       model: User,
-      key: 'id'
-    }
-  }
+      key: 'id',
+    },
+  },
 });
 
 module.exports = Follow;
