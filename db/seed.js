@@ -8,8 +8,8 @@ const Label = require('./models/labels.js');
 const Nori = require('./models/noris.js');
 const Tag = require('./models/tags.js');
 const Image = require('./models/images.js');
-const Bento_nori = require('./models/bentos_noris.js');
-const Nori_tag = require('./models/noris_tags.js');     
+const BentoNori = require('./models/bentos_noris.js');
+const NoriTag = require('./models/noris_tags.js');     
 const crypto = require('crypto');
 
 const idToHash = (id) => {
@@ -128,19 +128,19 @@ User.create({
   });
 })
 .then(function() {
-  return Bento_nori.create({
+  return BentoNori.create({
     bento_id: 1,
     nori_id: 1
   });
 })
 .then(function() {
-  return Bento_nori.create({
+  return BentoNori.create({
     bento_id: 1,
     nori_id: 2
   });
 })
 .then(function() {
-  return Nori_tag.create({
+  return NoriTag.create({
     nori_id: 1,
     tag_id: 1
   });
