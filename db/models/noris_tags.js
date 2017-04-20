@@ -3,7 +3,7 @@ const db = require('../connect.js');
 const Tag = require('./tags.js');
 const Nori = require('./noris.js');
 
-const Nori_tag = db.define('nori_tag', {
+const NoriTag = db.define('noriTag', {
   nori_id: {
     type: Sequelize.INTEGER,
     references: {
@@ -20,4 +20,4 @@ const Nori_tag = db.define('nori_tag', {
   }
 });
 
-module.exports = Nori_tag;
+module.exports = NoriTag;
