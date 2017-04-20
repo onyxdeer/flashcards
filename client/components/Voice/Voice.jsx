@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { commands, noris, responses } from './util.js';
+import { connect } from 'react-redux';
+
 import AI from './ai.js';
 
 
@@ -11,7 +13,8 @@ class Voice extends Component {
 
     }
 
-    this.joe = new AI('joe')
+    // this.joe = new AI('joe')
+    this.joe = new AI('joe', this.props.noris);
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
     this.transfer = this.transfer.bind(this);
@@ -67,7 +70,9 @@ class Voice extends Component {
   }
 }
 
-export default Voice;
+export default connect((state) => ({
+  noris: state.displayReducer.bentoData
+}),{})(Voice);
 
 
 

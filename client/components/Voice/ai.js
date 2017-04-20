@@ -12,13 +12,15 @@ import client from './client.js';
   and active command listening (via annyang.js)
 */
 const AI = class {
-  constructor(name, bentoId) {
+  constructor(name, data) {
     this.name = name;
     // this.commands = util.commands;
     // this._initAnnyang(util.commands);
-    this._getBento(bentoId)
-                    .then( data => this._processData(data) )
-                    .then( processed => this.data = processed );
+    // this._getBento(bentoId)
+    //                 .then( data => this._processData(data) )
+    //                 .then( processed => this.data = processed );
+    console.log('data is: ', data)
+    this.data = data
     this.commands = this._getCommands();
     this._initAnnyang(this.commands);
     // this.client = client('');
@@ -54,6 +56,14 @@ const AI = class {
   */
   _getBento(bentoId) {
     const URL = '/api/bentos';
+    const params = { 
+      bentoId
+    }
+    return request.get(URL, { params })
+  }
+
+  _getNoris(bentoId) {
+    const URL = '/api/noris';
     const params = { 
       bentoId
     }
