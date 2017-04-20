@@ -1,7 +1,9 @@
 import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_FETCH_BENTO_FOR_EDIT, HANDLE_RENDER_CREATE_PAGE,
 HANDLE_IMAGE_UPLOAD} from '../actions/actionTypes.js'
-
+import RichTextEditor from 'react-rte';
+import {convertToRaw} from 'draft-js';
 //This is the default state y
+const empty = JSON.stringify(convertToRaw(RichTextEditor.createEmptyValue()._editorState.getCurrentContent()));
 const DEFAULT_STATE =  {
   name: '',
   description: '',
@@ -10,7 +12,7 @@ const DEFAULT_STATE =  {
   bento_id: null,
   user_id: 1 || 'guest',
 
-  noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}, {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
+  noris: [{Front: {image: null, text: empty, soundFile: null}, Back: {image: null, text:empty, soundFile: null}}, {Front: {image: null, text:empty, soundFile: null}, Back: {image: null, text:empty, soundFile: null}}]
 
 }
 
@@ -24,7 +26,7 @@ function handleRenderCreatePage(state, action) {
   visit_count: 0,
   bento_id: null,
   user_id: 1 || 'guest',
-  noris: [{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}},{Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}]
+  noris: [{Front: {image: null, text:empty, soundFile: null}, Back: {image: null, text:empty, soundFile: null}},{Front: {image: null, text:empty, soundFile: null}, Back: {image: null, text:empty, soundFile: null}}]
 }
   return {...state, ...def}
 }

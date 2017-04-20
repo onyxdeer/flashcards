@@ -6,6 +6,7 @@ import { routeReducer } from 'react-router-redux';
 import sampleReducer from './sampleReducer.js'
 import editBentoReducer from './editBentoReducer.js'
 import navReducer from './navReducer.js'
+import authReducer from './authReducer.js'
 import appReducer from './appReducer.js'
 import personalReducer from './personalReducer.js';
 import displayReducer from './displayReducer.js';
@@ -23,7 +24,8 @@ const combinedReducer = combineReducers({
   appReducer,
   personalReducer,
   displayReducer,
-  landingReducer
+  landingReducer,
+  authReducer
 });
 
 export default combinedReducer;
