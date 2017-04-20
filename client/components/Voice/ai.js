@@ -150,12 +150,13 @@ const AI = class {
     @return {AI instance} 
   */
   startSession(config) {
+    this._initClient('ayyyyyyy')    
     window.annyang.resume()
     if( !this.data ) {
       console.error('data is yet to be retrieved')
       return this;
     }
-    console.log('we have data: ', this.data)
+    // console.log('we have data: ', this.data)
     return this;
   }
   /*

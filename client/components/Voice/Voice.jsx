@@ -3,6 +3,7 @@ import axios from 'axios';
 import { commands, noris, responses } from './util.js';
 import AI from './ai.js';
 
+
 class Voice extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +19,7 @@ class Voice extends Component {
   handleStart(){
 
     this.joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
-    debugger;
+    // debugger;
 
     // setTimeout(function(){
     //   joe.startSession({})

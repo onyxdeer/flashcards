@@ -1,10 +1,10 @@
 /**
  * Created by noamc on 8/31/14.
  */
-import BinaryClient from './binary.js';
+// import { BinaryClient } from './binary.js';
 
 module.exports = function (config) {
-   console.log('is this function ran at all??::', config)
+    console.log('do we have binary client: ', BinaryClient)
     var client,
         recorder,
         context,
@@ -13,7 +13,7 @@ module.exports = function (config) {
         // resampleRate = contextSampleRate,
         var resampleRate = 44100,
         // contextSampleRate = 16000,
-        worker = new Worker('./worker/resampler-worker.js');
+        worker = new Worker('./js/worker/resampler-worker.js');
     
 
 
@@ -26,9 +26,12 @@ module.exports = function (config) {
     }, false);
 
     $(".start-rec-btn").click(function () {
-        console.log('hELLLO', config)
+        console.log('INITIATING BUTTON REGISTRAR', BinaryClient)
         close();
-        client = new BinaryClient('wss://'+location.host);
+        const URL = "localhost:9191"
+        console.log('what is the url: ', location.host )
+        // client = new window.BinaryClient('wss://'+location.host);
+        client = new window.BinaryClient('wss://'+URL);
         client.on('open', function () {
             console.log('streaming client turned on')
             bStream = client.createStream({sampleRate: resampleRate});

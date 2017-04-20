@@ -54,7 +54,7 @@ app.use(serveStatic('public'));
 var server = https.createServer(options,app);
 server.listen(9191);
 
-opener("https://localhost:9191");
+// opener("https://localhost:9191");
 
 var server = binaryServer({server:server});
 
