@@ -25,7 +25,7 @@ module.exports = function (config) {
             bStream.write(convertFloat32ToInt16(e.data.buffer));
     }, false);
 
-    $(".start-rec-btn").click(function () {
+    function clientStart(){
         console.log('INITIATING BUTTON REGISTRAR', BinaryClient)
         close();
         const URL = "localhost:9191"
@@ -64,7 +64,52 @@ module.exports = function (config) {
         }, function (e) {
 
         });
-    });
+    }
+
+    function clientEnd(){
+        close();
+    }
+
+    // $(".start-rec-btn").click(function () {
+    //     console.log('INITIATING BUTTON REGISTRAR', BinaryClient)
+    //     close();
+    //     const URL = "localhost:9191"
+    //     console.log('what is the url: ', location.host )
+    //     // client = new window.BinaryClient('wss://'+location.host);
+    //     client = new window.BinaryClient('wss://'+URL);
+    //     client.on('open', function () {
+    //         console.log('streaming client turned on')
+    //         bStream = client.createStream({sampleRate: resampleRate});
+    //     });
+
+    //     if (context) {
+    //         recorder.connect(context.destination);
+    //         return;
+    //     }
+
+    //     var session = {
+    //         audio: true,
+    //         video: false
+    //     };
+
+
+    //     navigator.getUserMedia(session, function (stream) {
+    //         context = new AudioContext();
+    //         var audioInput = context.createMediaStreamSource(stream);
+    //         var bufferSize = 0; // let implementation decide
+
+    //         recorder = context.createScriptProcessor(bufferSize, 1, 1);
+
+    //         recorder.onaudioprocess = onAudio;
+
+    //         audioInput.connect(recorder);
+
+    //         recorder.connect(context.destination);
+
+    //     }, function (e) {
+
+    //     });
+    // });
 
     function onAudio(e) {
         var left = e.inputBuffer.getChannelData(0);
@@ -107,9 +152,9 @@ module.exports = function (config) {
         }
     }
 
-    $(".stop-rec-btn").click(function () {
-        close();
-    });
+    // $(".stop-rec-btn").click(function () {
+    //     close();
+    // });
 
     function close(){
         console.log('close');
