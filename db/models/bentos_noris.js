@@ -3,7 +3,7 @@ const db = require('../connect.js');
 const Bento = require('./bentos.js');
 const Nori = require('./noris.js');
 
-const Bento_nori = db.define('bento_nori', {
+const BentoNori = db.define('bentoNori', {
   bento_id: {
     type: Sequelize.INTEGER,
     references: {
@@ -20,4 +20,4 @@ const Bento_nori = db.define('bento_nori', {
   }
 });
 
-module.exports = Bento_nori;
+module.exports = BentoNori;

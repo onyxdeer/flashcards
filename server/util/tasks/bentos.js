@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const crypto = require('crypto');
 const Bento = require('../../../db/models/bentos.js');
 const Nori = require('../../../db/models/noris.js');
-const Bento_nori = require('../../../db/models/bentos_noris.js');
+const BentoNori = require('../../../db/models/bentos_noris.js');
 const Image = require('../../../db/models/images.js');
 
 const idToHash = (id) => {
@@ -76,7 +76,7 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
   var clearImage_BentoLinks = Image.destroy({where: {bento_id: bentoId}}).then(function(number){   //destroys all the image urls saved that is related to the bento_id
     console.log(number)
   })
-  var clearBento_NoriLinks = Bento_nori.destroy({where: {bento_id: bentoId}}).then(function(number){
+  var clearBento_NoriLinks = BentoNori.destroy({where: {bento_id: bentoId}}).then(function(number){
     console.log(number)                                                 //we then create a promise called clearBento_NoriLinks that wipes the joint table of any reference of that bento_id and the nori-ids associated with that
   })
   Promise.all([P1, clearBento_NoriLinks, clearImage_BentoLinks])                 //So once P1 and the above promise are done 
@@ -99,10 +99,10 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
     })
     .then(function(noriIds){
       Promise.all(noriIds.map(function(noriId){
-        return Bento_nori.findOrCreate({where: {bento_id: bentoId, nori_id: noriId}})
+        return BentoNori.findOrCreate({where: {bento_id: bentoId, nori_id: noriId}})
       }))
       .then(function(){
-        return Bento_nori.findAll({attributes: ['nori_id']})
+        return BentoNori.findAll({attributes: ['nori_id']})
       })
       .then(function(result){
         var idArray = result.map(function(id){
