@@ -1,10 +1,10 @@
 /**
  * Created by noamc on 8/31/14.
  */
-// import { BinaryClient } from './binary.js';
+
 
 module.exports = function (config) {
-    console.log('do we have binary client: ', BinaryClient)
+    // console.log('do we have binary client: ', BinaryClient)
     var client,
         recorder,
         context,
@@ -28,7 +28,8 @@ module.exports = function (config) {
     function clientStart(){
         console.log('INITIATING BUTTON REGISTRAR', BinaryClient)
         close();
-        const URL = "localhost:9191"
+        // const URL = "localhost:9191"
+        const URL = config.SPEECHURL;
         console.log('what is the url: ', location.host )
         // client = new window.BinaryClient('wss://'+location.host);
         client = new window.BinaryClient('wss://'+URL);
@@ -163,9 +164,21 @@ module.exports = function (config) {
         if(client)
             client.close();
     }
+
+    navigator.getUserMedia = navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia;
+
+
+    return {
+        clientStart,
+        clientEnd
+    }
 };
 
-navigator.getUserMedia = navigator.getUserMedia ||
-    navigator.webkitGetUserMedia ||
-    navigator.mozGetUserMedia ||
-    navigator.msGetUserMedia;
+
+// navigator.getUserMedia = navigator.getUserMedia ||
+//     navigator.webkitGetUserMedia ||
+//     navigator.mozGetUserMedia ||
+//     navigator.msGetUserMedia

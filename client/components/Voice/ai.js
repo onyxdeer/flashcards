@@ -3,6 +3,8 @@
 import util from './util.js';
 import request from 'axios';
 import client from './client.js';
+
+
 /*
   AI class responsible with the following functionalities:
   speech to text and speech recognition (via google API)
@@ -19,6 +21,7 @@ const AI = class {
                     .then( processed => this.data = processed );
     this.commands = this._getCommands();
     this._initAnnyang(this.commands);
+    // this.client = client('');
   }
 
   /*
@@ -37,7 +40,11 @@ const AI = class {
   
 
   _initClient(configs){
-    client(configs);
+    const SPEECHURL = 'localhost:9191';
+    const configurations = {
+      SPEECHURL
+    };
+    this.client = client(configs);
   }
 
   /*
@@ -150,7 +157,9 @@ const AI = class {
     @return {AI instance} 
   */
   startSession(config) {
-    this._initClient('ayyyyyyy')    
+    let client = this._initClient('ayyyyyyy')    
+    console.log('what is result of init client:', result)
+    this.client = client
     window.annyang.resume()
     if( !this.data ) {
       console.error('data is yet to be retrieved')
@@ -181,6 +190,15 @@ const AI = class {
   */
   pause() {
     window.annyang.pause();
+  }
+
+  startTransfer(){
+    console.log('what is client: ', this.client)
+    this.client.clientStart()
+  }
+
+  endTransfer(){
+    this.client.clientEnd()
   }
 
   /*
