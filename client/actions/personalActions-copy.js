@@ -23,14 +23,10 @@ const personalActions = {
         return response.data.map((data) => {return data.nori_id})
       })
       .then((arrayNorisId) => {
-        var getNoris = axios.get('/api/noris', {params: {id: arrayNorisId}})
-        var getImages = axios.get('/api/images', {params: {nori_id: arrayNorisId}})
-        console.log("CAN ANYBODY HEAR ME", arrayNorisId)
-        Promise.all([getNoris, getImages])
+        axios.get('/api/noris', {params: {id: arrayNorisId}})
         .then((response) => {
-          var savedNorisArray = response[0].data.map(function(nori, index){
+          var savedNorisArray = response.data.map(function(nori){
             var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}
-            newNori.Front.image = response[1].data[index]['url'];
             newNori.Front.text = nori.text_front;
             newNori.Back.text = nori.text_back;
             newNori.Front.soundFile = nori.audio_url_front;
@@ -42,6 +38,7 @@ const personalActions = {
         .then(() => {
             dispatch({type: HANDLE_FETCH_BENTO_FOR_EDIT, payload: bento});
             browserHistory.push('/edit')
+            console.log(browserHistory)
         })
       })
     })
@@ -137,7 +134,6 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch, category) {
       for (var j = 0; j < imgData.length; j++) {
         if (imgData[j].bento_id === bentoData[i].id && imgData[j].nori_id === null) {
           bentoData[i].img_url = imgData[j].url;
-          break;
         }
       }
     }

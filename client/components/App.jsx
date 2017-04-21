@@ -71,7 +71,7 @@ class App extends Component {
             <Route path="/register" component={Register} />
             {/*<Route path="/voice" component={Voice} />*/}
           </div>
-        </Router>
+        </Router>      
       </div>
     );
   }

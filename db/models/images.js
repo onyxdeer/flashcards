@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
-const db = require('../connect.js');
+const db = require('../scripts/connect.js');
 const Bento = require('./bentos.js');
 const Nori = require('./noris.js');
 
 const Image = db.define('image', {
   url: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
   },
   nori_front: Sequelize.BOOLEAN,
   nori_back: Sequelize.BOOLEAN,
@@ -14,16 +14,16 @@ const Image = db.define('image', {
     type: Sequelize.INTEGER,
     references: {
       model: Bento,
-      key: 'id'
-    }
+      key: 'id',
+    },
   },
   nori_id: {
     type: Sequelize.INTEGER,
     references: {
       model: Nori,
-      key: 'id'
-    }
-  }  
+      key: 'id',
+    },
+  },
 });
 
 module.exports = Image;

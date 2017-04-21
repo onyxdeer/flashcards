@@ -1,5 +1,4 @@
-const noris = require('./tasks/noris.js')
-const speech = require('./tasks/speech.js')
+const noris = require('./tasks/noris.js');
 const users = require('./tasks/users.js');
 const bentos = require('./tasks/bentos.js');
 const follows = require('./tasks/follows.js');
@@ -7,13 +6,14 @@ const categories = require('./tasks/categories.js');
 const labels = require('./tasks/labels.js');
 const tags = require('./tasks/tags.js');
 const images = require('./tasks/images.js');
-const bentos_noris = require('./tasks/bentos_noris.js');
-const noris_tags = require('./tasks/noris_tags.js');
+const bentosNoris = require('./tasks/bentosNoris.js');
+const norisTags = require('./tasks/norisTags.js');
 const redirect = require('./tasks/redirect.js');
 const thumbnails = require('./tasks/thumbnails.js');
 const popular = require('./tasks/popular.js');
 const sms = require('./tasks/sms.js');
 const search = require('./tasks/search.js');
-const search_thumbnails = require('./tasks/search_thumbnails.js');
+const searchThumbnails = require('./tasks/searchThumbnails.js');
+// const speech = require('./tasks/speech.js');
 
-module.exports.tasks = {users, bentos, noris, follows, categories, labels, tags, images, bentos_noris, noris_tags, redirect, thumbnails, popular, search, search_thumbnails, sms};
+module.exports.tasks = { users, bentos, noris, follows, categories, labels, tags, images, bentosNoris, norisTags, redirect, thumbnails, popular, search, searchThumbnails, sms };
