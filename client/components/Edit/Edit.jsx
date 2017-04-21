@@ -14,7 +14,6 @@ class Edit extends React.Component {
     return (
       <div>
         <div className="relative fullwidth">
-          <h1 className="create-title">Create A New Bento</h1>
         </div>
         <div className="newbentoinfo">
           <EditBentoInfo />

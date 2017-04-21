@@ -11,6 +11,7 @@ import appReducer from './appReducer.js'
 import personalReducer from './personalReducer.js';
 import displayReducer from './displayReducer.js';
 import searchReducer from './searchReducer.js';
+import landingReducer from './landingReducer.js';
 
 const combinedReducer = combineReducers({
   // routing: routeReducer,
@@ -23,7 +24,8 @@ const combinedReducer = combineReducers({
   appReducer,
   personalReducer,
   displayReducer,
-  authReducer,
+  landingReducer,
+  authReducer
 });
 
 export default combinedReducer;

@@ -1,5 +1,9 @@
 import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_IMAGE_UPLOAD} from '../actions/actionTypes.js';
 import axios from 'axios';
+import RichTextEditor from 'react-rte'
+import {convertToRaw} from 'draft-js'
+
+const empty = JSON.stringify(convertToRaw(RichTextEditor.createEmptyValue()._editorState.getCurrentContent()));
 
 
 export function handleImageUpload(noris, link, index) {
@@ -33,7 +37,7 @@ export function handleNoriChange(noris, rawValue, side, index) {
 export function handleAddNewNori (bento, index) {
   console.log("Does this fire", bento, index)
   var noris = bento.noris;
-  var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}, id: null}
+  var newNori = {Front: {image: null, text:empty, soundFile: null}, Back: {image: null, text:empty, soundFile: null}}
   noris.splice(index+1, 0, newNori)
   var norisAfterAddition = noris;
   console.log(norisAfterAddition)

@@ -18,12 +18,16 @@ const get = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-const post = (req, res) => {      //Okay this is a bit disgusting but works
-  console.log(req.body);           //We are sending a post request to api/bento with a huge bento data                                     
-  var data = req.body;                  
+
+//--------------------------------------------------------------------------------------------------------
+
+
+const post = (req, res) => {      //Okay this is a bit disgusting but works                                      
+  var data = req.body;                  //We are sending a post request to api/bento with a huge bento data
   var noris = data.noris;                //We separate the data to fit the schemas we  build
   var userId = data.user_id;
   var bentoId = data.bento_id;
+
   var bentoInfo = {                          //this is the bento columns
     id: bentoId,
     name: data.name,
@@ -32,7 +36,6 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
     visit_count: data.visit_count,
     user_id: userId
   }
-
 
   var norisArray = noris.map(function(nori) {           //this is the noris columns
     var noriInfo = {
@@ -45,8 +48,6 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
     return noriInfo;
   })
   
-
-
   var p1 = Bento.upsert(bentoInfo)                           //We either update or the insert the bento
   .then(function(created) {
     return created
