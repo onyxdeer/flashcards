@@ -254,12 +254,6 @@ input {
     max-height: 150px;
 }
 
-.frontText, .backText {
-  max-height: 100%;
-  overflow-y: scroll;
-}
-
-
 .cardNumberField {
     width: 40px;
 }
@@ -360,6 +354,7 @@ input {
 }
 
 .card-front, .card-back {
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   position: absolute;
   left: 0;
@@ -367,12 +362,28 @@ input {
   border: 1px solid black;
 }
 
+.frontText, .backText {
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
 .card-front {
-  z-index: 2;
+  -webkit-perspective-origin: 0% 0%;
+  perspective-origin: 0% 0%;
+  -webkit-perspective: 10000px;
+  perspective: 10000px;
+  -webkit-transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
+  -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
 
 .card-back {
+  -webkit-perspective-origin: 0% 0%;
+  perspective-origin: 0% 0%;
+  -webkit-perspective: 10000px;
+  perspective: 10000px;
+  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
