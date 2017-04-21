@@ -1,20 +1,30 @@
-import { GET_SHORTENER_ID, UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE } from '../actions/actionTypes.js'
+import { GET_SHORTENER_ID, UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE, CLEAR_SHORTENER_ID } from '../actions/actionTypes.js'
 
 const stateDefault = {
   query: '',
   userId: 'guest',
   bentoId: null,
   searchActive: false,
-  shortenerId: null
+  shortenerId: null,
+  gotShortenerId: false,
 };
 
 const handleShortenerId = (state, action) => {
   console.log('Calling handleShortenerId:', action.shortenerId);
   return {
     ...state,
-    shortenerId: action.shortenerId
+    shortenerId: action.shortenerId,
+    gotShortenerId: action.gotShortenerId,
   };
 };
+
+const handleClearShortenerId = (state, action) => {
+  console.log('action.gotShortenerId:', action.gotShortenerId);
+  return {
+    ...state,
+    gotShortenerId: action.gotShortenerId,
+  };
+}
 
 const handleQuery = (state, action) => {
   return {
@@ -56,7 +66,10 @@ export default (state = stateDefault, action) => {
     case GET_BENTOID: 
       return handleBentoId(state, action);
     case CHANGE_SEARCHACTIVE: 
-      return handleSearchActive(state, action);      
+      return handleSearchActive(state, action);  
+    case CLEAR_SHORTENER_ID:
+      return handleClearShortenerId(state, action);
+    default:
+      return state;
   }
-  return state;
 };
