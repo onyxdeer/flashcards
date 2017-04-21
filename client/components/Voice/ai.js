@@ -250,8 +250,8 @@ const AI = class {
     return new Promise( (resolve, reject) => {
       console.log('Reading Card Front: ', text)
       this.resume()
-      window.responsiveVoice.speak(text, "US English Female");
-      resolve()
+      window.responsiveVoice.speak(text, "US English Female", {onstart: ()=>{ console.log('talking...')}, onend: resolve });
+      // resolve()
     });
   }
 
@@ -278,8 +278,8 @@ const AI = class {
     // console.log('myargs: ', args)
     console.log('this: ', this)
     read(this.front)
-      .then((card) => {
-        console.log('should still have the same card: ', card)
+      .then(() => {
+        console.log('we are done talking,\n initiating listen')
         return listen()
       })
       .then(() => {
