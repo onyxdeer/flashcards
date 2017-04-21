@@ -276,10 +276,10 @@ const AI = class {
   next(chainFunctions) {
     const { read, listen } = chainFunctions;
     // console.log('myargs: ', args)
-    console.log('this: ', this)
+    // console.log('this: ', this)
     read(this.front)
       .then(() => {
-        console.log('we are done talking,\n initiating listen')
+        console.log('listening...')
         return listen()
       })
       .then(() => {

@@ -32,13 +32,46 @@ module.exports = function (config) {
         // const URL = "localhost:9191"
 
         const URL = config.SPEECHURL;
-        console.log('what is the url: ', URL)
+        console.log('URL destination for speech data transfer: ', URL)
+        console.log('set URL in _initClient configs in ai.js')
         // client = new window.BinaryClient('wss://'+location.host);
         client = new window.BinaryClient('wss://'+URL);
+
+        client.on('stream', function(stream, meta){
+            console.log('streaming is happenin', stream, meta)
+            stream.on('data', function(data){
+                console.log('streaming data', data)
+            })
+            stream.on('end', function(){
+                console.log('stream ended in streamclient')
+            })
+        })
+
         client.on('open', function () {
             console.log('streaming client turned on')
             bStream = client.createStream({sampleRate: resampleRate, clientId: config.clientId});
+            bStream.on('data', function(s){
+                console.log('data is being piped', s)
+            })
+            bStream.on('end', function(s){
+                console.log('stream end event triggerd', s)
+            })
+            bStream.on('pause', function(s){
+                console.log('stream pause event', s)
+            })
+
+                    client.on('stream', function(data){
+            console.log('streaming is happenin', data)
+        })
         });
+
+        client.on('end', function(d){
+            console.log('CLIENT ENDED EVENT TRIGGERED')
+        })
+
+        client.on('stream', function(data){
+            console.log('streaming is happenin', data)
+        })
 
         if (context) {
             recorder.connect(context.destination);
@@ -53,6 +86,7 @@ module.exports = function (config) {
 
         navigator.getUserMedia(session, function (stream) {
             context = new AudioContext();
+            // stream
             var audioInput = context.createMediaStreamSource(stream);
             var bufferSize = 0; // let implementation decide
 

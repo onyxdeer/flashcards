@@ -26,6 +26,7 @@
     "node-record-lpcm16": "^0.3.0",
     "opener": "^1.4.1",
     "serve-static": "^1.9.1",
+    "socket.io": "^1.7.3",
     "uaparser": "0.0.2",
     "wav": "^0.1.2"
   }
