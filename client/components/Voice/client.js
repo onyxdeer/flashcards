@@ -28,11 +28,12 @@ module.exports = function (config) {
 
     function clientStart(){
       return function(){
-        console.log('INITIATING BUTTON REGISTRAR', BinaryClient)
+        console.log('Initiating transfer client')
         close();
         // const URL = "localhost:9191"
+
         const URL = config.SPEECHURL;
-        console.log('what is the url: ', location.host )
+        console.log('what is the url: ', URL)
         // client = new window.BinaryClient('wss://'+location.host);
         client = new window.BinaryClient('wss://'+URL);
         client.on('open', function () {
