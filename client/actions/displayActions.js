@@ -7,9 +7,17 @@ import { FETCH_NORIS, FETCH_FRONT_IMAGES,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
          SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT,
-         CLEAR_PHONE_NUMBER_INPUT, ANIMATE_BENTO_TRAVERSAL } from './actionTypes.js';
+         CLEAR_PHONE_NUMBER_INPUT, ANIMATE_BENTO_TRAVERSAL,
+         RESET_CURRENT_NORI } from './actionTypes.js';
 
-
+function resetCurrentNori() {
+  return function(dispatch) {
+    dispatch({
+      type: RESET_CURRENT_NORI,
+      currentNori: 0
+    });
+  }
+}
 
 function fetchFrontImages(bentoId) {
   return function(dispatch) {
@@ -245,6 +253,7 @@ const displayActions = { fetchFrontImages, fetchBackImages,
                          nextNori, prevNori, handleInput,
                          setNori, shuffleNori, flipToFront,
                          flipToBack, shareUrlToSMS,
-                         handlePhoneNumberInput, clearPhoneNumberInput };
+                         handlePhoneNumberInput, clearPhoneNumberInput,
+                         resetCurrentNori };
 
 export default displayActions;
