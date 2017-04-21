@@ -1,14 +1,14 @@
 const crypto = require('crypto');
-const User = require('./models/users.js');
-const Follow = require('./models/follows.js');
-const Category = require('./models/categories.js');
-const Bento = require('./models/bentos.js');
-const Label = require('./models/labels.js');
-const Nori = require('./models/noris.js');
-const Tag = require('./models/tags.js');
-const Image = require('./models/images.js');
-const BentoNori = require('./models/bentos_noris.js');
-const NoriTag = require('./models/noris_tags.js');
+const User = require('../models/users.js');
+const Follow = require('../models/follows.js');
+const Category = require('../models/categories.js');
+const Bento = require('../models/bentos.js');
+const Label = require('../models/labels.js');
+const Nori = require('../models/noris.js');
+const Tag = require('../models/tags.js');
+const Image = require('../models/images.js');
+const BentoNori = require('../models/bentosNoris.js');
+const NoriTag = require('../models/norisTags.js');
 
 // Hash bento id for bento sharing feature
 const idToHash = id => crypto.createHash('md5').update(id.toString()).digest('hex').slice(0, 9);

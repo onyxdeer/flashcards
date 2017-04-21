@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../connect.js');
+const db = require('../scripts/connect.js');
 
 const Category = db.define('category', {
   name: {

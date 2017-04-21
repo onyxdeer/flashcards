@@ -1,16 +1,9 @@
 const Sequelize = require('sequelize');
-const db = require('../connect.js');
-const Bento = require('./bentos.js');
+const db = require('../scripts/connect.js');
+const Tag = require('./tags.js');
 const Nori = require('./noris.js');
 
-const BentoNori = db.define('bentoNori', {
-  bento_id: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Bento,
-      key: 'id',
-    },
-  },
+const NoriTag = db.define('noriTag', {
   nori_id: {
     type: Sequelize.INTEGER,
     references: {
@@ -18,6 +11,13 @@ const BentoNori = db.define('bentoNori', {
       key: 'id',
     },
   },
+  tag_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Tag,
+      key: 'id',
+    },
+  },
 });
 
-module.exports = BentoNori;
+module.exports = NoriTag;

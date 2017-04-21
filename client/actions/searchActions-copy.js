@@ -44,7 +44,7 @@ function storeBentoIds(response, idArray, bentoData) {
 
 // NEW VERSION: Fetching from AWS ES
 // function fetchThumbnails(idArray, imgArray, bentoData, dispatch) {
-//   return axios.get('/api/search_thumbnails', {
+//   return axios.get('/api/searchThumbnails', {
 //     params: { idArray }
 //   })
 //   .then(function(response) {

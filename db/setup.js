@@ -1,5 +1,5 @@
-const db = require('./connect.js');
-const createTables = require('./createtables.js');
+const db = require('./scripts/connect.js');
+const createTables = require('./scripts/createtables.js');
 
 // Initialize database
 module.exports = () => db.authenticate()

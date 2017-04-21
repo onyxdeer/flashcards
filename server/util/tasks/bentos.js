@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const crypto = require('crypto');
 const Bento = require('../../../db/models/bentos.js');
 const Nori = require('../../../db/models/noris.js');
-const BentoNori = require('../../../db/models/bentos_noris.js');
+const BentoNori = require('../../../db/models/bentosNoris.js');
 const Image = require('../../../db/models/images.js');
 
 const idToHash = (id) => {

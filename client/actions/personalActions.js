@@ -18,7 +18,7 @@ const personalActions = {
       bento.user_id = userId;
     })
     .then(() => {
-      axios.get('/api/bentos_noris', {params: {bento_id: bentoId}})
+      axios.get('/api/bentosNoris', {params: {bento_id: bentoId}})
       .then((response) => {
         return response.data.map((data) => {return data.nori_id})
       })

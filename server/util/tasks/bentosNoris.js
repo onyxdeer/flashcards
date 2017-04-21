@@ -1,13 +1,13 @@
-const Category = require('../../../db/models/categories.js');
+const BentoNori = require('../../../db/models/bentosNoris.js');
 
 const get = (req, res) => {
-  Category.findOne({ where: { name: 'Fun' } })
-    .then(category => res.send(category))
+  BentoNori.findAll({ where: req.query })
+    .then(bentoNori => res.send(bentoNori))
     .catch(err => console.log(err));
 };
 
 const post = (req, res) => {
-  Category.create(req.body)
+  BentoNori.create(req.body)
     .then(() => res.send(req.body))
     .catch(err => console.log(err));
 };
