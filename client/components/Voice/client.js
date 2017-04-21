@@ -35,7 +35,7 @@ module.exports = function (config) {
         client = new window.BinaryClient('wss://'+URL);
         client.on('open', function () {
             console.log('streaming client turned on')
-            bStream = client.createStream({sampleRate: resampleRate, clientId: '69696969'});
+            bStream = client.createStream({sampleRate: resampleRate, clientId: config.clientId});
         });
 
         if (context) {
