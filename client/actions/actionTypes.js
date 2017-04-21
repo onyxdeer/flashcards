@@ -47,3 +47,4 @@ export const USER_BENTOS_FETCHED = 'USER_BENTOS_FETCHED'; // Fix: Start with ver
 export const FAVORITE_BENTOS_FETCHED = 'FAVORITE_BENTOS_FETCHED'; // Fix: Start with verb
 export const POPULAR_BENTOS_FETCHED = 'POPULAR_BENTOS_FETCHED'; // Fix: Start with verb
 export const SAMPLE_REQUEST_ERROR = 'SAMPLE_REQUEST_ERROR'; // Remove?
+export const RESET_CURRENT_NORI = 'RESET_CURRENT_NORI';

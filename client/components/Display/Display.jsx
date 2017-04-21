@@ -26,6 +26,7 @@ class Display extends Component {
     this.props.fetchFrontImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchBackImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchNoris(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
+    this.props.resetCurrentNori();
   }
 
   getSortedNoris () {
