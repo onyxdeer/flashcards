@@ -7,10 +7,14 @@ const bindrouter = require('./router.js');
 const util = require('./util/util.js');
 const morgan = require('morgan');
 var history = require('connect-history-api-fallback');
+const Http = require('http')
+const Sockets = require('socket.io')
 
 const PORT = process.env.PORT || 8000;
 
 const app = express();
+var http = Http.createServer(app)
+var io = Sockets(http)
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
@@ -22,9 +26,22 @@ bindrouter(app);
 
 database();
 
-app.listen(PORT, function() {
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+
+http.listen(PORT, function() {
   console.log('Obento express server connection established at:', PORT);
 });
 
-exports.app = app;
+exports.app = http;
+
+// app.listen(PORT, function() {
+//   console.log('Obento express server connection established at:', PORT);
+// });
+
+// exports.app = app;
 
