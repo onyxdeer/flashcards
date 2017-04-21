@@ -26,9 +26,8 @@ module.exports = function (config) {
     }, false);
 
 
-    function clientStart(){
-      return function(){
-        console.log('Initiating transfer client')
+    function clientStart(config){
+        console.log('Initiating transfer client belong to ID: ', config.clientId)
         close();
         // const URL = "localhost:9191"
 
@@ -68,7 +67,6 @@ module.exports = function (config) {
         }, function (e) {
            console.log('client getting microphone error: ', e) 
         });
-      }
     }
 
     function clientEnd(){
@@ -176,7 +174,7 @@ module.exports = function (config) {
 
 
     return {
-        start: clientStart(),
+        start: clientStart,
         end: clientEnd
     }
 };

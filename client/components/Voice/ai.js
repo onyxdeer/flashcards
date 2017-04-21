@@ -2,7 +2,7 @@
 
 import util from './util.js';
 import request from 'axios';
-import client from './client.js';
+import Client from './client.js';
 import Card from './card.js';
 import Promise from 'bluebird';
 
@@ -50,7 +50,9 @@ const AI = class {
       SPEECHURL,
       clientId: util.uuid()
     };
-    this.client = client(configs);
+    this.configs = configurations
+    this.client = Client(configurations);
+    return this.client
   }
 
   /*
@@ -186,9 +188,8 @@ const AI = class {
     @return {AI instance} 
   */
   startSession(config) {
-    let client = this._initClient('ayyyyyyy')    
+    this._initClient('ayyyyyyy')    
     // console.log('what is result of init client:', result)
-    this.client = client
     window.annyang.resume()
     if( !this.cards ) {
       console.error('data is yet to be retrieved')
@@ -223,12 +224,11 @@ const AI = class {
   }
 
   startTransfer(){
-    console.log('what is client: ', this.client)
-    this.client.clientStart()
+    this.client.start(this.configs)
   }
 
   endTransfer(){
-    this.client.clientEnd()
+    this.client.end()
   }
 
   /*
@@ -238,7 +238,7 @@ const AI = class {
   */
   say(text) {
     console.log('i am speaking: ', text)
-    window.responsiveVoice.speak(text, "UK English Female");
+    window.responsiveVoice.speak(text, "US English Female");
     return this;
   }
   // speakable(target){
@@ -246,18 +246,24 @@ const AI = class {
   // }
 
   read(text) {
+    // let that = this
     return new Promise( (resolve, reject) => {
       console.log('Reading Card Front: ', text)
-      window.responsiveVoice.speak(text, "UK English Female");
+      this.resume()
+      window.responsiveVoice.speak(text, "US English Female");
       resolve()
     });
   }
 
   listen() {
+    let that = this
     return new Promise( (resolve, reject) => {
       console.log('hello world i am listening!!')
-      //shut down annyang
-      //turn on client
+      //shut down annyang this.pause()
+      this.pause()
+      this.startTransfer()
+      resolve()
+      //turn on client this.client.start()
       //resolve response from server
 
     });
@@ -276,9 +282,10 @@ const AI = class {
         console.log('should still have the same card: ', card)
         return listen()
       })
-      // .then(() => {
-      //   return getResponse()
-      // })
+      .then(() => {
+        console.log('EVERYTHING IS WORKING YAY')
+        // return getResponse()
+      })
       .catch(err => console.log(err))
 
   }
@@ -295,8 +302,8 @@ const AI = class {
   mapData (noriList){
     let cardsList = [];
     const chainFunctions = {
-      read: this.read,
-      listen: this.listen
+      read: this.read.bind(this),
+      listen: this.listen.bind(this)
     }
     for( let i = 0; i < noriList.length; i++ ){
       // let obj = {};
