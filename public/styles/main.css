@@ -234,11 +234,22 @@ input {
     text-align: center;
 }
 
-.noriImage {
-    margin: 10px;
-    max-width: 50%;
-    max-height: 50%;
+.imageSection {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+.noriImage {
+    max-height: 150px;
+}
+
+.frontText, .backText {
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
 
 .cardNumberField {
     width: 40px;

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/navActions.js';
 import { handleNavSearch } from '../../actions/appActions.js';
 
-class NavigationUser extends Component {
+class Navigation extends Component {
   constructor(props) {
     super(props);
 
@@ -19,6 +19,12 @@ class NavigationUser extends Component {
     return function(event) {
       context.props.bringUpInput(event, input);
     }
+  }
+
+  componentDidMount() {
+    $('.navbar-collapse .menu-item').click(function(){
+      $(".navbar-collapse").collapse('hide');
+    });
   }
 
   render() {
@@ -41,8 +47,8 @@ class NavigationUser extends Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
             <ul className="nav navbar-nav">
-              <li><Link to="/User" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
-              <li><Link to="/Edit" onClick = {()=> {this.props.handleRenderCreatePage()}} onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
+              <li><Link to="/Explore" className="menu-item" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Explore</Link></li>
+              <li><Link to="/Edit" className="menu-item" onClick = {()=> {this.props.handleRenderCreatePage()}} onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
               {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
             </ul>            
 
@@ -51,20 +57,17 @@ class NavigationUser extends Component {
               <div className="form-group">
                 <input type="text" className="form-control" value={this.props.input} placeholder="Find A Bento Here" onChange={this.props.handleNavSearch} onClick={this.props.clearText} />
               </div>
-              <button type="submit" className="btn btn-default"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+              <button type="submit" className="btn btn-default menu-item"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
             </form>
 
             {/* Profile Dropdown Menu */}
             <ul className="nav navbar-nav navbar-right">
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  <span className="glyphicon glyphicon-user" aria-hidden="true"></span> Profile<span className="caret"></span>
+                  <span className="glyphicon glyphicon-user" aria-hidden="true"></span> Menu<span className="caret"></span>
                 </a>
                 <ul className="dropdown-menu">
-                  <li><Link to="User"><span className="glyphicon glyphicon-th" aria-hidden="true"></span> Personal</Link></li>
-                  <li><Link to="Settings"><span className="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</Link></li>
-                  <li role="separator" className="divider"></li>
-                  <li><Link to="Logout"><span className="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out</Link></li>
+                  <li><Link className="menu-item" to="Login"><span className="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log In</Link></li>
                 </ul>
               </li>
             </ul>
@@ -87,35 +90,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { ...actions, handleNavSearch })(NavigationUser);
-
-        /*<Navbar collapseOnSelect fixedTop active activeKey activeHref>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/">Obento</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <NavItem eventKey={1}><Link to="/User"><span className="glyphicon glyphicon-home" aria-hidden="true"></span>User</Link></NavItem>
-            <NavItem eventKey={2}><Link to="/Edit"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>Create/Edit</Link></NavItem>
-            <form className="navbar-form navbar-left" onSubmit={this.bringUpInput(this.state.input)}>
-              <FormGroup>
-                <FormControl type="text" value={this.state.input} placeholder="Find A Bento Here" onChange={this.handleNavSearch} />
-              </FormGroup>
-              {' '}
-              <Button type="submit"><span className="glyphicon glyphicon-search" aria-hidden="true"></span>Search</Button>
-            </form>
-          </Nav>
-          <Nav pullRight>
-            <Glyphicon glyph="user" />
-            <NavDropdown eventKey={1} title="Profile" id="basic-nav-dropdown">
-              <MenuItem eventKey={1.1}><span className="glyphicon glyphicon-th" aria-hidden="true"></span>Personal</MenuItem>
-              <MenuItem eventKey={1.2}><span className="glyphicon glyphicon-cog" aria-hidden="true"></span>Settings</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={1.3}><span className="glyphicon glyphicon-log-out" aria-hidden="true"></span>Log Out</MenuItem>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>*/
+export default connect(mapStateToProps, { ...actions, handleNavSearch })(Navigation);

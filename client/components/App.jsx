@@ -8,8 +8,7 @@ import {
 } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-import NavGuest from './Nav/Nav-guest.jsx';
-import NavUser from './Nav/Nav-user.jsx';
+import Nav from './Nav/Nav.jsx';
 import Display from './Display/Display.jsx';
 import Landing from './Landing/Landing.jsx';
 import Edit from './Edit/Edit.jsx';
@@ -23,6 +22,7 @@ import Register from './Register/Register.jsx';
 
 import { connect } from 'react-redux';
 import * as actions from '../actions/appActions.js';
+
 // Allows redirection from current page to Search page upon search submission
 let TargetRoute = () => ( <Redirect from='/' to='/' /> );
 
@@ -30,30 +30,8 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    // if (location.pathname.startsWith('/id=')) {
-    //   console.log('DETECTED SHORTENED LINK:', location.pathname.slice(4, location.pathname.length));
-    // } else if (location.pathname === '/edit' || location.pathname === '/Edit' || location.pathname === '/create' || location.pathname === '/Create') {
-    //   TargetRoute = () => ( <Redirect to='/edit' /> )
-    // } else if (location.pathname === '/user' || location.pathname === '/User' || location.pathname === '/home' || location.pathname === '/Home') {
-    //   TargetRoute = () => ( <Redirect to='/user' /> )
-    // }    
-
-    // this.state = {
-    //   query: '',
-    //   searchActive: false,
-    //   userId: 'guest',
-    //   bentoId: null
-    // }
-
-    // this.handleNavSubmit = this.handleNavSubmit.bind(this);
-    // this.endNavSubmit = this.endNavSubmit.bind(this);
-    // this.setBentoId = this.setBentoId.bind(this);
-    // this.setUserId = this.setUserId.bind(this);
-
     if (location.pathname.startsWith('/id=')) {
-      console.log('DETECTED SHORTENED LINK:', location.pathname.slice(4, location.pathname.length));
       this.props.getShortenerId(location.pathname.slice(4, location.pathname.length));
-      TargetRoute = () => ( <Redirect to='/display' /> )
     } else if (location.pathname === '/edit' || location.pathname === '/Edit' || location.pathname === '/create' || location.pathname === '/Create') {
       TargetRoute = () => ( <Redirect to='/edit' /> )
     } else if (location.pathname === '/user' || location.pathname === '/User' || location.pathname === '/home' || location.pathname === '/Home') {
@@ -63,43 +41,13 @@ class App extends Component {
     }
   }
 
-  // gets called when user pushes the submit button or presses enter
-  // handleNavSubmit(event, input) {
-  //   console.log('calling handleNavSubmit with event:', event)
-  //   console.log('calling handleNavSubmit with input:', input);
-  //   event.preventDefault();
-  //   var context = this;
-  //   this.setState({
-  //     query: input,
-  //     searchActive: true
-  //   }, () => { 
-  //     console.log('searchActive in handleNavSubmit:', context.state.searchActive);
-  //     console.log('query changed to:', context.state.query);
-  //    });
-  // }
-
-  // // ends the submit action
-  // endNavSubmit() {
-  //   if (this.state.searchActive === true) {
-  //     this.setState({
-  //       searchActive: false
-  //     });
-  //   }
-  // }
-
-  // setBentoId(id) {
-  //   this.setState({
-  //     bentoId: id
-  //   });
-  // }
-
-  // setUserId(id) {
-  //   this.setState({
-  //     userId: id
-  //   });
-  // }
-
   render() {
+
+    console.log('WHAT IS GOTSHORTENERID:', this.props.gotShortenerId);
+    if (this.props.gotShortenerId) {
+      console.log('REDIRECTING TO DISPLAY')
+      TargetRoute = () => ( <Redirect to='/display' /> );
+    }
 
     // triggers a redirection to Search page if 'searchActive' state is triggered from submission action
     if (this.props.searchActive) {
@@ -110,7 +58,7 @@ class App extends Component {
       <div>
         <Router history={createBrowserHistory()}>
           <div>
-            <NavGuest />
+            <Nav />
             <TargetRoute />
             <Route exact path="/" component={Landing} />
             <Route path="/display" component={Display} />
@@ -132,6 +80,7 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     shortenerId: state.appReducer.shortenerId,
+    gotShortenerId: state.appReducer.gotShortenerId,
     query: state.appReducer.query,
     userId: state.appReducer.userId,
     bentoId: state.appReducer.bentoId,
