@@ -23,70 +23,93 @@ const stateDefault = {
   direction: true,
 };
 
-const handleFetchNoris = (state, action) => {
-  return { ...state, bentoData: action.payload };
-};
+const handleFetchNoris = (state, action) => ({
+  ...state,
+  bentoData: action.payload,
+});
 
-const handleFetchFrontImages = (state, action) => {
-  return { ...state, imgDataFront: action.payload };
-};
+const handleFetchFrontImages = (state, action) => ({
+  ...state,
+  imgDataFront: action.payload,
+});
 
-const handleFetchBackImages = (state, action) => {
-  return { ...state, imgDataBack: action.payload };
-};
+const handleFetchBackImages = (state, action) => ({
+  ...state,
+  imgDataBack: action.payload,
+});
 
-const handleGetBentoMetaData = (state, action) => {
-  return { ...state, title: action.title, id_hash: action.id_hash };
-};
+const handleGetBentoMetaData = (state, action) => ({
+  ...state,
+  title: action.title,
+  id_hash: action.id_hash,
+});
 
-const handleGoToPrevNori = (state, action) => {
-  return { ...state, currentNori: action.currentNori, buttonPressed: action.buttonPressed, noriToDisplay: action.noriToDisplay };
-};
+const handleGoToPrevNori = (state, action) => ({
+  ...state,
+  currentNori: action.currentNori,
+  buttonPressed: action.buttonPressed,
+  noriToDisplay: action.noriToDisplay,
+});
 
-const handleGoToNextNori = (state, action) => {
-  return { ...state, currentNori: action.currentNori, buttonPressed: action.buttonPressed, noriToDisplay: action.noriToDisplay };
-};
+const handleGoToNextNori = (state, action) => ({
+  ...state,
+  currentNori: action.currentNori,
+  buttonPressed: action.buttonPressed,
+  noriToDisplay: action.noriToDisplay,
+});
 
-const handleFlipNoriToFront = (state, action) => {
-  return { ...state, isFlipped: action.isFlipped, buttonPressed: action.buttonPressed };
-};
+const handleFlipNoriToFront = (state, action) => ({
+  ...state,
+  isFlipped: action.isFlipped,
+  buttonPressed: action.buttonPressed,
+});
 
-const handleFlipNoriToBack = (state, action) => {
-  return { ...state, isFlipped: action.isFlipped, buttonPressed: action.buttonPressed };
-};
+const handleFlipNoriToBack = (state, action) => ({
+  ...state,
+  isFlipped: action.isFlipped,
+  buttonPressed: action.buttonPressed,
+});
 
-const handleViewPageInputHandler = (state, action) => {
-  return { ...state, input: action.input };
-};
+const handleViewPageInputHandler = (state, action) => ({
+  ...state,
+  input: action.input,
+});
 
-const handlePhoneNumberInput = (state, action) => {
-  return { ...state, phoneNumberInput: action.phoneNumberInput };
-};
+const handlePhoneNumberInput = (state, action) => ({
+  ...state,
+  phoneNumberInput: action.phoneNumberInput,
+});
 
-const handleClearPhoneNumberInput = (state, action) => {
-  return { ...state, phoneNumberInput: action.phoneNumberInput };
-};
+const handleClearPhoneNumberInput = (state, action) => ({
+  ...state,
+  phoneNumberInput: action.phoneNumberInput,
+});
 
-const handleSendSMS = (state, action) => {
-    return { ...state, url: action.url, phoneNumber: action.phoneNumber };
-};
+const handleSendSMS = (state, action) => ({
+  ...state,
+  url: action.url,
+  phoneNumber: action.phoneNumber,
+});
 
-const handleSetNoriNumber = (state, action) => {
-  return { ...state, currentNori: action.currentNori, noriToDisplay: action.noriToDisplay };
-};
+const handleSetNoriNumber = (state, action) => ({
+  ...state,
+  currentNori: action.currentNori,
+  noriToDisplay: action.noriToDisplay,
+});
 
-const handleShuffleNoris = (state, action) => {
-  return { ...state,
-    bentoData: action.bentoData,
-    currentNori: action.currentNori,
-    buttonPressed: action.buttonPressed };
-};
+const handleShuffleNoris = (state, action) => ({
+  ...state,
+  bentoData: action.bentoData,
+  currentNori: action.currentNori,
+  buttonPressed: action.buttonPressed,
+});
 
-const handleBentoTraversalAnimation = (state, action) => {
-  return { ...state, direction: action.direction };
-};
+const handleBentoTraversalAnimation = (state, action) => ({
+  ...state,
+  direction: action.direction,
+});
 
-export default function (state = stateDefault, action) {
+export default (state = stateDefault, action) => {
   switch (action.type) {
     case FETCH_NORIS:
       return handleFetchNoris(state, action);
@@ -121,4 +144,4 @@ export default function (state = stateDefault, action) {
     default:
       return state;
   }
-}
+};
