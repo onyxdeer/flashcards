@@ -584,14 +584,14 @@ input {
 }
 
 
-h1 {
+h1, .lp{
     font-size: 44px;
     line-height: 56px;
     color: #fff;
     font-weight: 300;
     margin: 0px;
 }
-h2 {
+h2, .lp{
   font-size: 30px;
   line-height: 35px;
   color: #fff;
@@ -599,7 +599,7 @@ h2 {
   margin: 0px;
 }
 
-p {
+p, .lp{
     font-size: 16px;
     line-height: 25px;
     margin: 0px;
