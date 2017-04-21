@@ -42,6 +42,7 @@ export const LOG_IN = 'LOG_IN';
 export const LOG_OUT = 'LOG_OUT';
 export const SIGN_UP = 'SIGN_UP';
 export const CLEAR_AUTH_INPUTS = 'CLEAR_AUTH_INPUTS';
+export const CLEAR_SHORTENER_ID = 'CLEAR_SHORTENER_ID';
 export const USER_BENTOS_FETCHED = 'USER_BENTOS_FETCHED'; // Fix: Start with verb
 export const FAVORITE_BENTOS_FETCHED = 'FAVORITE_BENTOS_FETCHED'; // Fix: Start with verb
 export const POPULAR_BENTOS_FETCHED = 'POPULAR_BENTOS_FETCHED'; // Fix: Start with verb

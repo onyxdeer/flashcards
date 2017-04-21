@@ -1,4 +1,4 @@
-import { GET_SHORTENER_ID, UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE } from '../actions/actionTypes';
+import { GET_SHORTENER_ID, UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE, CLEAR_SHORTENER_ID } from '../actions/actionTypes';
 
 const stateDefault = {
   query: '',
@@ -11,11 +11,17 @@ const stateDefault = {
 const handleShortenerId = (state, action) => ({
   ...state,
   shortenerId: action.shortenerId,
+  gotShortenerId: action.gotShortenerId,
 });
 
 const handleQuery = (state, action) => ({
   ...state,
   query: action.query,
+});
+
+const handleClearShortenerId = (state, action) => ({
+  ...state,
+  gotShortenerId: action.gotShortenerId,
 });
 
 const handleUserId = (state, action) => ({
@@ -45,6 +51,8 @@ export default (state = stateDefault, action) => {
       return handleBentoId(state, action);
     case CHANGE_SEARCHACTIVE:
       return handleSearchActive(state, action);
+    case CLEAR_SHORTENER_ID:
+      return handleClearShortenerId(state, action);
     default:
       return state;
   }

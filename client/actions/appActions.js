@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_SHORTENER_ID, UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE, CHANGE_INPUT } from './actionTypes';
+import { GET_SHORTENER_ID, UPDATE_QUERY, GET_USERID, GET_BENTOID, CHANGE_SEARCHACTIVE, CHANGE_INPUT, CLEAR_SHORTENER_ID } from './actionTypes';
 
 export function getShortenerId(hash) {
   return (dispatch) => {
@@ -10,7 +10,17 @@ export function getShortenerId(hash) {
       dispatch({
         type: GET_SHORTENER_ID,
         shortenerId: response.data[0].id,
+        gotShortenerId: true,
       });
+    });
+  };
+}
+
+export function clearShortenerId() {
+  return (dispatch) => {
+    dispatch({
+      type: CLEAR_SHORTENER_ID,
+      gotShortenerId: false,
     });
   };
 }
