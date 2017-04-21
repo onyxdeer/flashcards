@@ -25,7 +25,9 @@ module.exports = function (config) {
             bStream.write(convertFloat32ToInt16(e.data.buffer));
     }, false);
 
+
     function clientStart(){
+      return function(){
         console.log('INITIATING BUTTON REGISTRAR', BinaryClient)
         close();
         // const URL = "localhost:9191"
@@ -63,8 +65,9 @@ module.exports = function (config) {
             recorder.connect(context.destination);
 
         }, function (e) {
-
+           console.log('client getting microphone error: ', e) 
         });
+      }
     }
 
     function clientEnd(){
@@ -172,8 +175,8 @@ module.exports = function (config) {
 
 
     return {
-        clientStart,
-        clientEnd
+        start: clientStart(),
+        end: clientEnd
     }
 };
 
