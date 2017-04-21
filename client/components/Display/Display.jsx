@@ -1,20 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Deck from 'react-deck';
 import classnames from 'classnames';
-import axios from 'axios';
 import Swipeable from 'react-swipeable';
-import RichTextEditor from 'react-rte';
-import {convertFromRaw, convertToRaw, ContentState, Editor, EditorState} from 'draft-js';
+import { convertFromRaw, Editor, EditorState } from 'draft-js';
 import displayActions from '../../actions/displayActions.js';
 import { connect } from 'react-redux';
 
 class Display extends Component {
   constructor(props) {
     super(props);
-
-    if (this.props.shortenerId) {
-      console.log('SHORTEN ID DETECTED:', this.props.shortenerId);
-    }
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.getSortedNoris = this.getSortedNoris.bind(this);
@@ -29,6 +23,26 @@ class Display extends Component {
     this.props.resetCurrentNori();
   }
 
+  componentWillMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentDidMount() {
+    $("#alert-target").click(function () {
+        toastr["info"]("SMS Sent!")
+    });
+    
+    $('#smsForm').submit(function(e) {
+      $('#sendSMS').modal('hide');
+      toastr["info"]("SMS Sent!")
+      return false;
+    });
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   getSortedNoris () {
     let stackSize = this.props.bentoData.length >= 10 ? 10 : this.props.bentoData.length;
     return this.props.bentoData
@@ -40,20 +54,12 @@ class Display extends Component {
 
   renderImages(nori, front) {
     let noriImages;
-    if (front) {
-      noriImages = this.props.imgDataFront.filter(function(image) {
-        return image.nori_id === nori.id;
-      });
-    } else {
-      noriImages = this.props.imgDataBack.filter(function(image) {
-        return image.nori_id === nori.id;
-      });
-    }
+    front ? noriImages = this.props.imgDataFront.filter(function(image) { return image.nori_id === nori.id }) :
+            noriImages = this.props.imgDataBack.filter(function(image) { return image.nori_id === nori.id });
     if (noriImages.length > 0) {
       return noriImages.map((image) => (<img className='noriImage' key={nori.id} src={image.url}></img>));
-    } else {
-      return '';
     }
+    return '';
   }
 
   renderNori (nori, index , noris) {
@@ -110,31 +116,6 @@ class Display extends Component {
             this.props.flipToFront();
             break;
     }
-  }
-
-  componentWillMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  componentDidMount() {
-
-    $("#alert-target").click(function () {
-        toastr["info"]("SMS Sent!")
-    });
-
-    $('#smsForm').submit(function(e) {
-      $('#sendSMS').modal('hide');
-      toastr["info"]("SMS Sent!")
-      return false;
-    });
-
-  }
-
-  componentDidUpdate() {
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown);
   }
 
   render() {

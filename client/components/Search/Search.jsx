@@ -54,6 +54,7 @@ class Search extends Component {
           <div className='row'>
             <div className='center-block col-sm-6 col-md-4'>
 
+            {console.log('this.props.bentos in render', this.props.bentos)}
             {/*Search results*/}
               {
                 this.props.bentos&&(this.props.bentos.length > 0 )? this.props.bentos.map((bento, index) => (
@@ -82,7 +83,7 @@ class Search extends Component {
 function mapStateToProps(state) {
   return { 
     bento: state.editBentoInfo,
-    bentos: state.searchReducer,
+    bentos: state.searchReducer.bentos,
     query: state.appReducer.query,
   }
 }
