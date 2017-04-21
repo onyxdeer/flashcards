@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-
+import LandingBentos from './LandingBentos.jsx'
 import {connect} from 'react-redux'
 import * as actions from '../../actions/landingActions.js'
-import {setBentoId} from '../../actions/appActions.js'
+
 
 class Landing extends Component {
 
@@ -32,12 +32,9 @@ class Landing extends Component {
 	            </div>
 	        </div>
 	    </section>
-      <section id = "bento-area">
-        {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => <Link to = "/display" onClick = {() => this.props.setBentoId(bento.id)} key = {index}><div className = "landing-nori col-md-3"  >{bento.name}</div></Link>) : null}
-
-      </section>
-
-
+        <div id = "bento-area">
+          {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => <LandingBentos bento = {bento}/>) : null}
+        </div>
       </div>
     )
   }
@@ -49,4 +46,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {...actions, setBentoId})(Landing);
+export default connect(mapStateToProps, {...actions})(Landing);

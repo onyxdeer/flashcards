@@ -216,8 +216,6 @@ input {
 }
 
 
-/*Landing Page CSS*/
-
 
 
 /* DISPLAY PAGE */
@@ -585,33 +583,48 @@ input {
   padding-top : 25px;
 }
 
-.landing-nori {
-  padding: 10px;
-}
 
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 300;
-    margin: 0px;
-}
 h1 {
     font-size: 44px;
     line-height: 56px;
     color: #fff;
+    font-weight: 300;
+    margin: 0px;
 }
 h2 {
   font-size: 30px;
   line-height: 35px;
   color: #fff;
+  font-weight: 300;
+  margin: 0px;
 }
 
 p {
     font-size: 16px;
     line-height: 25px;
     margin: 0px;
+}
+
+#bento-area {
+  margin-top: 20px;
+}
+
+.landing-bento {
+  padding: 5px;
+  margin: 10px;
+  border: groove;
+  box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
+}
+
+.card-title, .card-text {
+
+}
+
+.landingbento{
+  padding: 0px;
+  margin: 0px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  border: 0;
+  border-top: 1px solid #eee;
 }
