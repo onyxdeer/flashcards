@@ -8,8 +8,7 @@ import {
 } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-import NavGuest from './Nav/Nav-guest.jsx';
-import NavUser from './Nav/Nav-user.jsx';
+import Nav from './Nav/Nav.jsx';
 import Display from './Display/Display.jsx';
 import Landing from './Landing/Landing.jsx';
 import Edit from './Edit/Edit.jsx';
@@ -110,7 +109,7 @@ class App extends Component {
       <div>
         <Router history={createBrowserHistory()}>
           <div>
-            <NavGuest />
+            <Nav />
             <TargetRoute />
             <Route exact path="/" component={Landing} />
             <Route path="/display" component={Display} />

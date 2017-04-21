@@ -59,23 +59,23 @@ class Display extends Component {
     const className = classnames('index-card', {
       'card-flipped': index === noris.length - 1 && this.props.isFlipped && !this.props.buttonPressed,
       'no-animation': this.props.buttonPressed,
-      'moveFromRight': index === noris.length - 1 && this.props.direction,
-      'moveFromLeft': index === noris.length - 1 && !this.props.direction
+      // 'moveFromRight': index === noris.length - 1 && this.props.direction,
+      // 'moveFromLeft': index === noris.length - 1 && !this.props.direction
     });
     return (
       <Deck.Card key={nori.text_front} className={className}>
         <Deck.Card.Front>
             <div className={className} onClick={this.props.flipToBack}>
-              <div className='row'>{this.renderImages(nori, true)}</div>
-              <div className='row'>
+              <div className='row imageSection'>{this.renderImages(nori, true)}</div>
+              <div className='row frontText'>
                 <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_front)))} readOnly={true} />
               </div>
             </div>
         </Deck.Card.Front>
         <Deck.Card.Back>
           <div className={className} onClick={this.props.flipToFront}>
-            <div className='row'>{this.renderImages(nori, false)}</div>
-            <div className='row'>
+            <div className='row imageSection'>{this.renderImages(nori, false)}</div>
+            <div className='row backText'>
               <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_back)))} readOnly={true} />
             </div>
           </div>
@@ -161,7 +161,7 @@ class Display extends Component {
           <div className='buttonSection'>
             <button type='button' className='btn btn-success' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button>
             <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>
-            <a href='#' className='btn btn-success' data-toggle='popover' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
+            <a href='#' className='btn btn-success' data-toggle='popover' data-placement='top' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
           </div>
           <form className='changeToNoriSection' onSubmit={this.handleSetNori}>
             <div className='row'>
@@ -170,12 +170,12 @@ class Display extends Component {
             <div className='row'>
               <label>Enter from 0 to {this.props.bentoData ? this.props.bentoData.length - 1 : 0} to go to that Nori: </label>
                 <span>  </span>
-              <input type='text' className='cardNumberField' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder='Enter a number here!' />
+              <input type='tel' className='cardNumberField' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder='Enter a number here!' />
             </div>
           </form>
           <div className='row'>
             <div className='sharingSection'>
-              <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`localhost:8000/id=${this.props.id_hash}`} readOnly />
+              <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`obento.fun/id=${this.props.id_hash}`} readOnly />
               <button type='button' className='btn btn-success' data-toggle='modal' data-target='#sendSMS' onClick={this.props.clearPhoneNumberInput}>Send via SMS</button>
             </div>
           </div>
@@ -190,16 +190,16 @@ class Display extends Component {
                     </button>
                   </div>
                   <div className='modal-body'>
-                    <form id='smsForm' onSubmit={(event) => this.props.shareUrlToSMS(event, `http://localhost:8000/id=${this.props.id_hash}`, this.props.phoneNumberInput)}>
+                    <form id='smsForm' onSubmit={(event) => this.props.shareUrlToSMS(event, `http://obento.fun/id=${this.props.id_hash}`, this.props.phoneNumberInput)}>
                       <div className='form-group'>
                         <label className='form-control-label'>Recipient's Phone Number:</label>
-                        <input type='text' className='form-control' id='recipient-name' value={this.props.phoneNumberInput} placeholder='+14151234567' onChange={(event) => this.props.handlePhoneNumberInput(event)} />
+                        <input type='tel' className='form-control' id='recipient-name' value={this.props.phoneNumberInput} placeholder='14151234567' onChange={(event) => this.props.handlePhoneNumberInput(event)} />
                       </div>
                     </form>
                   </div>
                   <div className='modal-footer'>
                     <button type='button' className='btn btn-secondary' data-dismiss='modal'>Close</button>
-                    <button type='button' id='alert-target' className='btn btn-primary' onClick={(event) => this.props.shareUrlToSMS(event, `http://localhost:8000/id=${this.props.id_hash}`, this.props.phoneNumberInput)} data-dismiss='modal'>Share</button>
+                    <button type='button' id='alert-target' className='btn btn-primary' onClick={(event) => this.props.shareUrlToSMS(event, `http://obento.fun/id=${this.props.id_hash}`, this.props.phoneNumberInput)} data-dismiss='modal'>Share</button>
                   </div>
                 </div>
               </div>
