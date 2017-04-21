@@ -5,6 +5,8 @@ const Card = class {
   constructor(data){
     this.data = data
     this.processData()
+    this.nextCard = {};
+    this.next = function(){};
   }
 
   processData(){
@@ -19,4 +21,8 @@ const Card = class {
   getBack(){
     return this.data.back
   }
+
+  // next(){
+
+  // }
 }
