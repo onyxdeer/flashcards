@@ -3,7 +3,7 @@
 import util from './util.js';
 import request from 'axios';
 import client from './client.js';
-
+import Card from './card.js'
 
 /*
   AI class responsible with the following functionalities:
@@ -21,6 +21,7 @@ const AI = class {
     //                 .then( processed => this.data = processed );
     console.log('data is: ', data)
     this.store = this._processData(data)
+    this.cards = this.mapData(this.store)
     this.commands = this._getCommands();
     this._initAnnyang(this.commands);
     // this.client = client('');
@@ -76,27 +77,23 @@ const AI = class {
     @return {object} 
   */
   _processData( data ) {
-    console.log('data received in _processData function is : ', data)
     let newData = data.map(function(item){ 
       let result = {};
       if(item && item.text_front){
-        // console.log('what the fuck is text: ', item.text_front.text)
-        // debugger;
         let parsed = JSON.parse(item.text_front);
         if(parsed&&parsed.blocks&&parsed.blocks[0]&&parsed.blocks[0].text){
-          result['front'] =  parsed.blocks[0].text
+          result['front'] =  parsed.blocks[0].text;
         }
       }
       if(item && item.text_back){
         let parsed = JSON.parse(item.text_back);
         if(parsed&&parsed.blocks&&parsed.blocks[0]&&parsed.blocks[0].text){
-          result['back'] =  parsed.blocks[0].text
+          result['back'] =  parsed.blocks[0].text;
         }
       }
-      return result
+      return result;
     });
-    console.log('resulting data: ', newData)
-    return newData
+    return newData;
   }
 
 
@@ -121,7 +118,7 @@ const AI = class {
       },
       'hello': () => {
         console.log('hello function called')
-        this.say('hello there, my name is norica, here to help you memorize your noris ')
+        this.read('hello there, my name is norica, here to help you memorize your noris ')
       },
       'next': () => {
         console.log('next function called!')
@@ -187,14 +184,15 @@ const AI = class {
   */
   startSession(config) {
     let client = this._initClient('ayyyyyyy')    
-    console.log('what is result of init client:', result)
+    // console.log('what is result of init client:', result)
     this.client = client
     window.annyang.resume()
-    if( !this.data ) {
+    if( !this.cards ) {
       console.error('data is yet to be retrieved')
       return this;
     }
-    // console.log('we have data: ', this.data)
+    console.log('we have cards: ', this.cards)
+    this.cards[0].next()
     return this;
   }
   /*
@@ -235,7 +233,7 @@ const AI = class {
     @param {string} the string to transform to speech
     @return {AI instance}
   */
-  read(text) {
+  say(text) {
     console.log('i am speaking: ', text)
     window.responsiveVoice.speak(text, "UK English Female");
     return this;
@@ -243,6 +241,12 @@ const AI = class {
   // speakable(target){
   //   console.log('target func: ', target)
   // }
+
+  read(text) {
+    console.log('Reading Card Front: ', text)
+    window.responsiveVoice.speak(text, "UK English Female");
+    return this;
+  }
 
   listen() {
     return new Promise( (resolve, reject) => {
@@ -254,15 +258,39 @@ const AI = class {
    * @param {*data} data 
    * @return {some more data}
    */
-  next(data) {
-    return nextObj
+  next() {
+    // return nextObj
+    console.log('this: ', this)
+    read(this.front)
+      .then(() => {
+        return listen()
+      })
+      .then(() => {
+        return getResponse()
+      })
+
   }
 
   validateStream(){
     // import google client here
   }
 
-
+  /**
+   * 
+   * @param {Array} expect a list of noris to map into cards
+   * @param {*} a list of card class objects 
+   */
+  mapData (noriList){
+    let cardsList = [];
+    for( let i = 0; i < noriList.length; i++ ){
+      // let obj = {};
+      let card = new Card(noriList[i])
+      card.next = this.next
+      cardsList.push(card)
+      // let nextCard = 
+    };
+    return cardsList;
+  }
   
 };
 

@@ -1,6 +1,3 @@
-
-
-
 const Card = class {
   constructor(data){
     this.data = data
@@ -26,3 +23,5 @@ const Card = class {
 
   // }
 }
+
+export default Card;

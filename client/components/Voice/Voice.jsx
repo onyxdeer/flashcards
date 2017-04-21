@@ -40,7 +40,6 @@ class Voice extends Component {
   }
 
   transfer(){
-
     this.joe.startTransfer()
   }
 
@@ -57,8 +56,8 @@ class Voice extends Component {
           </div>
           <button className="start-rec-btn" onClick={this.handleStart}>Start Session</button>
           <button className="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>
-          <button className="startTransfer" onClick={this.transfer}>Start Session</button>
-          <button className="endTransfer" onClick={this.endTransfer}>Stop Session</button>
+          <button className="startTransfer" onClick={this.transfer}>Start Transfer</button>
+          <button className="endTransfer" onClick={this.endTransfer}>Stop Transfer</button>
           {/*<button className="btn btn-primary" id="start-rec-btn" onClick={this.handleStart}>Start Session</button>
           <button className="btn btn-primary" id="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>*/}
 
