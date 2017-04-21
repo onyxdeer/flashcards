@@ -23,7 +23,7 @@
         }
         this.index = options.index;
         this.clientid = options.clientid;
-        this.endpoint = 'https://api.imgur.com/3/image';
+        this.endpoint = 'https://api.imgur.com/3/upload';
         this.callback = options.callback || undefined;
         this.dropzone = document.querySelectorAll('.dz' + options.index); //might be here
         this.run();
@@ -45,6 +45,7 @@
         insertAfter: function (referenceNode, newNode) {
             referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
         },
+
         post: function (path, data, callback) {
             var xhttp = new XMLHttpRequest();
 
@@ -71,12 +72,10 @@
         createDragZone: function () {
             var p, input;
 
-            p     = this.createEls('p', {}, 'Drag your files Or Click Here');
+            p     = this.createEls('p', {}, 'Drag/Click Your Images Here');
             input = this.createEls('input', {type: 'file', accept: 'image/*'});
-            console.log("Line 76 of IMGUR.JS", this.dropzone)
 
             Array.prototype.forEach.call(this.dropzone, function (zone, index) {
-                console.log("Line 79 imgur ",this.dropzone, zone)
                if(!zone.hasChildNodes()){
                 zone.appendChild(p);
                 zone.appendChild(input);
@@ -127,7 +126,6 @@
             zone.addEventListener('change', function (e) {
                 if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
                     target = e.target.files;
-                    console.log(target)
 
                     for (i = 0, len = target.length; i < len; i += 1) {
                         file = target[i];

@@ -20,6 +20,7 @@ import Voice from './Voice/Voice.jsx';
 import Login from './Login/Login.jsx';
 import Register from './Register/Register.jsx';
 
+
 import { connect } from 'react-redux';
 import * as actions from '../actions/appActions.js';
 // Allows redirection from current page to Search page upon search submission

@@ -22,8 +22,3 @@ const post = (req, res) => {
 };
 
 module.exports = {get, post};
-
-// {
-//   "bento_id": "1",
-//   "nori_id": "1"
-// }

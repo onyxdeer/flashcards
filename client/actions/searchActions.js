@@ -11,8 +11,6 @@ export function searchBentos(someData, someMoreData) {
     console.log('Calling api from searchBentos with:', someData);
     axios.get('/api/search', {
       params: { someData }
-      // Search database method:
-      // params: { name: someData }
     })
     .then(response => storeBentoIds(response, idArray, bentoData))
     .then(() => fetchThumbnails(idArray, imgArray, bentoData, dispatch));
