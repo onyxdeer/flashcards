@@ -1,14 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../connect.js');
-  // name: {
-  //   type: Sequelize.STRING,
-  //   allowNull: false,
-  // description: Sequelize.STRING,
-  //   unique: {
-  //     args: true,
-  //     msg: 'Nori name already exists!'
-  //   }
-  // },
+const db = require('../scripts/connect.js');
 
 const Nori = db.define('nori', {
   text_front: Sequelize.TEXT,
@@ -17,8 +8,8 @@ const Nori = db.define('nori', {
   audio_url_back: Sequelize.STRING,
   private: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false
-  }
+    defaultValue: false,
+  },
 });
 
 module.exports = Nori;

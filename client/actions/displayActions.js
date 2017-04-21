@@ -64,11 +64,11 @@ function fetchNoris(bentoId) {
   return function(dispatch) {
     var context = this;
     var idArray = [];
-    return axios.get('/api/bentos_noris',{
+    return axios.get('/api/bentosNoris',{
         params: { bento_id: bentoId }
       })
       .then(function(response) {
-        console.log('/api/bentos_noris response:', response.data);
+        console.log('/api/bentosNoris response:', response.data);
         for (var index = 0; index < response.data.length; index++) {
           idArray.push(response.data[index].nori_id);
         }

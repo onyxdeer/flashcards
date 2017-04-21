@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../connect.js');
+const db = require('../scripts/connect.js');
 
 const Tag = db.define('tag', {
   name: {
@@ -7,9 +7,9 @@ const Tag = db.define('tag', {
     allowNull: false,
     unique: {
       args: true,
-      msg: 'Tag name already exists!'
-    }
-  }
+      msg: 'Tag name already exists!',
+    },
+  },
 });
 
 module.exports = Tag;

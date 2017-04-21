@@ -1,18 +1,16 @@
-import {HANDLE_GET_ALOT_BENTOS} from '../actions/actionTypes.js'
+import { HANDLE_GET_ALOT_BENTOS } from '../actions/actionTypes';
 
-const DEFAULT_STATE = {
-  bentos: []
-}
+const stateDefault = {
+  bentos: [],
+};
 
-function handleGetAlotBentos(state, action) {
-  return {bentos: action.payload}
-}
+const handleGetAlotBentos = (state, action) => ({ bentos: action.payload });
 
-export default function(state = DEFAULT_STATE, action) {
-  switch(action.type) {
+export default (state = stateDefault, action) => {
+  switch (action.type) {
     case HANDLE_GET_ALOT_BENTOS:
-    return handleGetAlotBentos(state, action)
+      return handleGetAlotBentos(state, action);
+    default:
+      return state;
   }
-
-  return state
-}
+};
