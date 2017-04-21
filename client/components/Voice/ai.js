@@ -20,7 +20,7 @@ const AI = class {
     //                 .then( data => this._processData(data) )
     //                 .then( processed => this.data = processed );
     console.log('data is: ', data)
-    this.data = data
+    this.store = this._processData(data)
     this.commands = this._getCommands();
     this._initAnnyang(this.commands);
     // this.client = client('');
@@ -77,7 +77,19 @@ const AI = class {
   */
   _processData( data ) {
     console.log('data received in _processData function is : ', data)
-    return data
+    let newData = data.map(function(item){ 
+      let result = {};
+        //  front: i.text_front.text, back: i.
+      if(item && item.text_front && item.text_front.text){
+        result['front'] = item.text_front.text
+      }
+      if(item && item.text_back && item.text_back.text){
+        result['back'] = item.text_back.text
+      }
+      return result
+    });
+    console.log('resulting data: ', data)
+    return newdata
   }
 
 
