@@ -4,7 +4,11 @@ import classnames from 'classnames';
 import Swipeable from 'react-swipeable';
 import { convertFromRaw, Editor, EditorState } from 'draft-js';
 import displayActions from '../../actions/displayActions.js';
+import * as appActions from '../../actions/appActions.js';
 import { connect } from 'react-redux';
+
+console.log('displayActions:', displayActions);
+console.log('appActions:', appActions);
 
 class Display extends Component {
   constructor(props) {
@@ -37,6 +41,8 @@ class Display extends Component {
       toastr["info"]("SMS Sent!")
       return false;
     });
+
+    this.props.clearShortenerId();
   }
   
   componentWillUnmount() {
@@ -211,4 +217,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, displayActions)(Display);
+export default connect(mapStateToProps, { ...displayActions, ...appActions })(Display);

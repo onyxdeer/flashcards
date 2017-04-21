@@ -51,6 +51,7 @@ class App extends Component {
 
     // triggers a redirection to Search page if 'searchActive' state is triggered from submission action
     if (this.props.searchActive) {
+      console.log('REDIRECTING TO SEARCH')
       TargetRoute = () => (<Redirect to="/search" />);
     }
 
