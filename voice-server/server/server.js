@@ -27,14 +27,25 @@ const request = {
     sampleRate: sampleRate,
     // languageCode: 'en-US'
   },
-  interimResults: true
+//   interimResults: true
 };
+
+const sendDataBack = (data) => {
+    //sockets.push whatever results
+    //or write file to disc
+    //then let them retrieve result
+}
 
 const recognizeStream = speech.createRecognizeStream(request)
   .on('error', (err) => console.log('GOOGLE: ', err))
   .on('data', (data) => {
       console.log('GOOGLE: ', data)
-      process.stdout.write(data.results)});
+      process.stdout.write(data.results)
+      sendDataBack(data.results);
+    });
+
+
+
 
 var uaParser = new UAParser();
 
@@ -54,7 +65,7 @@ app.use(serveStatic('public'));
 var server = https.createServer(options,app);
 server.listen(9191);
 
-// opener("https://localhost:9191");
+opener("https://localhost:9191");
 
 var server = binaryServer({server:server});
 
@@ -78,7 +89,8 @@ server.on('connection', function(client) {
                     channels: 1,
                     sampleRate: meta.sampleRate,
                     bitDepth: 16 });
-                stream.pipe(fileWriter).pipe(recognizeStream);
+                // stream.pipe(fileWriter).pipe(recognizeStream);
+                stream.pipe(recognizeStream);
             break;
 
             case "MP3":
