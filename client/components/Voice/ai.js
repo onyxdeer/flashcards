@@ -3,7 +3,8 @@
 import util from './util.js';
 import request from 'axios';
 import client from './client.js';
-import Card from './card.js'
+import Card from './card.js';
+import Promise from 'bluebird';
 
 /*
   AI class responsible with the following functionalities:
@@ -19,9 +20,10 @@ const AI = class {
     // this._getBento(bentoId)
     //                 .then( data => this._processData(data) )
     //                 .then( processed => this.data = processed );
-    console.log('data is: ', data)
+    // console.log('data is: ', data)
     this.store = this._processData(data)
     this.cards = this.mapData(this.store)
+    console.log('cards are: ', this.cards)
     this.commands = this._getCommands();
     this._initAnnyang(this.commands);
     // this.client = client('');
@@ -243,13 +245,16 @@ const AI = class {
   // }
 
   read(text) {
-    console.log('Reading Card Front: ', text)
-    window.responsiveVoice.speak(text, "UK English Female");
-    return this;
+    return new Promise( (resolve, reject) => {
+      console.log('Reading Card Front: ', text)
+      window.responsiveVoice.speak(text, "UK English Female");
+      resolve()
+    });
   }
 
   listen() {
     return new Promise( (resolve, reject) => {
+      console.log('hello world i am listening!!')
 
     });
   }
@@ -258,16 +263,21 @@ const AI = class {
    * @param {*data} data 
    * @return {some more data}
    */
-  next() {
+  next(...args) {
     // return nextObj
+    let read = args[0]
+    let listen = args[1]
+    // console.log('myargs: ', args)
     console.log('this: ', this)
     read(this.front)
-      .then(() => {
+      .then((card) => {
+        console.log('should still have the same card: ', card)
         return listen()
       })
-      .then(() => {
-        return getResponse()
-      })
+      // .then(() => {
+      //   return getResponse()
+      // })
+      .catch(err => console.log(err))
 
   }
 
@@ -282,10 +292,12 @@ const AI = class {
    */
   mapData (noriList){
     let cardsList = [];
+    let asyncRead = this.read
+    let asyncListen = this.listen
     for( let i = 0; i < noriList.length; i++ ){
       // let obj = {};
       let card = new Card(noriList[i])
-      card.next = this.next
+      card.next = this.next.bind(card, asyncRead, asyncListen)
       cardsList.push(card)
       // let nextCard = 
     };
