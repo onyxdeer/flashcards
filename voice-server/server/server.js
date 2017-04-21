@@ -66,7 +66,7 @@ app.use(serveStatic('public'));
 var server = https.createServer(options,app);
 server.listen(9191);
 
-opener("https://localhost:9191");
+// opener("https://localhost:9191");
 
 var server = binaryServer({server:server});
 
@@ -82,7 +82,7 @@ server.on('connection', function(client) {
     client.on('stream', function(stream, meta) {
 
         console.log("Stream Start@" + meta.sampleRate +"Hz");
-        console.log('client identification data is: ', meta)
+        console.log('client identification is: ', meta.clientId)
         var fileName = "recordings/"+ ua.os.name +"-"+ ua.os.version +"_"+ new Date().getTime();
         
         switch(CONFIG.AudioEncoding){

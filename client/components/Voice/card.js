@@ -19,9 +19,6 @@ const Card = class {
     return this.data.back
   }
 
-  // next(){
-
-  // }
 }
 
 export default Card;

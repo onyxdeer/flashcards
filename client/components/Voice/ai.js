@@ -47,7 +47,8 @@ const AI = class {
   _initClient(configs){
     const SPEECHURL = 'localhost:9191';
     const configurations = {
-      SPEECHURL
+      SPEECHURL,
+      clientId: util.uuid()
     };
     this.client = client(configs);
   }
@@ -255,6 +256,9 @@ const AI = class {
   listen() {
     return new Promise( (resolve, reject) => {
       console.log('hello world i am listening!!')
+      //shut down annyang
+      //turn on client
+      //resolve response from server
 
     });
   }
@@ -263,10 +267,8 @@ const AI = class {
    * @param {*data} data 
    * @return {some more data}
    */
-  next(...args) {
-    // return nextObj
-    let read = args[0]
-    let listen = args[1]
+  next(chainFunctions) {
+    const { read, listen } = chainFunctions;
     // console.log('myargs: ', args)
     console.log('this: ', this)
     read(this.front)
@@ -292,12 +294,14 @@ const AI = class {
    */
   mapData (noriList){
     let cardsList = [];
-    let asyncRead = this.read
-    let asyncListen = this.listen
+    const chainFunctions = {
+      read: this.read,
+      listen: this.listen
+    }
     for( let i = 0; i < noriList.length; i++ ){
       // let obj = {};
       let card = new Card(noriList[i])
-      card.next = this.next.bind(card, asyncRead, asyncListen)
+      card.next = this.next.bind(card, chainFunctions)
       cardsList.push(card)
       // let nextCard = 
     };
