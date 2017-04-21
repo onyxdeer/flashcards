@@ -34,6 +34,7 @@ const sendDataBack = (data) => {
     //sockets.push whatever results
     //or write file to disc
     //then let them retrieve result
+    console.log('\nwe are sending data back: \n', data)
 }
 
 const recognizeStream = speech.createRecognizeStream(request)
@@ -81,6 +82,7 @@ server.on('connection', function(client) {
     client.on('stream', function(stream, meta) {
 
         console.log("Stream Start@" + meta.sampleRate +"Hz");
+        console.log('client identification data is: ', meta)
         var fileName = "recordings/"+ ua.os.name +"-"+ ua.os.version +"_"+ new Date().getTime();
         
         switch(CONFIG.AudioEncoding){

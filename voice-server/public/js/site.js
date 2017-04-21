@@ -22,7 +22,7 @@ $(function () {
         close();
         client = new BinaryClient('wss://'+location.host);
         client.on('open', function () {
-            bStream = client.createStream({sampleRate: resampleRate});
+            bStream = client.createStream({sampleRate: resampleRate, clientID:'69696969'});
         });
 
         if (context) {
