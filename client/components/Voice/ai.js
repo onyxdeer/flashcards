@@ -79,17 +79,24 @@ const AI = class {
     console.log('data received in _processData function is : ', data)
     let newData = data.map(function(item){ 
       let result = {};
-        //  front: i.text_front.text, back: i.
-      if(item && item.text_front && item.text_front.text){
-        result['front'] = item.text_front.text
+      if(item && item.text_front){
+        // console.log('what the fuck is text: ', item.text_front.text)
+        // debugger;
+        let parsed = JSON.parse(item.text_front);
+        if(parsed&&parsed.blocks&&parsed.blocks[0]&&parsed.blocks[0].text){
+          result['front'] =  parsed.blocks[0].text
+        }
       }
-      if(item && item.text_back && item.text_back.text){
-        result['back'] = item.text_back.text
+      if(item && item.text_back){
+        let parsed = JSON.parse(item.text_back);
+        if(parsed&&parsed.blocks&&parsed.blocks[0]&&parsed.blocks[0].text){
+          result['back'] =  parsed.blocks[0].text
+        }
       }
       return result
     });
-    console.log('resulting data: ', data)
-    return newdata
+    console.log('resulting data: ', newData)
+    return newData
   }
 
 
@@ -228,7 +235,7 @@ const AI = class {
     @param {string} the string to transform to speech
     @return {AI instance}
   */
-  say(text) {
+  read(text) {
     console.log('i am speaking: ', text)
     window.responsiveVoice.speak(text, "UK English Female");
     return this;
