@@ -26,6 +26,7 @@ const AI = class {
     console.log('cards are: ', this.cards)
     this.commands = this._getCommands();
     this._initAnnyang(this.commands);
+    this.socket = window.io();
     // this.client = client('');
   }
 

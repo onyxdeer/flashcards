@@ -10,7 +10,10 @@ var binaryServer = require('binaryjs').BinaryServer,
     serveStatic = require('serve-static'),
     UAParser = require('./ua-parser'),
     CONFIG = require("../config.json"),
-    lame = require('lame');
+    lame = require('lame'),
+    // socket = require('./comm-server.js');
+
+const socket = require('../../server/server.js')
 
 // Imports the Google Cloud client library
 const Speech = require('@google-cloud/speech');

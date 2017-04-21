@@ -14,6 +14,7 @@ module.exports = function (config) {
         var resampleRate = 44100,
         // contextSampleRate = 16000,
         worker = new Worker('./js/worker/resampler-worker.js');
+
     
 
 
@@ -37,41 +38,41 @@ module.exports = function (config) {
         // client = new window.BinaryClient('wss://'+location.host);
         client = new window.BinaryClient('wss://'+URL);
 
-        client.on('stream', function(stream, meta){
-            console.log('streaming is happenin', stream, meta)
-            stream.on('data', function(data){
-                console.log('streaming data', data)
-            })
-            stream.on('end', function(){
-                console.log('stream ended in streamclient')
-            })
-        })
+        // client.on('stream', function(stream, meta){
+        //     console.log('streaming is happenin', stream, meta)
+        //     stream.on('data', function(data){
+        //         console.log('streaming data', data)
+        //     })
+        //     stream.on('end', function(){
+        //         console.log('stream ended in streamclient')
+        //     })
+        // })
 
         client.on('open', function () {
             console.log('streaming client turned on')
             bStream = client.createStream({sampleRate: resampleRate, clientId: config.clientId});
-            bStream.on('data', function(s){
-                console.log('data is being piped', s)
-            })
-            bStream.on('end', function(s){
-                console.log('stream end event triggerd', s)
-            })
-            bStream.on('pause', function(s){
-                console.log('stream pause event', s)
-            })
+            // bStream.on('data', function(s){
+            //     console.log('data is being piped', s)
+            // })
+            // bStream.on('end', function(s){
+            //     console.log('stream end event triggerd', s)
+            // })
+            // bStream.on('pause', function(s){
+            //     console.log('stream pause event', s)
+            // })
 
-                    client.on('stream', function(data){
-            console.log('streaming is happenin', data)
-        })
+            // client.on('stream', function(data){
+            // console.log('streaming is happenin', data)
+            // })
         });
 
-        client.on('end', function(d){
-            console.log('CLIENT ENDED EVENT TRIGGERED')
-        })
+        // client.on('end', function(d){
+        //     console.log('CLIENT ENDED EVENT TRIGGERED')
+        // })
 
-        client.on('stream', function(data){
-            console.log('streaming is happenin', data)
-        })
+        // client.on('stream', function(data){
+        //     console.log('streaming is happenin', data)
+        // })
 
         if (context) {
             recorder.connect(context.destination);
