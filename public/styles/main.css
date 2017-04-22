@@ -38,6 +38,10 @@ label, button, a {
     margin-left: 2px;
 }
 
+a.menu-item, a.navbar-brand.logo-nav {
+    margin-top: 3px;
+}
+
 body,
 html {
     width: 100%;
