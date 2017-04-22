@@ -508,24 +508,14 @@ input {
     perspective: 1000px;
 }
 
-/*.ellipsis {
-    width: 100%;
-    height: 100%;
-    text-overflow: ellipsis;
-    height: 7.5ex;
-    padding-right: 17px;
-    white-space: wrap;
-    overflow-y: scroll;
-}*/
-
 .bentoDescription {
-    /*height: 7.5ex;*/
     height: 25ex;
     overflow-y: scroll;
 }
 
 .searchDescription {
-    /*height: 7.5ex;*/
+    padding-left: 10px;
+    padding-right: 10px;
     height: 17.5ex;
     overflow-y: scroll;
 }
@@ -537,6 +527,16 @@ input {
 
 .search-data {
   text-align: center;
+}
+
+.slick-slide {
+    height: 100%;
+    min-height: 1px;
+}
+
+div.slick-slide.slick-active.thumbnailSpace {
+    display: flex;
+    justify-content: center;
 }
 
 .thumbnail {
