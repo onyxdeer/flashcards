@@ -54,7 +54,7 @@ class Search extends Component {
               {
                 this.props.bentos&&(this.props.bentos.length > 0 )? this.props.bentos.map((bento, index) => (
                   <div className='search-item col-md-2'>
-                    <div className='searchBox' key={index}>
+                    <div className='searchBox wow bounceInUp' key={index}>
                       <img className='search-data' src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                       <div className='caption'>
                         <h3 className='search-data'>{bento.name}</h3>
