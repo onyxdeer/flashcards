@@ -1,4 +1,5 @@
-<svg id="visualizer" preserveAspectRatio="none" version="1.1">
+<svg id="visualizer" preserveAspectRatio="none" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 	<defs>
 		<mask id="mask">
 			<g id="maskGroup"/>
