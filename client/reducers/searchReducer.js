@@ -6,7 +6,7 @@ const stateDefault = {
 
 const handleSearchBentos = (state, action) => ({
   ...state,
-  bentos: action.payload
+  bentos: action.payload,
 });
 
 export default (state = stateDefault, action) => {

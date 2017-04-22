@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { FIND_BENTOS } from './actionTypes';
 
-// NEW VERSION: Fetching from AWS ES
+// Fetching from AWS ES
 function storeBentoIds(response, idArray, bentoData) {
   for (let i = 0; i < response.data.length; i += 1) {
     if (!response.data[i]._source.private) {
@@ -11,7 +11,7 @@ function storeBentoIds(response, idArray, bentoData) {
   }
 }
 
-// OLD VERSION: Fetching from database
+// Fetching from database
 function fetchThumbnails(idArray, imgArray, bentoData, dispatch) {
   return axios.get('/api/thumbnails', {
     params: { bento_id: idArray },
@@ -47,7 +47,7 @@ export function searchBentos(someData) {
   };
 }
 
-// OLD VERSION: Fetching from database instead of AWS ES
+// Fetching from database
 // function storeBentoIds(response, idArray, bentoData) {
 //   for (var i = 0; i < response.data.length; i++ ) {
 //     if (!response.data[i].private) {
@@ -57,7 +57,7 @@ export function searchBentos(someData) {
 //   }
 // }
 
-// NEW VERSION: Fetching from AWS ES
+// Fetching from AWS ES
 // function fetchThumbnails(idArray, imgArray, bentoData, dispatch) {
 //   return axios.get('/api/search_thumbnails', {
 //     params: { idArray }
