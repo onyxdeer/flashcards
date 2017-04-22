@@ -540,7 +540,9 @@ input {
 }
 
 .thumbnail {
-    width: 150px;
+    border: groove;
+    box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
+    width: 300px;
     height: 600px;
 }
 

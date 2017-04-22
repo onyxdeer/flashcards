@@ -59,14 +59,16 @@ class Explore extends Component {
 
                   (<Carousel {...settings}> 
                   {this.props.bentos.map((bento, index) => (
-                    <div className='thumbnail' key={index}>
-                      <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
-                      <div className='caption exploreItems'>
-                        <h3>{bento.name}</h3>
-                        <p className='bentoDescription exploreItems'>{bento.description}</p>
-                        <p className='exploreItems'><label>View Count:</label> {bento.visit_count} </p>
-                        <p className='exploreItems'><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
-                      </div>
+                    <div className='thumbnailSpace'>
+                      <span className='thumbnail' key={index}>
+                        <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
+                        <div className='caption exploreItems'>
+                          <h3>{bento.name}</h3>
+                          <p className='bentoDescription exploreItems'>{bento.description}</p>
+                          <p className='exploreItems'><label>View Count:</label> {bento.visit_count} </p>
+                          <p className='exploreItems'><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
+                        </div>
+                      </span>
                     </div>
                   ))}
                   </Carousel>)
