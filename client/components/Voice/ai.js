@@ -15,7 +15,6 @@ import Promise from 'bluebird';
 const AI = class {
   constructor(name, data) {
     this.name = name;
-    console.log(window.io)
     this.socket = window.io();
     // this.commands = util.commands;
     // this._initAnnyang(util.commands);
@@ -262,20 +261,14 @@ const AI = class {
     let that = this
     return new Promise( (resolve, reject) => {
       console.log('hello world i am listening!!')
-      //shut down annyang this.pause()
       this.pause()
       this.startTransfer()
-      // resolve()
       let end = this.endTransfer.bind(this)
       socket.on('transfer over', function(data){
           console.log('received data from backend: ', data)
           end()
           resolve(data)
       })
-
-      //turn on client this.client.start()
-      //resolve response from server
-
     });
   }
   /**
@@ -301,7 +294,8 @@ const AI = class {
         console.log('current id: ', instance.current)
         if(instance.cards[instance.current]){
           instance.cards[instance.current].next()
-
+        } else {
+          instance.say('that is all the noris. good job. I would pat you on the back, but I have no hands. but hey, checkout the results')
         }
         return
       })
