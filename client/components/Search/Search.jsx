@@ -32,7 +32,7 @@ class Search extends Component {
 
     return (
       <div>
-        <div className='row center-block searchSection'>
+        <div className='searchSection container'>
 
           {/* Header */}
           <div>
@@ -40,7 +40,7 @@ class Search extends Component {
           </div>
 
           {/* Filter bar */}
-          <div className='filterSection'>
+          {/*<div className='filterSection'>
             Filter By: <span>
               <button type='button' className='btn btn-success filterButtons'>Name</button>
               <button type='button' className='btn btn-success filterButtons'>Views</button>
@@ -48,30 +48,26 @@ class Search extends Component {
               <button type='button' className='btn btn-success filterButtons'>Date Created</button>
               <button type='button' className='btn btn-success filterButtons'>Recently Updated</button>
             </span>
-          </div>
-
+          </div>*/}
 
           <div className='row'>
-            <div className='center-block col-sm-6 col-md-4'>
-
-            {console.log('this.props.bentos in render', this.props.bentos)}
             {/*Search results*/}
               {
                 this.props.bentos&&(this.props.bentos.length > 0 )? this.props.bentos.map((bento, index) => (
-                  <div className='thumbnail' key={index}>
-                    <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
-                    <div className='caption'>
-                      <h3>{bento.name}</h3>
-                      <p className='ellipsis'>{bento.description}</p>
-                      <p><label>View Count:</label> {bento.visit_count} </p>
-                      <p><Link className='btn btn-primary' to={'/display/' + bento.id} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
+                  <div className='search-item col-md-2'>
+                    <div className='thumbnail' key={index}>
+                      <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
+                      <div className='caption'>
+                        <h3>{bento.name}</h3>
+                        <p className='ellipsis'>{bento.description}</p>
+                        <p><label>View Count:</label> {bento.visit_count} </p>
+                        <p><Link className='btn btn-primary' to={'/display/' + bento.id} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
+                      </div>
                     </div>
                   </div>
-                )) : (<h1 className='center-block'>Sorry, no results were found!</h1>)
+                )) : (<h1 className='row'>Sorry, no results were found!</h1>)
               }
-              
-            </div>
-          </div>
+              </div>
 
 
         </div>
