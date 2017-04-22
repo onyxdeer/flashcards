@@ -364,6 +364,8 @@ input {
 }
 
 .frontText, .backText {
+  margin-top: 5px;
+  margin-bottom: 5px;
   max-height: 100%;
   overflow-y: scroll;
 }
@@ -559,6 +561,7 @@ div.slick-slide.slick-active.thumbnailSpace {
     padding-top: 20px;
     width: 180px;
     height: auto;
+    max-height: 200px;
 }
 
 .searchBox img {
