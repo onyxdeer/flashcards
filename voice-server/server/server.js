@@ -66,13 +66,22 @@ const sendDataBack = (data) => {
     console.log('\nwe are sending data back: ', data)
 }
 
-const recognizeStream = speech.createRecognizeStream(request)
-  .on('error', (err) => console.log('GOOGLE: ', err))
-  .on('data', (data) => {
-      console.log('GOOGLE: ', data)
-    //   process.stdout.write(data.results)
+
+const createSpeechStream = () => speech.createRecognizeStream(request)
+    .on('error', (err) => console.log('GOOGLE: ', err))
+    .on('data', (data) => {
+        console.log('GOOGLE: ', data)
+        //   process.stdout.write(data.results)
       sendDataBack(data.results);
     });
+
+// const recognizeStream = speech.createRecognizeStream(request)
+//   .on('error', (err) => console.log('GOOGLE: ', err))
+//   .on('data', (data) => {
+//       console.log('GOOGLE: ', data)
+//     //   process.stdout.write(data.results)
+//       sendDataBack(data.results);
+//     });
 
 
 
@@ -101,6 +110,8 @@ var server = binaryServer({server:server});
 
 server.on('connection', function(client) {
     console.log("new connection...");
+    console.log('creating stream...')
+    const googleStream = createSpeechStream()
     var fileWriter = null;
     var writeStream = null;
     
@@ -121,7 +132,8 @@ server.on('connection', function(client) {
                     sampleRate: meta.sampleRate,
                     bitDepth: 16 });
                 // stream.pipe(fileWriter).pipe(recognizeStream);
-                stream.pipe(recognizeStream);
+                // stream.pipe(recognizeStream);
+                stream.pipe(googleStream);
             break;
 
             case "MP3":

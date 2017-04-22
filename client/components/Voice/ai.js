@@ -23,9 +23,10 @@ const AI = class {
     //                 .then( data => this._processData(data) )
     //                 .then( processed => this.data = processed );
     // console.log('data is: ', data)
-    this.store = this._processData(data)
-    this.cards = this.mapData(this.store)
-    console.log('cards are: ', this.cards)
+    this.store = this._processData(data);
+    this.cards = this.mapData(this.store);
+    this.current = 0;
+    console.log('cards are: ', this.cards);
     this.commands = this._getCommands();
     this._initAnnyang(this.commands);
     // this.client = client('');
@@ -257,14 +258,21 @@ const AI = class {
     });
   }
 
-  listen() {
+  listen(socket) {
     let that = this
     return new Promise( (resolve, reject) => {
       console.log('hello world i am listening!!')
       //shut down annyang this.pause()
       this.pause()
       this.startTransfer()
-      resolve()
+      // resolve()
+      let end = this.endTransfer.bind(this)
+      socket.on('transfer over', function(data){
+          console.log('received data from backend: ', data)
+          end()
+          resolve(data)
+      })
+
       //turn on client this.client.start()
       //resolve response from server
 
@@ -275,23 +283,27 @@ const AI = class {
    * @param {*data} data 
    * @return {some more data}
    */
-  next({ read, listen, test=10, socket: soc }) {
+  next({ read, listen, test=10, socket, instance }) {
     // const { read, listen } = chainFunctions;
     // console.log('myargs: ', args)
     // console.log('this: ', this)
+    console.log('before id: ', instance.current)
+    //RESTART CLIENT HERE
     read(this.front)
       .then(() => {
         console.log('listening...')
-        soc.emit('chat message', 'startin listenin')
-        
-        return listen()
+        return listen(socket)
       })
-      .then(() => {
-        console.log('EVERYTHING IS WORKING YAY')
-          // return getResponse()
-        soc.on('transfer over', function(data){
-          console.log('received data from backend: ', data)
-        })
+      .then((data) => {
+        instance.current++
+        console.log('data heard is ...', data)
+        //call next here
+        console.log('current id: ', instance.current)
+        if(instance.cards[instance.current]){
+          instance.cards[instance.current].next()
+
+        }
+        return
       })
       .catch(err => console.log(err))
 
@@ -312,7 +324,8 @@ const AI = class {
     const chainFunctions = {
       read: this.read.bind(this),
       listen: this.listen.bind(this),
-      socket: this.socket
+      socket: this.socket,
+      instance: this
     }
     for( let i = 0; i < noriList.length; i++ ){
       // let obj = {};
