@@ -15,6 +15,7 @@ const stateDefault = {
   noris: [{ Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }, { Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }],
 };
 
+
 // This handler resets the create page back to default whenever a user clicks create
 function handleRenderCreatePage(state, action) {
   const def = {
