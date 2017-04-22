@@ -207,6 +207,7 @@ const AI = class {
   endSession() {
     window.annyang.pause()
     //speech client stop
+    this.client.end()
   }
 
   /*

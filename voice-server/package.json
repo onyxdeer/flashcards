@@ -32,5 +32,8 @@
     "socket.io-client": "^1.7.3",
     "uaparser": "0.0.2",
     "wav": "^0.1.2"
+  },
+  "devDependencies": {
+    "svg-to-jsx": "0.0.20"
   }
 }
