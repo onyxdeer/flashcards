@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
+
 import { FETCH_NORIS, FETCH_FRONT_IMAGES,
          FETCH_BACK_IMAGES, FETCH_BENTO_METADATA,
          GOTO_PREV_NORI, GOTO_NEXT_NORI,
@@ -6,205 +8,192 @@ import { FETCH_NORIS, FETCH_FRONT_IMAGES,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
          SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT,
          CLEAR_PHONE_NUMBER_INPUT, ANIMATE_BENTO_TRAVERSAL,
-         RESET_CURRENT_NORI } from './actionTypes';
-
-function flipToFront() {
-  return function (dispatch) {
-    dispatch({
-      type: FLIP_NORI_TO_FRONT,
-      isFlipped: false,
-      buttonPressed: false,
-    });
-  };
-}
-
-function flipToBack() {
-  return function (dispatch) {
-    dispatch({
-      type: FLIP_NORI_TO_BACK,
-      isFlipped: true,
-      buttonPressed: false,
-    });
-  };
-}
+         RESET_CURRENT_NORI } from './actionTypes.js';
 
 function resetCurrentNori() {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch({
       type: RESET_CURRENT_NORI,
-      currentNori: 0,
+      currentNori: 0
     });
-  };
+  }
 }
 
 function fetchFrontImages(bentoId) {
-  return function (dispatch) {
+  return function(dispatch) {
     return axios.get('/api/images', {
-      params: {
+      params: { 
         bento_id: bentoId,
-        nori_front: 1,
-      },
-    }).then((response) => {
+        nori_front: 1
+      }
+    }).then(function(response) {
+      console.log('response from fetchFrontImages:', response.data);
       dispatch({
         type: FETCH_FRONT_IMAGES,
-        payload: response.data,
+        payload: response.data
       });
-    });
-  };
+    })
+  }
 }
 
 function fetchBackImages(bentoId) {
-  return function (dispatch) {
+  return function(dispatch) {
     return axios.get('/api/images', {
-      params: {
+      params: { 
         bento_id: bentoId,
-        nori_back: 1,
-      },
-    }).then((response) => {
+        nori_back: 1
+      }
+    }).then(function(response) {
+      console.log('response from fetchBackImages:', response.data);
       dispatch({
         type: FETCH_BACK_IMAGES,
-        payload: response.data,
+        payload: response.data
       });
-    });
-  };
+    })
+  }
 }
 
 function fetchBentoMetaData(bentoId, cb) {
-  return function (dispatch) {
+  return function(dispatch) {
     // Get bento title for given bento_id
     axios.get('/api/bentos', {
-      params: { id: bentoId },
+      params: { id: bentoId }
     })
-    .then((response) => {
+    .then(function(response) {
+      console.log('WHAT IS VISIT COUNT:', response.data[0].visit_count);
       dispatch({
         type: FETCH_BENTO_METADATA,
         title: response.data[0].name,
         id_hash: response.data[0].id_hash,
         visit_count: response.data[0].visit_count,
-      });
+      })
     })
-    .then(() => {
+    .then(function() {
       cb();
     });
-  };
+  }
 }
 
 function fetchNoris(bentoId) {
-  return function (dispatch) {
-    const idArray = [];
-    return axios.get('/api/bentosNoris', {
-      params: { bento_id: bentoId },
-    })
-    .then((response) => {
-      for (let index = 0; index < response.data.length; index += 1) {
-        idArray.push(response.data[index].nori_id);
-      }
-      if (idArray.length === 0) {
-        dispatch({
-          type: FETCH_NORIS,
-          payload: [{
-            text_front: 'Sorry, no cards available!',
-            text_back: 'Try another bento!',
-          }],
-        });
-      } else {
-        axios.get('/api/noris', {
-          params: { id: idArray },
-        }).then(() => {
+  return function(dispatch) {
+    var context = this;
+    var idArray = [];
+    return axios.get('/api/bentosNoris',{
+        params: { bento_id: bentoId }
+      })
+      .then(function(response) {
+        console.log('/api/bentosNoris response:', response.data);
+        for (var index = 0; index < response.data.length; index++) {
+          idArray.push(response.data[index].nori_id);
+        }
+        if (idArray.length === 0) {
           dispatch({
             type: FETCH_NORIS,
-            payload: response.data,
+            payload: [{
+              text_front: 'Sorry, no cards available!',
+              text_back: 'Try another bento!'
+            }]
+          })
+        } else {
+          axios.get('/api/noris', {
+            params: { id: idArray }
+          }).then(function(response) {
+            console.log('/api/noris response:', response.data);
+            dispatch({
+              type: FETCH_NORIS,
+              payload: response.data
+            });
           });
-        });
-      }
-    });
-  };
+        }
+      });
+    }
 }
 
 function nextNori(bentoData, currentNori, direction) {
-  return function (dispatch) {
+  return function(dispatch) {
     if (currentNori < bentoData.length - 1) {
       dispatch({
         type: GOTO_NEXT_NORI,
-        currentNori: currentNori += 1,
+        currentNori: currentNori+=1,
         buttonPressed: true,
-        noriToDisplay: bentoData[currentNori],
+        noriToDisplay: bentoData[currentNori]
       });
       flipToFront();
       dispatch({
         type: ANIMATE_BENTO_TRAVERSAL,
-        direction: !direction,
+        direction: !direction
       });
     }
-  };
+  }
 }
 
 function prevNori(bentoData, currentNori, direction) {
-  return function (dispatch) {
+  return function(dispatch) {
     if (currentNori > 0) {
       dispatch({
         type: GOTO_PREV_NORI,
-        currentNori: currentNori -= 1,
+        currentNori: currentNori-=1,
         buttonPressed: true,
-        noriToDisplay: bentoData[currentNori],
+        noriToDisplay: bentoData[currentNori]
       });
       flipToFront();
       dispatch({
         type: ANIMATE_BENTO_TRAVERSAL,
-        direction: !direction,
+        direction: !direction
       });
     }
-  };
+  }
 }
 
 function handleInput(event) {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch({
       type: HANDLE_VIEW_PAGE_INPUT,
-      input: event.target.value,
+      input: event.target.value
     });
-  };
+  }
 }
 
 function handlePhoneNumberInput(event) {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch({
       type: HANDLE_PHONE_NUMBER_INPUT,
-      phoneNumberInput: event.target.value,
+      phoneNumberInput: event.target.value
     });
-  };
+  }
 }
 
 function clearPhoneNumberInput() {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch({
       type: CLEAR_PHONE_NUMBER_INPUT,
-      phoneNumberInput: '',
+      phoneNumberInput: ''
     });
-  };
+  }
 }
 
 function setNori(input, bentoData) {
-  return function (dispatch) {
+  return function(dispatch) {
     if (input >= 0 && input < bentoData.length) {
       dispatch({
         type: SET_NORI_NUMBER,
         currentNori: input,
-        noriToDisplay: bentoData[input],
+        noriToDisplay: bentoData[input]
       });
     } else {
       alert('Invalid nori number, please enter another number.');
     }
-  };
+  }
 }
 
 function shuffleNori(bentoData, direction) {
-  return function (dispatch) {
+  return function(dispatch) {
     $('[data-toggle="popover"]').popover('show');
-    setTimeout(() => { $('[data-toggle="popover"]').popover('hide'); }, 3000);
-    const temp = bentoData.slice();
-    const result = [];
-    let randomIndex;
+    setTimeout(function() {$('[data-toggle="popover"]').popover('hide')}, 3000);
+    var context = this;
+    var temp = bentoData.slice();
+    var result = [];
+    var randomIndex;
     while (temp.length > 0) {
       randomIndex = Math.floor(Math.random() * temp.length);
       result.push(temp[randomIndex]);
@@ -215,34 +204,72 @@ function shuffleNori(bentoData, direction) {
       type: SHUFFLE_NORIS,
       bentoData: result,
       currentNori: 0,
-      buttonPressed: true,
+      buttonPressed: true
     });
     dispatch({
       type: ANIMATE_BENTO_TRAVERSAL,
-      direction: !direction,
+      direction: !direction
     });
-  };
+  }
+}
+
+function flipToFront() {
+  return function(dispatch) {
+    dispatch({
+      type: FLIP_NORI_TO_FRONT,
+      isFlipped: false,
+      buttonPressed: false
+    });
+  }
+}
+
+function flipToBack() {
+  return function(dispatch) {
+    dispatch({
+      type: FLIP_NORI_TO_BACK,
+      isFlipped: true,
+      buttonPressed: false
+    });
+  }
 }
 
 function shareUrlToSMS(event, url, phoneNumber) {
   event.preventDefault();
-  return function (dispatch) {
+  return function(dispatch) {
     return axios.post('/api/sms', {
       url: url,
-      phoneNumber: phoneNumber,
+      phoneNumber: phoneNumber
+    })
+    dispatch({
+      type: SEND_SMS,
+      url: url,
+      phoneNumber: phoneNumber
     });
-  };
+  }
 }
 
 function incrementVisitCount(id, current_count) {
-  return function (dispatch) {
+  console.log('id:', id, 'current_count:', current_count);
+  return function(dispatch) {
     return axios.post('/api/visits', {
       bento_id: id,
-      visit_count: current_count += 1,
-    });
-  };
+      visit_count: current_count+=1
+    })
+    .then(function(response) {
+      console.log('Successfully updated visit count for bento with id:', id, 'to', current_count);
+    })
+    .catch(function(err) {
+      console.error(err);
+    })
+  }
 }
 
-const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput, clearPhoneNumberInput, resetCurrentNori, incrementVisitCount };
+const displayActions = { fetchFrontImages, fetchBackImages,
+                         fetchBentoMetaData, fetchNoris,
+                         nextNori, prevNori, handleInput,
+                         setNori, shuffleNori, flipToFront,
+                         flipToBack, shareUrlToSMS,
+                         handlePhoneNumberInput, clearPhoneNumberInput,
+                         resetCurrentNori, incrementVisitCount };
 
 export default displayActions;
