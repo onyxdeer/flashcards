@@ -36,6 +36,23 @@ var notifyUpdate = function (bentoName) {
   }, 2500);
 }
 
+var notifyWarning = function() {
+  var notify = $.notify({
+      icon: 'glyphicon glyphicon-warning-sign',
+      title : '<strong>Warning: </strong>',
+      message: "Please give your new Bento a name and make sure it's longer than 5 characters",
+    }, {
+      type: 'warning', 
+      allow_dismiss: true,
+      newest_on_top: true,
+      delay: 4000,
+      animate: {
+        enter: 'animated pulse',
+        exit: 'animated hinge'
+      }
+    })
+}
+
 const empty = JSON.stringify(convertToRaw(RichTextEditor.createEmptyValue()._editorState.getCurrentContent()));
 
 

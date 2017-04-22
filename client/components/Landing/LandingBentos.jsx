@@ -12,7 +12,7 @@ class LandingBentos extends Component {
     console.log(this.props.landing)
     var bento = this.props.bento
     return (
-<div className="wow landing-bento col-md-2 animated bounceIn">
+<div className="wow animated bounceIn landing-bento col-md-2 col-sm-2">
     <div className="view overlay hm-white-slight">
       {this.props.landing.images ? 
         this.props.landing.images[bento.id] ?

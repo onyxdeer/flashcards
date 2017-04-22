@@ -15,52 +15,6 @@ const stateDefault = {
   noris: [{ Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }, { Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }],
 };
 
-<<<<<<< HEAD
-function handleFetchBentoForEdit(state, action) {
-  return {...state, ...action.payload}
-}
-
-//-------------------------------------------------------------
-
-function handleUpdateRTEState(state, action) {
-  return {...state, value: action.payload}
-} 
-
-function handleNoriChange(state, action) {
-  return {...state, noris: action.payload}
-}
-//-------------------------------------------------------------
-
-function handleEditBentoInfo(state, action) {
-  let val = action.payload.target.value
-  return {...state, [action.payload.target.name] : val}
-}
-
-function handleSaveBento (state, action) {
-  return {...state, bento_id: action.payload}
-}
-
-function handleAddNewNori (state, action) {
-  return {...state, noris: action.payload}
-}
-
-function handleDeleteNori (state, action) {
-  return {...state, noris: action.payload}
-=======
-// This handler resets the create page back to default whenever a user clicks create
-function handleRenderCreatePage(state, action) {
-  const def = {
-    name: '',
-    description: '',
-    category: '',
-    visit_count: 0,
-    bento_id: null,
-    user_id: 1 || 'guest',
-    noris: [{ Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }, { Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }],
-  };
-  return { ...state, ...def };
->>>>>>> d15dabfe4c1c5faef670de8cc86f0150ec412dd4
-}
 
 const handleImageUpload = (state, action) => ({
   ...state,

@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import {HANDLE_GET_ALOT_BENTOS, HANDLE_FETCH_LANDING_BENTO_IMAGES} from '../actions/actionTypes.js'
-=======
->>>>>>> d15dabfe4c1c5faef670de8cc86f0150ec412dd4
 import axios from 'axios';
-import { HANDLE_GET_ALOT_BENTOS } from '../actions/actionTypes';
 
 export function handleFetchLandingBentoImages(bentoIds) {
   return function(dispatch) {

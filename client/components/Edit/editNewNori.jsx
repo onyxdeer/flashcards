@@ -9,7 +9,7 @@ class editNewNori extends React.Component {
   render() {
     return (
       <div>
-      <div className="new-nori  wow animated slideInLeft" data-wow-delay=".4s" style = {{display: 'flex', justifyContent: 'center'}}>
+      <div className="new-nori animated slideInLeft" data-wow-delay=".4s" style = {{display: 'flex', justifyContent: 'center'}}>
         <div style = {{flex: "flex-start", minWidth: 210}}>
           <ImageDropzone number = {this.props.number}/>
         </div>

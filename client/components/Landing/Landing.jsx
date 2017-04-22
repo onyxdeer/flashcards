@@ -139,7 +139,7 @@ class Landing extends Component {
         <div id = "bento-area" style = {{position: 'relative'}}>
           {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => <LandingBentos key={index} bento = {bento}/>) : null}
         </div>
-            <div  style = {{position: 'relative'}}>
+            {/*<div  style = {{position: 'relative'}}>
               <canvas id="background" width="600" height="360" style = {{
                 position: 'absolute',
                 top: 0,
@@ -161,7 +161,7 @@ class Landing extends Component {
                 background: 'transparent'
               }}>
               </canvas>
-            </div>
+            </div>*/}
       </div>
     )
   }
