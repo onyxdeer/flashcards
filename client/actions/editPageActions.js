@@ -48,10 +48,17 @@ export function handleAddNewNori (bento, index) {
 
 export function handleDeleteNori (bento ,index) {
   var noris = bento.noris;
-  noris.splice(index, 1);
-  var norisAfterDelete = noris;
-  return function(dispatch){
-    dispatch({type: HANDLE_DELETE_NORI, payload: norisAfterDelete})
+  if(noris.length > 1) {
+    noris.splice(index, 1);
+    var norisAfterDelete = noris;
+    return function(dispatch){
+      dispatch({type: HANDLE_DELETE_NORI, payload: norisAfterDelete})
+    }
+  } else if (noris.length == 1) {
+    noris = [{Front: {image: null, text:empty, soundFile: null}, Back: {image: null, text:empty, soundFile: null}}]
+      return function(dispatch) {
+          dispatch({type: HANDLE_DELETE_NORI, payload: noris})
+      }
   }
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++

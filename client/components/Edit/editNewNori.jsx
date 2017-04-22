@@ -23,10 +23,10 @@ class editNewNori extends React.Component {
           </div>
           </div>
           <div className="add-delete-nori" style = {{display: 'flex', justifyContent:'flex-end'}}>
-      <button type="submit" className="btn add-nori-button"  onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}>+</button>
-      <button type="submit" className="btn add-nori-button" value={this.props.number}  onDoubleClick= {() => 
+      <button type="submit" className="btn add-nori-button"  onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}>Add</button>
+      <button type="submit" className="btn add-nori-button" value={this.props.number}  onClick= {() => 
         {this.props.handleDeleteNori(this.props.bento, this.props.number)}
-        }>-</button>
+        }>Del</button>
         </div>
       </div>
       </div> 
