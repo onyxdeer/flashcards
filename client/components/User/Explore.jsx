@@ -50,30 +50,34 @@ class Explore extends Component {
             <h1 className='default-font'>Explore Bentos</h1>
           </div>
           <div className='row'>
-            <div className='col-xs-1'></div>
-            <div className='col-xs-10'>
+            <div className='col-xs-offset-1 col-xs-10 col-xs-offset-1'>
                 
+              {/*<a className="btn-floating btn-small blue" href="#multi-item-example" data-slide="prev"><i className="fa fa-chevron-left"></i></a>*/}
+
                 {
                   this.props.bentos&&(this.props.bentos.length > 0 ) ? 
 
                   (<Carousel {...settings}> 
                   {this.props.bentos.map((bento, index) => (
-                    <div className='thumbnail' key={index}>
-                      <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
-                      <div className='caption'>
-                        <h3>{bento.name}</h3>
-                        <p className='ellipsis'>{bento.description}</p>
-                        <p><label>View Count:</label> {bento.visit_count} </p>
-                        <p><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
-                      </div>
+                    <div className='thumbnailSpace wow bounceInDown' key={index}>
+                      <span className='thumbnail'>
+                        <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
+                        <div className='caption exploreItems'>
+                          <h3>{bento.name}</h3>
+                          <p className='bentoDescription exploreItems'>{bento.description}</p>
+                          <p className='exploreItems'><label>View Count:</label> {bento.visit_count} </p>
+                          <p className='exploreItems'><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
+                        </div>
+                      </span>
                     </div>
                   ))}
                   </Carousel>)
-                  : (<div><h1 className='center-block'>No bentos have been made yet for this category. Go start creating!</h1></div>)
+                  : (<div className='center-block'><h1>No bentos have been made yet for this category. Go start creating!</h1></div>)
                 }
-              
+
+              {/*<a className="btn-floating btn-small blue" href="#multi-item-example" data-slide="next"><i className="fa fa-chevron-right"></i></a>*/}
+
             </div>
-            <div className='col-xs-1'></div>
           </div>
         </div>
       </div>
