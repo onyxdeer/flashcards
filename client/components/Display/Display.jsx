@@ -5,7 +5,11 @@ import Swipeable from 'react-swipeable';
 import { convertFromRaw, Editor, EditorState } from 'draft-js';
 import displayActions from '../../actions/displayActions.js';
 import * as appActions from '../../actions/appActions.js';
+import personalActions from '../../actions/personalActions.js';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+let userId = 1;
 
 class Display extends Component {
   constructor(props) {
@@ -39,6 +43,8 @@ class Display extends Component {
       toastr["info"]("SMS Sent!")
       return false;
     });
+
+    setTimeout(() => $("#fade-animation").removeClass('fadeIn'),1000);
 
     this.props.clearShortenerId();
   }
@@ -74,6 +80,7 @@ class Display extends Component {
     const className = classnames('index-card', {
       'card-flipped': index === noris.length - 1 && this.props.isFlipped && !this.props.buttonPressed,
       'no-animation': this.props.buttonPressed,
+      // 'fadeIn': index === noris.length - 1,
       // 'moveFromRight': index === noris.length - 1 && this.props.direction,
       // 'moveFromLeft': index === noris.length - 1 && !this.props.direction
     });
@@ -149,6 +156,7 @@ class Display extends Component {
             <button type='button' className='btn btn-success' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button>
             <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>
             <a href='#' className='btn btn-success' data-toggle='popover' data-placement='top' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
+            <Link className='btn btn-success' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, (this.props.shortenerId ? this.props.shortenerId : this.props.bentoId), userId)}>Edit</Link>
           </div>
           <form className='changeToNoriSection' onSubmit={this.handleSetNori}>
             <div className='row'>
@@ -198,7 +206,8 @@ class Display extends Component {
 }
 
 function mapStateToProps(state) {
-  return { 
+  return {
+    bento: state.editBentoInfo,
     bentoId: state.appReducer.bentoId,
     shortenerId: state.appReducer.shortenerId,
     bentoData: state.displayReducer.bentoData,
@@ -217,4 +226,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { ...displayActions, ...appActions })(Display);
+export default connect(mapStateToProps, { ...displayActions, ...appActions, ...personalActions })(Display);
