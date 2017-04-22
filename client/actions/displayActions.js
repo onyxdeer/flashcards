@@ -53,17 +53,23 @@ function fetchBackImages(bentoId) {
   }
 }
 
-function fetchBentoMetaData(bentoId) {
+function fetchBentoMetaData(bentoId, cb) {
   return function(dispatch) {
     // Get bento title for given bento_id
     axios.get('/api/bentos', {
       params: { id: bentoId }
-    }).then(function(response) {
+    })
+    .then(function(response) {
+      console.log('WHAT IS VISIT COUNT:', response.data[0].visit_count);
       dispatch({
         type: FETCH_BENTO_METADATA,
         title: response.data[0].name,
-        id_hash: response.data[0].id_hash
+        id_hash: response.data[0].id_hash,
+        visit_count: response.data[0].visit_count,
       })
+    })
+    .then(function() {
+      cb();
     });
   }
 }
@@ -242,9 +248,19 @@ function shareUrlToSMS(event, url, phoneNumber) {
   }
 }
 
-function incrementVisitCount() {
+function incrementVisitCount(id, current_count) {
+  console.log('id:', id, 'current_count:', current_count);
   return function(dispatch) {
-    
+    return axios.post('/api/visits', {
+      bento_id: id,
+      visit_count: current_count+=1
+    })
+    .then(function(response) {
+      console.log('Successfully updated visit count for bento with id:', id, 'to', current_count);
+    })
+    .catch(function(err) {
+      console.error(err);
+    })
   }
 }
 
@@ -254,6 +270,6 @@ const displayActions = { fetchFrontImages, fetchBackImages,
                          setNori, shuffleNori, flipToFront,
                          flipToBack, shareUrlToSMS,
                          handlePhoneNumberInput, clearPhoneNumberInput,
-                         resetCurrentNori };
+                         resetCurrentNori, incrementVisitCount };
 
 export default displayActions;

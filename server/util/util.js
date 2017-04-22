@@ -14,6 +14,7 @@ const popular = require('./tasks/popular.js');
 const sms = require('./tasks/sms.js');
 const search = require('./tasks/search.js');
 const searchThumbnails = require('./tasks/searchThumbnails.js');
+const visits = require('./tasks/visits.js');
 // const speech = require('./tasks/speech.js');
 
-module.exports.tasks = { users, bentos, noris, follows, categories, labels, tags, images, bentosNoris, norisTags, redirect, thumbnails, popular, search, searchThumbnails, sms };
+module.exports.tasks = { users, bentos, noris, follows, categories, labels, tags, images, bentosNoris, norisTags, redirect, thumbnails, popular, search, searchThumbnails, sms, visits };
