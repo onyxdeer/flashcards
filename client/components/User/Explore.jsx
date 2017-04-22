@@ -59,8 +59,8 @@ class Explore extends Component {
 
                   (<Carousel {...settings}> 
                   {this.props.bentos.map((bento, index) => (
-                    <div className='thumbnailSpace wow bounceInDown'>
-                      <span className='thumbnail' key={index}>
+                    <div className='thumbnailSpace wow bounceInDown' key={index}>
+                      <span className='thumbnail'>
                         <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                         <div className='caption exploreItems'>
                           <h3>{bento.name}</h3>

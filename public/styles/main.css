@@ -565,11 +565,7 @@ div.slick-slide.slick-active.thumbnailSpace {
     padding-top: 20px;
     width: 180px;
     height: auto;
-}
-
-element.style {
-    outline: none;
-    width: 300px;
+    max-height: 200px;
 }
 
 .exploreItems {
