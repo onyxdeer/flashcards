@@ -15,6 +15,8 @@ import Promise from 'bluebird';
 const AI = class {
   constructor(name, data) {
     this.name = name;
+    console.log(window.io)
+    this.socket = window.io();
     // this.commands = util.commands;
     // this._initAnnyang(util.commands);
     // this._getBento(bentoId)
@@ -26,7 +28,6 @@ const AI = class {
     console.log('cards are: ', this.cards)
     this.commands = this._getCommands();
     this._initAnnyang(this.commands);
-    this.socket = window.io();
     // this.client = client('');
   }
 
@@ -274,18 +275,23 @@ const AI = class {
    * @param {*data} data 
    * @return {some more data}
    */
-  next(chainFunctions) {
-    const { read, listen } = chainFunctions;
+  next({ read, listen, test=10, socket: soc }) {
+    // const { read, listen } = chainFunctions;
     // console.log('myargs: ', args)
     // console.log('this: ', this)
     read(this.front)
       .then(() => {
         console.log('listening...')
+        soc.emit('chat message', 'startin listenin')
+        
         return listen()
       })
       .then(() => {
         console.log('EVERYTHING IS WORKING YAY')
-        // return getResponse()
+          // return getResponse()
+        soc.on('transfer over', function(data){
+          console.log('received data from backend: ', data)
+        })
       })
       .catch(err => console.log(err))
 
@@ -302,9 +308,11 @@ const AI = class {
    */
   mapData (noriList){
     let cardsList = [];
+    console.log('this: ', this)
     const chainFunctions = {
       read: this.read.bind(this),
-      listen: this.listen.bind(this)
+      listen: this.listen.bind(this),
+      socket: this.socket
     }
     for( let i = 0; i < noriList.length; i++ ){
       // let obj = {};

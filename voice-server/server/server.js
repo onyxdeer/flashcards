@@ -10,10 +10,26 @@ var binaryServer = require('binaryjs').BinaryServer,
     serveStatic = require('serve-static'),
     UAParser = require('./ua-parser'),
     CONFIG = require("../config.json"),
-    lame = require('lame'),
+    lame = require('lame');
     // socket = require('./comm-server.js');
 
-const socket = require('../../server/server.js')
+// const { socket } = require('../../server/server.js')
+const { SOCKETSERVER_HOST } = require('../../config/config.js')
+var socket = require('socket.io-client')(SOCKETSERVER_HOST);
+socket.on('connect', function(){
+    console.log('speech server connecting.. ')
+    socket.on('chat message', function(data){
+        console.log('is this real life ???')
+    });
+
+    socket.on('disconnect', function(){
+    console.log('speech server disconnecting.. ')
+    });
+});
+
+    socket.on('chat message', function(data){
+        console.log('OMG IF THIS OWKR WEW WIN')
+    });
 
 // Imports the Google Cloud client library
 const Speech = require('@google-cloud/speech');
@@ -34,17 +50,27 @@ const request = {
 };
 
 const sendDataBack = (data) => {
-    //sockets.push whatever results
+
     //or write file to disc
-    //then let them retrieve result
-    console.log('\nwe are sending data back: \n', data)
+    //then let them retrieve result later
+
+    //broadcast end event
+    //tell server to relay to other clients
+    //check if data is empty
+    // if data isn't empty then broadcast
+    //other wise keep listening
+    if(data){
+        socket.emit('gSpeech complete', data)
+        console.log('broadcasted: ', data)
+    }
+    console.log('\nwe are sending data back: ', data)
 }
 
 const recognizeStream = speech.createRecognizeStream(request)
   .on('error', (err) => console.log('GOOGLE: ', err))
   .on('data', (data) => {
       console.log('GOOGLE: ', data)
-      process.stdout.write(data.results)
+    //   process.stdout.write(data.results)
       sendDataBack(data.results);
     });
 
@@ -111,7 +137,18 @@ server.on('connection', function(client) {
 
     });
 
-    
+    // io.on('connection', function(socket){
+    //   console.log('a user connected');
+    //   socket.on('disconnect', function(){
+    //     console.log('user disconnected');
+    //   });
+
+    //   socket.on('chat message', function(data){
+    //     console.log('\n\n\n\nour msg from socket SPEECH: ', data)
+    //   })
+
+    // });
+        
     client.on('close', function() {
         if ( fileWriter != null ) {
             fileWriter.end();
