@@ -109,6 +109,7 @@ class Landing extends Component {
       })
       this.props.handleFetchLandingBentoImages(bentoIds)
     }
+    return true;
   }
   componentDidMount() {
     // partOne();
@@ -124,6 +125,7 @@ class Landing extends Component {
 	                <div className="col-md-8">
 	                    <div className="block">
                           <h1 className="lp wow fadeInDown">Welcome to Obento!</h1>
+                          <hr style = {{marginTop: 10}} className= "wow animated slideInLeft"/>
 	                        <h2 className="lp wow fadeInDown">A Fun Modern Day Memorization Service</h2>
 	                        <p className="lp wow fadeInDown" data-wow-delay="0.3s">Get started by creating a bento - deck - of noris ("nor - reez'') - cards - right now!</p>
 	                        <div className="wow fadeInDown" data-wow-delay="0.3s">
@@ -137,7 +139,7 @@ class Landing extends Component {
         <div id = "bento-area" style = {{position: 'relative'}}>
           {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => <LandingBentos key={index} bento = {bento}/>) : null}
         </div>
-            <div >
+            <div  style = {{position: 'relative'}}>
               <canvas id="background" width="600" height="360" style = {{
                 position: 'absolute',
                 top: 0,

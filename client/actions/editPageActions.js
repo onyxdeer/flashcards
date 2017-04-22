@@ -2,6 +2,39 @@ import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_AD
 import axios from 'axios';
 import RichTextEditor from 'react-rte'
 import {convertToRaw} from 'draft-js'
+var notifySave = function () {
+  var notify = $.notify('<strong>Saving Bento</strong> Do not close this page...', {
+  type: 'success',
+	allow_dismiss: false,
+	showProgressbar: true,
+  delay: 3000,
+  animate: {
+    enter: 'animated wobble',
+    exit: 'animated lightSpeedOut'
+  }
+});
+
+  setTimeout(function() {
+    notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been saved!', 'progress': 35});
+  }, 2500);
+}
+
+var notifyUpdate = function (bentoName) {
+  var notify = $.notify('<strong>Updating Bento: '+bentoName +'</strong> Do not close this page...', {
+  type: 'success',
+	allow_dismiss: false,
+	showProgressbar: true,
+  delay: 3000,
+  animate: {
+    enter: 'animated wobble',
+    exit: 'animated lightSpeedOut'
+  }
+});
+
+  setTimeout(function() {
+    notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been updated!', 'progress': 35});
+  }, 2500);
+}
 
 const empty = JSON.stringify(convertToRaw(RichTextEditor.createEmptyValue()._editorState.getCurrentContent()));
 
@@ -73,7 +106,11 @@ export function handleSaveBento(bento) {
   return function(dispatch) {
     axios.post('/api/bentos', bento)
     .then((response) => {
-    console.log('Your bento has been saved!', response.data)
+    if(bento.bento_id) {
+      notifyUpdate(bento.name);
+    } else {
+      notifySave();
+    }
     dispatch({type: HANDLE_SAVE_BENTO, payload: response.data})
     })
     .catch((res) => {

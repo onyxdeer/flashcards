@@ -6,7 +6,6 @@ const DEFAULT_STATE = {
 }
 
 function handleFetchLandingBentoImages(state, action) {
-  console.log("coool line 9 bruhhh", action.payload)
   var images = {};
   action.payload.forEach(function(image){
     images[image.bento_id] ? images[image.bento_id].push(image.url) : images[image.bento_id] = [image.url]
@@ -15,7 +14,7 @@ function handleFetchLandingBentoImages(state, action) {
 }
 
 function handleGetAlotBentos(state, action) {
-  return {bentos: action.payload}
+  return {...state, bentos: action.payload}
 }
 
 export default function(state = DEFAULT_STATE, action) {
