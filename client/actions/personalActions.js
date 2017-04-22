@@ -30,7 +30,9 @@ const personalActions = {
         .then((response) => {
           var savedNorisArray = response[0].data.map(function(nori, index){
             var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}}
+            if(response[1].data[index]){
             newNori.Front.image = response[1].data[index]['url'];
+            }
             newNori.Front.text = nori.text_front;
             newNori.Back.text = nori.text_back;
             newNori.Front.soundFile = nori.audio_url_front;

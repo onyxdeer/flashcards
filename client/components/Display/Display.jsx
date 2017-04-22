@@ -7,6 +7,9 @@ import displayActions from '../../actions/displayActions.js';
 import * as appActions from '../../actions/appActions.js';
 import { connect } from 'react-redux';
 
+console.log('displayActions:', displayActions);
+console.log('appActions:', appActions);
+
 class Display extends Component {
   constructor(props) {
     super(props);

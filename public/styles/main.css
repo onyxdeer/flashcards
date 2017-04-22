@@ -208,7 +208,7 @@ input {
 }
 
 .add-nori-button{
-    width:50px;
+    width:60px;
     display:inline-block;
     height: auto;
     padding:15px 15px;
@@ -596,11 +596,12 @@ input {
   padding: 70px;
 }
 #hero-area .block  h1 {
-  margin-bottom: 35px;
+  margin-bottom: 25px;
   text-transform: uppercase;
   font-size: 40px;
   letter-spacing: 2px;
   position: relative;
+  line-height: 40px;
 }
 
 #hero-area .block  h2 {
@@ -621,15 +622,15 @@ input {
   padding-top : 25px;
 }
 
-
-h1.wow {
+h1.lp{
     font-size: 44px;
     line-height: 56px;
     color: #fff;
     font-weight: 300;
     margin: 0px;
 }
-h2.wow {
+
+h2.lp{
   font-size: 30px;
   line-height: 35px;
   color: #fff;
@@ -637,7 +638,7 @@ h2.wow {
   margin: 0px;
 }
 
-p {
+p.lp{
     font-size: 16px;
     line-height: 25px;
     margin: 0px;
@@ -648,14 +649,11 @@ p {
 }
 
 .landing-bento {
+  /*background: rgba(0, 0, 0, 0) linear-gradient(135deg, #8ec64e 0%, #41aba0 100%) repeat scroll 0 0;*/
   padding: 5px;
   margin: 10px;
   border: groove;
   box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
-}
-
-.card-title, .card-text {
-
 }
 
 .landingbento{
@@ -666,3 +664,16 @@ p {
   border: 0;
   border-top: 1px solid #eee;
 }
+
+[data-notify="progressbar"] {
+	margin-bottom: 0px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 5px;
+}
+
+.wow {
+visibility: visible !important;
+} 

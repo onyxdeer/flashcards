@@ -120,10 +120,11 @@
             }
         },
         upload: function (zone) {
-            var events = ['dragenter', 'dragleave', 'dragover', 'drop'],
+            var events = ['dragenter', 'dragleave', 'dragover'],  
                 file, target, i, len;
 
             zone.addEventListener('change', function (e) {
+              console.log(e)
                 if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
                     target = e.target.files;
 
@@ -134,17 +135,17 @@
                 }
             }.bind(this), false);
 
-            events.map(function (event) {
-                zone.addEventListener(event, function (e) {
-                    if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
-                        if (event === 'dragleave' || event === 'drop') {
-                            e.target.parentNode.classList.remove('dropzone-dragging');
-                        } else {
-                            e.target.parentNode.classList.add('dropzone-dragging');
-                        }
-                    }
-                }, false);
-            });
+            // events.map(function (event) {
+            //     zone.addEventListener(event, function (e) {
+            //         if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
+            //             if (event === 'dragleave' || event === 'drop') {
+            //                 e.target.parentNode.classList.remove('dropzone-dragging');
+            //             } else {
+            //                 e.target.parentNode.classList.add('dropzone-dragging');
+            //             }
+            //         }
+            //     }, false);
+            // });
         },
         run: function () {
             // var loadingModal = document.querySelector('.loading-modal');

@@ -6,7 +6,7 @@ import Imgur from "../../imgur.js";
 class imageDropzone extends React.Component {
   constructor(props) {
     super(props)
-    this.callback = this.callback.bind(this)
+    this.callback = this.callback.bind(this);
   }
   callback (res) {
     console.log("This function fires at component number ", this.props.number, res.data.link )

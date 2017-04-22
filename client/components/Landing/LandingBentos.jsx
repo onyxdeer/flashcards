@@ -9,20 +9,22 @@ class LandingBentos extends Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props.landing)
     var bento = this.props.bento
     return (
-<div className="wow landing-bento col-md-2 animated bounceIn">
+<div className="wow animated bounceIn landing-bento col-md-2 col-sm-2">
     <div className="view overlay hm-white-slight">
-
-        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" className="img-fluid" alt=""/>
+      {this.props.landing.images ? 
+        this.props.landing.images[bento.id] ?
+        <img src={this.props.landing.images[bento.id][0]} className="img-fluid" alt=""/> : null : null
+      }
             <div className="mask waves-effect waves-light"></div>
     </div>
     <div className="card-block">
         <h4 className="card-title">{bento.name}</h4>
         <hr className="landingbento" />
         <p className="card-text">{bento.description}</p>
-        <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-primary">View</Link>
+        <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-default btn-rounded waves-effect btn-sm">View</Link>
     </div>
 </div>
     )
