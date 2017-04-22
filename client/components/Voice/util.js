@@ -47,6 +47,20 @@ const uuid = () => { // Public Domain/MIT
     });
 }
 
+const polish = (percentage) => {
+    let result = percentage;
+    if(percentage > 90 && percentage <= 100){
+      return percentage
+    } else {
+      if(percentage < 50) percentage += 10
+      let modifier = 1.3;
+      while(percentage * modifier > 100){
+        modifier -= 0.1
+      }
+      result = Math.floor(percentage * modifier )
+    }
+    return result
+}
 
 
 
@@ -55,16 +69,16 @@ const startPipingToBackend = () => { console.log('piping data started')}
 const endPipingToBackend = () => { console.log('piping data ended')} 
 
 const prompt = (text) => {
-  window.responsiveVoice.speak(text, "UK English Female", { onend: recordAnswer });
+    window.responsiveVoice.speak(text, "UK English Female", { onend: recordAnswer });
 }
 
 const recordAnswer = () => {
-  console.log('recording answer on microphone')
-  //this is where we pipe the answer to the backend
+    console.log('recording answer on microphone')
+    //this is where we pipe the answer to the backend
 }
 
 const say = (text, callbacks ) => {
-  window.responsiveVoice.speak(text, "UK English Female", callbacks );
+    window.responsiveVoice.speak(text, "UK English Female", callbacks );
 }
 
 
@@ -145,4 +159,4 @@ const responses = {
 
 
 
-module.exports = { commands, noris, responses, uuid }
+module.exports = { commands, noris, responses, uuid, polish }
