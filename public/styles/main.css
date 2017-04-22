@@ -699,6 +699,10 @@ p.lp{
   border-top: 1px solid #eee;
 }
 
+.card-text {
+  overflow-y: scroll;
+}
+
 [data-notify="progressbar"] {
 	margin-bottom: 0px;
 	position: absolute;
