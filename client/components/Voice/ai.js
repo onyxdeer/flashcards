@@ -5,7 +5,7 @@ import request from 'axios';
 import Client from './client.js';
 import Card from './card.js';
 import Promise from 'bluebird';
-
+import nlp from 'fuzzball';
 /*
   AI class responsible with the following functionalities:
   speech to text and speech recognition (via google API)
@@ -272,7 +272,8 @@ const AI = class {
     });
   }
   /**
-   * 
+   * this references Card object
+   * instance references the ai object
    * @param {*data} data 
    * @return {some more data}
    */
@@ -282,6 +283,7 @@ const AI = class {
     // console.log('this: ', this)
     console.log('before id: ', instance.current)
     //RESTART CLIENT HERE
+    let back = this.back
     read(this.front)
       .then(() => {
         console.log('listening...')
@@ -291,6 +293,7 @@ const AI = class {
         instance.current++
         console.log('data heard is ...', data)
         //call next here
+        let correctPercent = nlp.partial_ratio(back, data);
         console.log('current id: ', instance.current)
         if(instance.cards[instance.current]){
           instance.cards[instance.current].next()
