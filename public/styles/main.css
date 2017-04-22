@@ -302,8 +302,7 @@ input {
 /* SEARCH PAGE */
 
 .searchSection {
-    margin-bottom: 10px;
-    color: #BADA55;    
+    margin-bottom: 10px;   
 }
 
 .bento-metadata {
@@ -520,27 +519,60 @@ input {
 }*/
 
 .bentoDescription {
-    height: 7.5ex;
+    /*height: 7.5ex;*/
+    height: 25ex;
     overflow-y: scroll;
 }
 
+.searchDescription {
+    /*height: 7.5ex;*/
+    height: 17.5ex;
+    overflow-y: scroll;
+}
 
 .search-item {
   display: inline-block;
   margin: 10px;
 }
 
+.search-data {
+  text-align: center;
+}
+
 .thumbnail {
-    width: 200px;
-    max-height: 500px;
+    width: 150px;
+    height: 600px;
+}
+
+.searchBox {
+    text-align: center;
+    margin: 5px;
+    border: groove;
+    box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
+    width: 240px;
+    height: 500px;
 }
 
 .thumbnail img {
+    padding-top: 20px;
     width: 180px;
     height: auto;
 }
 
+.searchBox img {
+    padding-top: 20px;
+    width: 180px;
+    height: auto;
+}
 
+element.style {
+    outline: none;
+    width: 300px;
+}
+
+.exploreItems {
+  text-align: center;
+}
 
 /*CSS FOR DROPZONE*/
 .dropzone {
