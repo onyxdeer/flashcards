@@ -622,7 +622,7 @@ input {
   padding-top : 25px;
 }
 
-h1, .lp{
+h1.lp{
     font-size: 44px;
     line-height: 56px;
     color: #fff;
@@ -630,7 +630,7 @@ h1, .lp{
     margin: 0px;
 }
 
-h2, .lp{
+h2.lp{
   font-size: 30px;
   line-height: 35px;
   color: #fff;
@@ -638,7 +638,7 @@ h2, .lp{
   margin: 0px;
 }
 
-p, .lp{
+p.lp{
     font-size: 16px;
     line-height: 25px;
     margin: 0px;
@@ -654,10 +654,6 @@ p, .lp{
   margin: 10px;
   border: groove;
   box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
-}
-
-.card-title, .card-text {
-
 }
 
 .landingbento{
