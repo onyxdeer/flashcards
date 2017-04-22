@@ -302,6 +302,7 @@ input {
 /* SEARCH PAGE */
 
 .searchSection {
+    margin-bottom: 10px;
     color: #BADA55;    
 }
 
@@ -518,6 +519,11 @@ input {
   /* Required for text-overflow to do anything */
     white-space: wrap;
     /*overflow-y: scroll;*/
+}
+
+.search-item {
+  display: inline-block;
+  margin: 10px;
 }
 
 .thumbnail {
