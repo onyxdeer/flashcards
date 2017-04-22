@@ -33,10 +33,8 @@ class Search extends Component {
     return (
       <div className='container-fluid'>
         {/* Header */}
-        <div className='row'>
-          <h1>Search Results for: {this.props.query}</h1>
-        </div>
         <div className='searchSection'>
+          <h1>Search Results for: {this.props.query}</h1>
 
           {/* Filter bar */}
           {/*<div className='filterSection'>

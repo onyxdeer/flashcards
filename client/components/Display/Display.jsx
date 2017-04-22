@@ -81,8 +81,8 @@ class Display extends Component {
       'card-flipped': index === noris.length - 1 && this.props.isFlipped && !this.props.buttonPressed,
       'no-animation': this.props.buttonPressed,
       // 'fadeIn': index === noris.length - 1,
-      // 'moveFromRight': index === noris.length - 1 && this.props.direction,
-      // 'moveFromLeft': index === noris.length - 1 && !this.props.direction
+      'wow slideInLeft': index === noris.length - 1 && this.props.direction,
+      'wow slideInRight': index === noris.length - 1 && !this.props.direction
     });
     return (
       <Deck.Card key={nori.text_front} className={className}>
