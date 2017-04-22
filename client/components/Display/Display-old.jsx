@@ -86,10 +86,10 @@ class Display extends Component {
 
     // Get all the nori_ids for given bento_id
     // Get all the nori entries for given bento_id
-    axios.get('/api/bentos_noris',{
+    axios.get('/api/bentosNoris',{
         params: { bento_id: this.props.bentoId }
       }).then(function(response) {
-      console.log('/api/bentos_noris response:', response.data);
+      console.log('/api/bentosNoris response:', response.data);
       for (var index = 0; index < response.data.length; index++) {
         idArray.push(response.data[index].nori_id);
       }

@@ -1,31 +1,24 @@
 import { combineReducers } from 'redux';
-import { routeReducer } from 'react-router-redux';
-
-// NOTES: THIS FILE IS where we combine all of the reducers we wrote
-// SO you can import them in here, and add the reducer inside the combineReducer function below
-import sampleReducer from './sampleReducer.js'
-import editBentoReducer from './editBentoReducer.js'
-import navReducer from './navReducer.js'
-import authReducer from './authReducer.js'
-import appReducer from './appReducer.js'
-import personalReducer from './personalReducer.js';
-import displayReducer from './displayReducer.js';
-import searchReducer from './searchReducer.js';
-import landingReducer from './landingReducer.js';
+import sampleReducer from './sampleReducer';
+import editBentoReducer from './editBentoReducer';
+import navReducer from './navReducer';
+import authReducer from './authReducer';
+import appReducer from './appReducer';
+import personalReducer from './personalReducer';
+import displayReducer from './displayReducer';
+import searchReducer from './searchReducer';
+import landingReducer from './landingReducer';
 
 const combinedReducer = combineReducers({
-  // routing: routeReducer,
-  // test: testReducer
-  // sampleReducer : sampleReducer which can be written just as sampleReducer
   sampleReducer,
-  editBentoInfo: editBentoReducer,
+  editBentoInfo: editBentoReducer, // Wilton: Stick to one naming convention
   navReducer,
   searchReducer,
   appReducer,
   personalReducer,
   displayReducer,
   landingReducer,
-  authReducer
+  authReducer,
 });
 
 export default combinedReducer;

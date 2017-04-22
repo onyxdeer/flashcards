@@ -7,9 +7,17 @@ import { FETCH_NORIS, FETCH_FRONT_IMAGES,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
          SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT,
-         CLEAR_PHONE_NUMBER_INPUT, ANIMATE_BENTO_TRAVERSAL } from './actionTypes.js';
+         CLEAR_PHONE_NUMBER_INPUT, ANIMATE_BENTO_TRAVERSAL,
+         RESET_CURRENT_NORI } from './actionTypes.js';
 
-
+function resetCurrentNori() {
+  return function(dispatch) {
+    dispatch({
+      type: RESET_CURRENT_NORI,
+      currentNori: 0
+    });
+  }
+}
 
 function fetchFrontImages(bentoId) {
   return function(dispatch) {
@@ -45,17 +53,23 @@ function fetchBackImages(bentoId) {
   }
 }
 
-function fetchBentoMetaData(bentoId) {
+function fetchBentoMetaData(bentoId, cb) {
   return function(dispatch) {
     // Get bento title for given bento_id
     axios.get('/api/bentos', {
       params: { id: bentoId }
-    }).then(function(response) {
+    })
+    .then(function(response) {
+      console.log('WHAT IS VISIT COUNT:', response.data[0].visit_count);
       dispatch({
         type: FETCH_BENTO_METADATA,
         title: response.data[0].name,
-        id_hash: response.data[0].id_hash
+        id_hash: response.data[0].id_hash,
+        visit_count: response.data[0].visit_count,
       })
+    })
+    .then(function() {
+      cb();
     });
   }
 }
@@ -64,11 +78,11 @@ function fetchNoris(bentoId) {
   return function(dispatch) {
     var context = this;
     var idArray = [];
-    return axios.get('/api/bentos_noris',{
+    return axios.get('/api/bentosNoris',{
         params: { bento_id: bentoId }
       })
       .then(function(response) {
-        console.log('/api/bentos_noris response:', response.data);
+        console.log('/api/bentosNoris response:', response.data);
         for (var index = 0; index < response.data.length; index++) {
           idArray.push(response.data[index].nori_id);
         }
@@ -234,9 +248,19 @@ function shareUrlToSMS(event, url, phoneNumber) {
   }
 }
 
-function incrementVisitCount() {
+function incrementVisitCount(id, current_count) {
+  console.log('id:', id, 'current_count:', current_count);
   return function(dispatch) {
-    
+    return axios.post('/api/visits', {
+      bento_id: id,
+      visit_count: current_count+=1
+    })
+    .then(function(response) {
+      console.log('Successfully updated visit count for bento with id:', id, 'to', current_count);
+    })
+    .catch(function(err) {
+      console.error(err);
+    })
   }
 }
 
@@ -245,6 +269,7 @@ const displayActions = { fetchFrontImages, fetchBackImages,
                          nextNori, prevNori, handleInput,
                          setNori, shuffleNori, flipToFront,
                          flipToBack, shareUrlToSMS,
-                         handlePhoneNumberInput, clearPhoneNumberInput };
+                         handlePhoneNumberInput, clearPhoneNumberInput,
+                         resetCurrentNori, incrementVisitCount };
 
 export default displayActions;

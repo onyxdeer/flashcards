@@ -1,14 +1,15 @@
-const { app } = require('./server.js');
-const util = require('./util/util.js');
 const passport = require('passport');
+const util = require('./util/util.js');
 
-const isAuthenticated = function (req, res, next) {
+// Passport
+const isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/');
+  return res.redirect('/');
 };
 
+// Routes
 const bindRoutes = (app) => {
   app.route('/api/users')
     .get(util.tasks.users.get)
@@ -42,13 +43,13 @@ const bindRoutes = (app) => {
     .get(util.tasks.images.get)
     .post(util.tasks.images.post);
 
-  app.route('/api/bentos_noris')
-    .get(util.tasks.bentos_noris.get)
-    .post(util.tasks.bentos_noris.post);
+  app.route('/api/bentosNoris')
+    .get(util.tasks.bentosNoris.get)
+    .post(util.tasks.bentosNoris.post);
 
-  app.route('/api/noris_tags')
-    .get(util.tasks.noris_tags.get)  
-    .post(util.tasks.noris_tags.post);
+  app.route('/api/norisTags')
+    .get(util.tasks.norisTags.get)
+    .post(util.tasks.norisTags.post);
 
   app.route('/api/thumbnails')
     .get(util.tasks.thumbnails.get)
@@ -60,12 +61,13 @@ const bindRoutes = (app) => {
   app.route('/api/search')
     .get(util.tasks.search.get);
 
-  app.route('/api/search_thumbnails')
-    .get(util.tasks.search_thumbnails.get);
+  app.route('/api/searchThumbnails')
+    .get(util.tasks.searchThumbnails.get);
 
   app.route('/api/sms')
     .post(util.tasks.sms.post);
 
+// Passport
   app.route('/api/login')
      /* GET login page. */
     .get((req, res) =>
@@ -78,6 +80,7 @@ const bindRoutes = (app) => {
       failureFlash: true,
     }));
 
+// Passport
   app.route('/api/signup')
     /* GET Registration Page */
     .get((req, res) => {
@@ -90,13 +93,15 @@ const bindRoutes = (app) => {
       failureFlash: true,
     }));
 
-    /* Handle Logout */
+// Passport
+  /* Handle Logout */
   app.route('/api/logout')
     .get((req, res) => {
       req.logout();
       res.redirect('/login');
     });
 
+// Passport
   /* GET Home Page */
   app.route('/api/home')
     .get(isAuthenticated, (req, res) => {
@@ -105,6 +110,9 @@ const bindRoutes = (app) => {
 
 // As with any middleware it is quintessential to call next()
 // if the user is authenticated
+
+  app.route('/api/visits')
+    .post(util.tasks.visits.post);
 
   app.route('/*')
     .get(util.tasks.redirect.get);

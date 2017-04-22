@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require('../connect.js');
+const db = require('../scripts/connect.js');
 const User = require('./users.js');
 
 const Follow = db.define('follow', {
@@ -7,16 +7,16 @@ const Follow = db.define('follow', {
     type: Sequelize.INTEGER,
     references: {
       model: User,
-      key: 'id'
-    }
+      key: 'id',
+    },
   },
   follow_id: {
     type: Sequelize.INTEGER,
     references: {
       model: User,
-      key: 'id'
-    }
-  }
+      key: 'id',
+    },
+  },
 });
 
 module.exports = Follow;

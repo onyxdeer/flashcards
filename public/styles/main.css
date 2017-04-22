@@ -38,6 +38,19 @@ label, button, a {
     margin-left: 2px;
 }
 
+a.menu-item, a.navbar-brand.logo-nav {
+    margin-top: 3px;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    padding-top: 25px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 /*Start of Create Page Stylesheet*/
  #contact{
     padding:10px 0 10px;
@@ -215,9 +228,6 @@ input {
     text-align: center
 }
 
-
-
-
 /* DISPLAY PAGE */
 
 .cardSection {
@@ -234,10 +244,15 @@ input {
     text-align: center;
 }
 
+.imageSection {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .noriImage {
-    margin: 10px;
-    max-width: 50%;
-    max-height: 50%;
+    max-height: 150px;
 }
 
 .cardNumberField {
@@ -287,6 +302,7 @@ input {
 /* SEARCH PAGE */
 
 .searchSection {
+    margin-bottom: 10px;
     color: #BADA55;    
 }
 
@@ -340,6 +356,7 @@ input {
 }
 
 .card-front, .card-back {
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   position: absolute;
   left: 0;
@@ -347,12 +364,28 @@ input {
   border: 1px solid black;
 }
 
+.frontText, .backText {
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
 .card-front {
-  z-index: 2;
+  -webkit-perspective-origin: 0% 0%;
+  perspective-origin: 0% 0%;
+  -webkit-perspective: 10000px;
+  perspective: 10000px;
+  -webkit-transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
+  -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
 }
 
 .card-back {
+  -webkit-perspective-origin: 0% 0%;
+  perspective-origin: 0% 0%;
+  -webkit-perspective: 10000px;
+  perspective: 10000px;
+  -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
@@ -488,6 +521,11 @@ input {
     /*overflow-y: scroll;*/
 }
 
+.search-item {
+  display: inline-block;
+  margin: 10px;
+}
+
 .thumbnail {
     width: 200px;
     max-height: 500px;
@@ -585,14 +623,22 @@ input {
 }
 
 
+<<<<<<< HEAD
 h1, .lp{
+=======
+h1.wow {
+>>>>>>> d15dabfe4c1c5faef670de8cc86f0150ec412dd4
     font-size: 44px;
     line-height: 56px;
     color: #fff;
     font-weight: 300;
     margin: 0px;
 }
+<<<<<<< HEAD
 h2, .lp{
+=======
+h2.wow {
+>>>>>>> d15dabfe4c1c5faef670de8cc86f0150ec412dd4
   font-size: 30px;
   line-height: 35px;
   color: #fff;
