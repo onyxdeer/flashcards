@@ -243,9 +243,7 @@ const AI = class {
     window.responsiveVoice.speak(text, "US English Female");
     return this;
   }
-  // speakable(target){
-  //   console.log('target func: ', target)
-  // }
+
 
   read(text) {
     // let that = this
@@ -290,15 +288,20 @@ const AI = class {
         return listen(socket)
       })
       .then((data) => {
-        instance.current++
         console.log('data heard is ...', data)
-        //call next here
         let correctPercent = nlp.partial_ratio(back, data);
+        let percent = util.polish(correctPercent)
+        return read(`you are ${percent} percent correct`)
+      })
+      .then(() => {
+        instance.current++
+        //call next here
+        
         console.log('current id: ', instance.current)
         if(instance.cards[instance.current]){
           instance.cards[instance.current].next()
         } else {
-          instance.say('that is all the noris. good job. I would pat you on the back, but I have no hands. but hey, checkout the results')
+          instance.say('that is all the noris. good job. I would paat you on the back, but I have no hands.')
         }
         return
       })
@@ -306,9 +309,6 @@ const AI = class {
 
   }
 
-  validateStream(){
-    // import google client here
-  }
 
   /**
    * 
@@ -335,11 +335,5 @@ const AI = class {
   }
   
 };
-
-function speakable(target){
-  console.log('target: ', target)
-}
-// var a = new AI('joe')
-
 
 export default AI;

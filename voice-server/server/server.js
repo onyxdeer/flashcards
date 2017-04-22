@@ -28,7 +28,7 @@ socket.on('connect', function(){
 });
 
     socket.on('chat message', function(data){
-        console.log('OMG IF THIS OWKR WEW WIN')
+        console.log('Received chat message broadcast')
     });
 
 // Imports the Google Cloud client library
