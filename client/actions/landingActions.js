@@ -1,11 +1,11 @@
-import {HANDLE_GET_ALOT_BENTOS} from '../actions/actionTypes.js'
 import axios from 'axios';
+import { HANDLE_GET_ALOT_BENTOS } from '../actions/actionTypes';
 
 export function handleGetAlotBentos() {
-  return function(dispatch){
+  return (dispatch) => {
     axios.get('/api/popular')
     .then((response) => {
-      dispatch({type: HANDLE_GET_ALOT_BENTOS, payload: response.data})
-    })
-  }
+      dispatch({ type: HANDLE_GET_ALOT_BENTOS, payload: response.data });
+    });
+  };
 }

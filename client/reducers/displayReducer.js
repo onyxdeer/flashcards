@@ -4,7 +4,8 @@ import { FETCH_NORIS, FETCH_FRONT_IMAGES,
          FLIP_NORI_TO_FRONT, FLIP_NORI_TO_BACK,
          HANDLE_VIEW_PAGE_INPUT, SET_NORI_NUMBER,
          SHUFFLE_NORIS, SEND_SMS, HANDLE_PHONE_NUMBER_INPUT,
-         CLEAR_PHONE_NUMBER_INPUT, ANIMATE_BENTO_TRAVERSAL } from '../actions/actionTypes';
+         CLEAR_PHONE_NUMBER_INPUT, ANIMATE_BENTO_TRAVERSAL,
+         RESET_CURRENT_NORI } from '../actions/actionTypes';
 
 const stateDefault = {
   title: '',
@@ -21,72 +22,102 @@ const stateDefault = {
   phoneNumber: '',
   phoneNumberInput: '',
   direction: true,
+  visit_count: null,
 };
 
-const handleFetchNoris = (state, action) => {
-  return { ...state, bentoData: action.payload };
-};
+const handleResetCurrentNori = (state, action) => ({
+  ...state,
+  currentNori: action.currentNori,
+});
 
-const handleFetchFrontImages = (state, action) => {
-  return { ...state, imgDataFront: action.payload };
-};
+const handleFetchNoris = (state, action) => ({
+  ...state,
+  bentoData: action.payload,
+});
 
-const handleFetchBackImages = (state, action) => {
-  return { ...state, imgDataBack: action.payload };
-};
+const handleFetchFrontImages = (state, action) => ({
+  ...state,
+  imgDataFront: action.payload,
+});
 
-const handleGetBentoMetaData = (state, action) => {
-  return { ...state, title: action.title, id_hash: action.id_hash };
-};
+const handleFetchBackImages = (state, action) => ({
+  ...state,
+  imgDataBack: action.payload,
+});
 
-const handleGoToPrevNori = (state, action) => {
-  return { ...state, currentNori: action.currentNori, buttonPressed: action.buttonPressed, noriToDisplay: action.noriToDisplay };
-};
+const handleGetBentoMetaData = (state, action) => ({
+  ...state,
+  title: action.title,
+  id_hash: action.id_hash,
+  visit_count: action.visit_count,
+});
 
-const handleGoToNextNori = (state, action) => {
-  return { ...state, currentNori: action.currentNori, buttonPressed: action.buttonPressed, noriToDisplay: action.noriToDisplay };
-};
+const handleGoToPrevNori = (state, action) => ({
+  ...state,
+  currentNori: action.currentNori,
+  buttonPressed: action.buttonPressed,
+  noriToDisplay: action.noriToDisplay,
+});
 
-const handleFlipNoriToFront = (state, action) => {
-  return { ...state, isFlipped: action.isFlipped, buttonPressed: action.buttonPressed };
-};
+const handleGoToNextNori = (state, action) => ({
+  ...state,
+  currentNori: action.currentNori,
+  buttonPressed: action.buttonPressed,
+  noriToDisplay: action.noriToDisplay,
+});
 
-const handleFlipNoriToBack = (state, action) => {
-  return { ...state, isFlipped: action.isFlipped, buttonPressed: action.buttonPressed };
-};
+const handleFlipNoriToFront = (state, action) => ({
+  ...state,
+  isFlipped: action.isFlipped,
+  buttonPressed: action.buttonPressed,
+});
 
-const handleViewPageInputHandler = (state, action) => {
-  return { ...state, input: action.input };
-};
+const handleFlipNoriToBack = (state, action) => ({
+  ...state,
+  isFlipped: action.isFlipped,
+  buttonPressed: action.buttonPressed,
+});
 
-const handlePhoneNumberInput = (state, action) => {
-  return { ...state, phoneNumberInput: action.phoneNumberInput };
-};
+const handleViewPageInputHandler = (state, action) => ({
+  ...state,
+  input: action.input,
+});
 
-const handleClearPhoneNumberInput = (state, action) => {
-  return { ...state, phoneNumberInput: action.phoneNumberInput };
-};
+const handlePhoneNumberInput = (state, action) => ({
+  ...state,
+  phoneNumberInput: action.phoneNumberInput,
+});
 
-const handleSendSMS = (state, action) => {
-    return { ...state, url: action.url, phoneNumber: action.phoneNumber };
-};
+const handleClearPhoneNumberInput = (state, action) => ({
+  ...state,
+  phoneNumberInput: action.phoneNumberInput,
+});
 
-const handleSetNoriNumber = (state, action) => {
-  return { ...state, currentNori: action.currentNori, noriToDisplay: action.noriToDisplay };
-};
+const handleSendSMS = (state, action) => ({
+  ...state,
+  url: action.url,
+  phoneNumber: action.phoneNumber,
+});
 
-const handleShuffleNoris = (state, action) => {
-  return { ...state,
-    bentoData: action.bentoData,
-    currentNori: action.currentNori,
-    buttonPressed: action.buttonPressed };
-};
+const handleSetNoriNumber = (state, action) => ({
+  ...state,
+  currentNori: action.currentNori,
+  noriToDisplay: action.noriToDisplay,
+});
 
-const handleBentoTraversalAnimation = (state, action) => {
-  return { ...state, direction: action.direction };
-};
+const handleShuffleNoris = (state, action) => ({
+  ...state,
+  bentoData: action.bentoData,
+  currentNori: action.currentNori,
+  buttonPressed: action.buttonPressed,
+});
 
-export default function (state = stateDefault, action) {
+const handleBentoTraversalAnimation = (state, action) => ({
+  ...state,
+  direction: action.direction,
+});
+
+export default (state = stateDefault, action) => {
   switch (action.type) {
     case FETCH_NORIS:
       return handleFetchNoris(state, action);
@@ -118,7 +149,9 @@ export default function (state = stateDefault, action) {
       return handleClearPhoneNumberInput(state, action);
     case ANIMATE_BENTO_TRAVERSAL:
       return handleBentoTraversalAnimation(state, action);
+    case RESET_CURRENT_NORI:
+      return handleResetCurrentNori(state, action);
     default:
       return state;
   }
-}
+};

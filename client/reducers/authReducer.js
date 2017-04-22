@@ -1,42 +1,39 @@
-import { LOG_IN, LOG_OUT, SIGN_UP, HANDLE_EMAIL_INPUT, HANDLE_PASSWORD_INPUT, CLEAR_AUTH_INPUTS } from '../actions/actionTypes.js';
+import { LOG_IN, LOG_OUT, SIGN_UP, HANDLE_EMAIL_INPUT, HANDLE_PASSWORD_INPUT, CLEAR_AUTH_INPUTS } from '../actions/actionTypes';
 
 const stateDefault = {
   emailAddress: '',
   password: '',
 };
 
-const reduceEmailInput = (state, action) => {
-  return { ...state, emailAddress: action.payload };
-};
+const reduceEmailInput = (state, action) => ({
+  ...state,
+  emailAddress: action.payload,
+});
 
-const reducePasswordInput = (state, action) => {
-  return { ...state, password: action.payload };
-};
+const reducePasswordInput = (state, action) => ({
+  ...state,
+  password: action.payload,
+});
 
-const reduceClearAuthInputs = (state, action) => {
-  return { emailAddress: action.emailAddress, password: action.password };
-};
+const reduceClearAuthInputs = (state, action) => ({
+  emailAddress: action.emailAddress,
+  password: action.password,
+});
 
-const reduceLogin = (state, action) => {
-  return {
-    emailAddress: action.emailAddress,
-    password: action.password,
-  };
-};
+const reduceLogin = (state, action) => ({
+  emailAddress: action.emailAddress,
+  password: action.password,
+});
 
-const reduceLogout = (state, action) => {
-  return {
-    emailAddress: action.emailAddress,
-    password: action.password,
-  };
-};
+const reduceLogout = (state, action) => ({
+  emailAddress: action.emailAddress,
+  password: action.password,
+});
 
-const reduceSignup = (state, action) => {
-  return {
-    emailAddress: action.emailAddress,
-    password: action.password,
-  };
-};
+const reduceSignup = (state, action) => ({
+  emailAddress: action.emailAddress,
+  password: action.password,
+});
 
 export default (state = stateDefault, action) => {
   switch (action.type) {

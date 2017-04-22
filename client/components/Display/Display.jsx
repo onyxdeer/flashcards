@@ -1,31 +1,54 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Deck from 'react-deck';
 import classnames from 'classnames';
-import axios from 'axios';
 import Swipeable from 'react-swipeable';
-import RichTextEditor from 'react-rte';
-import {convertFromRaw, convertToRaw, ContentState, Editor, EditorState} from 'draft-js';
+import { convertFromRaw, Editor, EditorState } from 'draft-js';
 import displayActions from '../../actions/displayActions.js';
+import * as appActions from '../../actions/appActions.js';
 import { connect } from 'react-redux';
 
 class Display extends Component {
   constructor(props) {
     super(props);
 
-    if (this.props.shortenerId) {
-      console.log('SHORTEN ID DETECTED:', this.props.shortenerId);
-    }
-
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.getSortedNoris = this.getSortedNoris.bind(this);
     this.renderImages = this.renderImages.bind(this);
     this.renderNori = this.renderNori.bind(this);
     this.handleSetNori = this.handleSetNori.bind(this);
+    this.handleVisitCountIncrement = this.handleVisitCountIncrement.bind(this);
 
-    this.props.fetchBentoMetaData(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
+    this.props.fetchBentoMetaData((this.props.shortenerId ? this.props.shortenerId : this.props.bentoId), this.handleVisitCountIncrement);
     this.props.fetchFrontImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchBackImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchNoris(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
+    this.props.resetCurrentNori();
+  }
+
+  componentWillMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentDidMount() {
+    $("#alert-target").click(function () {
+        toastr["info"]("SMS Sent!")
+    });
+    
+    $('#smsForm').submit(function(e) {
+      $('#sendSMS').modal('hide');
+      toastr["info"]("SMS Sent!")
+      return false;
+    });
+
+    this.props.clearShortenerId();
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleVisitCountIncrement () {
+    this.props.incrementVisitCount(this.props.bentoId, this.props.visit_count);
   }
 
   getSortedNoris () {
@@ -39,43 +62,35 @@ class Display extends Component {
 
   renderImages(nori, front) {
     let noriImages;
-    if (front) {
-      noriImages = this.props.imgDataFront.filter(function(image) {
-        return image.nori_id === nori.id;
-      });
-    } else {
-      noriImages = this.props.imgDataBack.filter(function(image) {
-        return image.nori_id === nori.id;
-      });
-    }
+    front ? noriImages = this.props.imgDataFront.filter(function(image) { return image.nori_id === nori.id }) :
+            noriImages = this.props.imgDataBack.filter(function(image) { return image.nori_id === nori.id });
     if (noriImages.length > 0) {
       return noriImages.map((image) => (<img className='noriImage' key={nori.id} src={image.url}></img>));
-    } else {
-      return '';
     }
+    return '';
   }
 
   renderNori (nori, index , noris) {
     const className = classnames('index-card', {
       'card-flipped': index === noris.length - 1 && this.props.isFlipped && !this.props.buttonPressed,
       'no-animation': this.props.buttonPressed,
-      'moveFromRight': index === noris.length - 1 && this.props.direction,
-      'moveFromLeft': index === noris.length - 1 && !this.props.direction
+      // 'moveFromRight': index === noris.length - 1 && this.props.direction,
+      // 'moveFromLeft': index === noris.length - 1 && !this.props.direction
     });
     return (
       <Deck.Card key={nori.text_front} className={className}>
         <Deck.Card.Front>
             <div className={className} onClick={this.props.flipToBack}>
-              <div className='row'>{this.renderImages(nori, true)}</div>
-              <div className='row'>
+              <div className='row imageSection'>{this.renderImages(nori, true)}</div>
+              <div className='row frontText'>
                 <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_front)))} readOnly={true} />
               </div>
             </div>
         </Deck.Card.Front>
         <Deck.Card.Back>
           <div className={className} onClick={this.props.flipToFront}>
-            <div className='row'>{this.renderImages(nori, false)}</div>
-            <div className='row'>
+            <div className='row imageSection'>{this.renderImages(nori, false)}</div>
+            <div className='row backText'>
               <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_back)))} readOnly={true} />
             </div>
           </div>
@@ -85,7 +100,6 @@ class Display extends Component {
   }
 
   handleSetNori(event) {
-    console.log('CALLING HANDLESETNORI');
     event.preventDefault();
     this.props.setNori(this.props.input, this.props.bentoData);
   }
@@ -111,31 +125,6 @@ class Display extends Component {
     }
   }
 
-  componentWillMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  componentDidMount() {
-
-    $("#alert-target").click(function () {
-        toastr["info"]("SMS Sent!")
-    });
-
-    $('#smsForm').submit(function(e) {
-      $('#sendSMS').modal('hide');
-      toastr["info"]("SMS Sent!")
-      return false;
-    });
-
-  }
-
-  componentDidUpdate() {
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown);
-  }
-
   render() {
 
     console.log('bentoData in render:', this.props.bentoData);
@@ -147,8 +136,6 @@ class Display extends Component {
         </div>
         <div className='row'>
             {this.props.bentoData&&(this.props.bentoData.length > 0) ? <Swipeable
-              onSwipedUp={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
-              onSwipedDown={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
               onSwipedLeft={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
               onSwipedRight={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>
                 <div className='cardSection'>
@@ -161,7 +148,7 @@ class Display extends Component {
           <div className='buttonSection'>
             <button type='button' className='btn btn-success' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button>
             <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>
-            <a href='#' className='btn btn-success' data-toggle='popover' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
+            <a href='#' className='btn btn-success' data-toggle='popover' data-placement='top' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
           </div>
           <form className='changeToNoriSection' onSubmit={this.handleSetNori}>
             <div className='row'>
@@ -170,12 +157,12 @@ class Display extends Component {
             <div className='row'>
               <label>Enter from 0 to {this.props.bentoData ? this.props.bentoData.length - 1 : 0} to go to that Nori: </label>
                 <span>  </span>
-              <input type='text' className='cardNumberField' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder='Enter a number here!' />
+              <input type='tel' className='cardNumberField' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder='Enter a number here!' />
             </div>
           </form>
           <div className='row'>
             <div className='sharingSection'>
-              <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`localhost:8000/id=${this.props.id_hash}`} readOnly />
+              <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`obento.fun/id=${this.props.id_hash}`} readOnly />
               <button type='button' className='btn btn-success' data-toggle='modal' data-target='#sendSMS' onClick={this.props.clearPhoneNumberInput}>Send via SMS</button>
             </div>
           </div>
@@ -190,16 +177,16 @@ class Display extends Component {
                     </button>
                   </div>
                   <div className='modal-body'>
-                    <form id='smsForm' onSubmit={(event) => this.props.shareUrlToSMS(event, `http://localhost:8000/id=${this.props.id_hash}`, this.props.phoneNumberInput)}>
+                    <form id='smsForm' onSubmit={(event) => this.props.shareUrlToSMS(event, `http://obento.fun/id=${this.props.id_hash}`, this.props.phoneNumberInput)}>
                       <div className='form-group'>
                         <label className='form-control-label'>Recipient's Phone Number:</label>
-                        <input type='text' className='form-control' id='recipient-name' value={this.props.phoneNumberInput} placeholder='+14151234567' onChange={(event) => this.props.handlePhoneNumberInput(event)} />
+                        <input type='tel' className='form-control' id='recipient-name' value={this.props.phoneNumberInput} placeholder='14151234567' onChange={(event) => this.props.handlePhoneNumberInput(event)} />
                       </div>
                     </form>
                   </div>
                   <div className='modal-footer'>
                     <button type='button' className='btn btn-secondary' data-dismiss='modal'>Close</button>
-                    <button type='button' id='alert-target' className='btn btn-primary' onClick={(event) => this.props.shareUrlToSMS(event, `http://localhost:8000/id=${this.props.id_hash}`, this.props.phoneNumberInput)} data-dismiss='modal'>Share</button>
+                    <button type='button' id='alert-target' className='btn btn-primary' onClick={(event) => this.props.shareUrlToSMS(event, `http://obento.fun/id=${this.props.id_hash}`, this.props.phoneNumberInput)} data-dismiss='modal'>Share</button>
                   </div>
                 </div>
               </div>
@@ -225,8 +212,9 @@ function mapStateToProps(state) {
     input: state.displayReducer.input,
     title: state.displayReducer.title,
     id_hash: state.displayReducer.id_hash,
-    phoneNumberInput: state.displayReducer.phoneNumberInput
+    phoneNumberInput: state.displayReducer.phoneNumberInput,
+    visit_count: state.displayReducer.visit_count,
   }
 }
 
-export default connect(mapStateToProps, displayActions)(Display);
+export default connect(mapStateToProps, { ...displayActions, ...appActions })(Display);
