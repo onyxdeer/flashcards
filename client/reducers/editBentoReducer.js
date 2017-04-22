@@ -16,6 +16,20 @@ const stateDefault = {
 };
 
 
+// This handler resets the create page back to default whenever a user clicks create
+function handleRenderCreatePage(state, action) {
+  const def = {
+    name: '',
+    description: '',
+    category: '',
+    visit_count: 0,
+    bento_id: null,
+    user_id: 1 || 'guest',
+    noris: [{ Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }, { Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }],
+  };
+  return { ...state, ...def };
+}
+
 const handleImageUpload = (state, action) => ({
   ...state,
   noris: action.payload,

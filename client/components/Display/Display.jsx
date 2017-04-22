@@ -103,7 +103,6 @@ class Display extends Component {
   }
 
   handleSetNori(event) {
-    console.log('CALLING HANDLESETNORI');
     event.preventDefault();
     this.props.setNori(this.props.input, this.props.bentoData);
   }
