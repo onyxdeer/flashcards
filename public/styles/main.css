@@ -509,17 +509,21 @@ input {
     perspective: 1000px;
 }
 
-.ellipsis {
+/*.ellipsis {
     width: 100%;
     height: 100%;
     text-overflow: ellipsis;
     height: 7.5ex;
     padding-right: 17px;
-
-  /* Required for text-overflow to do anything */
     white-space: wrap;
-    /*overflow-y: scroll;*/
+    overflow-y: scroll;
+}*/
+
+.bentoDescription {
+    height: 7.5ex;
+    overflow-y: scroll;
 }
+
 
 .search-item {
   display: inline-block;
