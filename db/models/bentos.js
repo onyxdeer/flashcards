@@ -8,7 +8,7 @@ const Bento = db.define('bento', {
     allowNull: false,
   },
   id_hash: Sequelize.STRING,
-  description: Sequelize.STRING,
+  description: Sequelize.TEXT,
   nori_count: Sequelize.INTEGER,
   private: {
     type: Sequelize.BOOLEAN,
