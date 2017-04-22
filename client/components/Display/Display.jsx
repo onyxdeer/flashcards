@@ -140,8 +140,6 @@ class Display extends Component {
         </div>
         <div className='row'>
             {this.props.bentoData&&(this.props.bentoData.length > 0) ? <Swipeable
-              onSwipedUp={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
-              onSwipedDown={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
               onSwipedLeft={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
               onSwipedRight={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>
                 <div className='cardSection'>
