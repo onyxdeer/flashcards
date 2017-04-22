@@ -661,3 +661,16 @@ p.copyright {
     width: 180px;
     height: auto;
 }
+
+canvas {
+    margin: auto;
+    width: 60%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+.canvasContainer {
+    margin: auto;
+    width: 100%;
+    border: 3px solid purple;
+}

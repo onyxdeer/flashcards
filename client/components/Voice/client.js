@@ -168,6 +168,7 @@ module.exports = function (config) {
 
     //https://github.com/cwilso/Audio-Buffer-Draw/blob/master/js/audiodisplay.js
     function drawBuffer(data) {
+        // console.log('data: ', data)
         var canvas = document.getElementById("canvas"),
             width = canvas.width,
             height = canvas.height,
@@ -186,6 +187,12 @@ module.exports = function (config) {
                 if (datum > max)
                     max = datum;
             }
+
+            var grd= context.createLinearGradient(0,0,170,0);
+            grd.addColorStop(0,"green");
+            grd.addColorStop(1,"grey");
+
+            context.fillStyle=grd;
             context.fillRect(i, (1 + min) * amp, 1, Math.max(1, (max - min) * amp));
         }
     }

@@ -62,7 +62,7 @@ class Voice extends Component {
           <button className="btn btn-primary" id="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>*/}
 
           <div id="canvas-container">
-              <canvas width="600" height="100" id="canvas"></canvas>
+              <canvas width="600" height="300" id="canvas"></canvas>
           </div>
       </div>
     )
