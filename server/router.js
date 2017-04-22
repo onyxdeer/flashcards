@@ -111,7 +111,9 @@ const bindRoutes = (app) => {
 // As with any middleware it is quintessential to call next()
 // if the user is authenticated
 
-// Passport?
+  app.route('/api/visits')
+    .post(util.tasks.visits.post);
+
   app.route('/*')
     .get(util.tasks.redirect.get);
 };

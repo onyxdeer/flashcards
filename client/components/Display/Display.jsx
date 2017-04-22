@@ -19,8 +19,9 @@ class Display extends Component {
     this.renderImages = this.renderImages.bind(this);
     this.renderNori = this.renderNori.bind(this);
     this.handleSetNori = this.handleSetNori.bind(this);
+    this.handleVisitCountIncrement = this.handleVisitCountIncrement.bind(this);
 
-    this.props.fetchBentoMetaData(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
+    this.props.fetchBentoMetaData((this.props.shortenerId ? this.props.shortenerId : this.props.bentoId), this.handleVisitCountIncrement);
     this.props.fetchFrontImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchBackImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchNoris(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
@@ -47,6 +48,10 @@ class Display extends Component {
   
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleVisitCountIncrement () {
+    this.props.incrementVisitCount(this.props.bentoId, this.props.visit_count);
   }
 
   getSortedNoris () {
@@ -135,8 +140,6 @@ class Display extends Component {
         </div>
         <div className='row'>
             {this.props.bentoData&&(this.props.bentoData.length > 0) ? <Swipeable
-              onSwipedUp={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
-              onSwipedDown={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
               onSwipedLeft={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
               onSwipedRight={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>
                 <div className='cardSection'>
@@ -213,7 +216,8 @@ function mapStateToProps(state) {
     input: state.displayReducer.input,
     title: state.displayReducer.title,
     id_hash: state.displayReducer.id_hash,
-    phoneNumberInput: state.displayReducer.phoneNumberInput
+    phoneNumberInput: state.displayReducer.phoneNumberInput,
+    visit_count: state.displayReducer.visit_count,
   }
 }
 

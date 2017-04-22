@@ -53,15 +53,15 @@ class Navigation extends Component {
             </ul>            
 
             {/* Search bar */}
-            <form className="navbar-form navbar-left" onSubmit={this.handleBringUpInput(this.props.input)}>
+            <form className="navbar-form navbar-right" onSubmit={this.handleBringUpInput(this.props.input)}>
               <div className="form-group">
                 <input type="text" className="form-control" value={this.props.input} placeholder="Find A Bento Here" onChange={this.props.handleNavSearch} onClick={this.props.clearText} />
               </div>
-              <button type="submit" className="btn btn-default menu-item"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
+              <button type="submit" className="btn btn-default btn-sm menu-item"><span className="glyphicon glyphicon-search" aria-hidden="true"></span> Search</button>
             </form>
 
             {/* Profile Dropdown Menu */}
-            <ul className="nav navbar-nav navbar-right">
+            {/*<ul className="nav navbar-nav navbar-right">
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <span className="glyphicon glyphicon-user" aria-hidden="true"></span> Menu<span className="caret"></span>
@@ -70,7 +70,7 @@ class Navigation extends Component {
                   <li><Link className="menu-item" to="Login"><span className="glyphicon glyphicon-log-in" aria-hidden="true"></span> Log In</Link></li>
                 </ul>
               </li>
-            </ul>
+            </ul>*/}
 
           {/* End of bar collapse container */}
           </div>

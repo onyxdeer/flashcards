@@ -22,6 +22,7 @@ const stateDefault = {
   phoneNumber: '',
   phoneNumberInput: '',
   direction: true,
+  visit_count: null,
 };
 
 const handleResetCurrentNori = (state, action) => ({
@@ -48,6 +49,7 @@ const handleGetBentoMetaData = (state, action) => ({
   ...state,
   title: action.title,
   id_hash: action.id_hash,
+  visit_count: action.visit_count,
 });
 
 const handleGoToPrevNori = (state, action) => ({
