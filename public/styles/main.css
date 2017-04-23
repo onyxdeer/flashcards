@@ -343,6 +343,11 @@ input {
   height: 300px;
 }
 
+.img-fluid {
+  margin: auto;
+  max-height: 200px;
+}
+
 .card-front, .card-back {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -439,7 +444,6 @@ input {
 }
 
 .caption {
-    height: 100%;
     width: 100%;
     overflow: hidden;
 }
@@ -502,12 +506,17 @@ input {
 }
 
 .search-item {
-  display: inline-block;
-  margin: 10px;
+    display: inline-block;
+    width: 240px;
+    margin: 10px;
 }
 
 .search-data {
-  text-align: center;
+    text-align: center;
+}
+
+img.search-data {
+    min-height: 200px;
 }
 
 .slick-slide {
@@ -537,9 +546,7 @@ div.slick-slide.slick-active.thumbnailSpace {
 }
 
 .thumbnail img {
-    padding-top: 20px;
-    width: 180px;
-    height: auto;
+    padding: 20px;
     max-height: 200px;
 }
 
@@ -551,7 +558,20 @@ div.slick-slide.slick-active.thumbnailSpace {
 }
 
 .exploreItems {
-  text-align: center;
+    text-align: center;
+    min-width: 210px;
+}
+
+/*CSS FOR SCROLL TO TOP BUTTON*/
+#top-link-block.affix-top {
+    position: absolute; /* allows it to "slide" up into view */
+    bottom: -82px;
+    left: 10px;
+}
+#top-link-block.affix {
+    position: fixed; /* keeps it on the bottom once in view */
+    bottom: 18px;
+    left: 10px;
 }
 
 /*CSS FOR DROPZONE*/
@@ -670,6 +690,8 @@ p.lp{
   margin: 10px;
   border: groove;
   box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
+  /*min-width: 180px;*/
+  width: 180px;
 }
 
 .landingbento{
@@ -682,6 +704,7 @@ p.lp{
 }
 
 .card-text {
+  max-height: 200px;
   overflow-y: scroll;
 }
 
