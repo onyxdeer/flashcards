@@ -70,11 +70,29 @@ const verifyAnswer = (answer) => {
   } 
 }
 
-const summary = ( answersList ) => {
-  const sumCorrect = answersList.filter( i => {
-    
-  })
-  const sumIncorrect = answersList.length - sumCorrect
+/**
+ * each item comes in the format of { front:str, back:str, data:str, percent:int, isCorrect: bool }
+ * front is the question, back is the answer, data is the result from user input
+ * @param {Array} answersList 
+ */
+const summarize = ( answersList ) => {
+  const incorrectList = answersList.filter( i => !i.isCorrect )
+  const correctSum = answersList.length - incorrectList.length
+  const parsedList = incorrectList.map( i => ({
+    front,
+    back,
+    data
+  }))
+  const toSay = { sumCorrect: correctSum, sumIncorrect: incorrectList.length, list: parsedList }
+  return toSay
+}
+
+const readSummary = ( { sumCorrect, sumIncorrect, list }) => {
+  window.responsiveVoice.speak(`you got ${sumCorrect} answers correct. ${sumIncorrect} of answers werent exactly what I am looking for`, { onend: readList.bind(this, list) })
+}
+
+const readList = ( list ) => {
+  const toSay = list.map(i => i)
 }
 
 const startPipingToBackend = () => { console.log('piping data started')}
