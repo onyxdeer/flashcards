@@ -47,15 +47,9 @@ class Navigation extends Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             
             <ul className="nav navbar-nav">
-<<<<<<< HEAD
-              <li><Link to="/User" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Home</Link></li>
-              <li><Link to="/Edit/new" onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
-              <li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>
-=======
               <li><Link to="/Explore" className="menu-item" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Explore</Link></li>
               <li><Link to="/Edit" className="menu-item" onClick = {()=> {this.props.handleRenderCreatePage()}} onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
-              {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
->>>>>>> feature-main-bugfix
+              {<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>}
             </ul>            
 
             {/* Search bar */}
