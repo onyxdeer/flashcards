@@ -1,5 +1,5 @@
 # Project Name
-> Obento
+Obento
 
 ## Team
 
@@ -116,7 +116,7 @@ npm install history
 ```
 ### Roadmap
 
-View the project roadmap [https://trello.com/onyxdeer](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [Trello](https://trello.com/onyxdeer)
 
 ## Contributing
 
