@@ -43,7 +43,7 @@ class App extends Component {
 
   render() {
 
-    console.log('WHAT IS GOTSHORTENERID:', this.props.gotShortenerId);
+    // console.log('WHAT IS GOTSHORTENERID:', this.props.gotShortenerId);
     if (this.props.gotShortenerId) {
       console.log('REDIRECTING TO DISPLAY')
       TargetRoute = () => ( <Redirect to='/display' /> );
