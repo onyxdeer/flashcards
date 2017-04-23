@@ -197,4 +197,4 @@ const responses = {
 
 
 
-module.exports = { commands, noris, responses, uuid, polish, verifyAnswer }
+module.exports = { commands, noris, responses, uuid, polish, verifyAnswer, summarize, readSummary }

@@ -250,7 +250,7 @@ const AI = class {
   read(text) {
     // let that = this
     return new Promise( (resolve, reject) => {
-      console.log('Reading Card Front: ', text)
+      console.log('Reading: ', text)
       this.resume()
       window.responsiveVoice.speak(text, "US English Female", {onstart: ()=>{ console.log('talking...')}, onend: resolve });
       // resolve()
@@ -284,6 +284,7 @@ const AI = class {
     console.log('before id: ', instance.current)
     //RESTART CLIENT HERE
     let back = this.back
+    let front = this.front
     read(this.front)
       .then(() => {
         console.log('listening...')
@@ -297,7 +298,7 @@ const AI = class {
         const correct = 'you are correct'
         const incorrect = 'sorry, not quite'
         const toRead = isCorrect ? correct : incorrect
-        instance.results.push({ front: this.front, back, data, correctPercent, isCorrect })
+        instance.results.push({ front, back, data, correctPercent, isCorrect })
         return read(toRead)
       })
       .then(() => {
@@ -307,7 +308,9 @@ const AI = class {
           instance.cards[instance.current].next()
         } else {
           let summary = util.summarize(instance.results)
-          instance.say('good job, that is all the cards I have for you. You score is')
+          console.log('summary is : ', summary)
+          util.readSummary( summary ) 
+          // instance.say('good job, that is all the cards I have for you. You score is')
         }
         return
       })
