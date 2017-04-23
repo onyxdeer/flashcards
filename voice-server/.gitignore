@@ -1,0 +1,5 @@
+node_modules
+recordings
+.idea
+voice-server/node_modules
+voice-server/recordings
