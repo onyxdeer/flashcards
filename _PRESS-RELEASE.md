@@ -18,38 +18,36 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
-  Bento.study
-
+  Obento
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-  Flash cards memorizations made fun and painless. 
+  Flashcard memorization tool made fun and effortless.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-  Using rich stimuli and smart algorithm to make you use less brain power to memorize more.
+  For users who prioritize convenience and accessibility, Obento is an online learning tool that allows them to create flashcard decks enhanced with rich media and explore existing decks created by others. Unlike Quizlet and other popular flashcard applications, Obento is the only one fully integrated with voice-activated control and hands-free interaction. Now, users can access their Bentos (decks) of Noris (cards) anywhere anytime.
 
 ## Problem ##
   > Describe the problem your product solves.
-  Going through flash cards is a pain, we are transforming it to be fun.
+  Flashcards are most effective when they are used repeatedly to reinforce memorization, but they can be cumbersome and tedious to use for people with active lifestyles. 
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
-  We using algorithmic ordering to reinforce the cards that you are having trouble with so they can show up more frequently. We also use rich media and voice interactions to provide additional stimuli for your brain to memorize the cards seamlessly.
+  Obento integrates voice-activated control, hands-free interaction, rich media, and a snappy interface to create the modern day flashcard experience. Now, users can access their Bentos (decks) of Noris (cards) anywhere anytime.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
-  We are making the world a better place by saying the words "we are making the world a better place" while making a CRUD app.
+  "Welcome to Obento! We guarantee this is the most fun you'll have using flashcards." - The Team
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
-  Pick a set of cards you like, or write your own. and get started on making flash cards fun.
+  Start your Obento experience by searching for an existing bento or creating your own.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-  "Memorizing things have always been a weakpoint of mine, so I usually write down the things I need in flash cards and reshuffle them to reinforce my memory. After using this product I was able to remember them much better than normal flash cards, being able to talk it out loud and have it verified provided more stimuli and context for me to remember things." -Josh Van B.
+  "Thanks Obento for helping me prepare for my upcoming CFA exam! Now, my one hour commute to work each day has basically become an extra study session. Normally, I can't review my notes while driving, but now I can use your voice-activated control feature to test my knowledge on various CFA terms. You guys are a lifesaver!" - Jason
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
-
-  check out our domain !!!
+  Create your own Bento now!

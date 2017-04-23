@@ -110,10 +110,10 @@ function fetchNoris(bentoId) {
       } else {
         axios.get('/api/noris', {
           params: { id: idArray },
-        }).then((response) => {
+        }).then((noris) => {
           dispatch({
             type: FETCH_NORIS,
-            payload: response.data,
+            payload: noris.data,
           });
         });
       }
