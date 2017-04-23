@@ -88,11 +88,12 @@ const summarize = ( answersList ) => {
 }
 
 const readSummary = ( { sumCorrect, sumIncorrect, list }) => {
-  window.responsiveVoice.speak(`you got ${sumCorrect} answers correct. ${sumIncorrect} of answers werent exactly what I am looking for`, { onend: readList.bind(this, list) })
+  window.responsiveVoice.speak(`you got ${sumCorrect} answers correct. ${sumIncorrect} of the answers werent exactly what I am looking for. here are the questions that we could work on. some more`, "US English Female", { onend: readList.bind(this, list) })
 }
 
 const readList = ( list ) => {
-  const toSay = list.map(i => i)
+  const toSay = list.map(i => `the question was. ${i.front}. and the correct answer was. ${i.back}. and I heard ${i.data}`)
+  // window.responsiveVoice.speak('here are the questions that we could work on. some more.', "US English Female")
 }
 
 const startPipingToBackend = () => { console.log('piping data started')}
