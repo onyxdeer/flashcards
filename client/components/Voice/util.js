@@ -35,23 +35,89 @@ const commands = {
       }
     };
 
+const uuid = () => { // Public Domain/MIT
+    var d = new Date().getTime();
+    if (typeof performance !== 'undefined' && typeof performance.now === 'function'){
+        d += performance.now(); //use high-precision timer if available
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+}
 
+const polish = (percentage) => {
+    let result = percentage;
+    if(percentage > 90 && percentage <= 100){
+      return percentage
+    } else {
+      if(percentage < 50) percentage += 10
+      let modifier = 1.3;
+      while(percentage * modifier > 100){
+        modifier -= 0.1
+      }
+      result = Math.floor(percentage * modifier )
+    }
+    return result
+}
+
+const verifyAnswer = (answer) => {
+  if( answer >= 90 ){
+    return true
+  } else {
+    return false
+  } 
+}
+
+/**
+ * each item comes in the format of { front:str, back:str, data:str, percent:int, isCorrect: bool }
+ * front is the question, back is the answer, data is the result from user input
+ * @param {Array} answersList 
+ */
+const summarize = ( answersList ) => {
+  const incorrectList = answersList.filter( i => !i.isCorrect )
+  const correctSum = answersList.length - incorrectList.length
+  const parsedList = incorrectList.map( i => ({
+    front: i.front,
+    back: i.back,
+    data: i.data
+  }))
+  const toSay = { sumCorrect: correctSum, sumIncorrect: incorrectList.length, list: parsedList }
+  return toSay
+}
+
+const readSummary = ( { sumCorrect, sumIncorrect, list }) => {
+  window.responsiveVoice.speak(`you got ${sumCorrect} answers correct. ${sumIncorrect} of the answers werent exactly what I am looking for. here are the questions that we could work on. some more`, "US English Female", { onend: readList.bind(this, list) })
+}
+
+const readList = ( list ) => {
+  console.log('readList triggered', list)
+  const toSay = list.map(i => `the question was. ${i.front}. and the correct answer was. ${i.back}. and I heard ${i.data}`)
+
+  let start = 0;
+  const read = (index) => {
+    if(!toSay[index]) return
+    window.responsiveVoice.speak(toSay[index], 'US English Female', { onend: read(index+1)})
+  }
+  read(start)
+}
 
 const startPipingToBackend = () => { console.log('piping data started')}
 
 const endPipingToBackend = () => { console.log('piping data ended')} 
 
 const prompt = (text) => {
-  responsiveVoice.speak(text, "UK English Female", { onend: recordAnswer });
+    window.responsiveVoice.speak(text, "UK English Female", { onend: recordAnswer });
 }
 
 const recordAnswer = () => {
-  console.log('recording answer on microphone')
-  //this is where we pipe the answer to the backend
+    console.log('recording answer on microphone')
+    //this is where we pipe the answer to the backend
 }
 
 const say = (text, callbacks ) => {
-  responsiveVoice.speak(text, "UK English Female", callbacks );
+    window.responsiveVoice.speak(text, "UK English Female", callbacks );
 }
 
 
@@ -132,4 +198,4 @@ const responses = {
 
 
 
-module.exports = { commands, noris, responses }
+module.exports = { commands, noris, responses, uuid, polish, verifyAnswer, summarize, readSummary }

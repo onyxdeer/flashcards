@@ -550,6 +550,34 @@ div.slick-slide.slick-active.thumbnailSpace {
     max-height: 200px;
 }
 
+.canvasClass {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    display: block;
+}
+
+.canvasContainer {
+    margin: auto;
+    width: 100%;
+}
+
+.container {
+    margin: auto;
+    width: 100%;
+}
+
+.buttonContainer {
+    width:100%;
+    text-align:center;
+}
+
+.speechButton {
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
 .exploreItems {
   text-align: center;
 }
