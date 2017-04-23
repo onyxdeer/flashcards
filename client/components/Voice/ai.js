@@ -285,7 +285,7 @@ const AI = class {
     //RESTART CLIENT HERE
     let back = this.back
     let front = this.front
-    read(this.front)
+    read(front)
       .then(() => {
         console.log('listening...')
         return listen(socket)
