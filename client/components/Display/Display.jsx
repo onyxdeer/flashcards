@@ -5,10 +5,11 @@ import Swipeable from 'react-swipeable';
 import { convertFromRaw, Editor, EditorState } from 'draft-js';
 import displayActions from '../../actions/displayActions.js';
 import * as appActions from '../../actions/appActions.js';
+import personalActions from '../../actions/personalActions.js';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-console.log('displayActions:', displayActions);
-console.log('appActions:', appActions);
+let userId = 1;
 
 class Display extends Component {
   constructor(props) {
@@ -26,6 +27,17 @@ class Display extends Component {
     this.props.fetchBackImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchNoris(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.resetCurrentNori();
+
+    $.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+          console.log('REMOVING ANIMATION');
+            $(this).removeClass('animated ' + animationName);
+            });
+        }
+    });
+
   }
 
   componentWillMount() {
@@ -43,11 +55,17 @@ class Display extends Component {
       return false;
     });
 
+    $('.index-card').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      console.log('REMOVING ANIMATION');
+      $('.index-card').removeClass('animated bounce');
+    });
+
     this.props.clearShortenerId();
   }
   
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
+    this.props.flipToFront();
   }
 
   handleVisitCountIncrement () {
@@ -77,8 +95,7 @@ class Display extends Component {
     const className = classnames('index-card', {
       'card-flipped': index === noris.length - 1 && this.props.isFlipped && !this.props.buttonPressed,
       'no-animation': this.props.buttonPressed,
-      // 'moveFromRight': index === noris.length - 1 && this.props.direction,
-      // 'moveFromLeft': index === noris.length - 1 && !this.props.direction
+      'animated bounce': index === noris.length - 1,
     });
     return (
       <Deck.Card key={nori.text_front} className={className}>
@@ -152,6 +169,7 @@ class Display extends Component {
             <button type='button' className='btn btn-success' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button>
             <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>
             <a href='#' className='btn btn-success' data-toggle='popover' data-placement='top' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
+            <Link className='btn btn-success' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, (this.props.shortenerId ? this.props.shortenerId : this.props.bentoId), userId)}>Edit</Link>
           </div>
           <form className='changeToNoriSection' onSubmit={this.handleSetNori}>
             <div className='row'>
@@ -201,7 +219,8 @@ class Display extends Component {
 }
 
 function mapStateToProps(state) {
-  return { 
+  return {
+    bento: state.editBentoInfo,
     bentoId: state.appReducer.bentoId,
     shortenerId: state.appReducer.shortenerId,
     bentoData: state.displayReducer.bentoData,
@@ -220,4 +239,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { ...displayActions, ...appActions })(Display);
+export default connect(mapStateToProps, { ...displayActions, ...appActions, ...personalActions })(Display);
