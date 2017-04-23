@@ -23,7 +23,6 @@ class Voice extends Component {
   }
 
   handleStart(){
-
     this.joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
     // debugger;
 
@@ -47,6 +46,15 @@ class Voice extends Component {
     this.joe.endTransfer()
   }
 
+  calculateWidth(){
+    let width = window.innerWidth
+    // let modifier = 0.7
+    // let result = width * modifier
+    // console.log('width of window; ', result)
+    // return result + ''
+    return width + ''
+  }
+
 
   render() {
     return (
@@ -61,8 +69,8 @@ class Voice extends Component {
           {/*<button className="btn btn-primary" id="start-rec-btn" onClick={this.handleStart}>Start Session</button>
           <button className="btn btn-primary" id="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>*/}
 
-          <div id="canvas-container">
-              <canvas width="600" height="300" id="canvas"></canvas>
+          <div className="canvasContainer" id="canvas-container">
+              <canvas className="canvasClass" width="600" height="300" id="canvas"></canvas>
           </div>
       </div>
     )

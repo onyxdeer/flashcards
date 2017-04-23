@@ -662,11 +662,12 @@ p.copyright {
     height: auto;
 }
 
-canvas {
+.canvasClass {
     margin: auto;
     width: 60%;
-    border: 3px solid green;
+    border: 3px solid yellow;
     padding: 10px;
+    display: block;
 }
 
 .canvasContainer {
@@ -674,3 +675,9 @@ canvas {
     width: 100%;
     border: 3px solid purple;
 }
+
+.container {
+    margin: auto;
+    width: 100%;
+}
+

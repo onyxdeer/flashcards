@@ -173,11 +173,13 @@ module.exports = function (config) {
             width = canvas.width,
             height = canvas.height,
             context = canvas.getContext('2d');
-
+            
+        console.log('what are the width and height: ', width, height)
         context.clearRect (0, 0, width, height);
         var step = Math.ceil(data.length / width);
         var amp = height / 2;
-        for (var i = 0; i < width; i++) {
+        const offSet = 100;
+        for (var i = 0 + offSet; i < width + offSet; i++) {
             var min = 1.0;
             var max = -1.0;
             for (var j = 0; j < step; j++) {
@@ -188,9 +190,9 @@ module.exports = function (config) {
                     max = datum;
             }
 
-            var grd= context.createLinearGradient(0,0,170,0);
-            grd.addColorStop(0,"green");
-            grd.addColorStop(1,"grey");
+            var grd=context.createRadialGradient(75,50,5,90,60,100);
+            grd.addColorStop(0,"black");
+            grd.addColorStop(1,"red");
 
             context.fillStyle=grd;
             context.fillRect(i, (1 + min) * amp, 1, Math.max(1, (max - min) * amp));
