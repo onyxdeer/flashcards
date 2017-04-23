@@ -13,6 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-server": "mocha test/test-server || true",
     "voice": "cd voice-server && npm start",
+    "voice:install": "cd voice-server && npm install",
     "seed": "node db/scripts/seed.js"
   },
   "repository": {

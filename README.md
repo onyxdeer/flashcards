@@ -19,6 +19,21 @@ Obento
 1. [Contributing](#contributing)
 1. [Press Release](#press-release)
 
+### Installing Dependencies
+Install Main Server
+From within the root directory:
+
+```sh
+npm install
+npm uninstall history
+npm install history
+```
+Install Voice Server
+
+```sh
+npm run voice:install
+```
+
 ## Usage
 
 [Install dependencies](#installing-dependencies), then run the following:
@@ -31,8 +46,27 @@ npm run voice
 ```
 Go to `localhost8000` to run the app.
 
-## Requirements
 
+
+
+### Roadmap
+
+View the project roadmap [Trello](https://trello.com/onyxdeer)
+
+## Style Guide
+
+See [STYLE-GUIDE.md](STYLE-GUIDE.md) for style guide information.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## Press Release
+
+See [PRESS-RELEASE.md](PRESS-RELEASE.md) for more information about Obento.
+
+
+## Packages
 - @google-cloud/speech ^0.8.0
 - axios ^0.15.3
 - babel-polyfill ^6.23.0
@@ -107,28 +141,3 @@ Go to `localhost8000` to run the app.
 - style-loader ^0.13.2
 - webpack ^2.3.2
 - webpack-dev-server ^2.4.2
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install
-npm uninstall history
-npm install history
-```
-### Roadmap
-
-View the project roadmap [Trello](https://trello.com/onyxdeer)
-
-## Style Guide
-
-See [STYLE-GUIDE.md](STYLE-GUIDE.md) for style guide information.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
-
-## Press Release
-
-See [PRESS-RELEASE.md](PRESS-RELEASE.md) for more information about Obento.
