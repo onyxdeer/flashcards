@@ -93,8 +93,8 @@ if(!fs.existsSync("recordings")){
 }
 
 var options = {
-    key:    fs.readFileSync('ssl/server.key'),
-    cert:   fs.readFileSync('ssl/server.crt'),
+    key:    fs.readFileSync('./ssl/server.key'),
+    cert:   fs.readFileSync('./ssl/server.crt'),
 };
 
 var app = connect();

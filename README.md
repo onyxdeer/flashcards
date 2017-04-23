@@ -37,11 +37,15 @@ npm run voice:install
 ## Usage
 
 [Install dependencies](#installing-dependencies), then run the following:
+Start main server
 ```
 npm run create:db
 npm run build:watch
 npm start
 npm run seed
+```
+Start voice server
+```
 npm run voice
 ```
 Go to `localhost8000` to run the app.
