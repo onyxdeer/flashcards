@@ -76,12 +76,13 @@ const verifyAnswer = (answer) => {
  * @param {Array} answersList 
  */
 const summarize = ( answersList ) => {
+  console.log('summarize function triggered', answersList)
   const incorrectList = answersList.filter( i => !i.isCorrect )
   const correctSum = answersList.length - incorrectList.length
   const parsedList = incorrectList.map( i => ({
-    front,
-    back,
-    data
+    front: i.front,
+    back: i.back,
+    data: i.data
   }))
   const toSay = { sumCorrect: correctSum, sumIncorrect: incorrectList.length, list: parsedList }
   return toSay
