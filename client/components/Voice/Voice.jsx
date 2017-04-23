@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { commands, noris, responses } from './util.js';
 import { connect } from 'react-redux';
-
 import AI from './ai.js';
 
 
@@ -24,14 +23,6 @@ class Voice extends Component {
 
   handleStart(){
     this.joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
-    // debugger;
-
-    // setTimeout(function(){
-    //   joe.startSession({})
-
-    // }, 300);
-    // joe.startReading()           //takes the first nori, reads the front message.
-
   }
 
   handleEnd(){
@@ -48,10 +39,6 @@ class Voice extends Component {
 
   calculateWidth(){
     let width = window.innerWidth
-    // let modifier = 0.7
-    // let result = width * modifier
-    // console.log('width of window; ', result)
-    // return result + ''
     return width + ''
   }
 

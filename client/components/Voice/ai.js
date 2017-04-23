@@ -29,6 +29,7 @@ const AI = class {
     this.commands = this._getCommands();
     this._initAnnyang(this.commands);
     // this.client = client('');
+    this.results = [];
   }
 
   /*
@@ -294,19 +295,19 @@ const AI = class {
         // let percent = util.polish(correctPercent)
         let isCorrect = util.verifyAnswer(correctPercent)
         const correct = 'you are correct'
-        const incorrect = 'mmm, not quite'
+        const incorrect = 'sorry, not quite'
         const toRead = isCorrect ? correct : incorrect
+        instance.results.push({ front: this.front, back, data, correctPercent, isCorrect })
         return read(toRead)
       })
       .then(() => {
         instance.current++
-        //call next here
-        
         console.log('current id: ', instance.current)
         if(instance.cards[instance.current]){
           instance.cards[instance.current].next()
         } else {
-          instance.say('that is all the noris. good job. I would paat you on the back, but I have no hands.')
+          let summary = util.summarize(instance.results)
+          instance.say('good job, that is all the cards I have for you. You score is')
         }
         return
       })

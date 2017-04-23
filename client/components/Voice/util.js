@@ -70,7 +70,12 @@ const verifyAnswer = (answer) => {
   } 
 }
 
-
+const summary = ( answersList ) => {
+  const sumCorrect = answersList.filter( i => {
+    
+  })
+  const sumIncorrect = answersList.length - sumCorrect
+}
 
 const startPipingToBackend = () => { console.log('piping data started')}
 
