@@ -7,13 +7,9 @@ import displayActions from '../../actions/displayActions.js';
 import * as appActions from '../../actions/appActions.js';
 import personalActions from '../../actions/personalActions.js';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
-
-=======
 import { Link } from 'react-router-dom';
 
 let userId = 1;
->>>>>>> feature-main-bugfix
 
 class Display extends Component {
   constructor(props) {
