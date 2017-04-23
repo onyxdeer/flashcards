@@ -31,7 +31,7 @@ class Explore extends Component {
       className: 'slick-margin',
       dotsClass: 'slick-dots slick-thumb',
       focusOnSelect: true,
-      responsive: [ { breakpoint: 550, settings: { slidesToShow: 1 } }, { breakpoint: 1100, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } }],
+      responsive: [ { breakpoint: 800, settings: { slidesToShow: 1 } }, { breakpoint: 1100, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } }],
       touchMove: true,
       swipe: true,
       swipeToSlide: true,
@@ -61,7 +61,7 @@ class Explore extends Component {
                   {this.props.bentos.map((bento, index) => (
                     <div className='thumbnailSpace wow bounceInDown' key={index}>
                       <span className='thumbnail'>
-                        <img className='exploreImage' src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
+                        <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                         <div className='caption exploreItems'>
                           <h3>{bento.name}</h3>
                           <p className='bentoDescription exploreItems'>{bento.description}</p>
