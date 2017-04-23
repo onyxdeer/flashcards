@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -26,6 +26,10 @@ class Search extends Component {
     this.props.endNavSubmit();
   }
 
+  componentDidMount() {
+
+  }
+
   render() {
 
     console.log('bentosToDisplay in render:', this.props.bentos);
@@ -48,26 +52,27 @@ class Search extends Component {
           </div>*/}
 
           <div>
-            {/*Search results*/}
-              {
-                this.props.bentos&&(this.props.bentos.length > 0 )? this.props.bentos.map((bento, index) => (
-                  <div className='search-item col-md-2'>
-                    <div className='searchBox wow bounceInUp' key={index}>
-                      <img className='search-data' src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
-                      <div className='caption'>
-                        <h3 className='search-data'>{bento.name}</h3>
-                        <p className='searchDescription search-data'>{bento.description}</p>
-                        <p className='search-data'><label>View Count:</label> {bento.visit_count} </p>
-                        <p className='search-data'><Link className='btn btn-primary' to={'/display/' + bento.id} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
-                      </div>
+          {/*Search results*/}
+            {
+              this.props.bentos&&(this.props.bentos.length > 0 )? this.props.bentos.map((bento, index) => (
+                <div className='search-item col-md-2'>
+                  <div className='searchBox wow bounceInUp' key={index}>
+                    <img className='search-data' src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
+                    <div className='caption'>
+                      <h3 className='search-data'>{bento.name}</h3>
+                      <p className='searchDescription search-data'>{bento.description}</p>
+                      <p className='search-data'><label>View Count:</label> {bento.visit_count} </p>
+                      <p className='search-data'><Link className='btn btn-primary' to={'/display/' + bento.id} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
                     </div>
                   </div>
-                )) : (<h1>Sorry, no results were found!</h1>)
-              }
-              </div>
+                </div>
+              )) : (<h1>Sorry, no results were found!</h1>)
+            }
 
+          </div>
 
         </div>
+
       </div>
     )
   }
