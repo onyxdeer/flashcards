@@ -23,22 +23,22 @@ The modern day flashcard experience.
 A flashcard memorization tool made fun and effortless.
 
 ## Summary ##
-For users who prioritize convenience and accessibility, Obento is an online learning tool that allows them to create flashcard decks enhanced with rich media and explore existing decks created by others. Unlike other popular flashcard applications, Obento is the only one fully integrated with voice-activated control and hands-free interaction. Now, users can access their Bentos (decks) of Noris (cards) anywhere anytime.
+For users who prioritize convenience and accessibility, Obento is an online learning tool that allows them to create flashcard decks and explore existing decks created by others. Unlike other popular flashcard applications, Obento is the only one fully integrated with voice-activated control, hands-free interaction, and rich media cards. Now, users can access their Bentos (decks) of Noris (cards) anywhere anytime.
 
 ## Problem ##
-Flashcards are most effective when they are used repeatedly to reinforce memorization, but they can be cumbersome and tedious for people with active lifestyles. 
+Flashcards are most effective when used repeatedly to reinforce memorization, but they can be cumbersome and tedious for people with active lifestyles. 
 
 ## Solution ##
-Obento integrates voice-activated control, hands-free interaction, rich media, and a snappy interface to allow users to access their Bentos (decks) of Noris (cards) anywhere anytime.
+Obento integrates voice-activated control, hands-free interaction, rich media, and a snappy interface to create the most seamless memorization experience available.
 
 ## Quote from You ##
-"Welcome to Obento! We guarantee this app will be the most fun you'll have using flashcards." - The Team
+"Welcome to Obento! We guarantee this app will be your new best friend for all your future study sessions." - The Team
 
 ## How to Get Started ##
 Start your Obento experience by searching for an existing Bento or creating your own!
 
 ## Customer Quote ##
-"Thanks Obento for helping me prepare for my upcoming CFA exam! Now, my one hour commute to work each day has basically become an extra study session. Normally, I can't review my notes while driving, but now I can use your voice-activated controls to test my knowledge on various CFA terms while dealing with rush hour traffic. You guys are lifesavers!" - Jason
+"Thanks Obento for helping me prepare for my upcoming CFA exam. My one hour commute to work each day is now an extra study session. Now, I can use your voice-activated controls while driving through rush hour traffic. You guys are lifesavers." - Jason
 
 ## Closing and Call to Action ##
 Create your own Bento now!
