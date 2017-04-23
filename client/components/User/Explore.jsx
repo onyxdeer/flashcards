@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Carousel from 'react-slick';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -51,8 +51,6 @@ class Explore extends Component {
           </div>
           <div className='row'>
             <div className='col-xs-offset-1 col-xs-10 col-xs-offset-1'>
-                
-              {/*<a className="btn-floating btn-small blue" href="#multi-item-example" data-slide="prev"><i className="fa fa-chevron-left"></i></a>*/}
 
                 {
                   this.props.bentos&&(this.props.bentos.length > 0 ) ? 
@@ -74,8 +72,6 @@ class Explore extends Component {
                   </Carousel>)
                   : (<div className='center-block'><h1>No bentos have been made yet for this category. Go start creating!</h1></div>)
                 }
-
-              {/*<a className="btn-floating btn-small blue" href="#multi-item-example" data-slide="next"><i className="fa fa-chevron-right"></i></a>*/}
 
             </div>
           </div>
