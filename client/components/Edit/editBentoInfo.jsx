@@ -6,30 +6,24 @@ import * as actions from '../../actions/editPageActions.js'
 class editBentoInfo extends React.Component {
   render() {
     return (
-     <div className="inner-contact">
-                <div className="contact-form">
-                    <form id="contact-us">
-                        <div className="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
-                            <label>Name</label>
-                            <input type="text" name="name" id="name" required="required" value={this.props.bento.name} className="form" placeholder="Name" onChange = {(event) => {this.props.handleChange(event)}}/>
-                            <label>Category</label>
-                            <input type="text" name="category" id="subject" required="required" value={this.props.bento.category} className="form" placeholder="Subject" onChange = {(event) => {this.props.handleChange(event)}}/>
+     <div className="inner-contact" >
+                <div className="md-form">
+                    {/*<form id="contact-us">*/}
+                        <div className="col-xs-6 wow animated slideInLeft" data-wow-delay = ".4s">
+                            <input type="text" name="name" id="name" required="required" value={this.props.bento.name} className="form-control"  placeholder="Name" onChange = {(event) => {this.props.handleChange(event)}}/>
+                            {/*<label for="form1" class="">Name</label>*/}
+                            <input type="text" name="category" id="subject" required="required" value={this.props.bento.category} className="form-control" placeholder="Subject" onChange = {(event) => {this.props.handleChange(event)}}/>
+                            {/*<label for="form1" class="">Category</label>*/}
                         </div>
-                        <div className="col-xs-6 wow animated slideInRight" data-wow-delay=".5s">
-                            <label>Description</label>
+                        <div className="col-xs-6 wow animated slideInRight" data-wow-delay = ".4s">
+                            {/*<label>Description</label>*/}
                             <textarea name="description" id="message" className="form textarea" value={this.props.bento.description} placeholder="Description" onChange = {(event) => {this.props.handleChange(event)}}></textarea>
                         </div>
                         <div className="ops-div relative fullwidth col-xs-12">
                         </div>
                         <div className="clear"></div>
-                    </form>
-                            <button  id="submit" name="submit" className="form-btn semibold pull-right" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
-
-                    <div className="mail-message-area">
-                        <div className="alert gray-bg mail-message not-visible-message">
-                            <strong>Thank You !</strong> Your email has been delivered.
-                        </div>
-                    </div>
+                    {/*</form>*/}
+                            <button  id="submit" name="submit" className="form-btn semibold pull-right wow animated slideInRight" data-wow-delay = ".5s" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
                 </div>
             </div>
     )

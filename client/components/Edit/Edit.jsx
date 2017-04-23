@@ -8,14 +8,12 @@ import * as actions from '../../actions/editPageActions.js'
 //miscellaneous dependencies
 import axios from 'axios'
 import RichTextEditor, {EditorValue} from 'react-rte';
-
 class Edit extends React.Component {
   render() {
     console.log(this.props.bento)
     return (
       <div>
         <div className="relative fullwidth">
-          <h1 className="create-title">Create A New Bento</h1>
         </div>
         <div className="newbentoinfo">
           <EditBentoInfo />

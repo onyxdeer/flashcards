@@ -1,21 +1,19 @@
-import { CHANGE_INPUT } from '../actions/actionTypes.js'
+import { CHANGE_INPUT } from '../actions/actionTypes';
 
 const stateDefault = {
-  input: ''
+  input: '',
 };
 
-const handleInput = (state, action) => {
-  return {
-    ...state,
-    input: action.input
-  };
-};
+const handleInput = (state, action) => ({
+  ...state,
+  input: action.input,
+});
 
 export default (state = stateDefault, action) => {
-  // Identical: state = state || stateDefault;
   switch (action.type) {
-    case 'CHANGE_INPUT': 
-      return handleInput(state, action);  
+    case CHANGE_INPUT:
+      return handleInput(state, action);
+    default:
+      return state;
   }
-  return state;
 };

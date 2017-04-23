@@ -1,5 +1,67 @@
-import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI} from '../actions/actionTypes.js'
+import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_IMAGE_UPLOAD} from '../actions/actionTypes.js';
 import axios from 'axios';
+import RichTextEditor from 'react-rte'
+import {convertToRaw} from 'draft-js'
+var notifySave = function () {
+  var notify = $.notify('<strong>Saving Bento</strong> Do not close this page...', {
+  type: 'success',
+	allow_dismiss: false,
+	showProgressbar: true,
+  delay: 3000,
+  animate: {
+    enter: 'animated wobble',
+    exit: 'animated lightSpeedOut'
+  }
+});
+
+  setTimeout(function() {
+    notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been saved!', 'progress': 35});
+  }, 2500);
+}
+
+var notifyUpdate = function (bentoName) {
+  var notify = $.notify('<strong>Updating Bento: '+bentoName +'</strong> Do not close this page...', {
+  type: 'success',
+	allow_dismiss: false,
+	showProgressbar: true,
+  delay: 3000,
+  animate: {
+    enter: 'animated wobble',
+    exit: 'animated lightSpeedOut'
+  }
+});
+
+  setTimeout(function() {
+    notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been updated!', 'progress': 35});
+  }, 2500);
+}
+
+var notifyWarning = function() {
+  var notify = $.notify({
+      icon: 'glyphicon glyphicon-warning-sign',
+      title : '<strong>Warning: </strong>',
+      message: "Please give your new Bento a name and make sure it's longer than 5 characters",
+    }, {
+      type: 'warning', 
+      allow_dismiss: true,
+      newest_on_top: true,
+      delay: 4000,
+      animate: {
+        enter: 'animated pulse',
+        exit: 'animated hinge'
+      }
+    })
+}
+
+const empty = JSON.stringify(convertToRaw(RichTextEditor.createEmptyValue()._editorState.getCurrentContent()));
+
+
+export function handleImageUpload(noris, link, index) {
+  noris[index]["Front"]['image'] = link;
+  return function(dispatch) {
+    dispatch({type: HANDLE_IMAGE_UPLOAD, payload: noris})
+  }
+}
 
 //this handle function can be used to change the state of any input/textarea field++++++++++++++++++++++++++++++++++++
 export function handleChange(event) {
@@ -25,7 +87,7 @@ export function handleNoriChange(noris, rawValue, side, index) {
 export function handleAddNewNori (bento, index) {
   console.log("Does this fire", bento, index)
   var noris = bento.noris;
-  var newNori = {Front: {image: null, text:null, soundFile: null}, Back: {image: null, text:null, soundFile: null}, id: null}
+  var newNori = {Front: {image: null, text:empty, soundFile: null}, Back: {image: null, text:empty, soundFile: null}}
   noris.splice(index+1, 0, newNori)
   var norisAfterAddition = noris;
   console.log(norisAfterAddition)
@@ -36,10 +98,17 @@ export function handleAddNewNori (bento, index) {
 
 export function handleDeleteNori (bento ,index) {
   var noris = bento.noris;
-  noris.splice(index, 1);
-  var norisAfterDelete = noris;
-  return function(dispatch){
-    dispatch({type: HANDLE_DELETE_NORI, payload: norisAfterDelete})
+  if(noris.length > 1) {
+    noris.splice(index, 1);
+    var norisAfterDelete = noris;
+    return function(dispatch){
+      dispatch({type: HANDLE_DELETE_NORI, payload: norisAfterDelete})
+    }
+  } else if (noris.length == 1) {
+    noris = [{Front: {image: null, text:empty, soundFile: null}, Back: {image: null, text:empty, soundFile: null}}]
+      return function(dispatch) {
+          dispatch({type: HANDLE_DELETE_NORI, payload: noris})
+      }
   }
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -54,7 +123,11 @@ export function handleSaveBento(bento) {
   return function(dispatch) {
     axios.post('/api/bentos', bento)
     .then((response) => {
-    console.log('Your bento has been saved!', response.data)
+    if(bento.bento_id) {
+      notifyUpdate(bento.name);
+    } else {
+      notifySave();
+    }
     dispatch({type: HANDLE_SAVE_BENTO, payload: response.data})
     })
     .catch((res) => {
