@@ -76,7 +76,6 @@ const verifyAnswer = (answer) => {
  * @param {Array} answersList 
  */
 const summarize = ( answersList ) => {
-  console.log('summarize function triggered', answersList)
   const incorrectList = answersList.filter( i => !i.isCorrect )
   const correctSum = answersList.length - incorrectList.length
   const parsedList = incorrectList.map( i => ({
@@ -93,6 +92,7 @@ const readSummary = ( { sumCorrect, sumIncorrect, list }) => {
 }
 
 const readList = ( list ) => {
+  console.log('readList triggered', list)
   const toSay = list.map(i => `the question was. ${i.front}. and the correct answer was. ${i.back}. and I heard ${i.data}`)
 
   let start = 0;
