@@ -665,7 +665,6 @@ p.copyright {
 .canvasClass {
     margin: auto;
     width: 60%;
-    border: 3px solid yellow;
     padding: 10px;
     display: block;
 }
@@ -673,7 +672,6 @@ p.copyright {
 .canvasContainer {
     margin: auto;
     width: 100%;
-    border: 3px solid purple;
 }
 
 .container {
@@ -681,3 +679,13 @@ p.copyright {
     width: 100%;
 }
 
+.buttonContainer {
+    width:100%;
+    text-align:center;
+}
+
+.speechButton {
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-block;
+}

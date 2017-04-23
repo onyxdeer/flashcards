@@ -166,15 +166,12 @@ module.exports = function (config) {
         return buf.buffer;
     }
 
-    //https://github.com/cwilso/Audio-Buffer-Draw/blob/master/js/audiodisplay.js
     function drawBuffer(data) {
-        // console.log('data: ', data)
         var canvas = document.getElementById("canvas"),
             width = canvas.width,
             height = canvas.height,
             context = canvas.getContext('2d');
-            
-        console.log('what are the width and height: ', width, height)
+
         context.clearRect (0, 0, width, height);
         var step = Math.ceil(data.length / width);
         var amp = height / 2;

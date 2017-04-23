@@ -62,10 +62,13 @@ class Voice extends Component {
           <div className="page-header">
             <h1><span className="glyphicon glyphicon-record"></span> Obento with sound</h1>
           </div>
-          <button className="start-rec-btn" onClick={this.handleStart}>Start Session</button>
+          {/*<button className="start-rec-btn" onClick={this.handleStart}>Start</button>
           <button className="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>
-          <button className="startTransfer" onClick={this.transfer}>Start Transfer</button>
-          <button className="endTransfer" onClick={this.endTransfer}>Stop Transfer</button>
+          <button className="startTransfer" onClick={this.transfer}>Start Transfer</button>*/}
+          <div className="buttonContainer">
+            <button className="speechButton" onClick={this.handleStart}>Start</button>
+            <button className="speechButton" onClick={this.handleEnd}>Stop</button>
+          </div>
           {/*<button className="btn btn-primary" id="start-rec-btn" onClick={this.handleStart}>Start Session</button>
           <button className="btn btn-primary" id="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>*/}
 
