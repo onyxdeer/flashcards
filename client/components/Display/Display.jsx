@@ -27,6 +27,17 @@ class Display extends Component {
     this.props.fetchBackImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchNoris(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.resetCurrentNori();
+
+    $.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+          console.log('REMOVING ANIMATION');
+            $(this).removeClass('animated ' + animationName);
+            });
+        }
+    });
+
   }
 
   componentWillMount() {
@@ -44,13 +55,17 @@ class Display extends Component {
       return false;
     });
 
-    setTimeout(() => $("#fade-animation").removeClass('fadeIn'),1000);
+    $('.index-card').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      console.log('REMOVING ANIMATION');
+      $('.index-card').removeClass('animated bounce');
+    });
 
     this.props.clearShortenerId();
   }
   
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
+    this.props.flipToFront();
   }
 
   handleVisitCountIncrement () {
@@ -80,9 +95,7 @@ class Display extends Component {
     const className = classnames('index-card', {
       'card-flipped': index === noris.length - 1 && this.props.isFlipped && !this.props.buttonPressed,
       'no-animation': this.props.buttonPressed,
-      // 'fadeIn': index === noris.length - 1,
-      // 'moveFromRight': index === noris.length - 1 && this.props.direction,
-      // 'moveFromLeft': index === noris.length - 1 && !this.props.direction
+      'animated bounce': index === noris.length - 1,
     });
     return (
       <Deck.Card key={nori.text_front} className={className}>

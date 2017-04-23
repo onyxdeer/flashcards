@@ -314,18 +314,13 @@ input {
 
 .deck {
   list-style: none;
-  /*position: relative;*/
   height: 350px;
-  /*max-width: 500px;*/
   padding: 10px;
 }
 
 
 .card {
   display: block;
-  /*min-width: 300px;*/
-  /*max-width: 500px;*/
-
   width: 100%;
   perspective: 1000px;
   position: absolute;
@@ -336,12 +331,6 @@ input {
   transform-style: preserve-3d;
   position: relative;
 }
-
-/*.card-transform {
-  transition: 0s;
-  transform-style: preserve-3d;
-  position: relative;
-}*/
 
 /* starts the animation */
 .card-flipped .card-transform {
@@ -364,8 +353,8 @@ input {
 }
 
 .frontText, .backText {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   max-height: 100%;
   overflow-y: scroll;
 }
@@ -399,18 +388,15 @@ input {
 }
 
 .index-card {
-  /*font-family: 'Reenie Beanie', cursive;*/
   text-align: center;
   color: #555;
 }
 
 .index-card, .index-card .card-front, .index-card .card-back {
-  /*width: 100%;*/
   height: 300px;
 }
 
 .index-card .card-front, .index-card .card-back {
-  /*padding: 5px;*/
   background-color: #fff;
   border: 1px solid #ccc;
   box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -418,7 +404,6 @@ input {
 
 .index-card .card-front p {
   font-size: 20px;
-  /*line-height: 300px;*/
   text-align: center;
   margin: 0;
   overflow: scroll;
@@ -426,7 +411,6 @@ input {
 
 .index-card .card-back p {
   font-size: 20px;
-  /*line-height: 300px;*/
   text-align: center;
   margin: 0;
   overflow: scroll;
@@ -450,8 +434,6 @@ input {
 /* USER PAGE */
 
 .carousel-card {
-    /*display: block;*/
-    /*margin: 20px;*/
     max-width: 500px;
     perspective: 1000px;
 }
@@ -489,14 +471,11 @@ input {
 }
 
 .scrollToTopButton {
-    /*position:absolute;
-    bottom:0;*/
     white-space: normal;
 }
 
 .filterSection {
     margin: 20px;
-    /*text-align: center;*/
 }
 
 .filterButtons {
@@ -504,13 +483,13 @@ input {
 }
 
 .search-card {
-    /*display: block;*/
     margin: 20px;
     max-width: 500px;
     perspective: 1000px;
 }
 
 .bentoDescription {
+    padding: 5px;
     height: 25ex;
     overflow-y: scroll;
 }
