@@ -17,25 +17,22 @@ Once the project moves into development, the press release can be used as a touc
  -->
 
 ## Heading ##
-The modern day flashcard experience.  
-
-## Sub-Heading ##
-A flashcard memorization tool made fun and effortless.
+Memorization made fun and effortless.
 
 ## Summary ##
-For users who prioritize convenience and accessibility, Obento is an online learning tool that allows them to create flashcard decks and explore existing decks created by others. Unlike other popular flashcard applications, Obento is the only one fully integrated with voice-activated control, hands-free interaction, and rich media cards. Now, users can access their Bentos (decks) of Noris (cards) anywhere anytime.
+For users who prioritize convenience and accessibility, Obento is an online learning tool that allows them to create flashcard decks and explore existing decks created by others. Unlike other popular flashcard applications, Obento is the only one fully integrated with hands-free voice control and rich media cards. Now, users can access their bentos (decks) of noris (cards) anywhere anytime.
 
 ## Problem ##
 Flashcards are most effective when used repeatedly to reinforce memorization, but they can be cumbersome and tedious for people with active lifestyles. 
 
 ## Solution ##
-Obento integrates voice-activated control, hands-free interaction, rich media, and a snappy interface to create the most seamless memorization experience available.
+Obento integrates hands-free voice control, rich media cards, and a snappy interface to create the most seamless memorization experience available.
 
 ## Quote from You ##
 "Welcome to Obento! We guarantee this app will be your new best friend for all your future study sessions." - The Team
 
 ## How to Get Started ##
-Start your Obento experience by searching for an existing Bento or creating your own!
+Start your Obento experience by searching for an existing bento or creating your own!
 
 ## Customer Quote ##
 "Thanks Obento for helping me prepare for my upcoming CFA exam. My one hour commute to work each day is now an extra study session. Now, I can use your voice-activated controls to review CFA terms while driving through rush hour traffic. You guys are lifesavers." - Jason
