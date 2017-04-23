@@ -93,7 +93,13 @@ const readSummary = ( { sumCorrect, sumIncorrect, list }) => {
 
 const readList = ( list ) => {
   const toSay = list.map(i => `the question was. ${i.front}. and the correct answer was. ${i.back}. and I heard ${i.data}`)
-  // window.responsiveVoice.speak('here are the questions that we could work on. some more.', "US English Female")
+
+  let start = 0;
+  const read = (index) => {
+    if(!toSay[index]) return
+    window.responsiveVoice.speak(toSay[index], 'US English Female', { onend: read(index+1)})
+  }
+  read(start)
 }
 
 const startPipingToBackend = () => { console.log('piping data started')}
