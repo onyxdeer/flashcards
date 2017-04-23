@@ -343,6 +343,11 @@ input {
   height: 300px;
 }
 
+.img-fluid {
+  margin: auto;
+  max-height: 200px;
+}
+
 .card-front, .card-back {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -582,6 +587,18 @@ div.slick-slide.slick-active.thumbnailSpace {
   text-align: center;
 }
 
+/*CSS FOR SCROLL TO TOP BUTTON*/
+#top-link-block.affix-top {
+    position: absolute; /* allows it to "slide" up into view */
+    bottom: -82px;
+    left: 10px;
+}
+#top-link-block.affix {
+    position: fixed; /* keeps it on the bottom once in view */
+    bottom: 18px;
+    left: 10px;
+}
+
 /*CSS FOR DROPZONE*/
 .dropzone {
     border: 4px dashed #ccc;
@@ -710,6 +727,7 @@ p.lp{
 }
 
 .card-text {
+  max-height: 200px;
   overflow-y: scroll;
 }
 
