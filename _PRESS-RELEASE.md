@@ -38,7 +38,7 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
-  "Welcome to Obento! We guarantee this is the most fun you'll have using flashcards."
+  "Welcome to Obento! We guarantee this is the most fun you'll have using flashcards." - The Team
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
@@ -46,7 +46,7 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-  "Memorizing things has always been my weak point, so I usually write down the things I need in flash cards and reshuffle them to reinforce my memory. After using this product I was able to remember them much better than normal flash cards, being able to talk it out loud and have it verified provided more stimuli and context for me to remember things." -Josh Van B.
+  "Thanks Obento for helping me prepare for my upcoming CFA exam! Now, my one hour commute to work each day has basically become an extra study session. Normally, I can't review my notes while driving, but now I can use your voice-activated control feature to test my knowledge on various CFA terms. You guys are a lifesaver!" - Jason
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
