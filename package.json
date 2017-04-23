@@ -8,27 +8,27 @@
     "build": "webpack",
     "build:watch": "webpack --watch",
     "dev": "webpack-dev-server --progress",
-    "create:db": "echo This script requires admin password, please enter the password now:; sudo mysql -u root < ./db/createdb.sql",
+    "create:db": "echo This script requires admin password, please enter the password now:; sudo mysql -u root < ./db/scripts/createdb.sql",
+    "create:db:pat": "sudo mysql -u root < ./db/scripts/createdb.sql",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-server": "mocha test/test-server || true",
+    "voice": "cd voice-server && npm start",
     "seed": "node db/scripts/seed.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/david-zou/flashcards.git"
+    "url": "git+https://github.com/onyxdeer/flashcards"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/david-zou/flashcards/issues"
+    "url": "https://github.com/onyxdeer/flashcards"
   },
-  "homepage": "https://github.com/david-zou/flashcards#readme",
+  "homepage": "https://github.com/onyxdeer/flashcards#readme",
   "dependencies": {
-    "@google-cloud/speech": "^0.8.0",
     "axios": "^0.15.3",
     "babel-polyfill": "^6.23.0",
     "bcryptjs": "^2.4.3",
-    "binaryjs": "^0.2.1",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "classnames": "^2.2.5",
@@ -39,19 +39,16 @@
     "elasticsearch": "^13.0.0-rc2",
     "eslint": "^3.19.0",
     "express": "^4.15.2",
-    "express-session": "^1.15.2",
-    "http-aws-es": "^1.1.3",
-    "linear16": "^1.0.1",
-    "lodash": "^4.17.4",
-    "mdbootstrap": "^4.3.1",
+    "fuzzball": "^0.9.1",
     "morgan": "^1.8.1",
     "mysql": "^2.13.0",
-    "node-record-lpcm16": "^0.2.0",
+    "express-session": "^1.15.2",
+    "http-aws-es": "^1.1.3",
+    "lodash": "^4.17.4",
+    "mdbootstrap": "^4.3.1",
     "passport": "^0.3.2",
     "path": "^0.12.7",
     "react": "^15.4.2",
-    "react-bootstrap": "^0.30.8",
-    "react-card": "^1.0.4",
     "react-deck": "^2.0.2",
     "react-dom": "^15.4.2",
     "react-flipcard": "^0.2.1",
@@ -69,8 +66,8 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^3.30.4",
     "slick-carousel": "^1.6.0",
-    "twilio": "^2.11.1",
-    "wav": "^1.0.1"
+    "socket.io": "^1.7.3",
+    "twilio": "^2.11.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",

@@ -1,75 +1,75 @@
-// import React, { Component } from 'react';
-// import axios from 'axios';
-// import { commands, noris, responses } from './util.js';
-
-// class Voice extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-
-//     }
-
-//     if (annyang) {
-//       annyang.addCommands(commands);
-//       annyang.start();
-//     }
-
-//     var session = {
-//       audio: true,
-//       video: false
-//     };
-//     var recordRTC = null;
-//     navigator.getUserMedia(session, initializeRecorder, onError);
-
-// function initializeRecorder(stream) {
-//   var audioContext = window.AudioContext;
-//   var context = new audioContext();
-//   var audioInput = context.createMediaStreamSource(stream);
-//   var bufferSize = 2048;
-//   // create a javascript node
-//   var recorder = context.createJavaScriptNode(bufferSize, 1, 1);
-//   // specify the processing function
-//   recorder.onaudioprocess = recorderProcess;
-//   // connect stream to our recorder
-//   audioInput.connect(recorder);
-//   // connect our recorder to the previous destination
-//   recorder.connect(context.destination);
-// }
+import React, { Component } from 'react';
+import axios from 'axios';
+import { commands, noris, responses } from './util.js';
+import { connect } from 'react-redux';
+import AI from './ai.js';
 
 
-// function convertFloat32ToInt16(buffer) {
-//   l = buffer.length;
-//   buf = new Int16Array(l);
-//   while (l--) {
-//     buf[l] = Math.min(1, buffer[l])*0x7FFF;
-//   }
-//   return buf.buffer;
-// }
+class Voice extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
 
-// function recorderProcess(e) {
-//   var left = e.inputBuffer.getChannelData(0);
-//   window.Stream.write(convertFloat32ToInt16(left));
-// }
+    }
 
-// var client = new BinaryClient('ws://localhost:9001');
-
-// client.on('open', function() {
-//   // for the sake of this example let's put the stream in the window
-//   console.log('weve opened a client')
-//   window.Stream = client.createStream();
-// }
-
-
+    // this.joe = new AI('joe')
+    this.joe = new AI('joe', this.props.noris);
+    this.handleStart = this.handleStart.bind(this);
+    this.handleEnd = this.handleEnd.bind(this);
+    this.transfer = this.transfer.bind(this);
+    this.endTransfer = this.endTransfer.bind(this);
     
+  }
 
-//   }
+  handleStart(){
+    this.joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
+  }
 
-//   render() {
-//     return (
-//       <div>Hello World from Voice!</div>
-//     )
-//   }
-// }
+  handleEnd(){
+    this.joe.endSession()
+  }
 
-// export default Voice;
+  transfer(){
+    this.joe.startTransfer()
+  }
+
+  endTransfer(){
+    this.joe.endTransfer()
+  }
+
+  calculateWidth(){
+    let width = window.innerWidth
+    return width + ''
+  }
+
+
+  render() {
+    return (
+      <div className="container">
+          <div className="page-header">
+            <h1><span className="glyphicon glyphicon-record"></span> Obento with sound</h1>
+          </div>
+          {/*<button className="start-rec-btn" onClick={this.handleStart}>Start</button>
+          <button className="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>
+          <button className="startTransfer" onClick={this.transfer}>Start Transfer</button>*/}
+          <div className="buttonContainer">
+            <button className="speechButton" onClick={this.handleStart}>Start</button>
+            <button className="speechButton" onClick={this.handleEnd}>Stop</button>
+          </div>
+          {/*<button className="btn btn-primary" id="start-rec-btn" onClick={this.handleStart}>Start Session</button>
+          <button className="btn btn-primary" id="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>*/}
+
+          <div className="canvasContainer" id="canvas-container">
+              <canvas className="canvasClass" width="600" height="300" id="canvas"></canvas>
+          </div>
+      </div>
+    )
+  }
+}
+
+export default connect((state) => ({
+  noris: state.displayReducer.bentoData
+}),{})(Voice);
+
+
 

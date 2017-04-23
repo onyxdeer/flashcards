@@ -43,7 +43,7 @@ class App extends Component {
 
   render() {
 
-    console.log('WHAT IS GOTSHORTENERID:', this.props.gotShortenerId);
+    // console.log('WHAT IS GOTSHORTENERID:', this.props.gotShortenerId);
     if (this.props.gotShortenerId) {
       console.log('REDIRECTING TO DISPLAY')
       TargetRoute = () => ( <Redirect to='/display' /> );
@@ -67,10 +67,7 @@ class App extends Component {
             <Route path="/edit" component={Edit} />
             <Route path="/search" component={() => <Search />} />
             <Route path="/explore" component={Explore} />
-            <Route path="/user" component={User} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            {/*<Route path="/voice" component={Voice} />*/}
+            <Route path="/voice" component={Voice} />
           </div>
         </Router>      
       </div>

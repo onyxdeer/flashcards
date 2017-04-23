@@ -111,6 +111,7 @@ function fetchNoris(bentoId) {
         axios.get('/api/noris', {
           params: { id: idArray },
         }).then((noris) => {
+          console.log('WHAT\'S NORI.DATA:', noris.data);
           dispatch({
             type: FETCH_NORIS,
             payload: noris.data,
@@ -186,11 +187,11 @@ function clearPhoneNumberInput() {
 
 function setNori(input, bentoData) {
   return function (dispatch) {
-    if (input >= 0 && input < bentoData.length) {
+    if (input >= 1 && input <= bentoData.length) {
       dispatch({
         type: SET_NORI_NUMBER,
-        currentNori: input,
-        noriToDisplay: bentoData[input],
+        currentNori: input-1,
+        noriToDisplay: bentoData[input-1],
       });
     } else {
       alert('Invalid nori number, please enter another number.');

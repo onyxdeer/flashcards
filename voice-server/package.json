@@ -1,0 +1,39 @@
+{
+  "name": "AudioStreamer",
+  "version": "1.0.0",
+  "description": "Audio Streamer Web Server",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js",
+    "comm": "node server/comm-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noamtcohen/AudioStreamer.git"
+  },
+  "author": "noamtcohen",
+  "license": "none",
+  "bugs": {
+    "url": "https://github.com/noamtcohen/AudioStreamer/issues"
+  },
+  "homepage": "https://github.com/noamtcohen/AudioStreamer",
+  "dependencies": {
+    "@google-cloud/speech": "^0.8.0",
+    "binaryjs": "^0.2.1",
+    "connect": "^3.3.4",
+    "lame": "^1.2.3",
+    "linear16": "^1.0.1",
+    "node-record-lpcm16": "^0.3.0",
+    "nodemon": "^1.11.0",
+    "opener": "^1.4.1",
+    "serve-static": "^1.9.1",
+    "socket.io": "^1.7.3",
+    "socket.io-client": "^1.7.3",
+    "uaparser": "0.0.2",
+    "wav": "^0.1.2"
+  },
+  "devDependencies": {
+    "svg-to-jsx": "0.0.20"
+  }
+}
