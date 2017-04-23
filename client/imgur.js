@@ -124,7 +124,7 @@
                 file, target, i, len;
 
             zone.addEventListener('change', function (e) {
-              console.log(e)
+              console.log("line 127 event has fired: ",e)
                 if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
                     target = e.target.files;
 

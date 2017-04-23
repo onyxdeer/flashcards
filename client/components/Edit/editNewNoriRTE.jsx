@@ -56,7 +56,6 @@ constructor(props){
 
 
   render () {
-    console.log("This props of line 57", this.props )
     const ToolbarConfig = {
     // Optionally specify the groups to display (displayed in the order listed).
     display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'IMAGE_BUTTON', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
@@ -89,7 +88,7 @@ constructor(props){
         onFocus = {this.onFocus}
         onBlur = {this.onBlur}
         onChange={this.onChange}
-        placeholder = {this.props.side} 
+        placeholder = {this.props.number+': '+ this.props.side} 
       />
     );
   }
