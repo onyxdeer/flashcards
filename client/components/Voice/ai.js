@@ -206,9 +206,10 @@ const AI = class {
     ends the voice session and gracefully shut down all the clients
   */
   endSession() {
-    window.annyang.pause()
+    window.annyang.pause();
     //speech client stop
-    this.client.end()
+    this.client.end();
+    this.results = 0;
   }
 
   /*
@@ -227,6 +228,9 @@ const AI = class {
     window.annyang.pause();
   }
 
+  /**
+   * begins the transfer to google speech server utilizing our binary client
+   */
   startTransfer(){
     this.client.start(this.configs)
   }

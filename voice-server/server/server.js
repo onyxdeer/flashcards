@@ -93,8 +93,8 @@ if(!fs.existsSync("recordings")){
 }
 
 var options = {
-    key:    fs.readFileSync('./ssl/server.key'),
-    cert:   fs.readFileSync('./ssl/server.crt'),
+    key:    fs.readFileSync('ssl/server.key'),
+    cert:   fs.readFileSync('ssl/server.crt'),
 };
 
 var app = connect();
@@ -148,18 +148,6 @@ server.on('connection', function(client) {
         };
 
     });
-
-    // io.on('connection', function(socket){
-    //   console.log('a user connected');
-    //   socket.on('disconnect', function(){
-    //     console.log('user disconnected');
-    //   });
-
-    //   socket.on('chat message', function(data){
-    //     console.log('\n\n\n\nour msg from socket SPEECH: ', data)
-    //   })
-
-    // });
         
     client.on('close', function() {
         if ( fileWriter != null ) {
