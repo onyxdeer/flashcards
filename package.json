@@ -8,7 +8,8 @@
     "build": "webpack",
     "build:watch": "webpack --watch",
     "dev": "webpack-dev-server --progress",
-    "create:db": "echo This script requires admin password, please enter the password now:; sudo mysql -u root < ./db/createdb.sql",
+    "create:db": "echo This script requires admin password, please enter the password now:; sudo mysql -u root < ./db/scripts/createdb.sql",
+    "create:db:pat": "sudo mysql -u root < ./db/scripts/createdb.sql",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-server": "mocha test/test-server || true",
     "voice": "cd voice-server && npm start",
@@ -66,7 +67,7 @@
     "sequelize": "^3.30.4",
     "slick-carousel": "^1.6.0",
     "socket.io": "^1.7.3",
-    "twilio": "^2.11.1",
+    "twilio": "^2.11.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",

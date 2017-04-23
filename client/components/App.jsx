@@ -67,10 +67,7 @@ class App extends Component {
             <Route path="/edit" component={Edit} />
             <Route path="/search" component={() => <Search />} />
             <Route path="/explore" component={Explore} />
-            <Route path="/user" component={User} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            {/*<Route path="/voice" component={Voice} />*/}
+            <Route path="/voice" component={Voice} />
           </div>
         </Router>      
       </div>
