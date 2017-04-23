@@ -1,5 +1,5 @@
 # Project Name #
-
+Obento
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
 
@@ -15,39 +15,30 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
- 
+
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-  Obento
+The modern day flashcard experience.  
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-  Flashcard memorization tool made fun and effortless.
+A flashcard memorization tool made fun and effortless.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-  For users who prioritize convenience and accessibility, Obento is an online learning tool that allows them to create flashcard decks enhanced with rich media and explore existing decks created by others. Unlike Quizlet and other popular flashcard applications, Obento is the only one fully integrated with voice-activated control and hands-free interaction. Now, users can access their Bentos (decks) of Noris (cards) anywhere anytime.
+For users who prioritize convenience and accessibility, Obento is an online learning tool that allows them to create flashcard decks enhanced with rich media and explore existing decks created by others. Unlike other popular flashcard applications, Obento is the only one fully integrated with voice-activated control and hands-free interaction. Now, users can access their Bentos (decks) of Noris (cards) anywhere anytime.
 
 ## Problem ##
-  > Describe the problem your product solves.
-  Flashcards are most effective when they are used repeatedly to reinforce memorization, but they can be cumbersome and tedious to use for people with active lifestyles. 
+Flashcards are most effective when they are used repeatedly to reinforce memorization, but they can be cumbersome and tedious for people with active lifestyles. 
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
-  Obento integrates voice-activated control, hands-free interaction, rich media, and a snappy interface to create the modern day flashcard experience. Now, users can access their Bentos (decks) of Noris (cards) anywhere anytime.
+Obento integrates voice-activated control, hands-free interaction, rich media, and a snappy interface to allow users to access their Bentos (decks) of Noris (cards) anywhere anytime.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
-  "Welcome to Obento! We guarantee this is the most fun you'll have using flashcards." - The Team
+"Welcome to Obento! We guarantee this app will be the most fun you'll have using flashcards." - The Team
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
-  Start your Obento experience by searching for an existing bento or creating your own.
+Start your Obento experience by searching for an existing Bento or creating your own!
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-  "Thanks Obento for helping me prepare for my upcoming CFA exam! Now, my one hour commute to work each day has basically become an extra study session. Normally, I can't review my notes while driving, but now I can use your voice-activated control feature to test my knowledge on various CFA terms. You guys are a lifesaver!" - Jason
+"Thanks Obento for helping me prepare for my upcoming CFA exam! Now, my one hour commute to work each day has basically become an extra study session. Normally, I can't review my notes while driving, but now I can use your voice-activated controls to test my knowledge on various CFA terms while dealing with rush hour traffic. You guys are lifesavers!" - Jason
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
-  Create your own Bento now!
+Create your own Bento now!
