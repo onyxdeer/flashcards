@@ -62,6 +62,14 @@ const polish = (percentage) => {
     return result
 }
 
+const verifyAnswer = (answer) => {
+  if( answer >= 90 ){
+    return true
+  } else {
+    return false
+  } 
+}
+
 
 
 const startPipingToBackend = () => { console.log('piping data started')}
@@ -159,4 +167,4 @@ const responses = {
 
 
 
-module.exports = { commands, noris, responses, uuid, polish }
+module.exports = { commands, noris, responses, uuid, polish, verifyAnswer }

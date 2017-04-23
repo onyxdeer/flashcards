@@ -291,8 +291,12 @@ const AI = class {
       .then((data) => {
         console.log('data heard is ...', data)
         let correctPercent = nlp.partial_ratio(back, data);
-        let percent = util.polish(correctPercent)
-        return read(`you are ${percent} percent correct`)
+        // let percent = util.polish(correctPercent)
+        let isCorrect = util.verifyAnswer(correctPercent)
+        const correct = 'you are correct'
+        const incorrect = 'mmm, not quite'
+        const toRead = isCorrect ? correct : incorrect
+        return read(toRead)
       })
       .then(() => {
         instance.current++
