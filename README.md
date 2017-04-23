@@ -28,7 +28,7 @@ npm run build:watch
 npm start
 npm run seed
 ```
-Go to `localhost8000` to run the app.
+Go to `localhost:8000` to run the app.
 
 ## Requirements
 
