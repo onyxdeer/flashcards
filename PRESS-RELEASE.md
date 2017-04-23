@@ -32,10 +32,10 @@ Obento integrates hands-free voice control, rich media cards, and a snappy inter
 "Welcome to Obento! We guarantee this app will be your new best friend for all your future study sessions." - The Team
 
 ## How to Get Started ##
-Start your Obento experience by searching for an existing bento or creating your own!
+Start your Obento experience by searching for an existing bento or creating your own, then interact seamlessly with the noris by using hands-free voice control! 
 
 ## Customer Quote ##
 "Thanks Obento for helping me prepare for my upcoming CFA exam. My one hour commute to work each day is now an extra study session. Now, I can use your voice-activated controls to review CFA terms while driving through rush hour traffic. You guys are lifesavers." - Jason
 
 ## Closing and Call to Action ##
-Create your own Bento now!
+Create your own bento now!
