@@ -18,16 +18,15 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
-  Bento.study
-
+  Obento
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-  Flash cards memorizations made fun and painless. 
+  Flashcard memorization service made fun and effortless.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-  Using rich stimuli and smart algorithm to make you use less brain power to memorize more.
+  For users who prioritize convenience and accessibility, Obento is an online learning tool that allows them to create content-rich flashcard decks and explore existing decks created by others. Unlike Quizlet and other popular flashcard applications, Obento is the only one fully integrated with voice-activated control and hands-free interaction. It's the modern-day memorization service made fun and effortless.
 
 ## Problem ##
   > Describe the problem your product solves.
@@ -47,9 +46,8 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-  "Memorizing things have always been a weakpoint of mine, so I usually write down the things I need in flash cards and reshuffle them to reinforce my memory. After using this product I was able to remember them much better than normal flash cards, being able to talk it out loud and have it verified provided more stimuli and context for me to remember things." -Josh Van B.
+  "Memorizing things has always been my weak point, so I usually write down the things I need in flash cards and reshuffle them to reinforce my memory. After using this product I was able to remember them much better than normal flash cards, being able to talk it out loud and have it verified provided more stimuli and context for me to remember things." -Josh Van B.
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
-
-  check out our domain !!!
+  Create your own Bento now!
