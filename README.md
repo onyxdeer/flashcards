@@ -27,6 +27,7 @@ npm run create:db
 npm run build:watch
 npm start
 npm run seed
+npm run voice
 ```
 Go to `localhost8000` to run the app.
 
