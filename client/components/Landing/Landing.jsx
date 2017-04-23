@@ -30,7 +30,7 @@ class Landing extends Component {
                           <h1 className="lp wow fadeInDown">Welcome to Obento!</h1>
                           <hr style = {{marginTop: 10}} className= "wow animated slideInLeft"/>
 	                        <h2 className="lp wow fadeInDown">Memorization made fun and effortless.</h2>
-	                        <p className="lp wow fadeInDown" data-wow-delay="0.3s">Get started by creating a bento - deck - of noris ("nor - reez'') - cards -, then interact seamlessly with your noris using hands-free voice control!</p>
+	                        <p className="lp wow fadeInDown" data-wow-delay="0.3s">Get started by creating a bento - deck - of noris ("nor - reez'') - cards -, then interact seamlessly with your noris by using hands-free voice control!</p>
 	                        <div className="wow fadeInDown" data-wow-delay="0.3s">
 	                        	< Link to="/edit" className="btn btn-default btn-home"  role="button">Create Your Own Bento!</Link>
 	                        </div>
