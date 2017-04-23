@@ -176,7 +176,7 @@ class Display extends Component {
               <text>Currently at card {this.props.currentNori}.</text>
             </div>
             <div className='row'>
-              <label>Enter from 0 to {this.props.bentoData ? this.props.bentoData.length - 1 : 0} to go to that Nori: </label>
+              <label>Enter from 1 to {this.props.bentoData ? this.props.bentoData.length : 1} to go to that Nori: </label>
                 <span>  </span>
               <input type='tel' className='cardNumberField' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder='Enter a number here!' />
             </div>
