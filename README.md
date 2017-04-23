@@ -9,13 +9,15 @@ Obento
 
 ## Table of Contents
 
-1. [Usage](#Usage)
+1. [Team](#team)
+1. [Usage](#usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
+    1. [Roadmap](#roadmap)
+1. [Style Guide](#style-guide)
 1. [Contributing](#contributing)
+1. [Press Release](#press-release)
 
 ## Usage
 
@@ -118,6 +120,14 @@ npm install history
 
 View the project roadmap [Trello](https://trello.com/onyxdeer)
 
+## Style Guide
+
+See [STYLE-GUIDE.md](STYLE-GUIDE.md) for style guide information.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## Press Release
+
+See [PRESS-RELEASE.md](PRESS-RELEASE.md) for more information about Obento.
