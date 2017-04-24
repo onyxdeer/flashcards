@@ -48,7 +48,11 @@ const AI = class {
   
 
   _initClient(configs){
-    const SPEECHURL = 'localhost:9191';
+    const CLOUDURL = '54.193.62.15';
+    const PORT = ':9191'
+    const LOCAL = 'localhost';
+    const SPEECHURL = window.location.host === CLOUDURL ? CLOUDURL + PORT : LOCAL + PORT
+
     const configurations = {
       SPEECHURL,
       clientId: util.uuid()
@@ -191,7 +195,7 @@ const AI = class {
     @return {AI instance} 
   */
   startSession(config) {
-    this._initClient('ayyyyyyy')    
+    this._initClient('client hello')    
     // console.log('what is result of init client:', result)
     window.annyang.resume()
     if( !this.cards ) {
@@ -250,7 +254,11 @@ const AI = class {
     return this;
   }
 
-
+  /**
+   * reads the question prompt
+   * @param {*string} text 
+   * @return {*promise} 
+   */
   read(text) {
     // let that = this
     return new Promise( (resolve, reject) => {
@@ -261,6 +269,10 @@ const AI = class {
     });
   }
 
+  /**
+   * listens for the answer transferred to the backend
+   * @param {*obj} socket 
+   */
   listen(socket) {
     let that = this
     return new Promise( (resolve, reject) => {
@@ -311,7 +323,7 @@ const AI = class {
         if(instance.cards[instance.current]){
           instance.cards[instance.current].next()
         } else {
-          let summary = util.summarize(instance.results)
+          let summary = util.summarize(instance.results, instance.endSession)
           console.log('summary is : ', summary)
           util.readSummary( summary ) 
           // instance.say('good job, that is all the cards I have for you. You score is')

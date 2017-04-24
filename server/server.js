@@ -48,6 +48,7 @@ io.on('connection', function(socket){
   // })
 
   socket.on('gSpeech complete', function(data){
+    console.log('relaying data: ', data)
     socket.broadcast.emit('transfer over', data)
   })
   // exports.socket = socket

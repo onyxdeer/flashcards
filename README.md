@@ -30,6 +30,13 @@ npm install history
 ```
 Install Voice Server
 
+follow the instructions on:
+https://cloud.google.com/speech/docs/getting-started
+
+```
+export GOOGLE_APPLICATION_CREDENTIALS=/~~your path here~~/googleSpeechKey.json
+```
+
 ```sh
 npm run voice:install
 ```

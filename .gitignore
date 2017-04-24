@@ -37,3 +37,5 @@ pats_notes.md
 server/util/tasks/code_sample.js
 server/util/tasks/test.wav
 server/util/tasks/testspeek.js
+
+googleSpeechKey.json
