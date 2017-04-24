@@ -7,16 +7,26 @@ var notifySave = function () {
   type: 'success',
 	allow_dismiss: false,
 	showProgressbar: true,
-  delay: 3000,
   animate: {
     enter: 'animated wobble',
     exit: 'animated lightSpeedOut'
   }
 });
+setTimeout(function() {
+	notify.update('message', '<strong>Saving</strong> Bento Data.');
+}, 2000);
 
-  setTimeout(function() {
-    notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been saved!', 'progress': 35});
-  }, 2500);
+setTimeout(function() {
+	notify.update('message', '<strong>Saving</strong> Nori Data.');
+}, 3000);
+
+setTimeout(function() {
+	notify.update('message', '<strong>Saving</strong> Image Data.');
+}, 4000);
+
+setTimeout(function() {
+  notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been saved!'});
+}, 5000);
 }
 
 var notifyUpdate = function (bentoName) {
@@ -24,16 +34,26 @@ var notifyUpdate = function (bentoName) {
   type: 'success',
 	allow_dismiss: false,
 	showProgressbar: true,
-  delay: 3000,
   animate: {
     enter: 'animated wobble',
     exit: 'animated lightSpeedOut'
   }
 });
-
   setTimeout(function() {
-    notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been updated!', 'progress': 35});
-  }, 2500);
+	notify.update('message', '<strong>Saving</strong> Bento Data.');
+}, 2000);
+
+setTimeout(function() {
+	notify.update('message', '<strong>Saving</strong> Nori Data.');
+}, 3000);
+
+setTimeout(function() {
+	notify.update('message', '<strong>Saving</strong> Image Data.');
+}, 4000);
+
+setTimeout(function() {
+  notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been updated!'});
+}, 5000);
 }
 
 var notifyWarning = function() {
@@ -45,10 +65,14 @@ var notifyWarning = function() {
       type: 'warning', 
       allow_dismiss: true,
       newest_on_top: true,
-      delay: 4000,
+      delay: 3000,
       animate: {
         enter: 'animated pulse',
         exit: 'animated hinge'
+      },
+      placement: {
+        from: 'top',
+        align: 'left'
       }
     })
 }
@@ -117,8 +141,10 @@ export function handleDeleteNori (bento ,index) {
 export function handleSaveBento(bento) {
   //Check to see if the bento name is at least 5 characters long
   if(bento.name.replace(/\s/g,'').length < 5) {
-  alert("Please give your new Bento a name and make sure it's longer than 5 characters")
-} else {``
+    return function () {
+        notifyWarning()
+  }
+} else {
   //send a request to /api/bentos, saving the bento if it's new and assign it a new bento_id or just updates it.
   return function(dispatch) {
     axios.post('/api/bentos', bento)
