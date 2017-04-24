@@ -17,9 +17,11 @@ const AI = class {
     this.name = name;
 
     const CLOUDURL = '54.193.62.15';
-    const PORT = ':9191'
-    const HOSTURL = 'https://' + CLOUDURL + PORT
-    this.socket = window.io(HOSTURL);
+    // const PORT = ':8000'
+    const HOSTURL = 'https://' + CLOUDURL
+    // this.socket = window.io(HOSTURL);
+    this.socket = window.io();
+    // this.socket.emit('chat message', 'ayyyyy')
     // this.commands = util.commands;
     // this._initAnnyang(util.commands);
     // this._getBento(bentoId)

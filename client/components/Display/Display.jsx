@@ -170,6 +170,8 @@ class Display extends Component {
             <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>
             <a href='#' className='btn btn-success' data-toggle='popover' data-placement='top' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
             <Link className='btn btn-success' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, (this.props.shortenerId ? this.props.shortenerId : this.props.bentoId), userId)}>Edit</Link>
+            <Link className='btn btn-success' to={'/Voice'}>Voice</Link>
+            
           </div>
           <form className='changeToNoriSection' onSubmit={this.handleSetNori}>
             <div className='row'>

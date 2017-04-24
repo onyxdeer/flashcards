@@ -44,6 +44,10 @@ io.on('connection', function(socket){
   socket.on('gSpeech complete', function(data){
     socket.broadcast.emit('transfer over', data)
   })
+
+  socket.on('chat message', function(data){
+    console.log('message received: ', data)
+  })
   // exports.socket = socket
 
 });
