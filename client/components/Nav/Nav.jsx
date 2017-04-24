@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavItem, NavDropdown, FormGroup, FormControl, MenuItem, Button, Dropdown, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/navActions.js';
 import { handleNavSearch } from '../../actions/appActions.js';
@@ -49,7 +48,7 @@ class Navigation extends Component {
             <ul className="nav navbar-nav">
               <li><Link to="/Explore" className="menu-item" onSelect={this.closeNav}><span className="glyphicon glyphicon-home" aria-hidden="true"></span> Explore</Link></li>
               <li><Link to="/Edit" className="menu-item" onClick = {()=> {this.props.handleRenderCreatePage()}} onSelect={this.closeNav}><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</Link></li>
-              {/*<li><Link to="/Voice" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>*/}
+              {<li><Link to="/Voice" className="menu-item" onSelect={this.closeNav}><span className="glyphicon glyphicon-record" aria-hidden="true"></span> Voice</Link></li>}
             </ul>            
 
             {/* Search bar */}

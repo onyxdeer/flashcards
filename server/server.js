@@ -4,6 +4,8 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const path = require('path');
 const morgan = require('morgan');
+const Http = require('http')
+const Sockets = require('socket.io')
 const history = require('connect-history-api-fallback');
 const passport = require('passport');
 const flash = require('connect-flash');
@@ -14,6 +16,8 @@ const { SESSION_SECRET } = require('../config/config.js');
 const PORT = process.env.PORT || 8000;
 
 const app = express();
+var http = Http.createServer(app)
+var io = Sockets(http)
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -31,7 +35,30 @@ bindrouter(app);
 
 database();
 
-app.listen(PORT, () => console.log('Obento express server connection established at:', PORT));
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
 
-exports.app = app;
+  socket.on('gSpeech complete', function(data){
+    socket.broadcast.emit('transfer over', data)
+  })
+  // exports.socket = socket
+
+});
+
+http.listen(PORT, () => {
+  console.log('Obento express server connection established at:', PORT);
+});
+// app.listen(PORT, () => console.log('Obento express server connection established at:', PORT));
+
+exports.app = http;
+// exports.socket = socket
+
+// app.listen(PORT, function() {
+//   console.log('Obento express server connection established at:', PORT);
+// });
+
+// exports.app = app;
 

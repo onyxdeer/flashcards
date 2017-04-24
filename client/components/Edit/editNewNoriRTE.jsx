@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component } from 'react';
 import RichTextEditor from 'react-rte';
 import {convertFromRaw, EditorState, convertToRaw} from 'draft-js'
 //------redux dependencies
