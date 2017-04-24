@@ -124,6 +124,10 @@ function fetchNoris(bentoId) {
 
 function nextNori(bentoData, currentNori, direction) {
   return function (dispatch) {
+    if (currentNori === bentoData.length - 1) {
+      $('[data-toggle="lastNori"]').popover('show');
+      setTimeout(() => { $('[data-toggle="lastNori"]').popover('hide'); }, 3000);
+    }
     if (currentNori < bentoData.length - 1) {
       dispatch({
         type: GOTO_NEXT_NORI,
@@ -142,6 +146,10 @@ function nextNori(bentoData, currentNori, direction) {
 
 function prevNori(bentoData, currentNori, direction) {
   return function (dispatch) {
+    if (currentNori === 0) {
+      $('[data-toggle="firstNori"]').popover('show');
+      setTimeout(() => { $('[data-toggle="firstNori"]').popover('hide'); }, 3000);
+    }
     if (currentNori > 0) {
       dispatch({
         type: GOTO_PREV_NORI,
