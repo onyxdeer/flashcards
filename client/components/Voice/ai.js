@@ -323,7 +323,7 @@ const AI = class {
         if(instance.cards[instance.current]){
           instance.cards[instance.current].next()
         } else {
-          let summary = util.summarize(instance.results, instance.endSession)
+          let summary = util.summarize(instance.results, instance.endSession.bind(instance))
           console.log('summary is : ', summary)
           util.readSummary( summary ) 
           // instance.say('good job, that is all the cards I have for you. You score is')

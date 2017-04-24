@@ -109,6 +109,7 @@ const readList = ( list, callback ) => {
   let start = 0;
   const read = (index) => {
     if(!toSay[index]) {
+      console.log('triggering callback!!!')
       callback();
       return
     }
