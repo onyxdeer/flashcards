@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import * as actions from '../../actions/editPageActions.js'
 import Imgur from "../../imgur.js";
-
 class imageDropzone extends React.Component {
   constructor(props) {
     super(props)
