@@ -75,7 +75,7 @@ const verifyAnswer = (answer) => {
  * front is the question, back is the answer, data is the result from user input
  * @param {Array} answersList 
  */
-const summarize = ( answersList ) => {
+const summarize = ( answersList, callback ) => {
   const incorrectList = answersList.filter( i => !i.isCorrect )
   const correctSum = answersList.length - incorrectList.length
   const parsedList = incorrectList.map( i => ({
@@ -83,21 +83,36 @@ const summarize = ( answersList ) => {
     back: i.back,
     data: i.data
   }))
-  const toSay = { sumCorrect: correctSum, sumIncorrect: incorrectList.length, list: parsedList }
+  const toSay = { 
+    total: answersList.length ,
+    sumCorrect: correctSum, 
+    sumIncorrect: incorrectList.length, 
+    list: parsedList,
+    callback
+  }
   return toSay
 }
 
-const readSummary = ( { sumCorrect, sumIncorrect, list }) => {
-  window.responsiveVoice.speak(`you got ${sumCorrect} answers correct. ${sumIncorrect} of the answers werent exactly what I am looking for. here are the questions that we could work on. some more`, "US English Female", { onend: readList.bind(this, list) })
+const readSummary = ( { total, sumCorrect, sumIncorrect, list, callback }) => {
+  console.log('what is callback:', callback)
+  window.responsiveVoice.speak(
+      `That is the end of our session. out of ${total} questions. you got ${sumCorrect} answers correct. ${sumIncorrect} of the answers werent exactly what I am looking for. here are the questions that we could work on. some more`, 
+      "US English Female", 
+      { onend: readList.bind(this, list, callback) }
+  );
 }
 
-const readList = ( list ) => {
-  console.log('readList triggered', list)
+const readList = ( list, callback ) => {
+  console.log('readList triggered', list, callback)
   const toSay = list.map(i => `the question was. ${i.front}. and the correct answer was. ${i.back}. and I heard ${i.data}`)
 
   let start = 0;
   const read = (index) => {
-    if(!toSay[index]) return
+    if(!toSay[index]) {
+      console.log('triggering callback!!!')
+      callback();
+      return
+    }
     window.responsiveVoice.speak(toSay[index], 'US English Female', { onend: read(index+1)})
   }
   read(start)
