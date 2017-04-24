@@ -10,9 +10,9 @@ class editBentoInfo extends React.Component {
                 <div className="md-form">
                     {/*<form id="contact-us">*/}
                         <div className="col-xs-6 wow animated slideInLeft" data-wow-delay = ".4s">
-                            <input type="text" name="name" id="name" required="required" value={this.props.bento.name} className="form-control"  placeholder="Name" onChange = {(event) => {this.props.handleChange(event)}}/>
+                            <input type="text" name="name" id="name" required="required" value={this.props.bento.name} className="form-control"  placeholder="Bento Name" onChange = {(event) => {this.props.handleChange(event)}}/>
                             {/*<label for="form1" class="">Name</label>*/}
-                            <input type="text" name="category" id="subject" required="required" value={this.props.bento.category} className="form-control" placeholder="Subject" onChange = {(event) => {this.props.handleChange(event)}}/>
+                            {/*<input type="text" name="category" id="subject" required="required" value={this.props.bento.category} className="form-control" placeholder="Subject" onChange = {(event) => {this.props.handleChange(event)}}/>*/}
                             {/*<label for="form1" class="">Category</label>*/}
                         </div>
                         <div className="col-xs-6 wow animated slideInRight" data-wow-delay = ".4s">

@@ -1,4 +1,5 @@
-console.log("Wow is initiating")    
+   console.log("wow instantiating")
+   
     var wow = new WOW({
         mobile:       false,       // default
       }
