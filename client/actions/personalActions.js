@@ -74,8 +74,14 @@ const personalActions = {
           .then((response) => {
             const savedNorisArray = response[0].data.map((nori, index) => {
               const newNori = { Front: { image: null, text: null, soundFile: null }, Back: { image: null, text: null, soundFile: null } };
-              if (response[1].data[index]) {
-                newNori.Front.image = response[1].data[index].url;
+              if (response[1].data) {
+                var image = null;
+                response[1].data.forEach(function(img) {
+                  if(img.nori_id === nori.id){
+                    image = img.url;
+                  }
+                })
+                newNori.Front.image = image;
               }
               newNori.Front.text = nori.text_front;
               newNori.Back.text = nori.text_back;

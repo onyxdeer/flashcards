@@ -39,7 +39,7 @@ class Landing extends Component {
 	            </div>
 	        </div>
 	    </section>
-        <div id = "bento-area" style = {{position: 'relative'}}>
+        <div  className = "bento-area" style = {{display: "flex", flexWrap: 'wrap'}}>
           {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => <LandingBentos key={index} bento = {bento}/>) : null}
         </div>
             {/*<div  style = {{position: 'relative'}}>

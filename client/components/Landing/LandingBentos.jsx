@@ -12,7 +12,7 @@ class LandingBentos extends Component {
     console.log(this.props.landing)
     var bento = this.props.bento
     return (
-<div className="wow animated bounceIn landing-bento col-md-2 col-sm-2">
+<div className="wow landing-bento animated boundeIn" style = {{flexBasis:'auto'}}>
     <div className="view overlay hm-white-slight">
       {this.props.landing.images ? 
         this.props.landing.images[bento.id] ?
@@ -21,7 +21,7 @@ class LandingBentos extends Component {
             <div className="mask waves-effect waves-light"></div>
     </div>
     <div className="card-block">
-        <h4 className="card-title">{bento.name}</h4>
+        <h4 className="card-title">{bento.name + bento.id}</h4>
         <hr className="landingbento" />
         <p className="card-text">{bento.description}</p>
         <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-default btn-rounded waves-effect btn-sm">View</Link>

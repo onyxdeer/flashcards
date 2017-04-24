@@ -9,6 +9,27 @@
     }
 }(this, function () {
     "use strict";
+  var notify;
+  var notifyPictureUpload = function() {
+  notify = $.notify({
+      icon: 'glyphicon glyphicon-picture',
+      title : '<strong>Uploading </strong>',
+      message: "your picture...",
+    }, {
+      type: 'info', 
+      allow_dismiss: false,
+      newest_on_top: true,
+      delay: 100000,
+      animate: {
+        enter: 'animated bounce infinite',
+        exit: 'animated zoomOutUp'
+      },
+      placement: {
+        from: 'top',
+        align: 'center'
+      }
+    })
+}
     var Imgur = function (options) {
         if (!this || !(this instanceof Imgur)) {
             return new Imgur(options);
@@ -60,6 +81,10 @@
                         } catch (err) {
                             response = this.responseText;
                         }
+                          notify.update({'type' : 'success', 'message': '<Strong>Your Picture Has Been Successfully Uploaded</Strong>'})
+                          setTimeout(function() {
+                            notify.close();
+                          }, 1500);
                         callback.call(window, response);
                     } else {
                         throw new Error(this.status + " - " + this.statusText);
@@ -124,7 +149,8 @@
                 file, target, i, len;
 
             zone.addEventListener('change', function (e) {
-              console.log(e)
+              console.log("line 127 event has fired: ",e)
+              notifyPictureUpload();
                 if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
                     target = e.target.files;
 
