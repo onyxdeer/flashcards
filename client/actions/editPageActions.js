@@ -7,26 +7,19 @@ var notifySave = function () {
   type: 'success',
 	allow_dismiss: false,
 	showProgressbar: true,
+  delay: 3000,
   animate: {
     enter: 'animated wobble',
     exit: 'animated lightSpeedOut'
   }
 });
 setTimeout(function() {
-	notify.update('message', '<strong>Saving</strong> Bento Data.');
-}, 2000);
-
-setTimeout(function() {
-	notify.update('message', '<strong>Saving</strong> Nori Data.');
-}, 3000);
-
-setTimeout(function() {
-	notify.update('message', '<strong>Saving</strong> Image Data.');
-}, 4000);
+	notify.update('message', '<strong>Saving</strong> Bento, Noris, and Images');
+}, 1500);
 
 setTimeout(function() {
   notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been saved!'});
-}, 5000);
+}, 3000);
 }
 
 var notifyUpdate = function (bentoName) {

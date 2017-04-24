@@ -100,7 +100,7 @@ html {
     border:1px solid rgba(0, 0, 0, 0.075);
     margin-bottom:15px;
     color:#727272 !important;
-    font-size:13px;
+    font-size:16px;
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
     transition: all 0.4s;
@@ -714,9 +714,9 @@ p.lp{
   margin: 8px;
   border: groove;
   box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
-  max-width: 15%;
+  /*max-width: 15%;*/
   /*min-width: 180px;*/
-  width: 180px;
+  /*width: 180px;*/
 }
 
 .landingbento{
@@ -730,7 +730,6 @@ p.lp{
 
 .card-text {
   max-height: 200px;
-  overflow-y: scroll;
 }
 
 [data-notify="progressbar"] {
