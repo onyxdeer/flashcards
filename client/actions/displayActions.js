@@ -201,8 +201,8 @@ function setNori(input, bentoData) {
 
 function shuffleNori(bentoData, direction) {
   return function (dispatch) {
-    $('[data-toggle="popover"]').popover('show');
-    setTimeout(() => { $('[data-toggle="popover"]').popover('hide'); }, 3000);
+    // $('[data-toggle="popover"]').popover('show');
+    // setTimeout(() => { $('[data-toggle="popover"]').popover('hide'); }, 3000);
     const temp = bentoData.slice();
     const result = [];
     let randomIndex;

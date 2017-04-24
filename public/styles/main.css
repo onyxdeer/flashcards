@@ -340,7 +340,7 @@ input {
 }
 
 .card-transform {
-  transition: 0.5s;
+  transition: 0.10s;
   transform-style: preserve-3d;
   position: relative;
 }
