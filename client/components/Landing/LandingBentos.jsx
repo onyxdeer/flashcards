@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import * as actions from '../../actions/appActions.js'
 
+
 class LandingBentos extends Component {
   constructor(props) {
     super(props) 
@@ -12,7 +13,7 @@ class LandingBentos extends Component {
     console.log(this.props.landing)
     var bento = this.props.bento
     return (
-<div className="wow landing-bento animated boundeIn" style = {{flexBasis:'auto'}}>
+<div className="wow landing-bento animated bounceIn" style = {{flexBasis:'auto'}}>
     <div className="view overlay hm-white-slight">
       {this.props.landing.images ? 
         this.props.landing.images[bento.id] ?

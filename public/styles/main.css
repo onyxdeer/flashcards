@@ -48,7 +48,6 @@ html {
     height: 100%;
     padding-top: 13px;
     max-width: 100%;
-    overflow-x: hidden;
 }
 
 /*Start of Create Page Stylesheet*/
@@ -171,7 +170,6 @@ html {
     height: auto;
     padding:15px 15px;
     color:#fff;
-    background:#BADA55;
     border:none;
     border-radius:3px;
     outline: none;
@@ -213,7 +211,6 @@ input {
     height: auto;
     padding:15px 15px;
     color:#fff;
-    background:#BADA55;
     border:none;
     border-radius:5px 20px 5px; /* horizontal radius / vertical radius */
     outline: none;
@@ -745,6 +742,6 @@ p.lp{
 	height: 5px;
 }
 
-/*.wow {
-visibility: visible !important;
-} */
+.ops-div {
+  padding-right: 40px;
+}
