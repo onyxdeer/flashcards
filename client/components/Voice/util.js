@@ -94,15 +94,16 @@ const summarize = ( answersList, callback ) => {
 }
 
 const readSummary = ( { total, sumCorrect, sumIncorrect, list, callback }) => {
+  console.log('what is callback:', callback)
   window.responsiveVoice.speak(
       `That is the end of our session. out of ${total} questions. you got ${sumCorrect} answers correct. ${sumIncorrect} of the answers werent exactly what I am looking for. here are the questions that we could work on. some more`, 
       "US English Female", 
-      { onend: readList.bind(this, list, callback) 
-  });
+      { onend: readList.bind(this, list, callback) }
+  );
 }
 
 const readList = ( list, callback ) => {
-  console.log('readList triggered', list)
+  console.log('readList triggered', list, callback)
   const toSay = list.map(i => `the question was. ${i.front}. and the correct answer was. ${i.back}. and I heard ${i.data}`)
 
   let start = 0;
