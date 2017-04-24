@@ -15,7 +15,11 @@ import nlp from 'fuzzball';
 const AI = class {
   constructor(name, data) {
     this.name = name;
-    this.socket = window.io();
+
+    const CLOUDURL = '54.193.62.15';
+    const PORT = ':9191'
+    const HOSTURL = 'https://' + CLOUDURL + PORT
+    this.socket = window.io(HOSTURL);
     // this.commands = util.commands;
     // this._initAnnyang(util.commands);
     // this._getBento(bentoId)
@@ -211,7 +215,7 @@ const AI = class {
   */
   endSession() {
     window.annyang.pause();
-    //speech client stop
+    console.log('stopping client')
     this.client.end();
     this.results = 0;
   }
