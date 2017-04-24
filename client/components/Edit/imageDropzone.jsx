@@ -7,70 +7,46 @@ class imageDropzone extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      imgurInstance : false
+      imgurInstance: false
     }
     this.callback = this.callback.bind(this);
+    this.instantiateNewImgurInstance = this.instantiateNewImgurInstance.bind(this);
   }
   callback (res) {
     console.log("This function fires at component number ", this.props.number, res.data.link )
         if (res.success === true) {
+            this.props.handleImageUpload(this.props.bento.noris, res.data.link, this.props.number);
             this.setState({
               imgurInstance: false
             }, console.log(this.props.number))
-            this.props.handleImageUpload(this.props.bento.noris, res.data.link, this.props.number);
         }
     };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("dropzone component "+this.props.number+" shouldComponentUpdate. The imgur state is:  " + this.state.imgurInstance)
-      // if(!this.props.bento.noris[this.props.number]["Front"]["image"]){
-      //     new Imgur({
-      //       clientid: '8887909661837b4',
-      //       callback: this.callback,
-      //       index: this.props.number
-      //     })
-      //     return true
-      // }
+  instantiateNewImgurInstance () {
+    console.log("instantiating new imgur instance")
+    new Imgur({
+      clientid: '8887909661837b4',
+      callback: this.callback,
+      index: this.props.number
+    })
+    this.setState ({
+      imgurInstance: true
+    })
   }
 
-
-  componentWillReceiveProps(nextProps) {
-    console.log("dropzone component "+this.props.number+" willReceiveProps. The imgur state is:  " + this.state.imgurInstance)
-  }  
-
-  componentDidUpdate(){
-    console.log("dropzone component "+this.props.number+" did updated. The imgur state is:  " + this.state.imgurInstance)
-      // if(!this.state.imgurInstance){
-      // } else if (this.state.imgurInstance && !this.props.bento.noris[this.props.number]["Front"]["image"]){
-      //     new Imgur({
-      //       clientid: '8887909661837b4',
-      //       callback: this.callback,
-      //       index: this.props.number
-      //     })
-      // }
-    console.log("this is prev  props: " + this.props.bento.noris[this.props.number]["Front"]["image"])
-    console.log("this is the next  props: " + nextProps.bento.noris[this.props.number]["Front"]["image"])
-      if(!this.props.bento.noris[this.props.number]["Front"]["image"]){
-        console.log("Do i fire?")
-          new Imgur({
-            clientid: '8887909661837b4',
-            callback: this.callback,
-            index: this.props.number
-          })
-      }
-        return true
+  componentDidUpdate () {
+    console.log("component ", this.props.number, " did update!  ", "image url: ", this.props.bento.noris[this.props.number]["Front"]["image"] )
+    if(!this.state.imgurInstance && this.props.bento.noris[this.props.number]["Front"]["image"] === null) {
+      console.log("component is instantiating and imgur instance")
+      this.instantiateNewImgurInstance();
+    }
   }
 
   componentDidMount() {
-    console.log("line 28 image dropzone mounts")
-    new Imgur({
-        clientid: '8887909661837b4',
-        callback: this.callback,
-        index: this.props.number
-    })
-    this.setState({
-      imgurInstance: true
-    })
+    if(!this.state.imgurInstance && this.props.bento.noris[this.props.number]["Front"]["image"] === null){
+    console.log("line 28 image dropzone mounts and imgur instantiated")
+    this.instantiateNewImgurInstance()
+    }
 }
   render() {
     if(this.props.bento.noris[this.props.number]["Front"]["image"]) {
@@ -78,7 +54,6 @@ class imageDropzone extends React.Component {
         <img className={"nori-image img-thumbnail"} src = {this.props.bento.noris[this.props.number]["Front"]["image"]}/>
       )
     } else {
-      console.log("I have rendered")
       return (
         <div className={'dropzone'  + ' dz' + this.props.number}></div>
       )

@@ -88,7 +88,7 @@ constructor(props){
         onFocus = {this.onFocus}
         onBlur = {this.onBlur}
         onChange={this.onChange}
-        placeholder = {this.props.number+': '+ this.props.side} 
+        placeholder = {this.props.number+ 1+'. '+ this.props.side} 
       />
     );
   }
