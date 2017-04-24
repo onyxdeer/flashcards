@@ -13,6 +13,9 @@ class Edit extends React.Component {
     console.log(this.props.bento)
     return (
       <div>
+        <div className="create-title">
+          <h1 className="default-font">Create Bento</h1>
+        </div>
         <div className="relative fullwidth">
         </div>
         <div className="newbentoinfo">
