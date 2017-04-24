@@ -166,8 +166,10 @@ class Display extends Component {
             </Swipeable> : <h1 className='center-block'>Sorry, no cards available!</h1> }
         </div>
           <div className='buttonSection'>
-            <button type='button' className='btn btn-success' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button>
-            <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>
+            {(this.props.currentNori === 0) ? <button type='button' className='btn btn-blue-grey' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button> :
+              <button type='button' className='btn btn-success' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button>}
+              {(this.props.currentNori === this.props.bentoData.length - 1) ? <button type='button' className='btn btn-blue-grey' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button> :
+              <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>}
             <a href='#' className='btn btn-success' data-toggle='popover' data-placement='top' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
             <Link className='btn btn-success' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, (this.props.shortenerId ? this.props.shortenerId : this.props.bentoId), userId)}>Edit</Link>
           </div>
