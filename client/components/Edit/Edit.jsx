@@ -20,11 +20,12 @@ class Edit extends React.Component {
         <div className="newbentoinfo">
           <EditBentoInfo />
         </div>
+        <hr />
         {this.props.bento.noris.map((nori, index) => 
           <EditNewNori key={index} number = {index} />
         )}
         <div className="ops-div relative fullwidth col-xs-12">
-          <button type="submit" id="submit" name="submit" className="form-btn semibold pull-right" onClick ={() => {this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
+          <button type="submit" id="submit" name="submit" className="btn btn-default form-btn semibold pull-right wow animated slideInRight" onClick ={() => {this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
         </div>
       </div>
     )

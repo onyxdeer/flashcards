@@ -23,7 +23,7 @@ class editBentoInfo extends React.Component {
                         </div>
                         <div className="clear"></div>
                     {/*</form>*/}
-                            <button  id="submit" name="submit" className="form-btn semibold pull-right wow animated slideInRight" data-wow-delay = ".5s" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
+                            <button  id="submit" name="submit" className="btn btn-default form-btn semibold pull-right wow animated slideInRight" data-wow-delay = ".9s" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
                 </div>
             </div>
     )
