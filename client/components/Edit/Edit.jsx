@@ -12,6 +12,9 @@ class Edit extends React.Component {
   render() {
     return (
       <div>
+        <div className="create-title">
+          <h1 className="default-font">Create Bento</h1>
+        </div>
         <div className="relative fullwidth">
         </div>
         <div className="newbentoinfo">
