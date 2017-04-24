@@ -51,28 +51,8 @@ module.exports = function (config) {
         client.on('open', function () {
             console.log('streaming client turned on')
             bStream = client.createStream({sampleRate: resampleRate, clientId: config.clientId});
-            // bStream.on('data', function(s){
-            //     console.log('data is being piped', s)
-            // })
-            // bStream.on('end', function(s){
-            //     console.log('stream end event triggerd', s)
-            // })
-            // bStream.on('pause', function(s){
-            //     console.log('stream pause event', s)
-            // })
-
-            // client.on('stream', function(data){
-            // console.log('streaming is happenin', data)
-            // })
         });
 
-        // client.on('end', function(d){
-        //     console.log('CLIENT ENDED EVENT TRIGGERED')
-        // })
-
-        // client.on('stream', function(data){
-        //     console.log('streaming is happenin', data)
-        // })
 
         if (context) {
             recorder.connect(context.destination);
