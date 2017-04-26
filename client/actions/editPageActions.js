@@ -27,26 +27,19 @@ var notifyUpdate = function (bentoName) {
   type: 'success',
 	allow_dismiss: false,
 	showProgressbar: true,
+  delay: 3000,
   animate: {
     enter: 'animated wobble',
     exit: 'animated lightSpeedOut'
   }
 });
   setTimeout(function() {
-	notify.update('message', '<strong>Saving</strong> Bento Data.');
-}, 2000);
+	notify.update('message', '<strong>Updating</strong> Bento, Nori, Image Data.');
+}, 1500);
 
 setTimeout(function() {
-	notify.update('message', '<strong>Saving</strong> Nori Data.');
+	notify.update('message', '<strong>Updated</strong> Bento: ' + bentoName);
 }, 3000);
-
-setTimeout(function() {
-	notify.update('message', '<strong>Saving</strong> Image Data.');
-}, 4000);
-
-setTimeout(function() {
-  notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been updated!'});
-}, 5000);
 }
 
 var notifyWarning = function() {
@@ -73,10 +66,15 @@ var notifyWarning = function() {
 const empty = JSON.stringify(convertToRaw(RichTextEditor.createEmptyValue()._editorState.getCurrentContent()));
 
 
-export function handleImageUpload(noris, link, index) {
-  noris[index]["Front"]['image'] = link;
+export function handleImageUpload(bento, link, index) {
+  console.log(bento, index, link)
+  if(!index && index != 0){
+    bento.cover.url = link;
+  } else if (index || index == 0){
+    bento.noris[index]["Front"]['image'] = link;
+  }
   return function(dispatch) {
-    dispatch({type: HANDLE_IMAGE_UPLOAD, payload: noris})
+    dispatch({type: HANDLE_IMAGE_UPLOAD, payload: bento})
   }
 }
 

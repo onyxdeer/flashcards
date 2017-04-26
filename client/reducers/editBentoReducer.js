@@ -12,6 +12,10 @@ const stateDefault = {
   visit_count: 0,
   bento_id: null,
   user_id: 1 || 'guest',
+  cover: {
+    id: null,
+    url: null
+  },
   noris: [{ Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }, { Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }],
 };
 
@@ -25,6 +29,10 @@ function handleRenderCreatePage(state, action) {
     visit_count: 0,
     bento_id: null,
     user_id: 1 || 'guest',
+    cover: {
+      id: null,
+      url: null
+    },
     noris: [{ Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }, { Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }],
   };
   return { ...state, ...def };
@@ -32,7 +40,7 @@ function handleRenderCreatePage(state, action) {
 
 const handleImageUpload = (state, action) => ({
   ...state,
-  noris: action.payload,
+  ...action.payload,
 });
 
 const handleFetchBentoForEdit = (state, action) => ({

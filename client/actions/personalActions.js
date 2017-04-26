@@ -53,7 +53,8 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch, category) {
 }
 
 const personalActions = {
-  // Handle function fetches bento data (including noris) after user clicks an Edit
+
+  // Handle function fetches bento data (including noris) and the possible cover photoafter user clicks an Edit
   handleFetchBentoForEdit(bento, bentoId, userId) {
     return function (dispatch) {
       axios.get('/api/bentos', { params: { id: bentoId, user_id: userId } })
@@ -68,9 +69,11 @@ const personalActions = {
         axios.get('/api/bentosNoris', { params: { bento_id: bentoId } })
         .then(response => response.data.map(data => data.nori_id))
         .then((arrayNorisId) => {
+          console.log(bentoId)
           const getNoris = axios.get('/api/noris', { params: { id: arrayNorisId } });
           const getImages = axios.get('/api/images', { params: { nori_id: arrayNorisId } });
-          Promise.all([getNoris, getImages])
+          const getCoverImage = axios.get('/api/images', {params: {nori_id: null, bento_id: bentoId}})
+          Promise.all([getNoris, getImages, getCoverImage])
           .then((response) => {
             const savedNorisArray = response[0].data.map((nori, index) => {
               const newNori = { Front: { image: null, text: null, soundFile: null }, Back: { image: null, text: null, soundFile: null } };
@@ -89,6 +92,11 @@ const personalActions = {
               newNori.Back.soundFile = nori.audio_url_back;
               return newNori;
             });
+            console.log(response[2].data, response[1].data)
+            if(response[2].data.length) {
+              bento.cover.id = response[2].data[0].id
+              bento.cover.url = response[2].data[0]['url']
+            }
             bento.noris = savedNorisArray;
           })
           .then(() => {

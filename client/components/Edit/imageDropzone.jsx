@@ -14,7 +14,7 @@ class imageDropzone extends React.Component {
   callback (res) {
     console.log("This function fires at component number ", this.props.number, res.data.link )
         if (res.success === true) {
-            this.props.handleImageUpload(this.props.bento.noris, res.data.link, this.props.number);
+            this.props.handleImageUpload(this.props.bento, res.data.link, this.props.number);
             this.setState({
               imgurInstance: false
             }, console.log(this.props.number))

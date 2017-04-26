@@ -358,7 +358,7 @@ input {
   padding-top: 10px;
   padding-bottom: 10px;
   max-height: 100%;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 }
 
 .card-front {
@@ -492,14 +492,12 @@ input {
 .bentoDescription {
     padding: 5px;
     height: 25ex;
-    overflow-y: scroll;
 }
 
 .searchDescription {
     padding-left: 10px;
     padding-right: 10px;
     height: 17.5ex;
-    overflow-y: scroll;
 }
 
 .search-item {
