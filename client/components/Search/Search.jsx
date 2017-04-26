@@ -59,7 +59,7 @@ class Search extends Component {
                   <div className='searchBox wow bounceInUp' key={index}>
                     <img className='search-data' src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                     <div className='caption'>
-                      <h3 className='search-data'>{bento.name}</h3>
+                      <h3 className='search-data tile-title'>{bento.name}</h3>
                       <p className='searchDescription search-data'>{bento.description}</p>
                       <p className='search-data'><label>View Count:</label> {bento.visit_count} </p>
                       <p className='search-data'><Link className='btn btn-primary' to={'/display/' + bento.id} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>

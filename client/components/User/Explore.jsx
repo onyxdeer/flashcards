@@ -61,7 +61,7 @@ class Explore extends Component {
                       <span className='thumbnail'>
                         <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
                         <div className='caption exploreItems'>
-                          <h3>{bento.name}</h3>
+                          <h3 className='browse-title'>{bento.name}</h3>
                           <p className='bentoDescription exploreItems'>{bento.description}</p>
                           <p className='exploreItems'><label>View Count:</label> {bento.visit_count} </p>
                           <p className='exploreItems'><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>

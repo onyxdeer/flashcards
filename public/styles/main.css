@@ -46,7 +46,7 @@ body,
 html {
     width: 100%;
     height: 100%;
-    padding-top: 13px;
+    padding-top: 30px;
     max-width: 100%;
 }
 
@@ -56,7 +56,7 @@ html {
   }
 
   .inner-contact {
-    margin-top: 45px;
+    /*margin-top: 45px;*/
     padding: 40px;
     height: 320px;
   }
@@ -253,11 +253,11 @@ input {
 }
 
 .cardNumberField {
-    width: 40px;
+    width: auto;
 }
 
 .shortenURLField {
-    width: 200px;
+    width: auto;
 }
 
 .DraftEditor-root {
@@ -298,6 +298,14 @@ input {
 
 /* SEARCH PAGE */
 
+.browse-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 250px;
+    display: block;
+}
+
 .searchSection {
     margin-bottom: 10px;   
 }
@@ -305,6 +313,14 @@ input {
 .bento-metadata {
     color: black;
     text-align: center;
+}
+
+.tile-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 234px;
+    display: block;
 }
 
 /* REACT DECK */
@@ -324,7 +340,7 @@ input {
 }
 
 .card-transform {
-  transition: 0.5s;
+  transition: 0.10s;
   transform-style: preserve-3d;
   position: relative;
 }
