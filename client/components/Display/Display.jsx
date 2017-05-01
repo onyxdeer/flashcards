@@ -55,7 +55,11 @@ class Display extends Component {
       return false;
     });
 
-    $('.index-card').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $("#alert-shuffle").click(function () {
+        toastr["info"]("Noris shuffled!")
+    });
+
+    $('.index-card').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
       console.log('REMOVING ANIMATION');
       $('.index-card').removeClass('animated bounce');
     });
@@ -66,6 +70,7 @@ class Display extends Component {
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
     this.props.flipToFront();
+    $('.index-card').removeClass('animated bounce');
   }
 
   handleVisitCountIncrement () {
@@ -170,8 +175,11 @@ class Display extends Component {
               <button type='button' className='btn btn-success' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button>}
               {(this.props.currentNori === this.props.bentoData.length - 1) ? <button type='button' className='btn btn-blue-grey' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button> :
               <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>}
-            <a href='#' className='btn btn-success' data-toggle='popover' data-placement='top' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
+            {/*<a href='#' className='btn btn-success' data-toggle='popover' data-placement='top' title="Shufflin'..." data-trigger='focus' data-content='Bento has been shuffled.' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>*/}
+            <a href='#' className='btn btn-success' id='alert-shuffle' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
             <Link className='btn btn-success' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, (this.props.shortenerId ? this.props.shortenerId : this.props.bentoId), userId)}>Edit</Link>
+            <Link className='btn btn-success' to={'/Voice'}>Voice</Link>
+            
           </div>
           <form className='changeToNoriSection' onSubmit={this.handleSetNori}>
             <div className='row'>

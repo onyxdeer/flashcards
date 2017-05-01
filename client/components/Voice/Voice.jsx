@@ -45,7 +45,7 @@ class Voice extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container animated bounceIn">
           <div className="create-title">
             <h1 className="default-font">Obento with Voice</h1>
           </div>        
@@ -56,8 +56,8 @@ class Voice extends Component {
           <button className="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>
           <button className="startTransfer" onClick={this.transfer}>Start Transfer</button>*/}
           <div className="buttonContainer">
-            <button className="speechButton" onClick={this.handleStart}>Start</button>
-            <button className="speechButton" onClick={this.handleEnd}>Stop</button>
+            <button className="speechButton btn btn-success" onClick={this.handleStart}>Start</button>
+            <button className="speechButton btn btn-success" onClick={this.handleEnd}>Stop</button>
           </div>
           {/*<button className="btn btn-primary" id="start-rec-btn" onClick={this.handleStart}>Start Session</button>
           <button className="btn btn-primary" id="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>*/}
