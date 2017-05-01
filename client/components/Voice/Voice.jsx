@@ -3,6 +3,7 @@ import axios from 'axios';
 import { commands, noris, responses } from './util.js';
 import { connect } from 'react-redux';
 import AI from './ai.js';
+import Modal from './modal.jsx';
 
 
 class Voice extends Component {
@@ -18,7 +19,7 @@ class Voice extends Component {
     this.handleEnd = this.handleEnd.bind(this);
     this.transfer = this.transfer.bind(this);
     this.endTransfer = this.endTransfer.bind(this);
-    
+    this.handleModal = this.handleModal.bind(this);
   }
 
   handleStart(){
@@ -42,6 +43,10 @@ class Voice extends Component {
     return width + ''
   }
 
+  handleModal(){
+    console.log('triggering modal')
+  }
+
 
   render() {
     return (
@@ -58,13 +63,21 @@ class Voice extends Component {
           <div className="buttonContainer">
             <button className="speechButton btn btn-success" onClick={this.handleStart}>Start</button>
             <button className="speechButton btn btn-success" onClick={this.handleEnd}>Stop</button>
+            <button className="speechButton btn btn-success" onClick={this.handleModal}>Modal</button>
+            
           </div>
+          <Modal/>
+
+
+
+
           {/*<button className="btn btn-primary" id="start-rec-btn" onClick={this.handleStart}>Start Session</button>
           <button className="btn btn-primary" id="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>*/}
 
           <div className="canvasContainer" id="canvas-container">
               <canvas className="canvasClass" width="600" height="300" id="canvas"></canvas>
           </div>
+
       </div>
     )
   }
