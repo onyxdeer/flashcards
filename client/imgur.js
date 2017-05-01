@@ -17,7 +17,7 @@
       message: "your picture...",
     }, {
       type: 'info', 
-      allow_dismiss: false,
+      allow_dismiss: true,
       newest_on_top: true,
       delay: 100000,
       animate: {
@@ -95,13 +95,19 @@
             xhttp = null;
         },
         createDragZone: function () {
-            var p, input;
+            var p, input, h1;
 
             p     = this.createEls('p', {}, 'Drag/Click Your Images Here');
+            if(this.index === 'cover') {
+              h1 = this.createEls('h1', {}, 'Add a Bento Cover!')
+            }
             input = this.createEls('input', {type: 'file', accept: 'image/*'});
 
             Array.prototype.forEach.call(this.dropzone, function (zone, index) {
                if(!zone.hasChildNodes()){
+                if(h1) {
+                  zone.appendChild(h1)
+                }
                 zone.appendChild(p);
                 zone.appendChild(input);
                }
