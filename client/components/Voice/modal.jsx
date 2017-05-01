@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Modal,
-  ModalHeader,
-  ModalTitle,
-  ModalClose,
-  ModalBody,
-  ModalFooter
-} from 'react-modal-bootstrap';
+import { Modal, ModalHeader, ModalTitle, ModalClose, ModalBody, ModalFooter } from 'react-modal-bootstrap';
 
 
 
@@ -62,7 +55,12 @@ class SpeechModal extends Component {
   }
 }
 
-export default SpeechModal;
+export default connect(
+  (state) => ({
+
+  }),
+  {}
+)(SpeechModal);
 
 
 

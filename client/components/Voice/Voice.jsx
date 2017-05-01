@@ -3,7 +3,7 @@ import axios from 'axios';
 import { commands, noris, responses } from './util.js';
 import { connect } from 'react-redux';
 import AI from './ai.js';
-import Modal from './modal.jsx';
+import Modal from './Modal.jsx';
 
 
 class Voice extends Component {
@@ -66,6 +66,7 @@ class Voice extends Component {
             <button className="speechButton btn btn-success" onClick={this.handleModal}>Modal</button>
             
           </div>
+
           <Modal/>
 
 

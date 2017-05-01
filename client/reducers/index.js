@@ -7,6 +7,7 @@ import personalReducer from './personalReducer';
 import displayReducer from './displayReducer';
 import searchReducer from './searchReducer';
 import landingReducer from './landingReducer';
+import voiceReducer from './voiceReducer';
 
 const combinedReducer = combineReducers({
   editBentoInfo: editBentoReducer, // Wilton: Stick to one naming convention
@@ -17,6 +18,7 @@ const combinedReducer = combineReducers({
   displayReducer,
   landingReducer,
   authReducer,
+  voiceReducer
 });
 
 export default combinedReducer;
