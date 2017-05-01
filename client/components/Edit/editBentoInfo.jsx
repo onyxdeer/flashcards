@@ -56,7 +56,7 @@ class editBentoInfo extends React.Component {
                     {/*<form id="contact-us">*/}
                         <div className="col-xs-6 wow animated slideInLeft" data-wow-delay = ".4s">
                             <input type="text" name="name" id="form1" required="required" value={this.props.bento.name} className="form-control" onChange = {(event) => {this.props.handleChange(event)}}/>
-                            <label for="form1" class="">Bento Name</label>
+                            <label className="">Bento Name</label>
                             {/*<input type="text" name="category" id="subject" required="required" value={this.props.bento.category} className="form-control" placeholder="Subject" onChange = {(event) => {this.props.handleChange(event)}}/>*/}
                             {/*<label for="form1" class="">Category</label>*/}
                               {this.props.bento.cover.url ? <img src = {this.props.bento.cover.url} className = "img-fluid"/> : <div className = {'dropzone' + ' dzcover col-xs-6 pull-right'}></div>}

@@ -19,9 +19,9 @@
       type: 'info', 
       allow_dismiss: true,
       newest_on_top: true,
-      delay: 100000,
+      delay: 10000,
       animate: {
-        enter: 'animated bounce infinite',
+        enter: 'animated bounce',
         exit: 'animated zoomOutUp'
       },
       placement: {
