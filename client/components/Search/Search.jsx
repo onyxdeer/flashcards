@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { endNavSubmit, setBentoId } from '../../actions/appActions.js';
 import { searchBentos } from '../../actions/searchActions.js';
 import personalActions from '../../actions/personalActions.js';
+import SearchItem from './SearchItem/SearchItem.jsx';
 
 let userId = 1;
 
@@ -55,17 +56,7 @@ class Search extends Component {
           {/*Search results*/}
             {
               this.props.bentos&&(this.props.bentos.length > 0 )? this.props.bentos.map((bento, index) => (
-                <div className='search-item col-md-2'>
-                  <div className='searchBox wow bounceInUp' key={index}>
-                    <img className='search-data' src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
-                    <div className='caption'>
-                      <h3 className='search-data tile-title'>{bento.name}</h3>
-                      <p className='searchDescription search-data'>{bento.description}</p>
-                      <p className='search-data'><label>View Count:</label> {bento.visit_count} </p>
-                      <p className='search-data'><Link className='btn btn-primary' to={'/display/' + bento.id} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
-                    </div>
-                  </div>
-                </div>
+                <SearchItem item={bento} userId={userId} key={index}/>
               )) : (<h1>Sorry, no results were found!</h1>)
             }
 
@@ -80,10 +71,21 @@ class Search extends Component {
 
 function mapStateToProps(state) {
   return { 
-    bento: state.editBentoInfo,
     bentos: state.searchReducer.bentos,
     query: state.appReducer.query,
   }
 }
 
 export default connect(mapStateToProps, { ...personalActions, searchBentos, endNavSubmit, setBentoId })(Search);
+
+/*<div className='search-item col-md-2'>
+  <div className='searchBox wow bounceInUp' key={index}>
+    <img className='search-data' src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
+    <div className='caption'>
+      <h3 className='search-data tile-title'>{bento.name}</h3>
+      <p className='searchDescription search-data'>{bento.description}</p>
+      <p className='search-data'><label>View Count:</label> {bento.visit_count} </p>
+      <p className='search-data'><Link className='btn btn-primary' to={'/display/' + bento.id} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
+    </div>
+  </div>
+</div>*/
