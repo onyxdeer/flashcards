@@ -77,7 +77,6 @@ class Explore extends Component {
 function mapStateToProps(state) {
   return {
     userId: state.appReducer.userId,
-    bento: state.editBentoInfo,
     bentos: state.personalReducer.bentos,
     category: state.personalReducer.category
   }
