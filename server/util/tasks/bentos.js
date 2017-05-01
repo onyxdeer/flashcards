@@ -72,9 +72,16 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
           }
         });
       })
+      .then(function(){
+        Image.upsert({id: data.cover.id, bento_id: bentoId, nori_id: null, url: data.cover['url'], nori_front: null, nori_back: null}).then(function(test){
+          if(test) {
+            console.log("cover image has been saved", test)
+          }
+        })
+      })
     } 
   })
-  var clearImage_BentoLinks = Image.destroy({where: {bento_id: bentoId}}).then(function(number){   //destroys all the image urls saved that is related to the bento_id
+  var clearImage_BentoLinks = Image.destroy({where: {bento_id: bentoId, nori_id : { gt : 0}}}).then(function(number){   //destroys all the image urls saved that is related to the bento_id
     console.log(number)
   })
   var clearBento_NoriLinks = BentoNori.destroy({where: {bento_id: bentoId}}).then(function(number){
