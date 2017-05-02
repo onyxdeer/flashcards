@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/navActions.js';
 import { handleNavSearch } from '../../actions/appActions.js';
+import { handleFetchLandingBentoImages}from '../../actions/landingActions.js'
 
 class Navigation extends Component {
   constructor(props) {
@@ -39,7 +40,9 @@ class Navigation extends Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link className="navbar-brand logo-nav" to="/">Obento</Link>
+            <Link onClick = {() => { var bentoIds = this.props.landing.bentos.map(function(bento){ return bento.id})
+            this.props.handleFetchLandingBentoImages(bentoIds) }}
+            className="navbar-brand logo-nav" to="/">Obento</Link>
           </div>
 
           {/* This container allows the navbar contents to be collapsed thus responsive */}
@@ -86,7 +89,8 @@ function mapStateToProps(state) {
   return { 
     input: state.navReducer.input,
     userId: state.appReducer.userId,
+    landing: state.landingReducer
   };
 }
 
-export default connect(mapStateToProps, { ...actions, handleNavSearch })(Navigation);
+export default connect(mapStateToProps, { ...actions, handleNavSearch, handleFetchLandingBentoImages })(Navigation);

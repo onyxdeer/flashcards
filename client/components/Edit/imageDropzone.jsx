@@ -10,6 +10,7 @@ class imageDropzone extends React.Component {
     }
     this.callback = this.callback.bind(this);
     this.instantiateNewImgurInstance = this.instantiateNewImgurInstance.bind(this);
+    this.falseImgurInstance = this.falseImgurInstance.bind(this);
   }
   callback (res) {
     console.log("This function fires at component number ", this.props.number, res.data.link )
@@ -21,6 +22,11 @@ class imageDropzone extends React.Component {
         }
     };
 
+  falseImgurInstance (){
+    this.setState({
+      imgurInstance: false
+    })
+  }
   instantiateNewImgurInstance () {
     console.log("instantiating new imgur instance")
     new Imgur({
@@ -50,7 +56,10 @@ class imageDropzone extends React.Component {
   render() {
     if(this.props.bento.noris[this.props.number]["Front"]["image"]) {
       return (
-        <img className={"nori-image img-thumbnail"} src = {this.props.bento.noris[this.props.number]["Front"]["image"]}/>
+        <section className={"nori-image"}>
+        <img className={"img-thumbnail"} src = {this.props.bento.noris[this.props.number]["Front"]["image"]} />
+        <button className={"btn btn-default btn-sm"} onClick = {() => {this.props.handleImageDeletion(this.props.bento, this.props.number), this.falseImgurInstance()}}>delete</button>
+        </section>
       )
     } else {
       return (
