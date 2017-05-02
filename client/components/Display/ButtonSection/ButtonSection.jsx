@@ -4,7 +4,9 @@ import * as appActions from '../../../actions/appActions.js';
 import personalActions from '../../../actions/personalActions.js';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Modal from '../../Voice/Modal.jsx'
+import { modalOn } from './../../../actions/voiceActions.js';
+
+
 
 class ButtonSection extends Component {
   constructor(props) {
@@ -44,6 +46,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { ...displayActions, ...appActions, ...personalActions })(ButtonSection);
+export default connect(mapStateToProps, { ...displayActions, ...appActions, ...personalActions, modalOn })(ButtonSection);
 
   
