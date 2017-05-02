@@ -3,7 +3,7 @@ import axios from 'axios';
 import { commands, noris, responses } from './util.js';
 import { connect } from 'react-redux';
 import AI from './ai.js';
-import Modal from './Modal.jsx';
+// import Modal from './Modal.jsx';
 
 
 class Voice extends Component {
@@ -12,17 +12,17 @@ class Voice extends Component {
     this.state = {
 
     }
-
+    console.log('VOICE NORIS: ', this.props.noris)
     // this.joe = new AI('joe')
-    this.joe = new AI('joe', this.props.noris);
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
     this.transfer = this.transfer.bind(this);
     this.endTransfer = this.endTransfer.bind(this);
-    this.handleModal = this.handleModal.bind(this);
+    // this.handleModal = this.handleModal.bind(this);
   }
 
   handleStart(){
+    this.joe = new AI('joe', this.props.noris);    
     this.joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
   }
 
@@ -43,9 +43,9 @@ class Voice extends Component {
     return width + ''
   }
 
-  handleModal(){
-    console.log('triggering modal')
-  }
+  // handleModal(){
+  //   console.log('triggering modal')
+  // }
 
 
   render() {
@@ -63,11 +63,10 @@ class Voice extends Component {
           <div className="buttonContainer">
             <button className="speechButton btn btn-success" onClick={this.handleStart}>Start</button>
             <button className="speechButton btn btn-success" onClick={this.handleEnd}>Stop</button>
-            <button className="speechButton btn btn-success" onClick={this.handleModal}>Modal</button>
+  
             
           </div>
 
-          <Modal/>
 
 
 
@@ -84,9 +83,11 @@ class Voice extends Component {
   }
 }
 
-export default connect((state) => ({
-  noris: state.displayReducer.bentoData
-}),{})(Voice);
+export default Voice;
+
+// export default connect((state) => ({
+//   noris: state.displayReducer.bentoData
+// }),{})(Voice);
 
 
 

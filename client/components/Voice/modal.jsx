@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalTitle, ModalClose, ModalBody, ModalFooter } from 'react-modal-bootstrap';
 import { modalOn, modalOff } from '../../actions/voiceActions.js';
 import { connect } from 'react-redux';
-
+import Voice from './Voice.jsx';
 
 class SpeechModal extends Component {
   constructor(props){
@@ -31,24 +31,17 @@ class SpeechModal extends Component {
     console.log('fetchedNoris are: ', this.props.noris)
     return (
       <div>
-       {/*<button className="speechButton btn btn-success" onClick={this.props.modalOn}>Modal</button>*/} 
+
         <Modal isOpen={this.props.isOpen} onRequestHide={this.props.modalOff}>
           <ModalHeader>
             <ModalClose onClick={this.props.modalOff}/>
             <ModalTitle>Modal title</ModalTitle>
           </ModalHeader>
           <ModalBody>
-            { 
-              this.props.noris.map((item, index )=> <p key={index}>{item.text_front}</p>)
-            }
+            <Voice noris={this.props.noris}/>
           </ModalBody>
           <ModalFooter>
-            {/*<button className='btn btn-default' onClick={this.props.modalOff}>
-              Close
-            </button>
-            <button className='btn btn-primary'>
-              Save changes
-            </button>*/}
+
           </ModalFooter>
         </Modal>
 
