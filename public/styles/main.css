@@ -232,7 +232,12 @@ input {
     margin: 3px;
 }
 
-.changeToNoriSection, .sharingSection {
+.changeToNoriSection {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.sharingSection {
     text-align: center;
 }
 
@@ -247,12 +252,12 @@ input {
     max-height: 150px;
 }
 
-.cardNumberField {
-    width: auto;
+input[type=tel].cardNumberField {
+    width: 40px;
 }
 
-.shortenURLField {
-    width: auto;
+input[type=text].shortenURLField {
+    width: 185px;
 }
 
 .DraftEditor-root {
