@@ -29,7 +29,6 @@
   }
 
  .create-title {
-   margin-top: 25px;
    text-align: center;
    color: #BADA55;
  }
@@ -572,7 +571,7 @@ div.slick-slide.slick-active.thumbnailSpace {
 
 .canvasClass {
     margin: auto;
-    width: 60%;
+    width: 100%;
     padding: 10px;
     display: block;
 }
