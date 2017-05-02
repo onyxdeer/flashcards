@@ -20,8 +20,10 @@ class Voice extends Component {
   }
 
   handleEnd(){
-    this.joe.endSession()
-    window.responsiveVoice.cancel();
+    if(this.joe){
+      this.joe.endSession()
+      window.responsiveVoice.cancel();
+    }
   }
 
   transfer(){
