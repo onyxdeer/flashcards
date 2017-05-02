@@ -95,18 +95,18 @@
             xhttp = null;
         },
         createDragZone: function () {
-            var p, input, h1;
+            var p, input, p1;
 
             p     = this.createEls('p', {}, 'Add Nori Image!');
             if(this.index === 'cover') {
-              h1 = this.createEls('h1', {}, 'Add Bento Cover Image!')
+              p1 = this.createEls('p', {}, 'Add Bento Cover Image!')
             }
             input = this.createEls('input', {type: 'file', accept: 'image/*'});
 
             Array.prototype.forEach.call(this.dropzone, function (zone, index) {
                if(!zone.hasChildNodes()){
-                if(h1) {
-                  zone.appendChild(h1)
+                if(p1) {
+                  zone.appendChild(p1)
                 } else {
                   zone.appendChild(p);
                 }

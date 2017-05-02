@@ -765,3 +765,7 @@ p.lp{
 .ops-div {
   padding-right: 55px;
 }
+
+.editPlaceholder {
+  font-weight: 400;
+}
