@@ -19,7 +19,8 @@ class ButtonSection extends Component {
           <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>}
         <a href='#' className='btn btn-success' id='alert-shuffle' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
         <Link className='btn btn-success' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, (this.props.shortenerId ? this.props.shortenerId : this.props.bentoId), this.props.userId)}>Edit</Link>
-        <Link className='btn btn-success' to={'/Voice'}>Voice</Link>
+        {/*<Link className='btn btn-success' to={'/Voice'}>Voice</Link>*/}
+        <button className="btn btn-success" onClick={this.modalAndFetchNori.bind(this, this.props.item.id)}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
       </div>
     );
   }
