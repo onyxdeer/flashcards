@@ -28,7 +28,7 @@ class SpeechModal extends Component {
   // }
 
   render() {
-    console.log('fetchedNoris are: ', this.props.fetchNoris)
+    console.log('fetchedNoris are: ', this.props.noris)
     return (
       <div>
        {/*<button className="speechButton btn btn-success" onClick={this.props.modalOn}>Modal</button>*/} 
@@ -38,8 +38,8 @@ class SpeechModal extends Component {
             <ModalTitle>Modal title</ModalTitle>
           </ModalHeader>
           <ModalBody>
-            {
-              this.props.fetchNoris.map(i => <p>i</p>)
+            { 
+              this.props.noris.map((item, index )=> <p key={index}>{item.text_front}</p>)
             }
           </ModalBody>
           <ModalFooter>
@@ -60,8 +60,7 @@ class SpeechModal extends Component {
 export default connect(
   (state) => ({
     isOpen: state.voiceReducer.isOpen,
-    noris: state.voiceReducer.noris,
-    fetchNoris: state.displayReducer.bentoData
+    noris: state.displayReducer.bentoData
   }),
   { modalOn, modalOff }
 )(SpeechModal);
