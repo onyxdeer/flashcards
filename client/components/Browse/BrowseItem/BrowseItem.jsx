@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import personalActions from '../../../actions/personalActions.js';
 import { setBentoId } from '../../../actions/appActions.js';
+import { modalOn } from '../../../actions/voiceActions.js';
 
 class BrowseItem extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class BrowseItem extends Component {
             <p className='bentoDescription exploreItems'>{this.props.item.description}</p>
             <p className='exploreItems'><label>View Count:</label> {this.props.item.visit_count} </p>
             <p className='exploreItems'><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(this.props.item.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, this.props.item.id, this.props.userId)}>Edit</Link></p>
+            <button className="speechButton btn btn-success" onClick={this.props.modalOn}>Modal</button>
           </div>
         </span>
       </div>
@@ -36,4 +38,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { ...personalActions, setBentoId })(BrowseItem);
+export default connect(mapStateToProps, { ...personalActions, setBentoId, modalOn })(BrowseItem);

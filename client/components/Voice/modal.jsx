@@ -30,7 +30,7 @@ class SpeechModal extends Component {
   render() {
     return (
       <div>
-       <button className="speechButton btn btn-success" onClick={this.props.modalOn}>Modal</button> 
+       {/*<button className="speechButton btn btn-success" onClick={this.props.modalOn}>Modal</button>*/} 
         <Modal isOpen={this.props.isOpen} onRequestHide={this.props.modalOff}>
           <ModalHeader>
             <ModalClose onClick={this.props.modalOff}/>
@@ -43,12 +43,12 @@ class SpeechModal extends Component {
               natus provident, quidem rerum sint, voluptas!</p>
           </ModalBody>
           <ModalFooter>
-            <button className='btn btn-default' onClick={this.props.modalOff}>
+            {/*<button className='btn btn-default' onClick={this.props.modalOff}>
               Close
             </button>
             <button className='btn btn-primary'>
               Save changes
-            </button>
+            </button>*/}
           </ModalFooter>
         </Modal>
 

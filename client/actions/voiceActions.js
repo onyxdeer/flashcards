@@ -1,6 +1,9 @@
 import { MODAL_ON, MODAL_OFF } from './actionTypes';
 
 
+function handleData(){
+  
+}
 
 
 

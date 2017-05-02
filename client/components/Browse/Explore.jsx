@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import personalActions from '../../actions/personalActions.js';
 import { setBentoId } from '../../actions/appActions.js';
 import BrowseItem from './BrowseItem/BrowseItem.jsx';
+import Modal from '../Voice/Modal.jsx';
 
 
 let userId = 1;
@@ -46,6 +47,7 @@ class Explore extends Component {
     
     return (
       <div>
+        <Modal/>
         <div className='row center-block'>
           <div className='create-title'>
             <h1 className='default-font'>Explore Bentos</h1>
