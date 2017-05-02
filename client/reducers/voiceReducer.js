@@ -2,6 +2,7 @@ import { MODAL_ON, MODAL_OFF } from '../actions/actionTypes';
 
 
 const stateDefault = {
+  noris: [],
   isOpen: false
 };
 
@@ -11,10 +12,12 @@ const stateDefault = {
 // });
 
 const handleOn = (state, action) => ({
+  ...state,
   isOpen: true
 })
 
 const handleOff = (state, action) => ({
+  ...state,
   isOpen: false
 })
 

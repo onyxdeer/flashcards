@@ -59,7 +59,8 @@ class SpeechModal extends Component {
 
 export default connect(
   (state) => ({
-    isOpen: state.voiceReducer.isOpen
+    isOpen: state.voiceReducer.isOpen,
+    noris: state.voiceReducer.noris
   }),
   { modalOn, modalOff }
 )(SpeechModal);
