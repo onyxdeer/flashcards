@@ -8,7 +8,10 @@ const stateDefault = {
 function handleFetchLandingBentoImages(state, action) {
   const images = {};
   action.payload.forEach((image) => {
-    images[image.bento_id] ? images[image.bento_id].push(image.url) : images[image.bento_id] = [image.url];
+    if (image.nori_id === null) {
+      images[image.bento_id] = image.url;
+      // images[image.bento_id] ? images[image.bento_id].push(image.url) : images[image.bento_id] = [image.url];
+    }
   });
   return {
     ...state,
