@@ -10,7 +10,6 @@ const idToHash = (id) => {
 }
 
 const get = (req, res) => {
-  console.log('req.query for /bentos/get:', req.query);
   Bento.findAll({where: req.query})
     .then(function(bentos) {
       res.send(bentos);
@@ -73,7 +72,6 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
         });
       })
       .then(function(){
-        console.log("LINE 76 +++++++++", data.cover['url'])
         Image.upsert({id: data.cover.id, bento_id: bentoId, nori_id: null, url: data.cover['url'], nori_front: null, nori_back: null}).then(function(test){
           if(test) {
             console.log("cover image has been saved", test)
@@ -81,7 +79,6 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
         })
       })
     }else {
-      console.log("LINE 84 +++++++++", data.cover['url'])
       Image.upsert({id: data.cover.id, bento_id: bentoId, nori_id: null, url: data.cover['url'], nori_front: null, nori_back: null}).then(function(test){
         if(test) {
           console.log("cover image has been saved", test)
