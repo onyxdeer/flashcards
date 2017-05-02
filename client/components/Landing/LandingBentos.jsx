@@ -57,7 +57,7 @@ class LandingBentos extends Component {
             <div className="mask waves-effect waves-light"></div>
     </div>
     <div className="card-block">
-        <h4 className="card-title"><strong>{bento.id+'. '}{bento.name}</strong></h4>
+        <h4 className="card-title"><strong>{bento.name}</strong></h4>
         <hr className="landingbento" />
         <p className="card-text">{bento.description}</p>
         <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-default btn-rounded waves-effect btn-sm">View</Link>
