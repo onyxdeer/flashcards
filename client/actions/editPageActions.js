@@ -3,43 +3,29 @@ import axios from 'axios';
 import RichTextEditor from 'react-rte'
 import {convertToRaw} from 'draft-js'
 var notifySave = function () {
-  var notify = $.notify('<strong>Saving Bento</strong> Do not close this page...', {
+  var notify = $.notify( '<strong>Success</strong> Your bento has been saved!', {
   type: 'success',
 	allow_dismiss: false,
-	showProgressbar: true,
-  delay: 3000,
+	showProgressbar: false,
+  delay: 1250,
   animate: {
-    enter: 'animated wobble',
+    enter: 'animated lightSpeedIn',
     exit: 'animated lightSpeedOut'
   }
 });
-setTimeout(function() {
-	notify.update('message', '<strong>Saving</strong> Bento, Noris, and Images');
-}, 1500);
-
-setTimeout(function() {
-  notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been saved!'});
-}, 3000);
 }
 
 var notifyUpdate = function (bentoName) {
-  var notify = $.notify('<strong>Updating Bento: '+bentoName +'</strong> Do not close this page...', {
+  var notify = $.notify('<strong>Updated '+bentoName +': </strong>' + bentoName, {
   type: 'success',
 	allow_dismiss: false,
-	showProgressbar: true,
-  delay: 3000,
+	showProgressbar: false,
+  delay: 1250,
   animate: {
-    enter: 'animated wobble',
+    enter: 'animated lightSpeedIn',
     exit: 'animated lightSpeedOut'
   }
 });
-  setTimeout(function() {
-	notify.update('message', '<strong>Updating</strong> Bento, Nori, Image Data.');
-}, 1500);
-
-setTimeout(function() {
-	notify.update('message', '<strong>Updated</strong> Bento: ' + bentoName);
-}, 3000);
 }
 
 var notifyWarning = function() {
@@ -54,7 +40,7 @@ var notifyWarning = function() {
       delay: 3000,
       animate: {
         enter: 'animated pulse',
-        exit: 'animated hinge'
+        exit: 'animated flipOutX'
       },
       placement: {
         from: 'top',

@@ -8,9 +8,9 @@ import * as actions from '../../actions/editPageActions.js'
 class editNewNori extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{display: 'flex'}}>
       <div className="new-nori wow animated rollIn" data-wow-delay = "0.3s"style = {{display: 'flex', justifyContent: 'center'}}>
-        <div style = {{flex: "flex-start", minWidth: 210}}>
+        <div style = {{ minWidth: 240}}>
           <ImageDropzone number = {this.props.number}/>
         </div>
         <div className="nori-edit-right" style = {{display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
@@ -23,8 +23,8 @@ class editNewNori extends React.Component {
           </div>
           </div>
           <div className="add-delete-nori" style = {{display: 'flex', justifyContent:'flex-end'}}>
-      <button type="submit" className="btn btn-default add-nori-button wow animated swing" data-wow-delay="0.3s" data-wow-duration = "2.5s" onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}>Add</button>
-      <button type="submit" className="btn btn-default add-nori-button wow animated swing"  data-wow-delay="0.3s" data-wow-duration = "2.5s" value={this.props.number}  onClick= {() => 
+      <button type="submit" className="btn btn-default add-nori-button"  onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}>Add</button>
+      <button type="submit" className="btn btn-default add-nori-button"  value={this.props.number}  onClick= {() => 
         {this.props.handleDeleteNori(this.props.bento, this.props.number)}
         }>Del</button>
         </div>

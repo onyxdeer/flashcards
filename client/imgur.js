@@ -21,8 +21,8 @@
       newest_on_top: true,
       delay: 10000,
       animate: {
-        enter: 'animated bounce',
-        exit: 'animated zoomOutUp'
+        enter: 'animated pulse',
+        exit: 'animated flipOutX'
       },
       placement: {
         from: 'top',
@@ -84,7 +84,7 @@
                           notify.update({'type' : 'success', 'message': '<Strong>Your Picture Has Been Successfully Uploaded</Strong>'})
                           setTimeout(function() {
                             notify.close();
-                          }, 1500);
+                          }, 1250);
                         callback.call(window, response);
                     } else {
                         throw new Error(this.status + " - " + this.statusText);
