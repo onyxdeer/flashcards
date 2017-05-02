@@ -16,7 +16,6 @@ class BrowseItem extends Component {
   }
 
   modalAndFetchNori(bentoId){
-    console.log('props are: ', this.props)
     this.props.modalOn();
     this.props.fetchNoris(bentoId);
   }
