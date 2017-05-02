@@ -72,7 +72,7 @@ class editBentoInfo extends React.Component {
                         <div className="col-xs-6 wow animated slideInRight" data-wow-delay = ".4s">
                             {/*<label>Description</label>*/}
                             <textarea name="description" id="message" className="form textarea" value={this.props.bento.description} placeholder="Description" onChange = {(event) => {this.props.handleChange(event)}}></textarea>
-                            <button  id="submit" name="submit" className="btn btn-default form-btn semibold pull-right wow animated slideInRight" data-wow-delay = ".9s" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
+                            <button  id="submit" name="submit" className="btn btn-default form-btn semibold pull-right animated slideInRight" data-delay = ".9s" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
                         </div>
                 </div>
             </div>

@@ -736,6 +736,9 @@ p.lp{
   /*min-width: 180px;*/
   /*width: 180px;*/
 }
+.landing-bento:hover {
+  border-color: aquamarine;
+}
 
 .landingbento{
   padding: 0px;

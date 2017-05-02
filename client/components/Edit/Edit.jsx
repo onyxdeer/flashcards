@@ -25,7 +25,7 @@ class Edit extends React.Component {
           <EditNewNori key={index} number = {index} />
         )}
         <div className="ops-div relative fullwidth col-xs-12">
-          <button type="submit" id="submit" name="submit" className="btn btn-default form-btn semibold pull-right wow animated slideInRight" data-wow-delay = ".9s" onClick ={() => {this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
+          <button type="submit" id="submit" name="submit" className="btn btn-default form-btn semibold pull-right animated slideInRight" data-delay = ".9s" onClick ={() => {this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
         </div>
       </div>
     )
