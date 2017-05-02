@@ -4,7 +4,7 @@ import * as appActions from '../../../actions/appActions.js';
 import personalActions from '../../../actions/personalActions.js';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { modalOn } from './../../../actions/voiceActions.js';
+import { modalOn } from '../../../actions/voiceActions.js';
 
 
 
@@ -13,13 +13,9 @@ class ButtonSection extends Component {
     super(props);
   }
 
-  // modalAndFetchNori(bentoId){
-  //   console.log('bentoData: ', this.props.bentoData)
-  //   this.props.modalOn();
-  //   // this.props.fetchNoris(bentoId);
-  // }
 
   render() {
+    console.log('what are props here: ', this.props)
     return (
       <div className='buttonSection'>
         {(this.props.currentNori === 0) ? <button type='button' className='btn btn-blue-grey' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button> :
@@ -29,7 +25,7 @@ class ButtonSection extends Component {
         <a href='#' className='btn btn-success' id='alert-shuffle' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
         <Link className='btn btn-success' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, (this.props.shortenerId ? this.props.shortenerId : this.props.bentoId), this.props.userId)}>Edit</Link>
         {/*<Link className='btn btn-success' to={'/Voice'}>Voice</Link>*/}
-        <button className="btn btn-success" onClick={this.modalOn}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
+        <button className="btn btn-success" onClick={this.props.modalOn}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
       </div>
     );
   }
