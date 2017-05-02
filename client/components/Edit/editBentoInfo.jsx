@@ -11,6 +11,7 @@ class editBentoInfo extends React.Component {
       }
       this.instantiateCoverImgurInstance = this.instantiateCoverImgurInstance.bind(this);
       this.callback = this.callback.bind(this);
+      this.switchImgurInstance = this.falseImgurInstance.bind(this)
   }
     callback (res) {
     console.log("This function fires at component number ", res.data.link )
@@ -21,6 +22,13 @@ class editBentoInfo extends React.Component {
             })
         }
     };
+
+    falseImgurInstance (){
+      this.setState({
+        imgurInstance: false
+      })
+    }
+
 
     instantiateCoverImgurInstance () {
     console.log("instantiating new imgur instance for cover")
@@ -59,7 +67,7 @@ class editBentoInfo extends React.Component {
                             <label className="active">Bento Name</label>
                             {/*<input type="text" name="category" id="subject" required="required" value={this.props.bento.category} className="form-control" placeholder="Subject" onChange = {(event) => {this.props.handleChange(event)}}/>*/}
                             {/*<label for="form1" class="">Category</label>*/}
-                              {this.props.bento.cover.url ?<section className = "img-fluid"> <img src = {this.props.bento.cover.url}/><button onClick={() => this.props.handleImageDeletion(this.props.bento, "cover")}className= "btn btn-default btn-sm">delete</button></section>: <div className = {'dropzone' + ' dzcover col-xs-6 pull-right'}></div>}
+                              {this.props.bento.cover.url ?<section className = "img-fluid"> <img src = {this.props.bento.cover.url}/><button onClick={() => {this.props.handleImageDeletion(this.props.bento, "cover"), this.falseImgurInstance()}}className= "btn btn-default btn-sm">delete</button></section>: <div className = {'dropzone' + ' dzcover col-xs-6 pull-right'}></div>}
                         </div>
                         <div className="col-xs-6 wow animated slideInRight" data-wow-delay = ".4s">
                             {/*<label>Description</label>*/}
