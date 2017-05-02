@@ -133,11 +133,6 @@ html {
     display: inline-block
   }
 
-  .RichTextEditor__root___2QXK-{
-    width: 100%
-  }
-
-
 /* Generic Button Styles */
 
   .button{
@@ -658,7 +653,9 @@ div.slick-slide.slick-active.thumbnailSpace {
 }
 
 .RichTextEditor__root___2QXK- {
-  min-width: 460px
+  width: 90%;
+  min-width: 400px;
+  max-width: 400px
 }
 
 #hero-area {

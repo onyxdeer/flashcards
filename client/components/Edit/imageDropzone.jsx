@@ -50,7 +50,7 @@ class imageDropzone extends React.Component {
   render() {
     if(this.props.bento.noris[this.props.number]["Front"]["image"]) {
       return (
-        <img className={"nori-image img-thumbnail"} src = {this.props.bento.noris[this.props.number]["Front"]["image"]}/>
+        <img className={"nori-image img-thumbnail"} src = {this.props.bento.noris[this.props.number]["Front"]["image"]} onM/>
       )
     } else {
       return (
