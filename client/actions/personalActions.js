@@ -93,8 +93,10 @@ const personalActions = {
               return newNori;
             });
             if(response[2].data.length) {
-              bento.cover.id = response[2].data[0].id
-              bento.cover.url = response[2].data[0]['url']
+              if(response[2].data[0].nori_id === null){
+                bento.cover.id = response[2].data[0].id
+                bento.cover.url = response[2].data[0]['url']
+              }
             } else {
               bento.cover = {id: null, url: null}
             }

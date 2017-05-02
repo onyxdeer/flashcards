@@ -41,7 +41,6 @@ class LandingBentos extends Component {
   constructor(props) {
     super(props) 
   }
-
   render() {
     var bento = this.props.bento
     // var animationNumber = Math.floor(Math.random()*6);
