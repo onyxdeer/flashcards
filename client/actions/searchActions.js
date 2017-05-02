@@ -21,9 +21,8 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch) {
     // populate the ones with images
     for (let i = 0; i < bentoData.length; i += 1) {
       for (let j = 0; j < imgData.length; j += 1) {
-        if (imgData[j].bento_id === bentoData[i].id && imgData[j].nori_front === true) {
+        if (imgData[j].bento_id === bentoData[i].id && imgData[j].nori_id === null) {
           bentoData[i].img_url = imgData[j].url;
-          break;
         }
       }
     }
