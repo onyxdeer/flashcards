@@ -8,7 +8,7 @@ import { modalOn } from '../../../actions/voiceActions.js';
 import displayActions from './../../../actions/displayActions.js';
 
 const { fetchNoris } = displayActions;
-console.log('fetch noris function: ', fetchNoris)
+
 class SearchItem extends Component {
   constructor(props) {
     super(props);

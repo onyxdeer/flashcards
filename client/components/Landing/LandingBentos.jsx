@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import * as actions from '../../actions/appActions.js'
+import { modalOn } from '../../actions/voiceActions.js';
+
+
     var wowAnimation = [
     // "wow landing-bento animated bounce",
     // "wow landing-bento animated flash",
