@@ -35,7 +35,9 @@ class SpeechModal extends Component {
         <Modal isOpen={this.props.isOpen} onRequestHide={this.props.modalOff}>
           <ModalHeader>
             <ModalClose onClick={this.props.modalOff}/>
-            <ModalTitle>Modal title</ModalTitle>
+            <div className="create-title">
+            <ModalTitle className="default-font">Obento with Voice</ModalTitle>
+            </div>
           </ModalHeader>
           <ModalBody>
             <Voice noris={this.props.noris}/>

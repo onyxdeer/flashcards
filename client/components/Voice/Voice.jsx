@@ -51,9 +51,9 @@ class Voice extends Component {
   render() {
     return (
       <div className="container animated bounceIn">
-          <div className="create-title">
+         {/* <div className="create-title">
             <h1 className="default-font">Obento with Voice</h1>
-          </div>        
+          </div>  */ }     
           {/*<div className="page-header">
             <h1><span className="glyphicon glyphicon-record"></span> Obento with sound</h1>
           </div>*/}
