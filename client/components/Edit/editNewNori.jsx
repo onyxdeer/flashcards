@@ -6,10 +6,32 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as actions from '../../actions/editPageActions.js'
 class editNewNori extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      deleted: false
+    }
+    this.gettingDeleted = this.gettingDeleted.bind(this)
+  }
+
+  gettingDeleted () {
+    this.setState({
+      deleted: true
+    })
+    setTimeout(function(){this.props.handleDeleteNori(this.props.bento, this.props.number)}.bind(this), 1000)
+  }
+
   render() {
+        var style = {
+      display: 'flex',
+      justifyContent: 'center'
+    };
+    if(this.state.deleted){
+      style['animationName'] = 'fadeOutRight ' 
+    }
     return (
       <div style={{display: 'flex'}}>
-      <div className="new-nori wow animated rollIn" data-wow-delay = "0.3s"style = {{display: 'flex', justifyContent: 'center'}}>
+      <div className={"new-nori wow animated slideInLeft"} data-wow-delay = {0.5} data-wow-duration= "1.5s" style = {style}>
         <div style = {{ minWidth: 240}}>
           <ImageDropzone number = {this.props.number}/>
         </div>
@@ -25,7 +47,9 @@ class editNewNori extends React.Component {
           <div className="add-delete-nori" style = {{display: 'flex', justifyContent:'flex-end'}}>
       <button type="submit" className="btn btn-default add-nori-button"  onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}>Add</button>
       <button type="submit" className="btn btn-default add-nori-button"  value={this.props.number}  onClick= {() => 
-        {this.props.handleDeleteNori(this.props.bento, this.props.number)}
+        {this.gettingDeleted();
+          console.log("I just got fired")
+          }
         }>Del</button>
         </div>
       </div>
