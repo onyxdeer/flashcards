@@ -40,19 +40,8 @@ class Display extends Component {
   }
 
   componentDidMount() {
-    $("#alert-target").click(function () {
-        toastr["info"]("SMS Sent!")
-    });
-    
-    $('#smsForm').submit(function(e) {
-      $('#sendSMS').modal('hide');
-      toastr["info"]("SMS Sent!")
-      return false;
-    });
 
-    $("#alert-shuffle").click(function () {
-        toastr["info"]("Noris shuffled!")
-    });
+    var context = this;
 
     $('.index-card').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
       console.log('REMOVING ANIMATION');

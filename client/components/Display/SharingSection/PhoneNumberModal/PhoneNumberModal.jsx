@@ -31,7 +31,7 @@ class PhoneNumberModal extends Component {
             </div>
             <div className='modal-footer'>
               <button type='button' className='btn btn-secondary' data-dismiss='modal'>Close</button>
-              <button type='button' id='alert-target' className='btn btn-primary' onClick={(event) => this.props.shareUrlToSMS(event, `http://obento.fun/id=${this.props.id_hash}`, this.props.phoneNumberInput)} data-dismiss='modal'>Share</button>
+              <button type='button' id='alert-target' className='btn btn-primary' onClick={(event) => this.props.shareUrlToSMS(event, `http://obento.fun/id=${this.props.id_hash}`, this.props.phoneNumberInput)}>Share</button>
             </div>
           </div>
         </div>
