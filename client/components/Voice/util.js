@@ -208,12 +208,8 @@ const noris = [
 ]
 
 
-const responses = {
-  correct: 'you are right, and by the way i love you',
-  wrong: 'totally incorrect, maybe you should buy a new brain because something is definitely wrong',
-  wrong80percent: 'not quite there, you got most of it, try again, or would you like to give up like a coward that you are and have me read you the answer'
-}
 
 
 
-module.exports = { commands, noris, responses, uuid, polish, verifyAnswer, summarize, readSummary }
+
+module.exports = { commands, noris, uuid, polish, verifyAnswer, summarize, readSummary }

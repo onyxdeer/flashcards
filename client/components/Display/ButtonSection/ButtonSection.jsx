@@ -4,11 +4,15 @@ import * as appActions from '../../../actions/appActions.js';
 import personalActions from '../../../actions/personalActions.js';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { modalOn } from '../../../actions/voiceActions.js';
+
+
 
 class ButtonSection extends Component {
   constructor(props) {
     super(props);
   }
+
 
   render() {
     return (
@@ -19,7 +23,8 @@ class ButtonSection extends Component {
           <button type='button' className='btn btn-success' onClick={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Next Nori</button>}
         <a href='#' className='btn btn-success' id='alert-shuffle' onClick={() => this.props.shuffleNori(this.props.bentoData, this.props.direction)}>Shuffle Bento</a>
         <Link className='btn btn-success' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, (this.props.shortenerId ? this.props.shortenerId : this.props.bentoId), this.props.userId)}>Edit</Link>
-        <Link className='btn btn-success' to={'/Voice'}>Voice</Link>
+        {/*<Link className='btn btn-success' to={'/Voice'}>Voice</Link>*/}
+        <button className="btn btn-success" onClick={this.props.modalOn}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
       </div>
     );
   }
@@ -36,6 +41,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { ...displayActions, ...appActions, ...personalActions })(ButtonSection);
+export default connect(mapStateToProps, { ...displayActions, ...appActions, ...personalActions, modalOn })(ButtonSection);
 
   

@@ -7,6 +7,7 @@ import BentoSection from './BentoSection/BentoSection.jsx';
 import ButtonSection from './ButtonSection/ButtonSection.jsx';
 import ChangeToNoriSection from './ChangeToNoriSection/ChangeToNoriSection.jsx';
 import SharingSection from './SharingSection/SharingSection.jsx';
+import Modal from '../Voice/Modal.jsx'
 
 let userId = 1;
 
@@ -22,17 +23,6 @@ class Display extends Component {
     this.props.fetchBackImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchNoris(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.resetCurrentNori();
-
-    $.fn.extend({
-    animateCss: function (animationName) {
-        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        this.addClass('animated ' + animationName).one(animationEnd, function() {
-          console.log('REMOVING ANIMATION');
-            $(this).removeClass('animated ' + animationName);
-            });
-        }
-    });
-
   }
 
   componentWillMount() {
@@ -40,32 +30,16 @@ class Display extends Component {
   }
 
   componentDidMount() {
-    $("#alert-target").click(function () {
-        toastr["info"]("SMS Sent!")
-    });
-    
-    $('#smsForm').submit(function(e) {
-      $('#sendSMS').modal('hide');
-      toastr["info"]("SMS Sent!")
-      return false;
-    });
 
-    $("#alert-shuffle").click(function () {
-        toastr["info"]("Noris shuffled!")
-    });
-
-    $('.index-card').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-      console.log('REMOVING ANIMATION');
-      $('.index-card').removeClass('animated bounce');
-    });
+    var context = this;
 
     this.props.clearShortenerId();
+
   }
   
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
     this.props.flipToFront();
-    $('.index-card').removeClass('animated bounce');
   }
 
   handleVisitCountIncrement () {
@@ -94,8 +68,10 @@ class Display extends Component {
   }
 
   render() {
+
     return (
       <div>
+        <Modal />
         <div className='row'>
           <h1 className='default-font create-title'>Bento: {this.props.title}</h1>
         </div>

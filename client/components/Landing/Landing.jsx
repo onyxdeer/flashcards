@@ -7,7 +7,6 @@ import * as actions from '../../actions/landingActions.js'
 class Landing extends Component {
   
   componentDidUpdate(prevProps, prevState) {
-    console.log("Landing Page has updated", prevProps.landing.bentos)
     if(prevProps.landing.bentos.length != this.props.landing.bentos.length) {
       var bentoIds = this.props.landing.bentos.map(function(bento){
         return bento.id

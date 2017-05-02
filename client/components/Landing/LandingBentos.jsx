@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import * as actions from '../../actions/appActions.js'
+import { modalOn } from '../../actions/voiceActions.js';
+
+
     var wowAnimation = [
     // "wow landing-bento animated bounce",
     // "wow landing-bento animated flash",
@@ -58,6 +61,7 @@ class LandingBentos extends Component {
         <hr className="landingbento" />
         <p className="card-text">{bento.description}</p>
         <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-default btn-rounded waves-effect btn-sm">View</Link>
+        <button className="speechButton btn btn-success" onClick={this.props.modalOn}>Modal</button>
     </div>
 </div>
     )
@@ -69,4 +73,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, actions)(LandingBentos);
+export default connect(mapStateToProps, { ...actions, modalOn})(LandingBentos);
