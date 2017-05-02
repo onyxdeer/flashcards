@@ -31,7 +31,6 @@ const AI = class {
     this.store = this._processData(data);
     this.cards = this.mapData(this.store);
     this.current = 0;
-    console.log('cards are: ', this.cards);
     this.commands = this._getCommands();
     // this._initAnnyang(this.commands);
     this.results = [];

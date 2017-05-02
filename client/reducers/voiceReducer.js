@@ -7,10 +7,6 @@ const stateDefault = {
   terminate: false,
 };
 
-// const handleSearchBentos = (state, action) => ({
-//   ...state,
-//   bentos: action.payload,
-// });
 
 const handleOn = (state, action) => ({
   ...state,
