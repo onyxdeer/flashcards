@@ -9,6 +9,27 @@
     }
 }(this, function () {
     "use strict";
+  var notify;
+  var notifyPictureUpload = function() {
+  notify = $.notify({
+      icon: 'glyphicon glyphicon-picture',
+      title : '<strong>Uploading </strong>',
+      message: "your picture...",
+    }, {
+      type: 'info', 
+      allow_dismiss: true,
+      newest_on_top: true,
+      delay: 10000,
+      animate: {
+        enter: 'animated pulse',
+        exit: 'animated flipOutX'
+      },
+      placement: {
+        from: 'top',
+        align: 'center'
+      }
+    })
+}
     var Imgur = function (options) {
         if (!this || !(this instanceof Imgur)) {
             return new Imgur(options);
@@ -60,6 +81,10 @@
                         } catch (err) {
                             response = this.responseText;
                         }
+                          notify.update({'type' : 'success', 'message': '<Strong>Your Picture Has Been Successfully Uploaded</Strong>'})
+                          setTimeout(function() {
+                            notify.close();
+                          }, 1250);
                         callback.call(window, response);
                     } else {
                         throw new Error(this.status + " - " + this.statusText);
@@ -70,14 +95,21 @@
             xhttp = null;
         },
         createDragZone: function () {
-            var p, input;
+            var p, input, p1;
 
-            p     = this.createEls('p', {}, 'Drag/Click Your Images Here');
+            p     = this.createEls('p', {}, 'Add Nori Image!');
+            if(this.index === 'cover') {
+              p1 = this.createEls('p', {}, 'Add Bento Cover Image!')
+            }
             input = this.createEls('input', {type: 'file', accept: 'image/*'});
 
             Array.prototype.forEach.call(this.dropzone, function (zone, index) {
                if(!zone.hasChildNodes()){
-                zone.appendChild(p);
+                if(p1) {
+                  zone.appendChild(p1)
+                } else {
+                  zone.appendChild(p);
+                }
                 zone.appendChild(input);
                }
                 this.status(zone, index);
@@ -124,7 +156,8 @@
                 file, target, i, len;
 
             zone.addEventListener('change', function (e) {
-              console.log(e)
+              console.log("line 127 event has fired: ",e)
+              notifyPictureUpload();
                 if (e.target && e.target.nodeName === 'INPUT' && e.target.type === 'file') {
                     target = e.target.files;
 

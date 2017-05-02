@@ -75,7 +75,7 @@ const verifyAnswer = (answer) => {
  * front is the question, back is the answer, data is the result from user input
  * @param {Array} answersList 
  */
-const summarize = ( answersList ) => {
+const summarize = ( answersList, callback ) => {
   const incorrectList = answersList.filter( i => !i.isCorrect )
   const correctSum = answersList.length - incorrectList.length
   const parsedList = incorrectList.map( i => ({
@@ -83,21 +83,39 @@ const summarize = ( answersList ) => {
     back: i.back,
     data: i.data
   }))
-  const toSay = { sumCorrect: correctSum, sumIncorrect: incorrectList.length, list: parsedList }
+  const toSay = { 
+    total: answersList.length ,
+    sumCorrect: correctSum, 
+    sumIncorrect: incorrectList.length, 
+    list: parsedList,
+    callback
+  }
   return toSay
 }
 
-const readSummary = ( { sumCorrect, sumIncorrect, list }) => {
-  window.responsiveVoice.speak(`you got ${sumCorrect} answers correct. ${sumIncorrect} of the answers werent exactly what I am looking for. here are the questions that we could work on. some more`, "US English Female", { onend: readList.bind(this, list) })
+const readSummary = ( { total, sumCorrect, sumIncorrect, list, callback }) => {
+  console.log('what is callback:', callback)
+  let allCorrect = sumIncorrect === 0 
+  let remain = allCorrect ? 'congratulations' : 'here are the questions that we could work on.';
+  const str = `That is the end of our session. you got ${sumCorrect} answers correct. ${sumIncorrect} answers incorrect. out of ${total} norreez. ${remain}`
+  window.responsiveVoice.speak(
+      str, 
+      "US English Female", 
+      { onend: allCorrect ? callback() : readList.bind(this, list, callback) }
+  );
 }
 
-const readList = ( list ) => {
-  console.log('readList triggered', list)
-  const toSay = list.map(i => `the question was. ${i.front}. and the correct answer was. ${i.back}. and I heard ${i.data}`)
+const readList = ( list, callback ) => {
+  console.log('readList triggered', list, callback)
+  const toSay = list.map(i => `the question was. ${i.front}. and the correct answer was. ${i.back}. but I heard ${i.data}`)
 
   let start = 0;
   const read = (index) => {
-    if(!toSay[index]) return
+    if(!toSay[index]) {
+      console.log('triggering callback!!!')
+      callback();
+      return
+    }
     window.responsiveVoice.speak(toSay[index], 'US English Female', { onend: read(index+1)})
   }
   read(start)
@@ -190,12 +208,8 @@ const noris = [
 ]
 
 
-const responses = {
-  correct: 'you are right, and by the way i love you',
-  wrong: 'totally incorrect, maybe you should buy a new brain because something is definitely wrong',
-  wrong80percent: 'not quite there, you got most of it, try again, or would you like to give up like a coward that you are and have me read you the answer'
-}
 
 
 
-module.exports = { commands, noris, responses, uuid, polish, verifyAnswer, summarize, readSummary }
+
+module.exports = { commands, noris, uuid, polish, verifyAnswer, summarize, readSummary }

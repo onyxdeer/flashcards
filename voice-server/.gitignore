@@ -3,3 +3,4 @@ recordings
 .idea
 voice-server/node_modules
 voice-server/recordings
+googleSpeechKey.json

@@ -1,39 +1,31 @@
-import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_IMAGE_UPLOAD} from '../actions/actionTypes.js';
+import {HANDLE_EDIT_BENTO_INFO, HANDLE_IMAGE_DELETION, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_IMAGE_UPLOAD} from '../actions/actionTypes.js';
 import axios from 'axios';
 import RichTextEditor from 'react-rte'
 import {convertToRaw} from 'draft-js'
 var notifySave = function () {
-  var notify = $.notify('<strong>Saving Bento</strong> Do not close this page...', {
+  var notify = $.notify( '<strong>Success</strong> Your bento has been saved!', {
   type: 'success',
 	allow_dismiss: false,
-	showProgressbar: true,
-  delay: 3000,
+	showProgressbar: false,
+  delay: 1250,
   animate: {
-    enter: 'animated wobble',
+    enter: 'animated lightSpeedIn',
     exit: 'animated lightSpeedOut'
   }
 });
-
-  setTimeout(function() {
-    notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been saved!', 'progress': 35});
-  }, 2500);
 }
 
 var notifyUpdate = function (bentoName) {
-  var notify = $.notify('<strong>Updating Bento: '+bentoName +'</strong> Do not close this page...', {
+  var notify = $.notify('<strong>Updated '+bentoName +': </strong>' + bentoName, {
   type: 'success',
 	allow_dismiss: false,
-	showProgressbar: true,
-  delay: 3000,
+	showProgressbar: false,
+  delay: 1250,
   animate: {
-    enter: 'animated wobble',
+    enter: 'animated lightSpeedIn',
     exit: 'animated lightSpeedOut'
   }
 });
-
-  setTimeout(function() {
-    notify.update({'type': 'success', 'message': '<strong>Success</strong> Your bento has been updated!', 'progress': 35});
-  }, 2500);
 }
 
 var notifyWarning = function() {
@@ -45,21 +37,44 @@ var notifyWarning = function() {
       type: 'warning', 
       allow_dismiss: true,
       newest_on_top: true,
-      delay: 4000,
+      delay: 3000,
       animate: {
         enter: 'animated pulse',
-        exit: 'animated hinge'
+        exit: 'animated flipOutX'
+      },
+      placement: {
+        from: 'top',
+        align: 'left'
       }
     })
 }
 
 const empty = JSON.stringify(convertToRaw(RichTextEditor.createEmptyValue()._editorState.getCurrentContent()));
 
-
-export function handleImageUpload(noris, link, index) {
-  noris[index]["Front"]['image'] = link;
+//this handle deletes images
+export function handleImageDeletion(bento, index) {
+  if(index === "cover"){
+    bento.cover.url = null;
+    bento.cover.id = null;
+  } else {
+    bento.noris[index]["Front"]["image"] = null;
+  }
   return function(dispatch) {
-    dispatch({type: HANDLE_IMAGE_UPLOAD, payload: noris})
+    dispatch({type: HANDLE_IMAGE_DELETION, payload: bento})
+  }
+}
+
+
+//this handle function is used for image uploads
+
+export function handleImageUpload(bento, link, index) {
+  if(!index && index != 0){
+    bento.cover.url = link;
+  } else if (index || index == 0){
+    bento.noris[index]["Front"]['image'] = link;
+  }
+  return function(dispatch) {
+    dispatch({type: HANDLE_IMAGE_UPLOAD, payload: bento})
   }
 }
 
@@ -117,8 +132,10 @@ export function handleDeleteNori (bento ,index) {
 export function handleSaveBento(bento) {
   //Check to see if the bento name is at least 5 characters long
   if(bento.name.replace(/\s/g,'').length < 5) {
-  alert("Please give your new Bento a name and make sure it's longer than 5 characters")
-} else {``
+    return function () {
+        notifyWarning()
+  }
+} else {
   //send a request to /api/bentos, saving the bento if it's new and assign it a new bento_id or just updates it.
   return function(dispatch) {
     axios.post('/api/bentos', bento)

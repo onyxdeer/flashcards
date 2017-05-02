@@ -40,15 +40,13 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
-  
-
-  // socket.on('chat message', function(data){
-  //   console.log('\n\n\n\nour msg from socket in server: ', data)
-  //   socket.broadcast.emit('chat message', 'okay smartypants you got it')
-  // })
 
   socket.on('gSpeech complete', function(data){
     socket.broadcast.emit('transfer over', data)
+  })
+
+  socket.on('chat message', function(data){
+    console.log('message received: ', data)
   })
   // exports.socket = socket
 

@@ -15,7 +15,13 @@ import nlp from 'fuzzball';
 const AI = class {
   constructor(name, data) {
     this.name = name;
+
+    const CLOUDURL = '54.193.62.15';
+    // const PORT = ':8000'
+    const HOSTURL = 'https://' + CLOUDURL
+    // this.socket = window.io(HOSTURL);
     this.socket = window.io();
+    // this.socket.emit('chat message', 'ayyyyy')
     // this.commands = util.commands;
     // this._initAnnyang(util.commands);
     // this._getBento(bentoId)
@@ -25,10 +31,8 @@ const AI = class {
     this.store = this._processData(data);
     this.cards = this.mapData(this.store);
     this.current = 0;
-    console.log('cards are: ', this.cards);
     this.commands = this._getCommands();
-    this._initAnnyang(this.commands);
-    // this.client = client('');
+    // this._initAnnyang(this.commands);
     this.results = [];
   }
 
@@ -48,7 +52,11 @@ const AI = class {
   
 
   _initClient(configs){
-    const SPEECHURL = 'localhost:9191';
+    const CLOUDURL = '54.193.62.15';
+    const PORT = ':9191'
+    const LOCAL = 'localhost';
+    const SPEECHURL = window.location.host === CLOUDURL ? CLOUDURL + PORT : LOCAL + PORT
+
     const configurations = {
       SPEECHURL,
       clientId: util.uuid()
@@ -191,7 +199,7 @@ const AI = class {
     @return {AI instance} 
   */
   startSession(config) {
-    this._initClient('ayyyyyyy')    
+    this._initClient('client hello')    
     // console.log('what is result of init client:', result)
     window.annyang.resume()
     if( !this.cards ) {
@@ -206,9 +214,10 @@ const AI = class {
     ends the voice session and gracefully shut down all the clients
   */
   endSession() {
-    window.annyang.pause()
-    //speech client stop
-    this.client.end()
+    window.annyang.pause();
+    console.log('stopping client')
+    this.client.end();
+    this.results = 0;
   }
 
   /*
@@ -227,6 +236,9 @@ const AI = class {
     window.annyang.pause();
   }
 
+  /**
+   * begins the transfer to google speech server utilizing our binary client
+   */
   startTransfer(){
     this.client.start(this.configs)
   }
@@ -246,7 +258,11 @@ const AI = class {
     return this;
   }
 
-
+  /**
+   * reads the question prompt
+   * @param {*string} text 
+   * @return {*promise} 
+   */
   read(text) {
     // let that = this
     return new Promise( (resolve, reject) => {
@@ -257,6 +273,10 @@ const AI = class {
     });
   }
 
+  /**
+   * listens for the answer transferred to the backend
+   * @param {*obj} socket 
+   */
   listen(socket) {
     let that = this
     return new Promise( (resolve, reject) => {
@@ -307,7 +327,7 @@ const AI = class {
         if(instance.cards[instance.current]){
           instance.cards[instance.current].next()
         } else {
-          let summary = util.summarize(instance.results)
+          let summary = util.summarize(instance.results, instance.endSession.bind(instance))
           console.log('summary is : ', summary)
           util.readSummary( summary ) 
           // instance.say('good job, that is all the cards I have for you. You score is')

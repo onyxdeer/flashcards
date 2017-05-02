@@ -185,6 +185,27 @@ function clearPhoneNumberInput() {
   };
 }
 
+function notifyInvalidNoriNumber() {
+  $.notify({
+    icon: 'glyphicon glyphicon-warning-sign',
+    title : '<strong>Sorry! </strong>',
+    message: "Number you just entered is not valid, please enter another number.",
+  }, {
+    type: 'danger', 
+    allow_dismiss: true,
+    newest_on_top: true,
+    delay: 2000,
+    animate: {
+      enter: 'animated pulse',
+      exit: 'animated flipOutX'
+    },
+    placement: {
+      from: 'top',
+      align: 'right'
+    }
+  });
+}
+
 function setNori(input, bentoData) {
   return function (dispatch) {
     if (input >= 1 && input <= bentoData.length) {
@@ -194,15 +215,78 @@ function setNori(input, bentoData) {
         noriToDisplay: bentoData[input-1],
       });
     } else {
-      alert('Invalid nori number, please enter another number.');
+      notifyInvalidNoriNumber();
     }
   };
 }
 
+function notifyShuffleSuccessful() {
+  $.notify({
+    icon: 'glyphicon glyphicon-ok',
+    title : '<strong>Success! </strong>',
+    message: "Noris have been shuffled.",
+  }, {
+    type: 'success', 
+    allow_dismiss: true,
+    newest_on_top: true,
+    delay: 1000,
+    animate: {
+      enter: 'animated fadeIn',
+      exit: 'animated fadeOut'
+    },
+    placement: {
+      from: 'top',
+      align: 'right'
+    }
+  });
+}
+
+function notifySMSSuccessful() {
+  $.notify({
+    icon: 'glyphicon glyphicon-ok',
+    title : '<strong>Success! </strong>',
+    message: "SMS has been sent.",
+  }, {
+    type: 'success', 
+    allow_dismiss: true,
+    newest_on_top: true,
+    delay: 1000,
+    animate: {
+      enter: 'animated fadeIn',
+      exit: 'animated fadeOut'
+    },
+    placement: {
+      from: 'top',
+      align: 'right'
+    }
+  });
+}
+
+function notifySMSFail() {
+  $.notify({
+    icon: 'glyphicon glyphicon-warning-sign',
+    title : '<strong>Sorry! </strong>',
+    message: "Phone number given was not valid.  Please try again.",
+  }, {
+    type: 'danger', 
+    allow_dismiss: true,
+    newest_on_top: true,
+    delay: 1000,
+    animate: {
+      enter: 'animated fadeIn',
+      exit: 'animated fadeOut'
+    },
+    placement: {
+      from: 'top',
+      align: 'right'
+    },
+    z_index: 9999,
+  });
+}
+
 function shuffleNori(bentoData, direction) {
   return function (dispatch) {
-    $('[data-toggle="popover"]').popover('show');
-    setTimeout(() => { $('[data-toggle="popover"]').popover('hide'); }, 3000);
+    notifyShuffleSuccessful();
     const temp = bentoData.slice();
     const result = [];
     let randomIndex;
@@ -228,10 +312,16 @@ function shuffleNori(bentoData, direction) {
 function shareUrlToSMS(event, url, phoneNumber) {
   event.preventDefault();
   return function (dispatch) {
-    return axios.post('/api/sms', {
-      url: url,
-      phoneNumber: phoneNumber,
-    });
+    if (phoneNumber.length != 11) {
+      notifySMSFail();
+    } else {
+      $('#sendSMS').modal('hide');
+      notifySMSSuccessful();
+      return axios.post('/api/sms', {
+        url: url,
+        phoneNumber: phoneNumber,
+      });
+    }
   };
 }
 

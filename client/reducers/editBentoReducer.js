@@ -1,6 +1,6 @@
 import RichTextEditor from 'react-rte';
 import { convertToRaw } from 'draft-js';
-import { HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_FETCH_BENTO_FOR_EDIT, HANDLE_RENDER_CREATE_PAGE, HANDLE_IMAGE_UPLOAD } from '../actions/actionTypes';
+import { HANDLE_IMAGE_DELETION, HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_FETCH_BENTO_FOR_EDIT, HANDLE_RENDER_CREATE_PAGE, HANDLE_IMAGE_UPLOAD } from '../actions/actionTypes';
 
 // This is the default state y
 const empty = JSON.stringify(convertToRaw(RichTextEditor.createEmptyValue()._editorState.getCurrentContent()));
@@ -12,6 +12,10 @@ const stateDefault = {
   visit_count: 0,
   bento_id: null,
   user_id: 1 || 'guest',
+  cover: {
+    id: null,
+    url: null
+  },
   noris: [{ Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }, { Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }],
 };
 
@@ -25,14 +29,23 @@ function handleRenderCreatePage(state, action) {
     visit_count: 0,
     bento_id: null,
     user_id: 1 || 'guest',
+    cover: {
+      id: null,
+      url: null
+    },
     noris: [{ Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }, { Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }],
   };
   return { ...state, ...def };
 }
 
+const handleImageDeletion = (state, action) => ({
+  ...state,
+  ...action.payload,
+})
+
 const handleImageUpload = (state, action) => ({
   ...state,
-  noris: action.payload,
+  ...action.payload,
 });
 
 const handleFetchBentoForEdit = (state, action) => ({
@@ -83,6 +96,8 @@ export default (state = stateDefault, action) => {
       return handleRenderCreatePage(state, action);
     case HANDLE_IMAGE_UPLOAD:
       return handleImageUpload(state, action);
+    case HANDLE_IMAGE_DELETION:
+      return handleImageDeletion(state, action);
     default:
       return state;
   }

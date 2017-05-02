@@ -29,7 +29,6 @@
   }
 
  .create-title {
-   margin-top: 25px;
    text-align: center;
    color: #BADA55;
  }
@@ -46,9 +45,8 @@ body,
 html {
     width: 100%;
     height: 100%;
-    padding-top: 25px;
+    padding-top: 30px;
     max-width: 100%;
-    overflow-x: hidden;
 }
 
 /*Start of Create Page Stylesheet*/
@@ -57,7 +55,7 @@ html {
   }
 
   .inner-contact {
-    margin-top: 45px;
+    /*margin-top: 45px;*/
     padding: 40px;
     height: 320px;
   }
@@ -101,7 +99,7 @@ html {
     border:1px solid rgba(0, 0, 0, 0.075);
     margin-bottom:15px;
     color:#727272 !important;
-    font-size:13px;
+    font-size:16px;
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
     transition: all 0.4s;
@@ -133,11 +131,6 @@ html {
     position: relative;
     display: inline-block
   }
-
-  .RichTextEditor__root___2QXK-{
-    width: 100%
-  }
-
 
 /* Generic Button Styles */
 
@@ -171,7 +164,6 @@ html {
     height: auto;
     padding:15px 15px;
     color:#fff;
-    background:#BADA55;
     border:none;
     border-radius:3px;
     outline: none;
@@ -213,7 +205,6 @@ input {
     height: auto;
     padding:15px 15px;
     color:#fff;
-    background:#BADA55;
     border:none;
     border-radius:5px 20px 5px; /* horizontal radius / vertical radius */
     outline: none;
@@ -240,7 +231,12 @@ input {
     margin: 3px;
 }
 
-.changeToNoriSection, .sharingSection {
+.changeToNoriSection {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.sharingSection {
     text-align: center;
 }
 
@@ -255,12 +251,12 @@ input {
     max-height: 150px;
 }
 
-.cardNumberField {
+input[type=tel].cardNumberField {
     width: 40px;
 }
 
-.shortenURLField {
-    width: 200px;
+input[type=text].shortenURLField {
+    width: 185px;
 }
 
 .DraftEditor-root {
@@ -301,6 +297,14 @@ input {
 
 /* SEARCH PAGE */
 
+.browse-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 250px;
+    display: block;
+}
+
 .searchSection {
     margin-bottom: 10px;   
 }
@@ -308,6 +312,14 @@ input {
 .bento-metadata {
     color: black;
     text-align: center;
+}
+
+.tile-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 234px;
+    display: block;
 }
 
 /* REACT DECK */
@@ -327,7 +339,7 @@ input {
 }
 
 .card-transform {
-  transition: 0.5s;
+  transition: 0.10s;
   transform-style: preserve-3d;
   position: relative;
 }
@@ -361,7 +373,7 @@ input {
   padding-top: 10px;
   padding-bottom: 10px;
   max-height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .card-front {
@@ -411,14 +423,14 @@ input {
   font-size: 20px;
   text-align: center;
   margin: 0;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .index-card .card-back p {
   font-size: 20px;
   text-align: center;
   margin: 0;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .index-card img {
@@ -495,14 +507,14 @@ input {
 .bentoDescription {
     padding: 5px;
     height: 25ex;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .searchDescription {
     padding-left: 10px;
     padding-right: 10px;
     height: 17.5ex;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .search-item {
@@ -559,7 +571,7 @@ div.slick-slide.slick-active.thumbnailSpace {
 
 .canvasClass {
     margin: auto;
-    width: 60%;
+    width: 100%;
     padding: 10px;
     display: block;
 }
@@ -647,13 +659,14 @@ div.slick-slide.slick-active.thumbnailSpace {
 }
 
 .RichTextEditor__root___2QXK- {
-  min-width: 460px
+  width: 90%;
+  min-width: 400px;
+  max-width: 400px
 }
 
 #hero-area {
   padding:0px 0;
   background: rgba(0, 0, 0, 0) linear-gradient(135deg, #8ec64e 0%, #41aba0 100%) repeat scroll 0 0;
-  margin-top: 73px;
 }
 
 #hero-area .block {
@@ -708,18 +721,22 @@ p.lp{
     margin: 0px;
 }
 
-#bento-area {
+.bento-area {
   margin-top: 20px;
 }
 
 .landing-bento {
   /*background: rgba(0, 0, 0, 0) linear-gradient(135deg, #8ec64e 0%, #41aba0 100%) repeat scroll 0 0;*/
-  padding: 5px;
-  margin: 10px;
+  padding: 3px;
+  margin: 8px;
   border: groove;
   box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
+  /*max-width: 15%;*/
   /*min-width: 180px;*/
-  width: 180px;
+  /*width: 180px;*/
+}
+.landing-bento:hover {
+  border-color: aquamarine;
 }
 
 .landingbento{
@@ -733,7 +750,7 @@ p.lp{
 
 .card-text {
   max-height: 200px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 [data-notify="progressbar"] {
@@ -745,6 +762,10 @@ p.lp{
 	height: 5px;
 }
 
-.wow {
-visibility: visible !important;
-} 
+.ops-div {
+  padding-right: 55px;
+}
+
+.editPlaceholder {
+  font-weight: 400;
+}

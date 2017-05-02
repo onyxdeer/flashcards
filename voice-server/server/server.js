@@ -102,7 +102,13 @@ var app = connect();
 app.use(serveStatic('public'));
 
 var server = https.createServer(options,app);
-server.listen(9191);
+// server.listen(9234);
+if(CONFIG.ENV === 'PROD'){
+    server.listen(9234);
+} else {
+    server.listen(9191)
+}
+// server.listen(9191);
 
 // opener("https://localhost:9191");
 
@@ -148,18 +154,6 @@ server.on('connection', function(client) {
         };
 
     });
-
-    // io.on('connection', function(socket){
-    //   console.log('a user connected');
-    //   socket.on('disconnect', function(){
-    //     console.log('user disconnected');
-    //   });
-
-    //   socket.on('chat message', function(data){
-    //     console.log('\n\n\n\nour msg from socket SPEECH: ', data)
-    //   })
-
-    // });
         
     client.on('close', function() {
         if ( fileWriter != null ) {

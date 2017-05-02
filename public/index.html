@@ -12,11 +12,14 @@
     <!--Bootstrap CSS CDN-->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.1/css/mdb.min.css" />-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.1/css/mdb.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://mdbootstrap.com/live/_MDB/css/customizer.min.css">
     <link defer rel="stylesheet" type="text/css" href="styles/bootstrap.css"/>
-    <link  rel="stylesheet" type="text/css" href="styles/mdb.css"/>
+    <link defer rel="stylesheet" type="text/css" href="styles/mdb.css"/>
+    <link defer rel="stylesheet" type="text/css" href="styles/animate.css"/>
+            
+
     <!--<link  rel="stylesheet" type="text/css" href="styles/animate.css"/>-->
 
     <!--Toastr CDN-->
@@ -25,17 +28,17 @@
     <!-- voice functionalities -->
     <script defer src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
 
-    <script defer src="http://code.responsivevoice.org/responsivevoice.js"></script>
-
+    <!--<script defer src="http://code.responsivevoice.org/responsivevoice.js"></script>-->
+    <script defer src='https://code.responsivevoice.org/responsivevoice.js'></script>
     <!--<script defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>-->
     <script async src="/socket.io/socket.io.js"></script>
+    <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script defer src="js/binary.js"></script>
 
 
     <!-- Optional theme -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">-->
-    <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+    
     <!--React-Slick/Carousel CSS-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
@@ -44,7 +47,7 @@
     <link rel="stylesheet" type="text/css" href="styles/main.css"/>
     <link rel="stylesheet" type="text/css" href="styles/react-transitions.css"/>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa" />
-    <link href='http://fonts.googleapis.com/css?family=Roboto:200,300,400,500' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:200,300,400,500' rel='stylesheet' type='text/css'>
 
     <!--Toastr CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
@@ -55,17 +58,25 @@
     <title>Flashcards</title>
   </head>
   <body>
-    <script type="text/javascript"    src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.1/js/mdb.min.js"></script>
     <div id="app">
       <script async src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-      <script src="lib/tether.min.js"></script>
-      <!--<script src="js/main.js"></script>-->
-      <script>
-      new WOW().init();
-      </script>
-      <script src="js/bootstrap-notify.min.js"></script>
-      <script src = "./assets/bundles/bundle.js"></script>
-      <!--<script src="http://127.0.0.1:8080/bundle.js"></script>-->
+      <script async type="text/javascript"    src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.1/js/mdb.min.js"></script>
+      
+      <script async src="lib/tether.min.js"></script>
+      <script async src="js/bootstrap-notify.min.js"></script>
+      <script async src = "./assets/bundles/bundle.js"></script>
     </div>
+      <script>
+        $( document ).ready(function() {
+           new WOW({
+             boxClass: 'wow',
+             mobile: true,
+             offset: 0,
+             live: true
+           }).init();
+      });
+
+      
+      </script>
   </body>
 </html>
