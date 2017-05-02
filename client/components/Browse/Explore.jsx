@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import personalActions from '../../actions/personalActions.js';
 import { setBentoId } from '../../actions/appActions.js';
+import BrowseItem from './BrowseItem/BrowseItem.jsx';
 
 
 let userId = 1;
@@ -57,20 +58,12 @@ class Explore extends Component {
 
                   (<Carousel {...settings}> 
                   {this.props.bentos.map((bento, index) => (
-                    <div className='thumbnailSpace wow bounceInDown' key={index}>
-                      <span className='thumbnail'>
-                        <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
-                        <div className='caption exploreItems'>
-                          <h3 className='browse-title'>{bento.name}</h3>
-                          <p className='bentoDescription exploreItems'>{bento.description}</p>
-                          <p className='exploreItems'><label>View Count:</label> {bento.visit_count} </p>
-                          <p className='exploreItems'><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
-                        </div>
-                      </span>
+                    <div key={index}>
+                      <BrowseItem item={bento} userId={userId} />
                     </div>
                   ))}
                   </Carousel>)
-                  : (<div className='center-block'><h1>No bentos have been made yet for this category. Go start creating!</h1></div>)
+                  : (<div className='center-block'><h1>Loading Bentos...</h1></div>)
                 }
 
             </div>
@@ -84,10 +77,21 @@ class Explore extends Component {
 function mapStateToProps(state) {
   return {
     userId: state.appReducer.userId,
-    bento: state.editBentoInfo,
     bentos: state.personalReducer.bentos,
     category: state.personalReducer.category
   }
 }
 
 export default connect(mapStateToProps, { ...personalActions, setBentoId })(Explore);
+
+        /*<div className='thumbnailSpace wow bounceInDown' key={index}>
+          <span className='thumbnail'>
+            <img src={bento.img_url ? bento.img_url : 'img/no_image.jpg'} />
+            <div className='caption exploreItems'>
+              <h3 className='browse-title'>{bento.name}</h3>
+              <p className='bentoDescription exploreItems'>{bento.description}</p>
+              <p className='exploreItems'><label>View Count:</label> {bento.visit_count} </p>
+              <p className='exploreItems'><Link className='btn btn-primary' to={'/display'} onClick={() => this.props.setBentoId(bento.id)}>View</Link><span>   </span><Link className='btn btn-default' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, bento.id, userId)}>Edit</Link></p>
+            </div>
+          </span>
+        </div>*/
