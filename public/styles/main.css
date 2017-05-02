@@ -503,6 +503,7 @@ input {
 .bentoDescription {
     padding: 5px;
     height: 25ex;
+    overflow-y: auto;
 }
 
 .searchDescription {
@@ -741,6 +742,7 @@ p.lp{
 
 .card-text {
   max-height: 200px;
+  overflow-y: auto;
 }
 
 [data-notify="progressbar"] {

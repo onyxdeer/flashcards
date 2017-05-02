@@ -97,7 +97,7 @@
         createDragZone: function () {
             var p, input, h1;
 
-            p     = this.createEls('p', {}, 'Add Nori Image');
+            p     = this.createEls('p', {}, 'Add Nori Image!');
             if(this.index === 'cover') {
               h1 = this.createEls('h1', {}, 'Add Bento Cover Image!')
             }
