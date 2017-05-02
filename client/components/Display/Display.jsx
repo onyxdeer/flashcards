@@ -7,6 +7,7 @@ import BentoSection from './BentoSection/BentoSection.jsx';
 import ButtonSection from './ButtonSection/ButtonSection.jsx';
 import ChangeToNoriSection from './ChangeToNoriSection/ChangeToNoriSection.jsx';
 import SharingSection from './SharingSection/SharingSection.jsx';
+import Modal from '../Voice/Modal.jsx'
 
 let userId = 1;
 
@@ -85,6 +86,7 @@ class Display extends Component {
   render() {
     return (
       <div>
+        <Modal />
         <div className='row'>
           <h1 className='default-font create-title'>Bento: {this.props.title}</h1>
         </div>
