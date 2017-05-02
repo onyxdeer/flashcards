@@ -61,7 +61,6 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
           order: [ [ 'createdAt', 'DESC' ]],
       })
       .then(function(bento){
-        console.log("Here is your bento that was just created", bento.dataValues.id)
         bentoId = bento.dataValues.id;
         return Bento.update({
             id_hash: idToHash(bentoId)
@@ -94,18 +93,15 @@ const post = (req, res) => {      //Okay this is a bit disgusting but works
   })
   Promise.all([P1, clearBento_NoriLinks, clearImage_BentoLinks])                 //So once P1 and the above promise are done 
   .then(function(){
-    var n1 = Promise.all(norisArray.map(function(noriInfo){        //we create the all the cards and if we find the same we DONT make a duplicate
-      console.log(noriInfo)                                                               //n1 is the Promise.all so basically we make sure we do the above for all the cards
+    var n1 = Promise.all(norisArray.map(function(noriInfo){        //we create the all the cards and if we find the same we DONT make a duplicate                                                            //n1 is the Promise.all so basically we make sure we do the above for all the cards
       return Nori.findOrCreate({where: {text_front: noriInfo.text_front, text_back: noriInfo.text_back, audio_url_front : noriInfo.audio_url_front, audio_url_back: noriInfo.audio_url_back}})
       .then(function(savedNori){
-        console.log("line 78", savedNori, noriInfo)
         var noriId = savedNori[0].dataValues.id;
         Image.findOrCreate({where: {bento_id: bentoId, nori_id: noriId, url: noriInfo.image, nori_front: true}})
         return savedNori
       })
     }))
     n1.then(function(nori){                                                               //nori represensts an array of the noris in the database, then we extract all those nori_ids 
-      console.log("line 85", nori)
       return nori.map(function(nori){
         return nori[0].dataValues.id
       })
