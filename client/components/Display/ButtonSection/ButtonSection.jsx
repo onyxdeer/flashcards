@@ -15,7 +15,6 @@ class ButtonSection extends Component {
 
 
   render() {
-    console.log('what are props here: ', this.props)
     return (
       <div className='buttonSection'>
         {(this.props.currentNori === 0) ? <button type='button' className='btn btn-blue-grey' onClick={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>Previous Nori</button> :
