@@ -1,4 +1,4 @@
-import {HANDLE_EDIT_BENTO_INFO, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_IMAGE_UPLOAD} from '../actions/actionTypes.js';
+import {HANDLE_EDIT_BENTO_INFO, HANDLE_IMAGE_DELETION, HANDLE_SAVE_BENTO, HANDLE_NORI_CHANGE, HANDLE_ADD_NEW_NORI, HANDLE_DELETE_NORI, HANDLE_IMAGE_UPLOAD} from '../actions/actionTypes.js';
 import axios from 'axios';
 import RichTextEditor from 'react-rte'
 import {convertToRaw} from 'draft-js'
@@ -51,9 +51,23 @@ var notifyWarning = function() {
 
 const empty = JSON.stringify(convertToRaw(RichTextEditor.createEmptyValue()._editorState.getCurrentContent()));
 
+//this handle deletes images
+export function handleImageDeletion(bento, index) {
+  if(index === "cover"){
+    bento.cover.url = null;
+    bento.cover.id = null;
+  } else {
+    bento.noris[index]["Front"]["image"] = null;
+  }
+  return function(dispatch) {
+    dispatch({type: HANDLE_IMAGE_DELETION, payload: bento})
+  }
+}
+
+
+//this handle function is used for image uploads
 
 export function handleImageUpload(bento, link, index) {
-  console.log(bento, index, link)
   if(!index && index != 0){
     bento.cover.url = link;
   } else if (index || index == 0){
