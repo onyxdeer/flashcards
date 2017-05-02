@@ -5,8 +5,8 @@ import {connect} from 'react-redux'
 import * as actions from '../../actions/landingActions.js'
 
 class Landing extends Component {
+  
   componentDidUpdate(prevProps, prevState) {
-    console.log("Yo 105 componentDidReceiveProps",prevProps , this.props)
     if(prevProps.landing.bentos.length != this.props.landing.bentos.length) {
       var bentoIds = this.props.landing.bentos.map(function(bento){
         return bento.id

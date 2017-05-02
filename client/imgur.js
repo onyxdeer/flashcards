@@ -19,10 +19,10 @@
       type: 'info', 
       allow_dismiss: true,
       newest_on_top: true,
-      delay: 100000,
+      delay: 10000,
       animate: {
-        enter: 'animated bounce infinite',
-        exit: 'animated zoomOutUp'
+        enter: 'animated pulse',
+        exit: 'animated flipOutX'
       },
       placement: {
         from: 'top',
@@ -84,7 +84,7 @@
                           notify.update({'type' : 'success', 'message': '<Strong>Your Picture Has Been Successfully Uploaded</Strong>'})
                           setTimeout(function() {
                             notify.close();
-                          }, 1500);
+                          }, 1250);
                         callback.call(window, response);
                     } else {
                         throw new Error(this.status + " - " + this.statusText);
@@ -97,9 +97,9 @@
         createDragZone: function () {
             var p, input, h1;
 
-            p     = this.createEls('p', {}, 'Drag/Click Your Images Here');
+            p     = this.createEls('p', {}, 'Add Nori Image!');
             if(this.index === 'cover') {
-              h1 = this.createEls('h1', {}, 'Add a Bento Cover!')
+              h1 = this.createEls('h1', {}, 'Add Bento Cover Image!')
             }
             input = this.createEls('input', {type: 'file', accept: 'image/*'});
 
@@ -107,8 +107,9 @@
                if(!zone.hasChildNodes()){
                 if(h1) {
                   zone.appendChild(h1)
+                } else {
+                  zone.appendChild(p);
                 }
-                zone.appendChild(p);
                 zone.appendChild(input);
                }
                 this.status(zone, index);
