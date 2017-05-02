@@ -97,9 +97,9 @@
         createDragZone: function () {
             var p, input, h1;
 
-            p     = this.createEls('p', {}, 'Drag/Click Your Images Here');
+            p     = this.createEls('p', {}, 'Add Nori Image');
             if(this.index === 'cover') {
-              h1 = this.createEls('h1', {}, 'Add a Bento Cover!')
+              h1 = this.createEls('h1', {}, 'Add Bento Cover Image!')
             }
             input = this.createEls('input', {type: 'file', accept: 'image/*'});
 
@@ -107,8 +107,9 @@
                if(!zone.hasChildNodes()){
                 if(h1) {
                   zone.appendChild(h1)
+                } else {
+                  zone.appendChild(p);
                 }
-                zone.appendChild(p);
                 zone.appendChild(input);
                }
                 this.status(zone, index);
