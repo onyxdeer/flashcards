@@ -28,6 +28,7 @@ class SpeechModal extends Component {
   // }
 
   render() {
+    console.log('fetchedNoris are: ', this.props.fetchNoris)
     return (
       <div>
        {/*<button className="speechButton btn btn-success" onClick={this.props.modalOn}>Modal</button>*/} 
@@ -37,10 +38,9 @@ class SpeechModal extends Component {
             <ModalTitle>Modal title</ModalTitle>
           </ModalHeader>
           <ModalBody>
-            <p>Ab ea ipsam iure perferendis! Ad debitis dolore excepturi
-              explicabo hic incidunt placeat quasi repellendus soluta,
-              vero. Autem delectus est laborum minus modi molestias
-              natus provident, quidem rerum sint, voluptas!</p>
+            {
+              this.props.fetchNoris.map(i => <p>i</p>)
+            }
           </ModalBody>
           <ModalFooter>
             {/*<button className='btn btn-default' onClick={this.props.modalOff}>
@@ -60,7 +60,8 @@ class SpeechModal extends Component {
 export default connect(
   (state) => ({
     isOpen: state.voiceReducer.isOpen,
-    noris: state.voiceReducer.noris
+    noris: state.voiceReducer.noris,
+    fetchNoris: state.displayReducer.bentoData
   }),
   { modalOn, modalOff }
 )(SpeechModal);
