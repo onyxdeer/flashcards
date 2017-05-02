@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/server.js --ignore public/",
+    "start": "nodemon server/server.js",
     "build": "webpack",
     "build:watch": "webpack --watch",
     "dev": "webpack-dev-server --progress",
