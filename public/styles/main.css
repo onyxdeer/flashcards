@@ -369,7 +369,7 @@ input {
   padding-top: 10px;
   padding-bottom: 10px;
   max-height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .card-front {
@@ -419,14 +419,14 @@ input {
   font-size: 20px;
   text-align: center;
   margin: 0;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .index-card .card-back p {
   font-size: 20px;
   text-align: center;
   margin: 0;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .index-card img {
@@ -510,7 +510,7 @@ input {
     padding-left: 10px;
     padding-right: 10px;
     height: 17.5ex;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .search-item {
