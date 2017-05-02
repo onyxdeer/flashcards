@@ -23,17 +23,6 @@ class Display extends Component {
     this.props.fetchBackImages(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.fetchNoris(this.props.shortenerId ? this.props.shortenerId : this.props.bentoId);
     this.props.resetCurrentNori();
-
-    $.fn.extend({
-    animateCss: function (animationName) {
-        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        this.addClass('animated ' + animationName).one(animationEnd, function() {
-          console.log('REMOVING ANIMATION');
-            $(this).removeClass('animated ' + animationName);
-            });
-        }
-    });
-
   }
 
   componentWillMount() {
@@ -44,18 +33,13 @@ class Display extends Component {
 
     var context = this;
 
-    $('.index-card').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-      console.log('REMOVING ANIMATION');
-      $('.index-card').removeClass('animated bounce');
-    });
-
     this.props.clearShortenerId();
+
   }
   
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleKeyDown);
     this.props.flipToFront();
-    $('.index-card').removeClass('animated bounce');
   }
 
   handleVisitCountIncrement () {
@@ -84,6 +68,7 @@ class Display extends Component {
   }
 
   render() {
+
     return (
       <div>
         <Modal />
