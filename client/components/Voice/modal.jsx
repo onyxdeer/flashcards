@@ -22,9 +22,8 @@ class SpeechModal extends Component {
   // }
 
   // hideModal(){
-  //   this.setState({
-  //     isOpen: false
-  //   })
+  //   this.props.modalOff();
+
   // }
 
   render() {
@@ -40,7 +39,11 @@ class SpeechModal extends Component {
             </div>
           </ModalHeader>
           <ModalBody>
-            <Voice noris={this.props.noris}/>
+            <Voice noris={this.props.noris} isOpen={this.props.isOpen}/>
+          <div className="canvasContainer" id="canvas-container">
+              <canvas className="canvasClass" width="600" height="300" id="canvas"></canvas>
+          </div>
+
           </ModalBody>
           <ModalFooter>
 

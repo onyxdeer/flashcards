@@ -28,6 +28,7 @@ class Voice extends Component {
 
   handleEnd(){
     this.joe.endSession()
+    window.responsiveVoice.cancel();
   }
 
   transfer(){
@@ -49,6 +50,10 @@ class Voice extends Component {
 
 
   render() {
+    console.log('what is open right now: ', this.props.isOpen);
+    // !this.props.isOpen ? this.handleEnd : null;
+    console.log('what is TERMINATE RIGHT NOW?', this.props.terminate);
+    this.props.terminate ? this.handleEnd(): null;
     return (
       <div className="container animated bounceIn">
          {/* <div className="create-title">
@@ -64,7 +69,6 @@ class Voice extends Component {
             <button className="speechButton btn btn-success" onClick={this.handleStart}>Start</button>
             <button className="speechButton btn btn-success" onClick={this.handleEnd}>Stop</button>
   
-            
           </div>
 
 
@@ -74,20 +78,18 @@ class Voice extends Component {
           {/*<button className="btn btn-primary" id="start-rec-btn" onClick={this.handleStart}>Start Session</button>
           <button className="btn btn-primary" id="stop-rec-btn" onClick={this.handleEnd}>Stop Session</button>*/}
 
-          <div className="canvasContainer" id="canvas-container">
-              <canvas className="canvasClass" width="600" height="300" id="canvas"></canvas>
-          </div>
 
       </div>
     )
   }
 }
 
-export default Voice;
+// export default Voice;
 
-// export default connect((state) => ({
-//   noris: state.displayReducer.bentoData
-// }),{})(Voice);
+export default connect((state) => ({
+  // noris: state.displayReducer.bentoData
+  terminate: state.voiceReducer.terminate
+}),{})(Voice);
 
 
 

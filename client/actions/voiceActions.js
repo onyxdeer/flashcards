@@ -1,4 +1,4 @@
-import { MODAL_ON, MODAL_OFF } from './actionTypes';
+import { MODAL_ON, MODAL_OFF, TERMINATE_VOICE } from './actionTypes';
 
 
 function handleData(){
@@ -21,6 +21,9 @@ export function modalOff(){
     dispatch({
       type: MODAL_OFF,
       isOpen: false
+    });
+    dispatch({
+      type: TERMINATE_VOICE
     })
   }
 }

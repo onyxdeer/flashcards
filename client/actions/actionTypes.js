@@ -51,3 +51,4 @@ export const SAMPLE_REQUEST_ERROR = 'SAMPLE_REQUEST_ERROR'; // Remove?
 export const RESET_CURRENT_NORI = 'RESET_CURRENT_NORI';
 export const MODAL_ON = 'MODAL_ON';
 export const MODAL_OFF = 'MODAL_OFF';
+export const TERMINATE_VOICE = 'TERMINATE_VOICE'
