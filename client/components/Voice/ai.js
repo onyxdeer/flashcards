@@ -21,7 +21,7 @@ const AI = class {
     const HOSTURL = 'https://' + CLOUDURL
     // this.socket = window.io(HOSTURL);
     this.socket = window.io();
-    // this.socket.emit('chat message', 'ayyyyy')
+    this.socket.emit('chat message', 'ai.js client connected')
     // this.commands = util.commands;
     // this._initAnnyang(util.commands);
     // this._getBento(bentoId)
@@ -52,9 +52,10 @@ const AI = class {
   
 
   _initClient(configs){
-    const CLOUDURL = '54.193.62.15';
-    const PORT = ':9191'
+    const CLOUDURL = 'obento.fun';
+    const PORT = ':9234'
     const LOCAL = 'localhost';
+    console.log('WHAT IS: WINDOW HOST:', window.location.host)
     const SPEECHURL = window.location.host === CLOUDURL ? CLOUDURL + PORT : LOCAL + PORT
 
     const configurations = {

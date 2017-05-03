@@ -4,3 +4,4 @@ recordings
 voice-server/node_modules
 voice-server/recordings
 googleSpeechKey.json
+ssl

@@ -14,7 +14,7 @@ var binaryServer = require('binaryjs').BinaryServer,
     // socket = require('./comm-server.js');
 
 // const { socket } = require('../../server/server.js')
-const { SOCKETSERVER_HOST } = require('../../config/config.js')
+const { SOCKETSERVER_HOST, ENV } = require('../../config/config.js')
 var socket = require('socket.io-client')(SOCKETSERVER_HOST);
 socket.on('connect', function(){
     console.log('speech server connecting.. ')
@@ -92,18 +92,50 @@ if(!fs.existsSync("recordings")){
     fs.mkdirSync("recordings");  
 }
 
-var options = {
-    key:    fs.readFileSync('ssl/server.key'),
-    cert:   fs.readFileSync('ssl/server.crt'),
+const read = fs.readFileSync;
+const privateKey = read('ssl/server.key', 'utf8')
+const certificate = read('ssl/obento_fun.pem', 'utf8')
+const chainLines = read('ssl/serverChain.pem', 'utf8').split('\n')
+
+var cert = []
+var ca = []
+
+chainLines.forEach(function(line) {
+  cert.push(line);
+  if (line.match(/-END CERTIFICATE-/)) {
+    ca.push(cert.join("\n"));
+    cert = [];
+  }
+});
+
+if (ENV === 'PROD'){
+    var credentials = {
+        "key": privateKey,
+        "cert": certificate,
+        "ca": ca
+    }; 
+} else {
+    var credentials = {
+        key: fs.readFileSync('ssl/server.key'),
+        cert: fs.readFileSync('ssl/server.crt'),
+    };
+}
+
+
+var credentials = {
+  "key": privateKey,
+  "cert": certificate,
+  "ca": ca
 };
 
 var app = connect();
 
 app.use(serveStatic('public'));
 
-var server = https.createServer(options,app);
+var server = https.createServer(credentials, app);
+// var server = https.createServer(options,app);
 // server.listen(9234);
-if(CONFIG.ENV === 'PROD'){
+if(ENV === 'PROD'){
     server.listen(9234);
 } else {
     server.listen(9191)
