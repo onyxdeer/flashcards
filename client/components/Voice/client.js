@@ -18,7 +18,7 @@ module.exports = function (config) {
     
 
 
-    console.log('what is contextSampleRate: ', contextSampleRate)
+    // console.log('what is contextSampleRate: ', contextSampleRate)
     worker.postMessage({cmd:"init",from:contextSampleRate,to:resampleRate});
 
     worker.addEventListener('message', function (e) {
