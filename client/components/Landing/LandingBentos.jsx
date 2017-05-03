@@ -3,7 +3,9 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import * as actions from '../../actions/appActions.js'
 import { modalOn } from '../../actions/voiceActions.js';
+import displayActions from './../../actions/displayActions.js';
 
+const { fetchNoris } = displayActions;
 
     var wowAnimation = [
     // "wow landing-bento animated bounce",
@@ -44,8 +46,15 @@ class LandingBentos extends Component {
   constructor(props) {
     super(props) 
   }
+  
+  modalAndFetchNori(bentoId){
+    this.props.modalOn();
+    this.props.fetchNoris(bentoId);
+  }
+
   render() {
     var bento = this.props.bento
+    console.log('what are props in landingbentos: ', this.props)
     // var animationNumber = Math.floor(Math.random()*6);
     return (
 <div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.5s" style = {{display: 'flex', flexDirection: 'column', justifyContent:'space-between', flexGrow: 0, flexShrink: 0}}>
@@ -61,7 +70,7 @@ class LandingBentos extends Component {
         <hr className="landingbento" />
         <p className="card-text">{bento.description}</p>
         <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-primary btn-sm"><i className="fa fa-eye" aria-hidden="true"></i></Link>
-        <button className="speechButton btn btn-success btn-sm" onClick={this.props.modalOn}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
+        <button className="speechButton btn btn-success btn-sm" onClick={this.modalAndFetchNori.bind(this, bento.id)}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
     </div>
 </div>
     )
@@ -73,4 +82,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { ...actions, modalOn})(LandingBentos);
+export default connect(mapStateToProps, { ...actions, modalOn, fetchNoris})(LandingBentos);

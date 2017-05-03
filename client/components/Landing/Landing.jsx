@@ -3,9 +3,13 @@ import {Link} from 'react-router-dom'
 import LandingBentos from './LandingBentos.jsx'
 import {connect} from 'react-redux'
 import * as actions from '../../actions/landingActions.js'
+import Modal from '../Voice/Modal.jsx';
 
 class Landing extends Component {
-  
+  constructor(props){
+    super(props)
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if(prevProps.landing.bentos.length != this.props.landing.bentos.length) {
       var bentoIds = this.props.landing.bentos.map(function(bento){
@@ -22,6 +26,7 @@ class Landing extends Component {
   render() {
     return (
       <div>
+      <Modal/>
 	    <section id="hero-area">
 	        <div className="container">
 	            <div className="row">

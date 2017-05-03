@@ -55,8 +55,9 @@ const AI = class {
     const CLOUDURL = 'obento.fun';
     const PORT = ':9234'
     const LOCAL = 'localhost';
+    const LOCALPORT = ':9191'
     console.log('WHAT IS: WINDOW HOST:', window.location.host)
-    const SPEECHURL = window.location.host === CLOUDURL ? CLOUDURL + PORT : LOCAL + PORT
+    const SPEECHURL = window.location.host === CLOUDURL ? CLOUDURL + PORT : LOCAL + LOCALPORT
 
     const configurations = {
       SPEECHURL,
