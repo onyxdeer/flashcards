@@ -44,8 +44,8 @@ class Voice extends Component {
     return (
       <div className="container animated bounceIn">
           <div className="buttonContainer">
-            <button className="speechButton btn btn-success" onClick={this.handleStart}>Start</button>
-            <button className="speechButton btn btn-success" onClick={this.handleEnd}>Stop</button>
+            <button className="speechButton btn btn-default" onClick={this.handleStart}>Start</button>
+            <button className="speechButton btn btn-default" onClick={this.handleEnd}>Stop</button>
           </div>
       </div>
     )
