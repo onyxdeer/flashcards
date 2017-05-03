@@ -3,7 +3,7 @@ const $search = require('./elasticSearch');
 const Bento = require('../../../db/models/bentos.js');
 // const Image = require('../../../db/models/images.js');
 
-// Update AWS ES bentos index
+// // Update AWS ES bentos index
 function fetchBento(id) {
   return Bento.findOne({ where: { id } })
     .then((bento) => {

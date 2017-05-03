@@ -3,51 +3,67 @@ import axios from 'axios';
 import RichTextEditor from 'react-rte'
 import {convertToRaw} from 'draft-js'
 var notifySave = function () {
-  var notify = $.notify( '<strong>Success</strong> Your bento has been saved!', {
-  type: 'success',
-	allow_dismiss: false,
-	showProgressbar: false,
-  delay: 1250,
-  animate: {
-    enter: 'animated lightSpeedIn',
-    exit: 'animated lightSpeedOut'
-  }
-});
-}
-
-var notifyUpdate = function (bentoName) {
-  var notify = $.notify('<strong>Updated '+bentoName +': </strong>' + bentoName, {
-  type: 'success',
-	allow_dismiss: false,
-	showProgressbar: false,
-  delay: 1250,
-  animate: {
-    enter: 'animated lightSpeedIn',
-    exit: 'animated lightSpeedOut'
-  }
-});
-}
-
-var notifyWarning = function() {
   var notify = $.notify({
-      icon: 'glyphicon glyphicon-warning-sign',
-      title : '<strong>Warning: </strong>',
-      message: "Please give your new Bento a name and make sure it's longer than 5 characters",
-    }, {
-      type: 'warning', 
-      allow_dismiss: true,
-      newest_on_top: true,
-      delay: 3000,
-      animate: {
-        enter: 'animated pulse',
-        exit: 'animated flipOutX'
-      },
-      placement: {
-        from: 'top',
-        align: 'left'
-      }
-    })
-}
+    icon: 'glyphicon glyphicon-ok',
+    title: '<strong>Success! </strong>',    
+    message: 'Bento saved.',
+  }, {
+    type: 'success',
+    allow_dismiss: false,
+    showProgressbar: false,
+    delay: 1000,
+    animate: {
+      enter: 'animated fadeIn',
+      exit: 'animated fadeOut',
+    },
+    placement: {
+      from: 'top',
+      align: 'right',
+    },
+  });
+};
+
+const notifyUpdate = function (bentoName) {
+  const notify = $.notify({
+    icon: 'glyphicon glyphicon-ok',
+    title: '<strong>Success! </strong>',
+    message: 'Bento updated.',
+  }, {
+    type: 'success',
+    allow_dismiss: false,
+    showProgressbar: false,
+    delay: 1000,
+    animate: {
+      enter: 'animated fadeIn',
+      exit: 'animated fadeOut',
+    },
+    placement: {
+      from: 'top',
+      align: 'right',
+    },
+  });
+};
+
+const notifyWarning = function () {
+  const notify = $.notify({
+    icon: 'glyphicon glyphicon-warning-sign',
+    title: '<strong>Warning! </strong>',
+    message: 'Bento name needs to be 5 characters or longer.',
+  }, {
+    type: 'warning',
+    allow_dismiss: true,
+    newest_on_top: true,
+    delay: 1000,
+    animate: {
+      enter: 'animated fadeIn',
+      exit: 'animated fadeOut',
+    },
+    placement: {
+      from: 'top',
+      align: 'right',
+    },
+  });
+};
 
 const empty = JSON.stringify(convertToRaw(RichTextEditor.createEmptyValue()._editorState.getCurrentContent()));
 

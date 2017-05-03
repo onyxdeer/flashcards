@@ -45,12 +45,12 @@ class editNewNori extends React.Component {
           </div>
           </div>
           <div className="add-delete-nori" style = {{display: 'flex', justifyContent:'flex-end'}}>
-      <button type="submit" className="btn btn-default add-nori-button"  onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}>Add</button>
+      <button type="submit" className="btn btn-default add-nori-button"  onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}><i className="fa fa-plus" aria-hidden="true"></i></button>
       <button type="submit" className="btn btn-default add-nori-button"  value={this.props.number}  onClick= {() => 
         {this.gettingDeleted();
           console.log("I just got fired")
           }
-        }>Del</button>
+        }><i className="fa fa-minus" aria-hidden="true"></i></button>
         </div>
       </div>
       </div> 
