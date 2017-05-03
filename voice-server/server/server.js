@@ -14,7 +14,7 @@ var binaryServer = require('binaryjs').BinaryServer,
     // socket = require('./comm-server.js');
 
 // const { socket } = require('../../server/server.js')
-const { SOCKETSERVER_HOST } = require('../../config/config.js')
+const { SOCKETSERVER_HOST, ENV } = require('../../config/config.js')
 var socket = require('socket.io-client')(SOCKETSERVER_HOST);
 socket.on('connect', function(){
     console.log('speech server connecting.. ')
@@ -103,7 +103,7 @@ app.use(serveStatic('public'));
 
 var server = https.createServer(options,app);
 // server.listen(9234);
-if(CONFIG.ENV === 'PROD'){
+if(ENV === 'PROD'){
     server.listen(9234);
 } else {
     server.listen(9191)
