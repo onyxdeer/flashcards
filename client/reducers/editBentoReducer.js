@@ -14,7 +14,7 @@ const stateDefault = {
   user_id: 1 || 'guest',
   cover: {
     id: null,
-    url: null
+    url: null,
   },
   noris: [{ Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }, { Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }],
 };
@@ -31,7 +31,7 @@ function handleRenderCreatePage(state, action) {
     user_id: 1 || 'guest',
     cover: {
       id: null,
-      url: null
+      url: null,
     },
     noris: [{ Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }, { Front: { image: null, text: empty, soundFile: null }, Back: { image: null, text: empty, soundFile: null } }],
   };
@@ -41,7 +41,7 @@ function handleRenderCreatePage(state, action) {
 const handleImageDeletion = (state, action) => ({
   ...state,
   ...action.payload,
-})
+});
 
 const handleImageUpload = (state, action) => ({
   ...state,
