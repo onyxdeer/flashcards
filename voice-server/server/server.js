@@ -11,9 +11,8 @@ var binaryServer = require('binaryjs').BinaryServer,
     UAParser = require('./ua-parser'),
     CONFIG = require("../config.json"),
     lame = require('lame');
-    // socket = require('./comm-server.js');
 
-// const { socket } = require('../../server/server.js')
+
 const { SOCKETSERVER_HOST, ENV } = require('../../config/config.js')
 var socket = require('socket.io-client')(SOCKETSERVER_HOST);
 socket.on('connect', function(){
@@ -50,15 +49,6 @@ const request = {
 };
 
 const sendDataBack = (data) => {
-
-    //or write file to disc
-    //then let them retrieve result later
-
-    //broadcast end event
-    //tell server to relay to other clients
-    //check if data is empty
-    // if data isn't empty then broadcast
-    //other wise keep listening
     if(data){
         socket.emit('gSpeech complete', data)
         console.log('broadcasted: ', data)
@@ -74,14 +64,6 @@ const createSpeechStream = () => speech.createRecognizeStream(request)
         //   process.stdout.write(data.results)
       sendDataBack(data.results);
     });
-
-// const recognizeStream = speech.createRecognizeStream(request)
-//   .on('error', (err) => console.log('GOOGLE: ', err))
-//   .on('data', (data) => {
-//       console.log('GOOGLE: ', data)
-//     //   process.stdout.write(data.results)
-//       sendDataBack(data.results);
-//     });
 
 
 
