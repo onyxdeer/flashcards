@@ -92,23 +92,24 @@ if(!fs.existsSync("recordings")){
     fs.mkdirSync("recordings");  
 }
 
-const read = fs.readFileSync;
-const privateKey = read('ssl/server.key', 'utf8')
-const certificate = read('ssl/obento_fun.pem', 'utf8')
-const chainLines = read('ssl/serverChain.pem', 'utf8').split('\n')
 
-var cert = []
-var ca = []
-
-chainLines.forEach(function(line) {
-  cert.push(line);
-  if (line.match(/-END CERTIFICATE-/)) {
-    ca.push(cert.join("\n"));
-    cert = [];
-  }
-});
 
 if (ENV === 'PROD'){
+    const read = fs.readFileSync;
+    const privateKey = read('ssl/server.key', 'utf8')
+    const certificate = read('ssl/obento_fun.pem', 'utf8')
+    const chainLines = read('ssl/serverChain.pem', 'utf8').split('\n')
+
+    var cert = []
+    var ca = []
+
+    chainLines.forEach(function(line) {
+    cert.push(line);
+    if (line.match(/-END CERTIFICATE-/)) {
+        ca.push(cert.join("\n"));
+        cert = [];
+    }
+    });
     var credentials = {
         "key": privateKey,
         "cert": certificate,
@@ -122,25 +123,21 @@ if (ENV === 'PROD'){
 }
 
 
-var credentials = {
-  "key": privateKey,
-  "cert": certificate,
-  "ca": ca
-};
 
 var app = connect();
 
 app.use(serveStatic('public'));
 
 var server = https.createServer(credentials, app);
-// var server = https.createServer(options,app);
-// server.listen(9234);
+
+
 if(ENV === 'PROD'){
     server.listen(9234);
+    console.log('listening on : ', '9234')
 } else {
     server.listen(9191)
+    console.log('listening on : ', '9191')
 }
-// server.listen(9191);
 
 // opener("https://localhost:9191");
 
