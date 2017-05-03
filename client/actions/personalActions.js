@@ -68,21 +68,20 @@ const personalActions = {
         axios.get('/api/bentosNoris', { params: { bento_id: bentoId } })
         .then(response => response.data.map(data => data.nori_id))
         .then((arrayNorisId) => {
-          console.log(bentoId)
           const getNoris = axios.get('/api/noris', { params: { id: arrayNorisId } });
           const getImages = axios.get('/api/images', { params: { nori_id: arrayNorisId } });
-          const getCoverImage = axios.get('/api/images', {params: {nori_id: null, bento_id: bentoId}})
+          const getCoverImage = axios.get('/api/images', { params: { nori_id: null, bento_id: bentoId } });
           Promise.all([getNoris, getImages, getCoverImage])
           .then((response) => {
             const savedNorisArray = response[0].data.map((nori, index) => {
               const newNori = { Front: { image: null, text: null, soundFile: null }, Back: { image: null, text: null, soundFile: null } };
               if (response[1].data) {
-                var image = null;
-                response[1].data.forEach(function(img) {
-                  if(img.nori_id === nori.id){
+                let image = null;
+                response[1].data.forEach((img) => {
+                  if (img.nori_id === nori.id) {
                     image = img.url;
                   }
-                })
+                });
                 newNori.Front.image = image;
               }
               newNori.Front.text = nori.text_front;
@@ -91,13 +90,13 @@ const personalActions = {
               newNori.Back.soundFile = nori.audio_url_back;
               return newNori;
             });
-            if(response[2].data.length) {
-              if(response[2].data[0].nori_id === null){
-                bento.cover.id = response[2].data[0].id
-                bento.cover.url = response[2].data[0]['url']
+            if (response[2].data.length) {
+              if (response[2].data[0].nori_id === null) {
+                bento.cover.id = response[2].data[0].id;
+                bento.cover.url = response[2].data[0].url;
               }
             } else {
-              bento.cover = {id: null, url: null}
+              bento.cover = { id: null, url: null };
             }
             bento.noris = savedNorisArray;
           })

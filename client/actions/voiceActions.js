@@ -1,29 +1,22 @@
 import { MODAL_ON, MODAL_OFF, TERMINATE_VOICE } from './actionTypes';
 
-
-function handleData(){
-  
-}
-
-
-
-export function modalOn(){
+export function modalOn() {
   return (dispatch) => {
     dispatch({
       type: MODAL_ON,
-      isOpen: true
-    })
-  }
+      isOpen: true,
+    });
+  };
 }
 
-export function modalOff(){
+export function modalOff() {
   return (dispatch) => {
     dispatch({
       type: MODAL_OFF,
-      isOpen: false
+      isOpen: false,
     });
     dispatch({
-      type: TERMINATE_VOICE
-    })
-  }
+      type: TERMINATE_VOICE,
+    });
+  };
 }
