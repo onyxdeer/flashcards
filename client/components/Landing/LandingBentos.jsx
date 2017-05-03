@@ -57,11 +57,11 @@ class LandingBentos extends Component {
             <div className="mask waves-effect waves-light"></div>
     </div>
     <div className="card-block">
-        <h4 className="card-title"><strong>{bento.id+'. '}{bento.name}</strong></h4>
+        <h4 className="card-title"><strong>{bento.name}</strong></h4>
         <hr className="landingbento" />
         <p className="card-text">{bento.description}</p>
-        <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-default btn-rounded waves-effect btn-sm">View</Link>
-        <button className="speechButton btn btn-success" onClick={this.props.modalOn}>Modal</button>
+        <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-primary btn-sm"><i className="fa fa-eye" aria-hidden="true"></i></Link>
+        <button className="speechButton btn btn-success btn-sm" onClick={this.props.modalOn}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
     </div>
 </div>
     )

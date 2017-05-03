@@ -20,7 +20,7 @@ Once the project moves into development, the press release can be used as a touc
 Memorization made fun and effortless.
 
 ## Summary ##
-For users who prioritize convenience and accessibility, Obento is an online learning tool that allows them to create flashcard decks and explore existing decks created by others. Unlike other popular flashcard applications, Obento is the only one fully integrated with hands-free voice control and rich media cards. Now, users can access their bentos (decks) of noris (cards) anywhere anytime.
+For users who prioritize convenience and accessibility, Obento is an online learning tool that allows them to create flashcard decks and explore existing decks created by others. Unlike Quizlet and other popular flashcard applications, Obento is the only one fully integrated with hands-free voice control and rich media cards. Now, users can access their bentos (decks) of noris (cards) anywhere anytime.
 
 ## Problem ##
 Flashcards are most effective when used repeatedly to reinforce memorization, but they can be cumbersome and tedious for people with active lifestyles. 

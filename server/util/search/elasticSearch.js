@@ -28,3 +28,4 @@ module.exports = client;
 // https://www.npmjs.com/package/elasticsearch
 // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html
 // https://www.npmjs.com/package/http-aws-es
+// https://www.reddit.com/r/rails/comments/66q413/why_is_elastic_search_faster_at_querying_compared/
