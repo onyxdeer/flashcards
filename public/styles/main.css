@@ -549,6 +549,7 @@ div.slick-slide.slick-active.thumbnailSpace {
 }
 .thumbnail:hover {
   border-color: #BADA55;
+  border-width: 5px;
 }
 
 .searchBox {
@@ -561,6 +562,7 @@ div.slick-slide.slick-active.thumbnailSpace {
 }
 .searchBox:hover {
   border-color: #BADA55;
+  border-width: 5px;
 }
 
 .thumbnail img {
@@ -743,6 +745,7 @@ p.lp{
 }
 .landing-bento:hover {
   border-color: #BADA55;
+  border-width: 5px;
 }
 
 .landingbento{

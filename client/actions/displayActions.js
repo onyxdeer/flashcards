@@ -211,8 +211,8 @@ function setNori(input, bentoData) {
     if (input >= 1 && input <= bentoData.length) {
       dispatch({
         type: SET_NORI_NUMBER,
-        currentNori: input-1,
-        noriToDisplay: bentoData[input-1],
+        currentNori: input - 1,
+        noriToDisplay: bentoData[input - 1],
       });
     } else {
       notifyInvalidNoriNumber();
@@ -237,7 +237,7 @@ function notifyShuffleSuccessful() {
     placement: {
       from: 'top',
       align: 'right',
-    }
+    },
   });
 }
 
@@ -312,7 +312,7 @@ function shuffleNori(bentoData, direction) {
 function shareUrlToSMS(event, url, phoneNumber) {
   event.preventDefault();
   return function (dispatch) {
-    if (phoneNumber.length != 11) {
+    if (phoneNumber.length !== 11) {
       notifySMSFail();
     } else {
       $('#sendSMS').modal('hide');

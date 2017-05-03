@@ -1,27 +1,25 @@
 import { MODAL_ON, MODAL_OFF, TERMINATE_VOICE } from '../actions/actionTypes';
 
-
 const stateDefault = {
   noris: [],
   isOpen: false,
   terminate: false,
 };
 
-
 const handleOn = (state, action) => ({
   ...state,
-  isOpen: true
-})
+  isOpen: true,
+});
 
 const handleOff = (state, action) => ({
   ...state,
-  isOpen: false
-})
+  isOpen: false,
+});
 
 const terminateVoice = (state, action) => ({
   ...state,
-  terminate: true
-})
+  terminate: true,
+});
 
 export default (state = stateDefault, action) => {
   switch (action.type) {
