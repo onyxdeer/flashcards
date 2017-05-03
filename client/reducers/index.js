@@ -18,7 +18,7 @@ const combinedReducer = combineReducers({
   displayReducer,
   landingReducer,
   authReducer,
-  voiceReducer
+  voiceReducer,
 });
 
 export default combinedReducer;
