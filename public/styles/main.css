@@ -322,6 +322,8 @@ input[type=text].shortenURLField {
     display: block;
 }
 
+
+
 /* REACT DECK */
 
 .deck {
@@ -561,8 +563,13 @@ div.slick-slide.slick-active.thumbnailSpace {
     height: 500px;
 }
 .searchBox:hover {
-  border-color: #BADA55;
-  border-width: 5px;
+    border-color: #BADA55;
+    border-width: 5px;
+}
+
+.searchBoxButtons {
+    display: inline-block;
+    margin-bottom: 15px;
 }
 
 .thumbnail img {
