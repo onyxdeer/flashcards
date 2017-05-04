@@ -67,7 +67,7 @@ class editBentoInfo extends React.Component {
                             <label className="active editPlaceholder">Bento Name</label>
                             {/*<input type="text" name="category" id="subject" required="required" value={this.props.bento.category} className="form-control" placeholder="Subject" onChange = {(event) => {this.props.handleChange(event)}}/>*/}
                             {/*<label for="form1" class="">Category</label>*/}
-                              {this.props.bento.cover.url ?<section className = "img-fluid"> <img src = {this.props.bento.cover.url}/><button onClick={() => {this.props.handleImageDeletion(this.props.bento, "cover"), this.falseImgurInstance()}}className= "btn btn-default btn-sm">delete</button></section>: <div className = {'editPlaceholder dropzone' + ' dzcover col-xs-6 pull-right'}></div>}
+                              {this.props.bento.cover.url ?<section className = "img-fluid cover-image-fluid" style = {{display: 'flex', flexDirection: 'column', height: '230px', alignItems: 'center'}}> <img className = "img-fluid cover-image-fluid" src = {this.props.bento.cover.url}/><button onClick={() => {this.props.handleImageDeletion(this.props.bento, "cover"), this.falseImgurInstance()}}className= "btn btn-default btn-sm cover-edit-image">delete</button></section>: <div className = {'editPlaceholder dropzone' + ' dzcover col-xs-6 pull-right'}></div>}
                         </div>
                         <div className="col-xs-6 wow animated slideInRight" data-wow-delay = ".4s">
                             {/*<label>Description</label>*/}

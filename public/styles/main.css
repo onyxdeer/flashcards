@@ -778,3 +778,12 @@ p.lp{
 .editPlaceholder {
   font-weight: 400;
 }
+
+.cover-edit-image {
+ position: relative;
+ width: 120px;
+}
+
+.cover-image-fluid {
+  height:175px;
+}
