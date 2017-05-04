@@ -28,7 +28,7 @@ class SearchItem extends Component {
             <h3 className='search-data tile-title'>{this.props.item.name}</h3>
             <p className='searchDescription search-data'>{this.props.item.description}</p>
             <p className='search-data'><label>View Count:</label> {this.props.item.visit_count} </p>
-            <p className='search-data'><Link className='btn btn-primary btn-sm' to={'/display/' + this.props.item.id} onClick={() => this.props.setBentoId(this.props.item.id)}><i className="fa fa-eye" aria-hidden="true"></i></Link><button className="speechButton btn btn-success btn-sm" onClick={this.modalAndFetchNori.bind(this, this.props.item.id)}><i className="fa fa-volume-up" aria-hidden="true"></i></button><Link className='btn btn-default btn-sm' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, this.props.item.id, this.props.userId)}><i className="fa fa-pencil" aria-hidden="true"></i></Link></p>
+            <p className='search-data searchBoxButtons'><Link className='btn btn-primary btn-sm' to={'/display/' + this.props.item.id} onClick={() => this.props.setBentoId(this.props.item.id)}><i className="fa fa-eye" aria-hidden="true"></i></Link><button className="speechButton btn btn-success btn-sm" onClick={this.modalAndFetchNori.bind(this, this.props.item.id)}><i className="fa fa-volume-up" aria-hidden="true"></i></button><Link className='btn btn-default btn-sm' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, this.props.item.id, this.props.userId)}><i className="fa fa-pencil" aria-hidden="true"></i></Link></p>
           </div>
         </div>
       </div>
