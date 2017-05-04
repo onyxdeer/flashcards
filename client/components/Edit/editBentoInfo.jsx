@@ -14,7 +14,6 @@ class editBentoInfo extends React.Component {
       this.switchImgurInstance = this.falseImgurInstance.bind(this)
   }
     callback (res) {
-    console.log("This function fires at component number ", res.data.link )
         if (res.success === true) {
             this.props.handleImageUpload(this.props.bento, res.data.link);
             this.setState({
