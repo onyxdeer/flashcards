@@ -45,11 +45,15 @@ const notifyUpdate = function () {
   });
 };
 
-const notifyWarning = function () {
+const notifyWarning = function (type) {
+  var msg = null;
+  if(type === 'nori'){
+    msg = "You need at least one complete Nori front and back in order to save this Bento."
+  }
   $.notify({
     icon: 'glyphicon glyphicon-warning-sign',
     title: '<strong>Warning! </strong>',
-    message: 'Bento name needs to be 5 characters or longer.',
+    message: msg || 'Bento name needs to be 5 characters or longer.',
   }, {
     type: 'warning',
     allow_dismiss: true,
@@ -144,6 +148,22 @@ export function handleSaveBento(bento) {
       notifyWarning();
     };
   }
+  var oneCompletedNori = false;
+  bento.noris.forEach(function(nori){
+    if(!oneCompletedNori){
+      if(nori.Front.image || JSON.parse(nori.Front.text).blocks[0].text.length > 0 && JSON.parse(nori.Back.text).blocks[0].text.length > 0){
+        oneCompletedNori = true
+      }
+      return
+    }
+  })
+if(!oneCompletedNori){
+  return function() {
+    notifyWarning('nori');
+  };
+}
+
+
   // Send a request to /api/bentos, saving the bento if it's new and assign it a new bento_id or just updates it.
   return function (dispatch) {
     axios.post('/api/bentos', bento)

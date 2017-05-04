@@ -357,7 +357,7 @@ input[type=text].shortenURLField {
 
 .img-fluid {
   margin: auto;
-  max-height: 200px;
+  max-height: 230px;
 }
 
 .card-front, .card-back {
@@ -777,4 +777,13 @@ p.lp{
 
 .editPlaceholder {
   font-weight: 400;
+}
+
+.cover-edit-image {
+ position: relative;
+ width: 120px;
+}
+
+.cover-image-fluid {
+  height:175px;
 }
