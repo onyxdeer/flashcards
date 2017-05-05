@@ -6,6 +6,10 @@ import Client from './client.js';
 import Card from './card.js';
 import Promise from 'bluebird';
 import nlp from 'fuzzball';
+import audio from 'browser-audio';
+
+
+
 /*
   AI class responsible with the following functionalities:
   speech to text and speech recognition (via google API)
@@ -15,13 +19,13 @@ import nlp from 'fuzzball';
 const AI = class {
   constructor(name, data) {
     this.name = name;
-
+    this.sound = audio.create('./sounds/bell.mp3')
     const CLOUDURL = '54.193.62.15';
     // const PORT = ':8000'
     const HOSTURL = 'https://' + CLOUDURL
     // this.socket = window.io(HOSTURL);
     this.socket = window.io();
-    // this.socket.emit('chat message', 'ayyyyy')
+    this.socket.emit('chat message', 'ai.js client connected')
     // this.commands = util.commands;
     // this._initAnnyang(util.commands);
     // this._getBento(bentoId)
@@ -52,10 +56,12 @@ const AI = class {
   
 
   _initClient(configs){
-    const CLOUDURL = '54.193.62.15';
-    const PORT = ':9191'
+    const CLOUDURL = 'obento.fun';
+    const PORT = ':9234'
     const LOCAL = 'localhost';
-    const SPEECHURL = window.location.host === CLOUDURL ? CLOUDURL + PORT : LOCAL + PORT
+    const LOCALPORT = ':9191'
+    console.log('WHAT IS: WINDOW HOST:', window.location.host)
+    const SPEECHURL = window.location.host === CLOUDURL ? CLOUDURL + PORT : LOCAL + LOCALPORT
 
     const configurations = {
       SPEECHURL,
@@ -87,6 +93,20 @@ const AI = class {
     return request.get(URL, { params })
   }
 
+  /**
+   * @private
+   * @param {Array} the list to be trimmed and filtered with any front or back of the noris that has no words
+   * @return {Array} filtered list
+   */
+  _filterIncompleteNoris(processedList){
+    console.log('what is processed list given: ', processedList)
+    let noIncomplete =  processedList.filter(i => {
+      return i.front && i.front.length > 0 && i.back && i.back.length > 0
+    })
+    console.log('what is noIncomplete: ', noIncomplete)
+    return noIncomplete
+  }
+
   /*
     @private
     @param {object} the data to be processed to the correct format for AI to iterate through
@@ -109,7 +129,8 @@ const AI = class {
       }
       return result;
     });
-    return newData;
+    let noIncompleteFrontAndBackList = this._filterIncompleteNoris(newData)
+    return noIncompleteFrontAndBackList;
   }
 
 
@@ -254,8 +275,11 @@ const AI = class {
   */
   say(text) {
     console.log('i am speaking: ', text)
-    window.responsiveVoice.speak(text, "US English Female");
-    return this;
+    return new Promise( (resolve, reject) => {
+      window.responsiveVoice.speak(text, "US English Female", {
+        onend: resolve
+      });
+    })
   }
 
   /**
@@ -264,12 +288,16 @@ const AI = class {
    * @return {*promise} 
    */
   read(text) {
-    // let that = this
     return new Promise( (resolve, reject) => {
       console.log('Reading: ', text)
       this.resume()
-      window.responsiveVoice.speak(text, "US English Female", {onstart: ()=>{ console.log('talking...')}, onend: resolve });
-      // resolve()
+      window.responsiveVoice.speak(text, "US English Female", { 
+          onstart: () => { console.log('talking...')},
+          onend: () => {
+            this.sound.play()
+            resolve()
+          }
+      });
     });
   }
 
@@ -284,10 +312,14 @@ const AI = class {
       this.pause()
       this.startTransfer()
       let end = this.endTransfer.bind(this)
-      socket.on('transfer over', function(data){
-          console.log('received data from backend: ', data)
-          end()
-          resolve(data)
+      socket.on('transfer over', function({ data , clientId }){
+          // console.log('received data from backend: ', data)
+          // console.log('received data from client: ', clientId)
+          // console.log('debugging what clientID is: ', that.configs.clientId)
+          if(clientId === that.configs.clientId){
+            end()
+            resolve(data)
+          }
       })
     });
   }
@@ -297,10 +329,7 @@ const AI = class {
    * @param {*data} data 
    * @return {some more data}
    */
-  next({ read, listen, test=10, socket, instance }) {
-    // const { read, listen } = chainFunctions;
-    // console.log('myargs: ', args)
-    // console.log('this: ', this)
+  next({ read, say, listen, test=10, socket, instance }) {
     console.log('before id: ', instance.current)
     //RESTART CLIENT HERE
     let back = this.back
@@ -313,13 +342,12 @@ const AI = class {
       .then((data) => {
         console.log('data heard is ...', data)
         let correctPercent = nlp.partial_ratio(back, data);
-        // let percent = util.polish(correctPercent)
         let isCorrect = util.verifyAnswer(correctPercent)
         const correct = 'you are correct'
         const incorrect = 'sorry, not quite'
         const toRead = isCorrect ? correct : incorrect
         instance.results.push({ front, back, data, correctPercent, isCorrect })
-        return read(toRead)
+        return say(toRead)
       })
       .then(() => {
         instance.current++
@@ -348,17 +376,16 @@ const AI = class {
     let cardsList = [];
     console.log('this: ', this)
     const chainFunctions = {
+      say: this.say.bind(this),
       read: this.read.bind(this),
       listen: this.listen.bind(this),
       socket: this.socket,
       instance: this
     }
     for( let i = 0; i < noriList.length; i++ ){
-      // let obj = {};
       let card = new Card(noriList[i])
       card.next = this.next.bind(card, chainFunctions)
       cardsList.push(card)
-      // let nextCard = 
     };
     return cardsList;
   }

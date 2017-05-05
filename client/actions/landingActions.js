@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { HANDLE_GET_ALOT_BENTOS, HANDLE_FETCH_LANDING_BENTO_IMAGES } from '../actions/actionTypes';
+import { HANDLE_GET_ALOT_BENTOS, HANDLE_FETCH_LANDING_BENTO_IMAGES, HANDLE_RENDER_CREATE_PAGE } from '../actions/actionTypes';
 
 export function handleFetchLandingBentoImages(bentoIds) {
   return function (dispatch) {
@@ -16,5 +16,11 @@ export function handleGetAlotBentos() {
     .then((response) => {
       dispatch({ type: HANDLE_GET_ALOT_BENTOS, payload: response.data });
     });
+  };
+}
+
+export function handleRenderCreatePage() {
+  return (dispatch) => {
+    dispatch({ type: HANDLE_RENDER_CREATE_PAGE, payload: null });
   };
 }

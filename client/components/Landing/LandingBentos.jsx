@@ -3,7 +3,10 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import * as actions from '../../actions/appActions.js'
 import { modalOn } from '../../actions/voiceActions.js';
+import displayActions from './../../actions/displayActions.js';
+import personalActions from './../../actions/personalActions.js';
 
+const { fetchNoris } = displayActions;
 
     var wowAnimation = [
     // "wow landing-bento animated bounce",
@@ -44,33 +47,46 @@ class LandingBentos extends Component {
   constructor(props) {
     super(props) 
   }
+  
+  modalAndFetchNori(bentoId){
+    this.props.modalOn();
+    this.props.fetchNoris(bentoId);
+  }
+
   render() {
     var bento = this.props.bento
     // var animationNumber = Math.floor(Math.random()*6);
     return (
-<div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.5s" style = {{display: 'flex', flexDirection: 'column', justifyContent:'space-between', flexGrow: 0, flexShrink: 0}}>
-    <div className="view overlay hm-white-slight">
-      {this.props.landing.images ? 
-        this.props.landing.images[bento.id] ?
-        <img src={this.props.landing.images[bento.id][0]} className="img-fluid" alt=""/> : null : null
-      }
-            <div className="mask waves-effect waves-light"></div>
-    </div>
-    <div className="card-block">
-        <h4 className="card-title"><strong>{bento.id+'. '}{bento.name}</strong></h4>
-        <hr className="landingbento" />
+    <div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.5s">
+  {/*<div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.5s" style = {{display: 'flex', flexDirection: 'column', justifyContent:'space-between', flexGrow: 0, flexShrink: 0}}>*/}
+      <div className="view overlay hm-white-slight">
+        {this.props.landing.images ? 
+          this.props.landing.images[bento.id] ?
+          <img src={this.props.landing.images[bento.id][0]} className="img-fluid" alt=""/> : null : null
+        }
+              <div className="mask waves-effect waves-light"></div>
+      </div>
+      <div className="card-block">
+        <h4 className="card-title"><strong>{bento.name}</strong></h4>
+        <hr className="line-break" />
         <p className="card-text">{bento.description}</p>
-        <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-default btn-rounded waves-effect btn-sm">View</Link>
-        <button className="speechButton btn btn-success" onClick={this.props.modalOn}>Modal</button>
+        <p className='landingItems'><label>View Count:</label> {bento.visit_count} </p>
+        <div className='landingButtons'>
+          <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-primary btn-sm"><i className="fa fa-eye" aria-hidden="true"></i></Link>
+          <button className="speechButton btn btn-success btn-sm" onClick={this.modalAndFetchNori.bind(this, bento.id)}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
+          <Link className='btn btn-default btn-sm' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bentoToEdit, bento.id, this.props.userId === 'guest' ? 1 : this.props.userId)}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
+        </div>
+      </div>
     </div>
-</div>
     )
   }
 }
 function mapStateToProps(state) {
   return {
+    userId: state.appReducer.userId,
+    bentoToEdit: state.editBentoInfo,
     landing: state.landingReducer
   }
 }
 
-export default connect(mapStateToProps, { ...actions, modalOn})(LandingBentos);
+export default connect(mapStateToProps, { ...actions, ...personalActions, modalOn, fetchNoris})(LandingBentos);

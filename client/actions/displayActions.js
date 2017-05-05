@@ -111,7 +111,6 @@ function fetchNoris(bentoId) {
         axios.get('/api/noris', {
           params: { id: idArray },
         }).then((noris) => {
-          console.log('WHAT\'S NORI.DATA:', noris.data);
           dispatch({
             type: FETCH_NORIS,
             payload: noris.data,
@@ -188,21 +187,21 @@ function clearPhoneNumberInput() {
 function notifyInvalidNoriNumber() {
   $.notify({
     icon: 'glyphicon glyphicon-warning-sign',
-    title : '<strong>Sorry! </strong>',
-    message: "Number you just entered is not valid, please enter another number.",
+    title: '<strong>Sorry! </strong>',
+    message: 'Number invalid. Please enter another number.',
   }, {
-    type: 'danger', 
+    type: 'danger',
     allow_dismiss: true,
     newest_on_top: true,
-    delay: 2000,
+    delay: 1000,
     animate: {
-      enter: 'animated pulse',
-      exit: 'animated flipOutX'
+      enter: 'animated fadeIn',
+      exit: 'animated fadeOut',
     },
     placement: {
       from: 'top',
-      align: 'right'
-    }
+      align: 'right',
+    },
   });
 }
 
@@ -211,8 +210,8 @@ function setNori(input, bentoData) {
     if (input >= 1 && input <= bentoData.length) {
       dispatch({
         type: SET_NORI_NUMBER,
-        currentNori: input-1,
-        noriToDisplay: bentoData[input-1],
+        currentNori: input - 1,
+        noriToDisplay: bentoData[input - 1],
       });
     } else {
       notifyInvalidNoriNumber();
@@ -223,62 +222,62 @@ function setNori(input, bentoData) {
 function notifyShuffleSuccessful() {
   $.notify({
     icon: 'glyphicon glyphicon-ok',
-    title : '<strong>Success! </strong>',
-    message: "Noris have been shuffled.",
+    title: '<strong>Success! </strong>',
+    message: 'Bento shuffled.',
   }, {
-    type: 'success', 
+    type: 'success',
     allow_dismiss: true,
     newest_on_top: true,
     delay: 1000,
     animate: {
       enter: 'animated fadeIn',
-      exit: 'animated fadeOut'
+      exit: 'animated fadeOut',
     },
     placement: {
       from: 'top',
-      align: 'right'
-    }
+      align: 'right',
+    },
   });
 }
 
 function notifySMSSuccessful() {
   $.notify({
     icon: 'glyphicon glyphicon-ok',
-    title : '<strong>Success! </strong>',
-    message: "SMS has been sent.",
+    title: '<strong>Success! </strong>',
+    message: 'SMS sent.',
   }, {
-    type: 'success', 
+    type: 'success',
     allow_dismiss: true,
     newest_on_top: true,
     delay: 1000,
     animate: {
       enter: 'animated fadeIn',
-      exit: 'animated fadeOut'
+      exit: 'animated fadeOut',
     },
     placement: {
       from: 'top',
-      align: 'right'
-    }
+      align: 'right',
+    },
   });
 }
 
 function notifySMSFail() {
   $.notify({
     icon: 'glyphicon glyphicon-warning-sign',
-    title : '<strong>Sorry! </strong>',
-    message: "Phone number given was not valid.  Please try again.",
+    title: '<strong>Sorry! </strong>',
+    message: 'Phone number invalid. Please enter again.',
   }, {
-    type: 'danger', 
+    type: 'danger',
     allow_dismiss: true,
     newest_on_top: true,
     delay: 1000,
     animate: {
       enter: 'animated fadeIn',
-      exit: 'animated fadeOut'
+      exit: 'animated fadeOut',
     },
     placement: {
       from: 'top',
-      align: 'right'
+      align: 'right',
     },
     z_index: 9999,
   });
@@ -312,7 +311,7 @@ function shuffleNori(bentoData, direction) {
 function shareUrlToSMS(event, url, phoneNumber) {
   event.preventDefault();
   return function (dispatch) {
-    if (phoneNumber.length != 11) {
+    if (phoneNumber.length !== 11) {
       notifySMSFail();
     } else {
       $('#sendSMS').modal('hide');

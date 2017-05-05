@@ -65,7 +65,7 @@ class Explore extends Component {
                     </div>
                   ))}
                   </Carousel>)
-                  : (<div className='center-block'><h1>Loading Bentos...</h1></div>)
+                  : (<div className='exploreItems'><h1>Loading Bentos...</h1></div>)
                 }
 
             </div>

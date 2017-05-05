@@ -1,15 +1,14 @@
-/**
- * Created by noamc on 8/31/14.
- */
-
-
 module.exports = function (config) {
     // console.log('do we have binary client: ', BinaryClient)
     var client,
         recorder,
         context,
-        bStream,
-        contextSampleRate = (new AudioContext()).sampleRate;
+        bStream;
+        if(window.contextAudioInstance){
+            var contextSampleRate = window.contextAudioInstance.sampleRate
+        } else {
+            var contextSampleRate = (new AudioContext()).sampleRate;
+        }
         // resampleRate = contextSampleRate,
         var resampleRate = 44100,
         // contextSampleRate = 16000,
@@ -18,7 +17,7 @@ module.exports = function (config) {
     
 
 
-    console.log('what is contextSampleRate: ', contextSampleRate)
+    // console.log('what is contextSampleRate: ', contextSampleRate)
     worker.postMessage({cmd:"init",from:contextSampleRate,to:resampleRate});
 
     worker.addEventListener('message', function (e) {
@@ -49,7 +48,7 @@ module.exports = function (config) {
         // })
 
         client.on('open', function () {
-            console.log('streaming client turned on')
+            console.log('streaming client turned on with ClientID: ', config.clientId)
             bStream = client.createStream({sampleRate: resampleRate, clientId: config.clientId});
         });
 
@@ -66,7 +65,12 @@ module.exports = function (config) {
 
 
         navigator.getUserMedia(session, function (stream) {
-            context = new AudioContext();
+            if(window.contextAudioInstance){
+                context = window.contextAudioInstance
+            } else {
+                context = new AudioContext();
+                window.contextAudioInstance = context
+            }
             // stream
             var audioInput = context.createMediaStreamSource(stream);
             var bufferSize = 0; // let implementation decide
