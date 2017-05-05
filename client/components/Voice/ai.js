@@ -89,6 +89,15 @@ const AI = class {
     return request.get(URL, { params })
   }
 
+  _filterIncompleteNoris(processedList){
+    console.log('what is processed list given: ', processedList)
+    let noIncomplete =  processedList.filter(i => {
+      return i.front && i.front.length > 0 && i.back && i.back.length > 0
+    })
+    console.log('what is noIncomplete: ', noIncomplete)
+    return noIncomplete
+  }
+
   /*
     @private
     @param {object} the data to be processed to the correct format for AI to iterate through
@@ -111,7 +120,8 @@ const AI = class {
       }
       return result;
     });
-    return newData;
+    let noIncompleteFrontAndBackList = this._filterIncompleteNoris(newData)
+    return noIncompleteFrontAndBackList;
   }
 
 
