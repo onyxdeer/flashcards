@@ -313,9 +313,9 @@ const AI = class {
       this.startTransfer()
       let end = this.endTransfer.bind(this)
       socket.on('transfer over', function({ data , clientId }){
-          console.log('received data from backend: ', data)
-          console.log('received data from client: ', clientId)
-          console.log('debugging what clientID is: ', that.configs.clientId)
+          // console.log('received data from backend: ', data)
+          // console.log('received data from client: ', clientId)
+          // console.log('debugging what clientID is: ', that.configs.clientId)
           if(clientId === that.configs.clientId){
             end()
             resolve(data)
