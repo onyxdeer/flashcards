@@ -69,13 +69,23 @@ class Landing extends Component {
         <div style= {{display: "flex"}}>
           <div className='column1' style = {{flex:1, display: "flex", flexFlow: "column nowrap"}}>
             {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => {
-              if (index % 5 == 0 && this.state.width >= 1280) {
+              if (index % 10 == 0 && this.state.width >= 2560) {
                 return <LandingBentos key={index} bento = {bento}/>
-              } else if (index % 4 == 0 && this.state.width < 1280) {
+              } else if (index % 9 == 0 && this.state.width < 2560 && this.state.width >= 2304) {
                 return <LandingBentos key={index} bento = {bento}/>
-              } else if (index % 3 == 0 && this.state.width < 1024) {
+              } else if (index % 8 == 0 && this.state.width < 2304 && this.state.width >= 2048) {
                 return <LandingBentos key={index} bento = {bento}/>
-              } else if (index % 2 == 0 && this.state.width < 768) {
+              } else if (index % 7 == 0 && this.state.width < 2048 && this.state.width >= 1792) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if (index % 6 == 0 && this.state.width < 1792 && this.state.width >= 1536) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if (index % 5 == 0 && this.state.width < 1536 && this.state.width >= 1280) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if (index % 4 == 0 && this.state.width < 1280 && this.state.width >= 1024) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if (index % 3 == 0 && this.state.width < 1024 && this.state.width >= 768) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if (index % 2 == 0 && this.state.width < 768 && this.state.width >= 512) {
                 return <LandingBentos key={index} bento = {bento}/>
               } else if (this.state.width < 512) {
                 return <LandingBentos key={index} bento = {bento}/>
@@ -84,44 +94,139 @@ class Landing extends Component {
           </div>
           <div className='column2' style = {{flex: 1, display: "flex", flexFlow: "column nowrap"}}>
             {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => {
-              if ((index - 1) % 5 == 0 && this.state.width >= 1280) {
+              if ((index - 1) % 10 == 0 && this.state.width >= 2560) {
                 return <LandingBentos key={index} bento = {bento}/>
-              } else if ((index - 1) % 4 == 0 && this.state.width < 1280) {
+              } else if ((index - 1) % 9 == 0 && this.state.width < 2560 && this.state.width >= 2304) {
                 return <LandingBentos key={index} bento = {bento}/>
-              } else if ((index - 1) % 3 == 0 && this.state.width < 1024) {
+              } else if ((index - 1) % 8 == 0 && this.state.width < 2304 && this.state.width >= 2048) {
                 return <LandingBentos key={index} bento = {bento}/>
-              } else if ((index - 1) % 2 == 0 && this.state.width < 768) {
+              } else if ((index - 1) % 7 == 0 && this.state.width < 2048 && this.state.width >= 1792) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 1) % 6 == 0 && this.state.width < 1792 && this.state.width >= 1536) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 1) % 5 == 0 && this.state.width < 1536 && this.state.width >= 1280) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 1) % 4 == 0 && this.state.width < 1280 && this.state.width >= 1024) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 1) % 3 == 0 && this.state.width < 1024 && this.state.width >= 768) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 1) % 2 == 0 && this.state.width < 768 && this.state.width >= 512) {
                 return <LandingBentos key={index} bento = {bento}/>
               }
             }) : null}
           </div>
            <div className='column3' style = {{flex:1, display: "flex", flexFlow: "column nowrap"}}>
             {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => {
-              if ((index - 2) % 5== 0 && this.state.width >= 1280) {
+              if ((index - 2) % 10 == 0 && this.state.width >= 2560) {
                 return <LandingBentos key={index} bento = {bento}/>
-              } else if ((index - 2) % 4 == 0 && this.state.width < 1280) {
+              } else if ((index - 2) % 9 == 0 && this.state.width < 2560 && this.state.width >= 2304) {
                 return <LandingBentos key={index} bento = {bento}/>
-              } else if ((index - 2) % 3 == 0 && this.state.width < 1024) {
+              } else if ((index - 2) % 8 == 0 && this.state.width < 2304 && this.state.width >= 2048) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 2) % 7 == 0 && this.state.width < 2048 && this.state.width >= 1792) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 2) % 6 == 0 && this.state.width < 1792 && this.state.width >= 1536) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 2) % 5 == 0 && this.state.width < 1536 && this.state.width >= 1280) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 2) % 4 == 0 && this.state.width < 1280 && this.state.width >= 1024) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 2) % 3 == 0 && this.state.width < 1024 && this.state.width >= 768) {
                 return <LandingBentos key={index} bento = {bento}/>
               }
             }) : null}
           </div>
           <div className='column4' style = {{flex:1, display: "flex", flexFlow: "column nowrap"}}>
             {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => {
-              if ((index - 3) % 5 == 0 && this.state.width >= 1280) {
+              if ((index - 3) % 10 == 0 && this.state.width >= 2560) {
                 return <LandingBentos key={index} bento = {bento}/>
-              } else if ((index - 3) % 4 == 0 && this.state.width < 1280) {
+              } else if ((index - 3) % 9 == 0 && this.state.width < 2560 && this.state.width >= 2304) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 3) % 8 == 0 && this.state.width < 2304 && this.state.width >= 2048) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 3) % 7 == 0 && this.state.width < 2048 && this.state.width >= 1792) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 3) % 6 == 0 && this.state.width < 1792 && this.state.width >= 1536) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 3) % 5 == 0 && this.state.width < 1536 && this.state.width >= 1280) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 3) % 4 == 0 && this.state.width < 1280 && this.state.width >= 1024) {
                 return <LandingBentos key={index} bento = {bento}/>
               }
             }) : null}
           </div> 
           <div className='column5' style = {{flex:1, display: "flex", flexFlow: "column nowrap"}}>
             {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => {
-              if ((index - 4) % 5 == 0 && this.state.width >= 1280) {
+              if ((index - 4) % 10 == 0 && this.state.width >= 2560) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 4) % 9 == 0 && this.state.width < 2560 && this.state.width >= 2304) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 4) % 8 == 0 && this.state.width < 2304 && this.state.width >= 2048) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 4) % 7 == 0 && this.state.width < 2048 && this.state.width >= 1792) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 4) % 6 == 0 && this.state.width < 1792 && this.state.width >= 1536) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 4) % 5 == 0 && this.state.width < 1536 && this.state.width >= 1280) {
                 return <LandingBentos key={index} bento = {bento}/>
               }
             }) : null}
-          </div>   
+          </div>
+          <div className='column6' style = {{flex:1, display: "flex", flexFlow: "column nowrap"}}>
+            {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => {
+              if ((index - 5) % 10 == 0 && this.state.width >= 2560) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 5) % 9 == 0 && this.state.width < 2560 && this.state.width >= 2304) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 5) % 8 == 0 && this.state.width < 2304 && this.state.width >= 2048) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 5) % 7 == 0 && this.state.width < 2048 && this.state.width >= 1792) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 5) % 6 == 0 && this.state.width < 1792 && this.state.width >= 1536) {
+                return <LandingBentos key={index} bento = {bento}/>
+              }
+            }) : null}
+          </div>
+          <div className='column7' style = {{flex:1, display: "flex", flexFlow: "column nowrap"}}>
+            {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => {
+              if ((index - 6) % 10 == 0 && this.state.width >= 2560) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 6) % 9 == 0 && this.state.width < 2560 && this.state.width >= 2304) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 6) % 8 == 0 && this.state.width < 2304 && this.state.width >= 2048) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 6) % 7 == 0 && this.state.width < 2048 && this.state.width >= 1792) {
+                return <LandingBentos key={index} bento = {bento}/>
+              }
+            }) : null}
+          </div>
+          <div className='column8' style = {{flex:1, display: "flex", flexFlow: "column nowrap"}}>
+            {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => {
+              if ((index - 7) % 10 == 0 && this.state.width >= 2560) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 7) % 9 == 0 && this.state.width < 2560 && this.state.width >= 2304) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 7) % 8 == 0 && this.state.width < 2304 && this.state.width >= 2048) {
+                return <LandingBentos key={index} bento = {bento}/>
+              }
+            }) : null}
+          </div>
+          <div className='column9' style = {{flex:1, display: "flex", flexFlow: "column nowrap"}}>
+            {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => {
+              if ((index - 8) % 10 == 0 && this.state.width >= 2560) {
+                return <LandingBentos key={index} bento = {bento}/>
+              } else if ((index - 8) % 9 == 0 && this.state.width < 2560 && this.state.width >= 2304) {
+                return <LandingBentos key={index} bento = {bento}/>
+              }
+            }) : null}
+          </div>
+          <div className='column10' style = {{flex:1, display: "flex", flexFlow: "column nowrap"}}>
+            {this.props.landing.bentos ? this.props.landing.bentos.map((bento, index) => {
+              if ((index - 9) % 10 == 0 && this.state.width >= 2560) {
+                return <LandingBentos key={index} bento = {bento}/>
+              }
+            }) : null}
+          </div>
         </div>
 
             {/*<div  style = {{position: 'relative'}}>

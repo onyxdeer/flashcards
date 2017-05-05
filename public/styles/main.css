@@ -829,12 +829,97 @@ p.lp{
     /*width: 240px;*/
 }
 
-@media screen and (max-width: 1279px) {
-  .column5 {
+@media screen and (max-width: 2559px) {
+  .column10 {
     display: none !important;
   }  
 }
+@media screen and (max-width: 2303px) {
+  .column10 {
+    display: none !important;
+  }
+  .column9 {
+    display: none !important;
+  }  
+}
+@media screen and (max-width: 2047px) {
+  .column10 {
+    display: none !important;
+  }
+  .column9 {
+    display: none !important;
+  }
+  .column8 {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 1791px) {
+  .column10 {
+    display: none !important;
+  }
+  .column9 {
+    display: none !important;
+  }
+  .column8 {
+    display: none !important;
+  }
+  .column7 {
+    display: none !important;
+  } 
+}
+@media screen and (max-width: 1535px) {
+  .column10 {
+    display: none !important;
+  }
+  .column9 {
+    display: none !important;
+  }
+  .column8 {
+    display: none !important;
+  }
+  .column7 {
+    display: none !important;
+  }
+  .column6 {
+    display: none !important;
+  } 
+}
+@media screen and (max-width: 1279px) {
+  .column10 {
+    display: none !important;
+  }
+  .column9 {
+    display: none !important;
+  }
+  .column8 {
+    display: none !important;
+  }
+  .column7 {
+    display: none !important;
+  }
+  .column6 {
+    display: none !important;
+  }
+  .column5 {
+    display: none !important;
+  }
+}
 @media screen and (max-width: 1023px) {
+  .column10 {
+    display: none !important;
+  }
+  .column9 {
+    display: none !important;
+  }
+  .column8 {
+    display: none !important;
+  }
+  .column7 {
+    display: none !important;
+  }
+  .column6 {
+    display: none !important;
+  }
   .column5 {
     display: none !important;
   }  
@@ -843,6 +928,21 @@ p.lp{
   }
 }
 @media screen and (max-width: 767px) {
+  .column10 {
+    display: none !important;
+  }
+  .column9 {
+    display: none !important;
+  }
+  .column8 {
+    display: none !important;
+  }
+  .column7 {
+    display: none !important;
+  }
+  .column6 {
+    display: none !important;
+  }
   .column5 {
     display: none !important;
   }  
@@ -854,6 +954,21 @@ p.lp{
   }
 }
 @media screen and (max-width: 511px) {
+  .column10 {
+    display: none !important;
+  }
+  .column9 {
+    display: none !important;
+  }
+  .column8 {
+    display: none !important;
+  }
+  .column7 {
+    display: none !important;
+  }
+  .column6 {
+    display: none !important;
+  }
   .column5 {
     display: none !important;
   }  
