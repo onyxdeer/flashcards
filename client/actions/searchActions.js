@@ -62,7 +62,6 @@ export function searchBentos(someData) {
 //     params: { idArray }
 //   })
 //   .then(function(response) {
-//     console.log('IMGDATA: ', response.data);
 //     var imgData = response.data;
 //     // populate the ones with images
 //     for (var i = 0; i < bentoData.length; i++) {
