@@ -72,8 +72,8 @@ class Display extends Component {
     return (
       <div>
         <Modal />
-        <div className='row'>
-          <h1 className='default-font create-title'>Bento: {this.props.title}</h1>
+        <div className="create-title">
+          <h1 className="default-font">Bento: {this.props.title}</h1>
         </div>
         <BentoSection />
         <ButtonSection userId={userId}/>
