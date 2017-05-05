@@ -45,8 +45,6 @@ function fetchThumbnails(idArray, imgArray, bentoData, dispatch, category) {
         type: FETCH_POPULAR_BENTOS,
         payload: bentoData,
       });
-    } else {
-      console.log('Invalid dispatch in personalActions:', type);
     }
   });
 }

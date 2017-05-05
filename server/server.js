@@ -4,8 +4,8 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const path = require('path');
 const morgan = require('morgan');
-const Http = require('http')
-const Sockets = require('socket.io')
+const Http = require('http');
+const Sockets = require('socket.io');
 const history = require('connect-history-api-fallback');
 const passport = require('passport');
 const flash = require('connect-flash');
@@ -16,8 +16,8 @@ const { SESSION_SECRET } = require('../config/config.js');
 const PORT = process.env.PORT || 8000;
 
 const app = express();
-var http = Http.createServer(app)
-var io = Sockets(http)
+const http = Http.createServer(app);
+const io = Sockets(http);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -35,21 +35,20 @@ bindrouter(app);
 
 database();
 
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
+io.on('connection', (socket) => {
+  console.log('A user connected');
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
   });
 
-  socket.on('gSpeech complete', function(data){
-    socket.broadcast.emit('transfer over', data)
-  })
+  socket.on('gSpeech complete', (data) => {
+    socket.broadcast.emit('transfer over', data);
+  });
 
-  socket.on('chat message', function(data){
-    console.log('message received: ', data)
-  })
+  socket.on('chat message', (data) => {
+    console.log('Message received: ', data);
+  });
   // exports.socket = socket
-
 });
 
 http.listen(PORT, () => {
