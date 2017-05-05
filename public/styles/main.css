@@ -322,6 +322,8 @@ input[type=text].shortenURLField {
     display: block;
 }
 
+
+
 /* REACT DECK */
 
 .deck {
@@ -528,7 +530,8 @@ input[type=text].shortenURLField {
 }
 
 img.search-data {
-    min-height: 200px;
+    max-height: 100%;
+    width: 100%;
 }
 
 .slick-slide {
@@ -561,20 +564,34 @@ div.slick-slide.slick-active.thumbnailSpace {
     height: 500px;
 }
 .searchBox:hover {
-  border-color: #BADA55;
-  border-width: 5px;
+    border-color: #BADA55;
+    border-width: 5px;
+}
+
+.searchBoxButtons {
+    display: inline-block;
+    margin-bottom: 15px;
 }
 
 .thumbnail img {
     padding: 20px;
-    max-height: 200px;
+    height: 200px;
+    max-width: 240px;
 }
 
-.searchBox img {
+/*.searchBox img {
     padding-top: 20px;
     width: 180px;
     height: auto;
     max-height: 200px;
+}*/
+
+.searchImage {
+    padding-top: 20px;
+    width: 180px;
+    height: 200px;
+    display: inline-block;
+    line-height: 200px;
 }
 
 .canvasClass {

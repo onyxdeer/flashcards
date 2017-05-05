@@ -90,9 +90,10 @@ export function handleImageDeletion(bento, index) {
 // This handle function is used for image uploads
 export function handleImageUpload(bento, link, index) {
   if (!index && index !== 0) {
-    bento.cover.url = link;
+    bento.cover.url = link.replace('http://', 'https://');
+    console.log(bento.cover.url)
   } else if (index || index === 0) {
-    bento.noris[index].Front.image = link;
+    bento.noris[index].Front.image = link.replace('http://', 'https://');
   }
   return function (dispatch) {
     dispatch({ type: HANDLE_IMAGE_UPLOAD, payload: bento });
