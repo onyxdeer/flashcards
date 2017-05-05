@@ -58,7 +58,7 @@ class Landing extends Component {
 	                        <h2 className="lp wow fadeInDown">Memorization made fun and effortless.</h2>
 	                        <p className="lp wow fadeInDown" data-wow-delay="0.3s">Get started by creating a bento of noris, then interact seamlessly with your noris by using hands-free voice control!</p>
 	                        <div className="wow fadeInDown" data-wow-delay="0.3s">
-	                        	< Link to="/edit" className="btn btn-default btn-home"  role="button">Create Your Own Bento!</Link>
+	                        	<Link to="/edit" className="btn btn-default btn-home" role="button" onClick={()=> {this.props.handleRenderCreatePage()}}>Create Your Own Bento!</Link>
 	                        </div>
 	                    </div>
 	                </div>
