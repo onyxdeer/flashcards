@@ -50,26 +50,26 @@ html {
 }
 
 /*Start of Create Page Stylesheet*/
- #contact{
+#contact{
     padding:10px 0 10px;
-  }
+}
 
-  .inner-contact {
+.inner-contact {
     /*margin-top: 45px;*/
     padding: 40px;
     height: 320px;
-  }
+}
 
-  .contact-text{
+.contact-text{
     margin:45px auto;
-  }
+}
 
-  .mail-message-area{
+.mail-message-area{
     width:100%;
     padding:0 15px;
-  }
+}
 
-  .mail-message{
+.mail-message{
     width: 100%;
     background:rgba(255,255,255, 0.8);
     -webkit-transition: all 0.7s;
@@ -77,22 +77,22 @@ html {
     transition: all 0.7s;
     margin:0 auto;
     border-radius: 0;
-  }
+}
 
-  .not-visible-message{
+.not-visible-message{
     height:0px;
     opacity: 0;
-  }
+}
 
-  .visible-message{
+.visible-message{
     height:auto;
     opacity: 1;
     margin:25px auto 0;
-  }
+}
 
 /* Input Styles */
 
-  .form{
+.form{
     width: 100%;
     padding: 15px;
     background:#f8f8f8;
@@ -103,38 +103,38 @@ html {
     -webkit-transition: all 0.4s;
     -moz-transition: all 0.4s;
     transition: all 0.4s;
-  }
+}
 
-  .form:hover{
+.form:hover{
     border:1px solid #8BC3A3;
-  }
+}
 
-  .form:focus{
+.form:focus{
     color: white;
     outline: none;
     border:1px solid #8BC3A3;
-  }
+}
 
 /*New Nori Style*/
 
-  .textarea{
+.textarea{
     height: 200px;
     max-height: 200px;
     max-width: 100%;
-  }
+}
 
-  .nori-textarea{
+.nori-textarea{
     height: 50%;
     max-height: 120px;
     width: auto;
     margin: 0 auto;
     position: relative;
     display: inline-block
-  }
+}
 
 /* Generic Button Styles */
 
-  .button{
+.button{
     padding:8px 12px;
     background:#0A5175;
     display: block;
@@ -149,16 +149,16 @@ html {
     box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
     -moz-box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
     -webkit-box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
-  }
+}
 
-  .button:hover{
+.button:hover{
     background:#BADA55;
     color:white;
-  }
+}
 
 /* Send Button Styles */
 
-  .form-btn{
+.form-btn{
     width:180px;
     display: block;
     height: auto;
@@ -174,20 +174,22 @@ html {
     box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
     -moz-box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
     -webkit-box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
-  }
+}
 
-  .form-btn:hover{
+.form-btn:hover {
     background:#111;
     color: white;
     border:none;
-  }
-
-  .form-btn:active{
-    opacity: 0.9;
-  }
-center{
-  margin: 0 auto;
 }
+
+.form-btn:active {
+    opacity: 0.9;
+}
+
+center {
+    margin: 0 auto;
+}
+
 input {
     position: relative;
 }
@@ -222,7 +224,7 @@ input {
 /* DISPLAY PAGE */
 
 .row {
-  width: 100%;
+    width: 100%;
 }
 
 .cardSection {
@@ -331,112 +333,112 @@ input[type=text].shortenURLField {
 /* REACT DECK */
 
 .deck {
-  list-style: none;
-  height: 350px;
-  padding: 10px;
+    list-style: none;
+    height: 350px;
+    padding: 10px;
 }
 
 
 .card {
-  display: block;
-  width: 100%;
-  perspective: 1000px;
-  position: absolute;
+    display: block;
+    width: 100%;
+    perspective: 1000px;
+    position: absolute;
 }
 
 .card-transform {
-  transition: 0.10s;
-  transform-style: preserve-3d;
-  position: relative;
+    transition: 0.10s;
+    transform-style: preserve-3d;
+    position: relative;
 }
 
 /* starts the animation */
 .card-flipped .card-transform {
-  transform: rotateY(175deg);
+    transform: rotateY(175deg);
 }
 
 .card, .card-front, .card-back {
-  width: 100%;
-  margin: 0 auto;
-  height: 300px;
+    width: 100%;
+    margin: 0 auto;
+    height: 300px;
 }
 
 .img-fluid {
-  margin: auto;
-  max-height: 230px;
+    margin: auto;
+    max-height: 230px;
 }
 
 .card-front, .card-back {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border: 1px solid black;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid black;
 }
 
 .frontText, .backText {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  max-height: 100%;
-  overflow-y: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-height: 100%;
+    overflow-y: auto;
 }
 
 .card-front {
-  -webkit-perspective-origin: 0% 0%;
-  perspective-origin: 0% 0%;
-  -webkit-perspective: 10000px;
-  perspective: 10000px;
-  -webkit-transform-origin: 0% 0%;
-  transform-origin: 0% 0%;
-  -webkit-transform: rotateY(0deg);
-  transform: rotateY(0deg);
+    -webkit-perspective-origin: 0% 0%;
+    perspective-origin: 0% 0%;
+    -webkit-perspective: 10000px;
+    perspective: 10000px;
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
 }
 
 .card-back {
-  -webkit-perspective-origin: 0% 0%;
-  perspective-origin: 0% 0%;
-  -webkit-perspective: 10000px;
-  perspective: 10000px;
-  -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg);
+    -webkit-perspective-origin: 0% 0%;
+    perspective-origin: 0% 0%;
+    -webkit-perspective: 10000px;
+    perspective: 10000px;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 .center-within-viewport {
-  left: 50%;
-  right: 50%;
-  top: 50%;
-  margin-top: -150px;
-  margin-left: -250px;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    margin-top: -150px;
+    margin-left: -250px;
 }
 
 .index-card {
-  text-align: center;
-  color: #555;
+    text-align: center;
+    color: #555;
 }
 
 .index-card, .index-card .card-front, .index-card .card-back {
-  height: 300px;
+    height: 300px;
 }
 
 .index-card .card-front, .index-card .card-back {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
 .index-card .card-front p {
-  font-size: 20px;
-  text-align: center;
-  margin: 0;
-  overflow: auto;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    overflow: auto;
 }
 
 .index-card .card-back p {
-  font-size: 20px;
-  text-align: center;
-  margin: 0;
-  overflow: auto;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    overflow: auto;
 }
 
 .index-card img {
@@ -556,8 +558,8 @@ div.slick-slide.slick-active.thumbnailSpace {
     height: 600px;
 }
 .thumbnail:hover {
-  border-color: #BADA55;
-  border-width: 5px;
+    border-color: #BADA55;
+    border-width: 5px;
 }
 
 .searchBox {
@@ -647,7 +649,7 @@ div.slick-slide.slick-active.thumbnailSpace {
 }
 
 .dropzone p {
-  display: inline-block;
+    display: inline-block;
     height: 100%;
     line-height: 200px;
     margin: 0;
@@ -673,41 +675,41 @@ div.slick-slide.slick-active.thumbnailSpace {
 }
 
 .nori-image {
-  max-height: 182px; 
-  max-width: 162px
+    max-height: 182px; 
+    max-width: 162px
 }
 
 .RichTextEditor__editor___1QqIU {
-  height: 90px
+    height: 90px
 }
 
 .RichTextEditor__root___2QXK- {
-  width: 90%;
-  min-width: 400px;
-  max-width: 400px
+    width: 90%;
+    min-width: 400px;
+    max-width: 400px
 }
 
 #hero-area {
-  padding:0px 0;
-  background: rgba(0, 0, 0, 0) linear-gradient(135deg, #8ec64e 0%, #41aba0 100%) repeat scroll 0 0;
+    padding:0px 0;
+    background: rgba(0, 0, 0, 0) linear-gradient(135deg, #8ec64e 0%, #41aba0 100%) repeat scroll 0 0;
 }
 
 #hero-area .block {
-  padding: 70px;
+    padding: 70px;
 }
 #hero-area .block  h1 {
-  margin-bottom: 25px;
-  text-transform: uppercase;
-  font-size: 40px;
-  letter-spacing: 2px;
-  position: relative;
-  line-height: 40px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-size: 40px;
+    letter-spacing: 2px;
+    position: relative;
+    line-height: 40px;
 }
 
 #hero-area .block  h2 {
-  margin-bottom: 15px;
-  letter-spacing: 1px;
-  position: relative;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    position: relative;
 }
 
 
@@ -719,7 +721,7 @@ div.slick-slide.slick-active.thumbnailSpace {
 }
 
 #hero-area .block div {
-  padding-top : 25px;
+    padding-top : 25px;
 }
 
 h1.lp{
@@ -731,11 +733,11 @@ h1.lp{
 }
 
 h2.lp{
-  font-size: 30px;
-  line-height: 35px;
-  color: #fff;
-  font-weight: 300;
-  margin: 0px;
+    font-size: 30px;
+    line-height: 35px;
+    color: #fff;
+    font-weight: 300;
+    margin: 0px;
 }
 
 p.lp{
@@ -745,22 +747,22 @@ p.lp{
 }
 
 .bento-area {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .landing-bento {
-  /*background: rgba(0, 0, 0, 0) linear-gradient(135deg, #8ec64e 0%, #41aba0 100%) repeat scroll 0 0;*/
-  padding: 3px;
-  margin: 8px;
-  border: groove;
-  box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
-  /*max-width: 15%;*/
-  /*min-width: 180px;*/
-  /*width: 180px;*/
+    /*background: rgba(0, 0, 0, 0) linear-gradient(135deg, #8ec64e 0%, #41aba0 100%) repeat scroll 0 0;*/
+    padding: 3px;
+    margin: 8px;
+    border: groove;
+    box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
+    /*max-width: 15%;*/
+    /*min-width: 180px;*/
+    width: 240px;
 }
 .landing-bento:hover {
-  border-color: #BADA55;
-  border-width: 5px;
+    border-color: #BADA55;
+    border-width: 5px;
 }
 
 .landingItems {
@@ -768,49 +770,100 @@ p.lp{
 }
 
 .landingButtons {
-  text-align: center;
+    text-align: center;
 }
 
 .card-title {
-  text-align: center;
+    text-align: center;
 }
 
 .line-break{
-  padding: 0px;
-  margin: 10px;
-  border: 0;
-  border-top: 1px solid #eee;
+    padding: 0px;
+    margin: 10px;
+    border: 0;
+    border-top: 1px solid #eee;
 }
 
 .card-text {
-  padding: 10px;
-  text-align: center;
-  max-height: 200px;
-  overflow-y: auto;
+    padding: 10px;
+    text-align: center;
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 [data-notify="progressbar"] {
-	margin-bottom: 0px;
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	width: 100%;
-	height: 5px;
+    margin-bottom: 0px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 5px;
 }
 
 .ops-div {
-  padding-right: 55px;
+    padding-right: 55px;
 }
 
 .editPlaceholder {
-  font-weight: 400;
+    font-weight: 400;
 }
 
 .cover-edit-image {
- position: relative;
- width: 120px;
+   position: relative;
+   width: 120px;
 }
 
 .cover-image-fluid {
-  height:175px;
+    height:175px;
+}
+
+/* LANDING PAGE */
+
+.landingContainer {
+    display: flex;
+    flex-flow: column wrap;
+    max-height: 1000px;
+}
+
+.card-block {
+    /*width: 240px;*/
+}
+
+@media screen and (max-width: 1279px) {
+  .column5 {
+    display: none !important;
+  }  
+}
+@media screen and (max-width: 1023px) {
+  .column5 {
+    display: none !important;
+  }  
+  .column4 {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  .column5 {
+    display: none !important;
+  }  
+  .column4 {
+    display: none !important;
+  }
+  .column3 {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 511px) {
+  .column5 {
+    display: none !important;
+  }  
+  .column4 {
+    display: none !important;
+  }
+  .column3 {
+    display: none !important;
+  }
+  .column2 {
+    display: none !important;
+  }
 }
