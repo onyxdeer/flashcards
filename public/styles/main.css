@@ -384,6 +384,13 @@ input[type=text].shortenURLField {
     overflow-y: auto;
 }
 
+.frontTextImg, .backTextImg {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-height: 45%;
+    overflow-y: auto;
+}
+
 .card-front {
     -webkit-perspective-origin: 0% 0%;
     perspective-origin: 0% 0%;
