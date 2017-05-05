@@ -16,7 +16,7 @@
     "voice:install": "cd voice-server && npm install",
     "seed": "node db/scripts/seed.js",
     "start:prod": "pm2 start server/server.js --name main-server",
-    "voice:prod": "pm2 start voice-server/server/server.js --name voice-server"
+    "voice:prod": "pm2 start start.sh --name voice_server"
   },
   "repository": {
     "type": "git",
