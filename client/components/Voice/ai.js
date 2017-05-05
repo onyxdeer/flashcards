@@ -289,8 +289,13 @@ const AI = class {
       socket.on('transfer over', function({ data , clientId }){
           console.log('received data from backend: ', data)
           console.log('received data from client: ', clientId)
-          end()
-          resolve(data)
+          console.log('debugging what clientID is: ', that.configs.clientId)
+          if(clientId === that.configs.clientId){
+            end()
+            resolve(data)
+          }
+          // end()
+          // resolve(data)
       })
     });
   }
