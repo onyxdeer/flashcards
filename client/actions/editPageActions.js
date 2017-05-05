@@ -91,7 +91,6 @@ export function handleImageDeletion(bento, index) {
 export function handleImageUpload(bento, link, index) {
   if (!index && index !== 0) {
     bento.cover.url = link.replace('http://', 'https://');
-    console.log(bento.cover.url)
   } else if (index || index === 0) {
     bento.noris[index].Front.image = link.replace('http://', 'https://');
   }
@@ -165,7 +164,6 @@ export function handleSaveBento(bento) {
     };
   }
 
-
   // Send a request to /api/bentos, saving the bento if it's new and assign it a new bento_id or just updates it.
   return function (dispatch) {
     axios.post('/api/bentos', bento)
@@ -178,8 +176,8 @@ export function handleSaveBento(bento) {
       dispatch({ type: HANDLE_SAVE_BENTO, payload: response.data });
     })
     .catch((res) => {
-      if (!res.response) return dispatch(handleError('Could not connect to server'))
-      dispatch(handleError('Bad Login Info'));
+      if (!res.response) return console.log('Could not connect to server');
+      return console.log('Bad Login Info');
     });
   };
 }

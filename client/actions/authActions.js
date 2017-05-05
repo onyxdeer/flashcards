@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { LOG_IN, LOG_OUT, SIGN_UP, HANDLE_EMAIL_INPUT, HANDLE_PASSWORD_INPUT, CLEAR_AUTH_INPUTS } from './actionTypes';
+import { HANDLE_EMAIL_INPUT, HANDLE_PASSWORD_INPUT, CLEAR_AUTH_INPUTS } from './actionTypes';
 
 export function handleEmailInput(input) {
   return function (dispatch) {
@@ -31,7 +30,6 @@ export function clearAuthInputs() {
 
 export function checkLogin(email, password) {
   return function (dispatch) {
-    console.log('checkLogin called with:', email, password);
     // dispatch({
     //   type: LOG_IN,
     //   emailAddress: email,
@@ -42,7 +40,6 @@ export function checkLogin(email, password) {
 
 export function checkLogout() {
   return function (dispatch) {
-    console.log('checkLogout called!');
     // dispatch({
     //   type: LOG_OUT,
     //   emailAddress: email,
@@ -53,7 +50,6 @@ export function checkLogout() {
 
 export function checkSignup(email, password) {
   return function (dispatch) {
-    console.log('checkSignup called with:', email, password);
     // dispatch({
     //   type: SIGN_UP,
     //   emailAddress: email,
