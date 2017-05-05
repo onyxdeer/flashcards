@@ -48,21 +48,21 @@ const request = {
 //   interimResults: true
 };
 
-const sendDataBack = (data) => {
+const sendDataBack = (data, clientId) => {
     if(data){
-        socket.emit('gSpeech complete', data)
+        socket.emit('gSpeech complete', { data, clientId })
         console.log('broadcasted: ', data)
     }
     console.log('\nwe are sending data back: ', data)
 }
 
 
-const createSpeechStream = () => speech.createRecognizeStream(request)
+const createSpeechStream = (clientId) => speech.createRecognizeStream(request)
     .on('error', (err) => console.log('GOOGLE: ', err))
     .on('data', (data) => {
         console.log('GOOGLE: ', data)
         //   process.stdout.write(data.results)
-      sendDataBack(data.results);
+      sendDataBack(data.results, clientId);
     });
 
 
@@ -127,8 +127,7 @@ var server = binaryServer({server:server});
 
 server.on('connection', function(client) {
     console.log("new connection...");
-    console.log('creating stream...')
-    const googleStream = createSpeechStream()
+
     var fileWriter = null;
     var writeStream = null;
     
@@ -140,6 +139,8 @@ server.on('connection', function(client) {
 
         console.log("Stream Start@" + meta.sampleRate +"Hz");
         console.log('client identification is: ', meta.clientId)
+
+        const googleStream = createSpeechStream(meta.clientId)
         var fileName = "recordings/"+ ua.os.name +"-"+ ua.os.version +"_"+ new Date().getTime();
         
         switch(CONFIG.AudioEncoding){
