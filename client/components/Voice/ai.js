@@ -281,12 +281,10 @@ const AI = class {
    * @return {*promise} 
    */
   read(text) {
-    // let that = this
     return new Promise( (resolve, reject) => {
       console.log('Reading: ', text)
       this.resume()
       window.responsiveVoice.speak(text, "US English Female", {onstart: ()=>{ console.log('talking...')}, onend: resolve });
-      // resolve()
     });
   }
 
@@ -309,8 +307,6 @@ const AI = class {
             end()
             resolve(data)
           }
-          // end()
-          // resolve(data)
       })
     });
   }
@@ -321,9 +317,6 @@ const AI = class {
    * @return {some more data}
    */
   next({ read, listen, test=10, socket, instance }) {
-    // const { read, listen } = chainFunctions;
-    // console.log('myargs: ', args)
-    // console.log('this: ', this)
     console.log('before id: ', instance.current)
     //RESTART CLIENT HERE
     let back = this.back
@@ -336,7 +329,6 @@ const AI = class {
       .then((data) => {
         console.log('data heard is ...', data)
         let correctPercent = nlp.partial_ratio(back, data);
-        // let percent = util.polish(correctPercent)
         let isCorrect = util.verifyAnswer(correctPercent)
         const correct = 'you are correct'
         const incorrect = 'sorry, not quite'
@@ -377,11 +369,9 @@ const AI = class {
       instance: this
     }
     for( let i = 0; i < noriList.length; i++ ){
-      // let obj = {};
       let card = new Card(noriList[i])
       card.next = this.next.bind(card, chainFunctions)
       cardsList.push(card)
-      // let nextCard = 
     };
     return cardsList;
   }
