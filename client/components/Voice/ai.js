@@ -285,10 +285,17 @@ const AI = class {
    * @return {*promise} 
    */
   read(text) {
+    
     return new Promise( (resolve, reject) => {
       console.log('Reading: ', text)
       this.resume()
-      window.responsiveVoice.speak(text, "US English Female", {onstart: ()=>{ console.log('talking...')}, onend: resolve });
+      window.responsiveVoice.speak(text, "US English Female", { 
+          onstart: () => { console.log('talking...')},
+          onend: () => {
+            this.sound.play()
+            resolve()
+          }
+      });
     });
   }
 
