@@ -275,8 +275,11 @@ const AI = class {
   */
   say(text) {
     console.log('i am speaking: ', text)
-    window.responsiveVoice.speak(text, "US English Female");
-    return this;
+    return new Promise( (resolve, reject) => {
+      window.responsiveVoice.speak(text, "US English Female", {
+        onend: resolve
+      });
+    })
   }
 
   /**
@@ -285,7 +288,6 @@ const AI = class {
    * @return {*promise} 
    */
   read(text) {
-    
     return new Promise( (resolve, reject) => {
       console.log('Reading: ', text)
       this.resume()
@@ -327,7 +329,7 @@ const AI = class {
    * @param {*data} data 
    * @return {some more data}
    */
-  next({ read, listen, test=10, socket, instance }) {
+  next({ read, say, listen, test=10, socket, instance }) {
     console.log('before id: ', instance.current)
     //RESTART CLIENT HERE
     let back = this.back
@@ -345,7 +347,7 @@ const AI = class {
         const incorrect = 'sorry, not quite'
         const toRead = isCorrect ? correct : incorrect
         instance.results.push({ front, back, data, correctPercent, isCorrect })
-        return read(toRead)
+        return say(toRead)
       })
       .then(() => {
         instance.current++
@@ -374,6 +376,7 @@ const AI = class {
     let cardsList = [];
     console.log('this: ', this)
     const chainFunctions = {
+      say: this.say.bind(this),
       read: this.read.bind(this),
       listen: this.listen.bind(this),
       socket: this.socket,
