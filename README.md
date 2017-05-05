@@ -25,8 +25,6 @@ From within the root directory:
 
 ```sh
 npm install
-npm uninstall history
-npm install history
 ```
 Install Voice Server
 

@@ -6,12 +6,13 @@ import { HANDLE_EDIT_BENTO_INFO, HANDLE_IMAGE_DELETION, HANDLE_SAVE_BENTO, HANDL
 const notifySave = function () {
   $.notify({
     icon: 'glyphicon glyphicon-ok',
-    title: '<strong>Success! </strong>',    
+    title: '<strong>Success! </strong>',
     message: 'Bento saved.',
   }, {
     type: 'success',
-    allow_dismiss: false,
+    allow_dismiss: true,
     showProgressbar: false,
+    newest_on_top: true,
     delay: 1000,
     animate: {
       enter: 'animated fadeIn',
@@ -33,6 +34,7 @@ const notifyUpdate = function () {
     type: 'success',
     allow_dismiss: false,
     showProgressbar: false,
+    newest_on_top: true,
     delay: 1000,
     animate: {
       enter: 'animated fadeIn',
@@ -46,9 +48,9 @@ const notifyUpdate = function () {
 };
 
 const notifyWarning = function (type) {
-  var msg = null;
-  if(type === 'nori'){
-    msg = "You need at least one complete Nori front and back in order to save this Bento."
+  let msg = null;
+  if (type === 'nori') {
+    msg = 'Fill out at least one Nori.';
   }
   $.notify({
     icon: 'glyphicon glyphicon-warning-sign',
@@ -89,7 +91,6 @@ export function handleImageDeletion(bento, index) {
 export function handleImageUpload(bento, link, index) {
   if (!index && index !== 0) {
     bento.cover.url = link.replace('http://', 'https://');
-    console.log(bento.cover.url)
   } else if (index || index === 0) {
     bento.noris[index].Front.image = link.replace('http://', 'https://');
   }
@@ -149,21 +150,19 @@ export function handleSaveBento(bento) {
       notifyWarning();
     };
   }
-  var oneCompletedNori = false;
-  bento.noris.forEach(function(nori){
-    if(!oneCompletedNori){
-      if(nori.Front.image || JSON.parse(nori.Front.text).blocks[0].text.length > 0 && JSON.parse(nori.Back.text).blocks[0].text.length > 0){
-        oneCompletedNori = true
+  let oneCompletedNori = false;
+  bento.noris.forEach((nori) => {
+    if (!oneCompletedNori) {
+      if (JSON.parse(nori.Front.text).blocks[0].text.length > 0 && JSON.parse(nori.Back.text).blocks[0].text.length > 0) {
+        oneCompletedNori = true;
       }
-      return
     }
-  })
-if(!oneCompletedNori){
-  return function() {
-    notifyWarning('nori');
-  };
-}
-
+  });
+  if (!oneCompletedNori) {
+    return function () {
+      notifyWarning('nori');
+    };
+  }
 
   // Send a request to /api/bentos, saving the bento if it's new and assign it a new bento_id or just updates it.
   return function (dispatch) {
@@ -177,8 +176,8 @@ if(!oneCompletedNori){
       dispatch({ type: HANDLE_SAVE_BENTO, payload: response.data });
     })
     .catch((res) => {
-      if (!res.response) return dispatch(handleError('Could not connect to server'))
-      dispatch(handleError('Bad Login Info'));
+      if (!res.response) return console.log('Could not connect to server');
+      return console.log('Bad Login Info');
     });
   };
 }
