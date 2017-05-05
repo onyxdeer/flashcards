@@ -153,7 +153,7 @@ export function handleSaveBento(bento) {
   let oneCompletedNori = false;
   bento.noris.forEach((nori) => {
     if (!oneCompletedNori) {
-      if ((nori.Front.image || JSON.parse(nori.Front.text).blocks[0].text.length > 0) && JSON.parse(nori.Back.text).blocks[0].text.length > 0) {
+      if (JSON.parse(nori.Front.text).blocks[0].text.length > 0 && JSON.parse(nori.Back.text).blocks[0].text.length > 0) {
         oneCompletedNori = true;
       }
     }
