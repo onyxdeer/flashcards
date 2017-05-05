@@ -6,6 +6,9 @@ import Client from './client.js';
 import Card from './card.js';
 import Promise from 'bluebird';
 import nlp from 'fuzzball';
+var audio = require('browser-audio')
+var file = audio.create('url-to-file.mp3')
+
 /*
   AI class responsible with the following functionalities:
   speech to text and speech recognition (via google API)
