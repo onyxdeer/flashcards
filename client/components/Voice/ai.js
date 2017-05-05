@@ -89,6 +89,11 @@ const AI = class {
     return request.get(URL, { params })
   }
 
+  /**
+   * @private
+   * @param {Array} the list to be trimmed and filtered with any front or back of the noris that has no words
+   * @return {Array} filtered list
+   */
   _filterIncompleteNoris(processedList){
     console.log('what is processed list given: ', processedList)
     let noIncomplete =  processedList.filter(i => {
