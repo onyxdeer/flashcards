@@ -531,7 +531,7 @@ input[type=text].shortenURLField {
 
 img.search-data {
     max-height: 100%;
-    width: 100%;
+    max-width: 100%;
 }
 
 .slick-slide {
@@ -578,13 +578,6 @@ div.slick-slide.slick-active.thumbnailSpace {
     height: 200px;
     max-width: 240px;
 }
-
-/*.searchBox img {
-    padding-top: 20px;
-    width: 180px;
-    height: auto;
-    max-height: 200px;
-}*/
 
 .searchImage {
     padding-top: 20px;
