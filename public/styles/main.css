@@ -298,11 +298,10 @@ input[type=text].shortenURLField {
 /* SEARCH PAGE */
 
 .browse-title {
+    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 250px;
-    display: block;
 }
 
 .searchSection {
@@ -318,8 +317,9 @@ input[type=text].shortenURLField {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 234px;
+    width: 220px;
     display: block;
+    margin: auto;
 }
 
 
@@ -458,6 +458,7 @@ input[type=text].shortenURLField {
 }
 
 .caption {
+    padding-top: 30px;
     width: 100%;
     overflow: hidden;
 }
@@ -758,16 +759,24 @@ p.lp{
   border-width: 5px;
 }
 
-.landingbento{
+.landingButtons {
+  text-align: center;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.line-break{
   padding: 0px;
-  margin: 0px;
-  margin-top: 0px;
-  margin-bottom: 10px;
+  margin: 10px;
   border: 0;
   border-top: 1px solid #eee;
 }
 
 .card-text {
+  padding: 10px;
+  text-align: center;
   max-height: 200px;
   overflow-y: auto;
 }

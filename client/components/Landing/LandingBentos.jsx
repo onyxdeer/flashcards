@@ -67,10 +67,12 @@ class LandingBentos extends Component {
     </div>
     <div className="card-block">
         <h4 className="card-title"><strong>{bento.name}</strong></h4>
-        <hr className="landingbento" />
+        <hr className="line-break" />
         <p className="card-text">{bento.description}</p>
-        <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-primary btn-sm"><i className="fa fa-eye" aria-hidden="true"></i></Link>
-        <button className="speechButton btn btn-success btn-sm" onClick={this.modalAndFetchNori.bind(this, bento.id)}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
+        <div className='landingButtons'>
+          <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-primary btn-sm"><i className="fa fa-eye" aria-hidden="true"></i></Link>
+          <button className="speechButton btn btn-success btn-sm" onClick={this.modalAndFetchNori.bind(this, bento.id)}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
+        </div>
     </div>
 </div>
     )
