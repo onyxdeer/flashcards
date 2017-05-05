@@ -63,6 +63,7 @@ const personalActions = {
         bento.description = data.description;
         bento.bento_id = bentoId;
         bento.user_id = userId;
+        bento.visit_count = data.visit_count;
       })
       .then(() => {
         axios.get('/api/bentosNoris', { params: { bento_id: bentoId } })
