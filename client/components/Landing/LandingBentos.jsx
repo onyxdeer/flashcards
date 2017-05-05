@@ -58,15 +58,16 @@ class LandingBentos extends Component {
     console.log('what are props in landingbentos: ', this.props)
     // var animationNumber = Math.floor(Math.random()*6);
     return (
-<div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.5s" style = {{display: 'flex', flexDirection: 'column', justifyContent:'space-between', flexGrow: 0, flexShrink: 0}}>
-    <div className="view overlay hm-white-slight">
-      {this.props.landing.images ? 
-        this.props.landing.images[bento.id] ?
-        <img src={this.props.landing.images[bento.id][0]} className="img-fluid" alt=""/> : null : null
-      }
-            <div className="mask waves-effect waves-light"></div>
-    </div>
-    <div className="card-block">
+    <div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.5s">
+  {/*<div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.5s" style = {{display: 'flex', flexDirection: 'column', justifyContent:'space-between', flexGrow: 0, flexShrink: 0}}>*/}
+      <div className="view overlay hm-white-slight">
+        {this.props.landing.images ? 
+          this.props.landing.images[bento.id] ?
+          <img src={this.props.landing.images[bento.id][0]} className="img-fluid" alt=""/> : null : null
+        }
+              <div className="mask waves-effect waves-light"></div>
+      </div>
+      <div className="card-block">
         <h4 className="card-title"><strong>{bento.name}</strong></h4>
         <hr className="line-break" />
         <p className="card-text">{bento.description}</p>
@@ -76,8 +77,8 @@ class LandingBentos extends Component {
           <button className="speechButton btn btn-success btn-sm" onClick={this.modalAndFetchNori.bind(this, bento.id)}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
           <Link className='btn btn-default btn-sm' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bentoToEdit, bento.id, this.props.userId === 'guest' ? 1 : this.props.userId)}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
         </div>
+      </div>
     </div>
-</div>
     )
   }
 }
