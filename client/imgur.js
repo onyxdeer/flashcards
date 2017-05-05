@@ -7,29 +7,27 @@
     } else {
         root.Imgur = factory();
     }
-}(this, function () {
-    "use strict";
-  var notify;
-  var notifyPictureUpload = function() {
-  notify = $.notify({
+}(this, () => {
+  let notify;
+  const notifyPictureUpload = function () {
+    notify = $.notify({
       icon: 'glyphicon glyphicon-picture',
-      title : '<strong>Uploading </strong>',
-      message: "your picture...",
+      message: 'Uploading picture...',
     }, {
-      type: 'info', 
+      type: 'info',
       allow_dismiss: true,
       newest_on_top: true,
       delay: 10000,
       animate: {
-        enter: 'animated pulse',
-        exit: 'animated flipOutX'
+        enter: 'animated fadeIn',
+        exit: 'animated fadeOut',
       },
       placement: {
         from: 'top',
-        align: 'center'
-      }
-    })
-}
+        align: 'right',
+      },
+    });
+  };
     var Imgur = function (options) {
         if (!this || !(this instanceof Imgur)) {
             return new Imgur(options);
@@ -81,7 +79,7 @@
                         } catch (err) {
                             response = this.responseText;
                         }
-                          notify.update({'type' : 'success', 'message': '<Strong>Your Picture Has Been Successfully Uploaded</Strong>'})
+                          notify.update({ type: 'success', title: '<strong>Success! </strong>', message: 'Picture successfully uploaded.' });
                           setTimeout(function() {
                             notify.close();
                           }, 1250);
