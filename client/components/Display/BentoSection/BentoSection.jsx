@@ -45,7 +45,7 @@ class BentoSection extends Component {
         <Deck.Card.Front>
             <div className={className} onClick={this.props.flipToBack}>
               <div className='row imageSection'>{this.renderImages(nori, true)}</div>
-              <div className='row frontText'>
+              <div className={!this.renderImages(nori,true) ? 'row frontText' : 'row frontTextImg'}>
                 <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_front)))} readOnly={true} />
               </div>
             </div>
@@ -53,7 +53,7 @@ class BentoSection extends Component {
         <Deck.Card.Back>
           <div className={className} onClick={this.props.flipToFront}>
             <div className='row imageSection'>{this.renderImages(nori, false)}</div>
-            <div className='row backText'>
+            <div className={!this.renderImages(nori,false) ? 'row backText' : 'row backTextImg'}>
               <Editor editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(nori.text_back)))} readOnly={true} />
             </div>
           </div>

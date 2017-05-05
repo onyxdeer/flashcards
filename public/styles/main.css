@@ -384,6 +384,13 @@ input[type=text].shortenURLField {
     overflow-y: auto;
 }
 
+.frontTextImg, .backTextImg {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-height: 45%;
+    overflow-y: auto;
+}
+
 .card-front {
     -webkit-perspective-origin: 0% 0%;
     perspective-origin: 0% 0%;
@@ -456,7 +463,7 @@ input[type=text].shortenURLField {
 .deck > :nth-child(9n+0) { transform: rotate(2.47deg); }
 .deck > :nth-child(10n+0) { transform: rotate(-2.27deg); }
 
-/* USER PAGE */
+/* BROWSE PAGE */
 
 .carousel-card {
     max-width: 500px;
@@ -487,6 +494,15 @@ input[type=text].shortenURLField {
 
 .slick-next {
     z-index: 1;
+}
+
+.exploreImage {
+    margin: auto;
+    padding-top: 20px;
+    width: 180px;
+    height: 200px;
+    display: flex;
+    line-height: 200px;
 }
 
 /* SEARCH PAGE */
@@ -539,6 +555,7 @@ input[type=text].shortenURLField {
 img.search-data {
     max-height: 100%;
     max-width: 100%;
+    margin: auto;
 }
 
 .slick-slide {
@@ -551,7 +568,13 @@ div.slick-slide.slick-active.thumbnailSpace {
     justify-content: center;
 }
 
+div.thumbnailSpace.wow.bounceInDown {
+    display: flex;
+    justify-content: center;
+}
+
 .thumbnail {
+    text-align: center;
     border: groove;
     box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
     width: 300px;
@@ -580,11 +603,11 @@ div.slick-slide.slick-active.thumbnailSpace {
     margin-bottom: 15px;
 }
 
-.thumbnail img {
+/*.thumbnail img {
     padding: 20px;
     height: 200px;
     max-width: 240px;
-}
+}*/
 
 .searchImage {
     padding-top: 20px;
