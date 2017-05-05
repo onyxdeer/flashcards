@@ -221,6 +221,10 @@ input {
 
 /* DISPLAY PAGE */
 
+.row {
+  width: 100%;
+}
+
 .cardSection {
     width: 500px;
     margin: 0 auto;
@@ -757,6 +761,10 @@ p.lp{
 .landing-bento:hover {
   border-color: #BADA55;
   border-width: 5px;
+}
+
+.landingItems {
+    text-align: center;
 }
 
 .landingButtons {
