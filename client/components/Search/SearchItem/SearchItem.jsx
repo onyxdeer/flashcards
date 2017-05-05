@@ -23,7 +23,9 @@ class SearchItem extends Component {
     return (
       <div className='search-item col-md-2' key={this.props.key}>
         <div className='searchBox wow bounceInUp'>
-          <img className='search-data' src={this.props.item.img_url ? this.props.item.img_url : 'img/no_image.jpg'} />
+          <div className='searchImage'>
+            <img className='search-data' src={this.props.item.img_url ? this.props.item.img_url : 'img/no_image.jpg'} />
+          </div>
           <div className='caption'>
             <h3 className='search-data tile-title'>{this.props.item.name}</h3>
             <p className='searchDescription search-data'>{this.props.item.description}</p>
