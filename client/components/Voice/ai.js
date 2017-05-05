@@ -6,8 +6,9 @@ import Client from './client.js';
 import Card from './card.js';
 import Promise from 'bluebird';
 import nlp from 'fuzzball';
-var audio = require('browser-audio')
-var file = audio.create('url-to-file.mp3')
+import audio from 'browser-audio';
+
+
 
 /*
   AI class responsible with the following functionalities:
@@ -18,7 +19,7 @@ var file = audio.create('url-to-file.mp3')
 const AI = class {
   constructor(name, data) {
     this.name = name;
-
+    this.sound = audio.create('./sounds/bell.mp3')
     const CLOUDURL = '54.193.62.15';
     // const PORT = ':8000'
     const HOSTURL = 'https://' + CLOUDURL
