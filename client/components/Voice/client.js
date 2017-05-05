@@ -49,7 +49,7 @@ module.exports = function (config) {
         // })
 
         client.on('open', function () {
-            console.log('streaming client turned on')
+            console.log('streaming client turned on with ClientID: ', config.clientId)
             bStream = client.createStream({sampleRate: resampleRate, clientId: config.clientId});
         });
 
