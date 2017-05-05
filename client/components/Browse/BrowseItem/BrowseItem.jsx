@@ -23,8 +23,10 @@ class BrowseItem extends Component {
   render() {
     return (
       <div className='thumbnailSpace wow bounceInDown'>
-        <span className='thumbnail'>
-          <img src={this.props.item.img_url ? this.props.item.img_url : 'img/no_image.jpg'} />
+        <div className='thumbnail'>
+          <div className='exploreImage'>
+            <img className='search-data' src={this.props.item.img_url ? this.props.item.img_url : 'img/no_image.jpg'} />
+          </div>
           <div className='caption exploreItems'>
             <h4 className='browse-title'><strong>{this.props.item.name}</strong></h4>
             <hr className="line-break" />
@@ -32,7 +34,7 @@ class BrowseItem extends Component {
             <p className='exploreItems'><label>View Count:</label> {this.props.item.visit_count} </p>
             <p className='exploreItems'><Link className='btn btn-primary btn-sm' to={'/display'} onClick={() => this.props.setBentoId(this.props.item.id)}><i className="fa fa-eye" aria-hidden="true"></i></Link><button className="speechButton btn btn-success btn-sm" onClick={this.modalAndFetchNori.bind(this, this.props.item.id)}><i className="fa fa-volume-up" aria-hidden="true"></i></button><Link className='btn btn-default btn-sm' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bento, this.props.item.id, this.props.userId)}><i className="fa fa-pencil" aria-hidden="true"></i></Link></p>
           </div>
-        </span>
+        </div>
       </div>
     );
   }
