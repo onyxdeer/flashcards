@@ -14,7 +14,9 @@
     "test-server": "mocha test/test-server || true",
     "voice": "cd voice-server && npm start",
     "voice:install": "cd voice-server && npm install",
-    "seed": "node db/scripts/seed.js"
+    "seed": "node db/scripts/seed.js",
+    "start:prod": "pm2 start server/server.js --name main-server",
+    "voice:prod": "pm2 start voice-server/server/server.js --name voice-server"
   },
   "repository": {
     "type": "git",
