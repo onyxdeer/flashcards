@@ -78,7 +78,7 @@ if(!fs.existsSync("recordings")){
 
 if (ENV === 'PROD'){
     const read = fs.readFileSync;
-    const privateKey = read('ssl/server.key', 'utf8')
+    const privateKey = read('ssl/obento_key.pem', 'utf8')
     const certificate = read('ssl/obento_fun.pem', 'utf8')
     const chainLines = read('ssl/serverChain.pem', 'utf8').split('\n')
 
