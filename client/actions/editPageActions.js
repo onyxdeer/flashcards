@@ -176,8 +176,8 @@ export function handleSaveBento(bento) {
       dispatch({ type: HANDLE_SAVE_BENTO, payload: response.data });
     })
     .catch((res) => {
-      if (!res.response) return dispatch(handleError('Could not connect to server'));
-      dispatch(handleError('Bad Login Info'));
+      if (!res.response) return console.log('Could not connect to server');
+      return console.log('Bad Login Info');
     });
   };
 }
