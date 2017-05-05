@@ -286,7 +286,7 @@ const AI = class {
       this.pause()
       this.startTransfer()
       let end = this.endTransfer.bind(this)
-      socket.on('transfer over', function(data){
+      socket.on('transfer over', function({ data , clientId}){
           console.log('received data from backend: ', data)
           end()
           resolve(data)
