@@ -141,50 +141,7 @@ const AI = class {
     @return {object} used to initialize annyang
   */
   _getCommands() {
-    // const commandNames = Object.getOwnPropertyNames( AI.prototype );
-    // let commandObj = {};
-    // let voiceCommands = this._removePrivateMethods(commandNames);
-    // voiceCommands.map(command => commandObj[command] = AI.prototype[command] );
-    // return commandObj;
-
-    const commands = {
-      'start': () => {
-        console.log('start triggered')
-        let configs = {}
-        this.startSession( configs );
-      },
-      'hello': () => {
-        console.log('hello function called')
-        this.read('hello there, my name is norica, here to help you memorize your noris ')
-      },
-      'next': () => {
-        console.log('next function called!')
-      },
-      'go' : () => {
-        console.log('go fucntion called')
-      },
-      'repeat': () => {
-        console.log('repeat function called')
-      },
-      'redo': () => {
-        console.log('redo function called')
-      },
-      'previous': () => {
-        console.log('previous function called')
-      },
-      'retry': () => {
-        console.log('retry function called')
-      },
-      'answer': () => {
-        console.log('answer function called')
-      },
-      'accent': () => {
-        //another function alias called
-        //say it as if you are *country name
-        console.log('accent function called')
-      }
-    };
-    return commands;
+    return { ...util.commands };
   }
 
   /*
