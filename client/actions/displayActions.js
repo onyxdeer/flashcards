@@ -333,7 +333,7 @@ function incrementVisitCount(id, current_count) {
   };
 }
 
-function incrementVisitNoStore(id){
+function incrementVisitDirectStore(id){
   return function (dispatch, getState) {
     const state = getState();
     const { visit_count } = state.displayReducer;
@@ -344,7 +344,7 @@ function incrementVisitNoStore(id){
   }
 }
 
-function fetchBentoMetaNoStore(callback){
+function fetchBentoMetaDirectStore(callback){
   return function (dispatch, getState) {
     const state = getState();
     const { bentoId } = state.appReducer;
@@ -365,6 +365,6 @@ function fetchBentoMetaNoStore(callback){
   }
 }
 
-const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput, clearPhoneNumberInput, resetCurrentNori, incrementVisitCount, incrementVisitNoStore, fetchBentoMetaNoStore };
+const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput, clearPhoneNumberInput, resetCurrentNori, incrementVisitCount, incrementVisitDirectStore, fetchBentoMetaDirectStore };
 
 export default displayActions;
