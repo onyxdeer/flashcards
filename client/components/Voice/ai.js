@@ -229,7 +229,7 @@ const AI = class {
     }
     console.log('we have cards: ', this.cards)
     this.cards[0].next()
-    return this;
+    // return this;
   }
   /*
     ends the voice session and gracefully shut down all the clients
