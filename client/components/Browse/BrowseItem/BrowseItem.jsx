@@ -22,7 +22,7 @@ class BrowseItem extends Component {
 
   render() {
     return (
-      <div className='thumbnailSpace wow bounceInDown'>
+      <div className='thumbnailSpace wow animated bounceIn' data-wow-delay = "0.4s" data-wow-duration="1.5s">
         <div className='thumbnail'>
           <div className='exploreImage'>
             <img className='search-data' src={this.props.item.img_url ? this.props.item.img_url : 'img/no_image.jpg'} />
