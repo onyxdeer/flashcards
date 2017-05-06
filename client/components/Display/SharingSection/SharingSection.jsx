@@ -12,8 +12,8 @@ class SharingSection extends Component {
 
   render() {
     return (
-      <div>
-        <div className='row'>
+      <div className='sharingSpace'>
+        <div className='row sharingSpace'>
           <div className='sharingSection'>
             <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`obento.fun/id=${this.props.id_hash}`} readOnly />
             <button type='button' className='btn btn-success' data-toggle='modal' data-target='#sendSMS' onClick={this.props.clearPhoneNumberInput}>Send via SMS</button>
