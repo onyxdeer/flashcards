@@ -291,9 +291,10 @@ const AI = class {
     return new Promise( (resolve, reject) => {
       console.log('Reading: ', text)
       this.resume()
-      window.responsiveVoice.speak(text, "US English Female", { 
+      window.responsiveVoice.speak(text, "Korean Female", { 
           onstart: () => { console.log('talking...')},
           onend: () => {
+            console.log('were ending read function')
             this.sound.play()
             resolve()
           }
@@ -314,9 +315,10 @@ const AI = class {
       let end = this.endTransfer.bind(this)
       socket.on('transfer over', function({ data , clientId }){
           // console.log('received data from backend: ', data)
-          // console.log('received data from client: ', clientId)
+          console.log('received data from client: ', clientId)
           // console.log('debugging what clientID is: ', that.configs.clientId)
           if(clientId === that.configs.clientId){
+            console.log('calling END() FUNCTION HERE')
             end()
             resolve(data)
           }
