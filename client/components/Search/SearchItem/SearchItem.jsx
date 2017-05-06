@@ -21,8 +21,8 @@ class SearchItem extends Component {
 
   render() {
     return (
-      <div className='search-item col-md-2' key={this.props.key}>
-        <div className='searchBox wow bounceInUp'>
+      <div className='search-item' key={this.props.key}>
+        <div className='searchBox wow animated bounceIn' data-wow-delay = "0.4s" data-wow-duration="1.5s">
           <div className='searchImage'>
             <img className='search-data' src={this.props.item.img_url ? this.props.item.img_url : 'img/no_image.jpg'} />
           </div>

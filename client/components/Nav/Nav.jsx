@@ -25,6 +25,10 @@ class Navigation extends Component {
     $('.navbar-collapse .menu-item').click(function(){
       $(".navbar-collapse").collapse('hide');
     });
+
+    $('.navbar-brand').click(function(){
+      $(".navbar-collapse").collapse('hide');
+    });
   }
 
   render() {

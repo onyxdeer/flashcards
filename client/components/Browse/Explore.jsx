@@ -33,18 +33,17 @@ class Explore extends Component {
       className: 'slick-margin',
       dotsClass: 'slick-dots slick-thumb',
       focusOnSelect: true,
-      responsive: [ { breakpoint: 800, settings: { slidesToShow: 1 } }, { breakpoint: 1100, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } }],
+      responsive: [ { breakpoint: 800, settings: { slidesToShow: 1 } }, { breakpoint: 1100, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } }, { breakpoint: 1900, settings: { slidesToShow: 4 } }, { breakpoint: 2300, settings: { slidesToShow: 5 } }],
       touchMove: true,
       swipe: true,
       swipeToSlide: true,
       infinite: true,
       speed: 300,
-      slidesToShow: 3,
       slidesToScroll: 1,
       initialSlide: 0,
       touchMove: true
     };
-    
+
     return (
       <div>
         <Modal/>
@@ -52,13 +51,13 @@ class Explore extends Component {
           <div className='create-title'>
             <h1 className='default-font'>Explore Bentos</h1>
           </div>
-          <div className='row'>
+          <div className='row browseSection'>
             <div className='col-xs-offset-1 col-xs-10 col-xs-offset-1'>
 
                 {
-                  this.props.bentos&&(this.props.bentos.length > 0 ) ? 
+                  this.props.bentos&&(this.props.bentos.length > 0 ) ?
 
-                  (<Carousel {...settings}> 
+                  (<Carousel {...settings}>
                   {this.props.bentos.map((bento, index) => (
                     <div key={index}>
                       <BrowseItem item={bento} userId={userId} />
