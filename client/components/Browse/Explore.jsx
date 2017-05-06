@@ -31,6 +31,7 @@ class Explore extends Component {
       accessibility: true,
       autoplay: false,
       className: 'slick-margin',
+      centerMode: true,
       dotsClass: 'slick-dots slick-thumb',
       focusOnSelect: true,
       responsive: [ { breakpoint: 800, settings: { slidesToShow: 1 } }, { breakpoint: 1100, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } }],
@@ -52,7 +53,7 @@ class Explore extends Component {
           <div className='create-title'>
             <h1 className='default-font'>Explore Bentos</h1>
           </div>
-          <div className='row'>
+          <div className='row browseSection'>
             <div className='col-xs-offset-1 col-xs-10 col-xs-offset-1'>
 
                 {

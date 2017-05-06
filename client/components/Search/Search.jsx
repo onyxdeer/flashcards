@@ -52,7 +52,7 @@ class Search extends Component {
             </span>
           </div>*/}
 
-          <div>
+          <div className='searchGrid'>
           {/*Search results*/}
             {
               this.props.bentos&&(this.props.bentos.length > 0 )? this.props.bentos.map((bento, index) => (
