@@ -333,17 +333,40 @@ function incrementVisitCount(id, current_count) {
   };
 }
 
-function incrementVisitNoStore(){
+function incrementVisitNoStore(id){
   return function (dispatch, getState) {
-    console.log('what is state right now: ', getState)
+    const state = getState();
+    console.log('what is state right now: ', state)
+    const { visit_count } = state.displayReducer;
+    return axios.post('/api/visits', {
+      bento_id: id,
+      visit_count: visit_count + 1,
+    });
   }
 }
 
-function fetchBentoMetaNoStore(){
+function fetchBentoMetaNoStore(callback){
   return function (dispatch, getState) {
-    console.log('what is state right now: ', getState)
+    const state = getState();
+    console.log('what is state right now: ', state)
+    const { bentoId } = state.appReducer;
+    axios.get('/api/bentos', {
+      params: { id: bentoId },
+    })
+    .then((response) => {
+      dispatch({
+        type: FETCH_BENTO_METADATA,
+        title: response.data[0].name,
+        id_hash: response.data[0].id_hash,
+        visit_count: response.data[0].visit_count,
+      });
+    })
+    .then(() => {
+      cb(bentoId);
+    });
   }
 }
+
 // function fetchBentoMetaData(bentoId, cb) {
 //   return function (dispatch) {
 //     // Get bento title for given bento_id
@@ -364,6 +387,6 @@ function fetchBentoMetaNoStore(){
 //   };
 // }
 
-const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput, clearPhoneNumberInput, resetCurrentNori, incrementVisitCount, incrementVisitNoStore };
+const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput, clearPhoneNumberInput, resetCurrentNori, incrementVisitCount, incrementVisitNoStore, fetchBentoMetaNoStore };
 
 export default displayActions;
