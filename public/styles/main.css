@@ -575,8 +575,8 @@ div.slick-slide.slick-active.thumbnailSpace {
     justify-content: center;
 }
 
-div.thumbnailSpace.wow.bounceInDown {
-    display: flex;
+div.thumbnailSpace.wow.bounceIn.animated {
+    padding: 5px;
     justify-content: center;
 }
 
@@ -584,7 +584,7 @@ div.thumbnailSpace.wow.bounceInDown {
     text-align: center;
     border: groove;
     box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
-    width: 300px;
+    max-width: 300px;
     height: 600px;
     margin: auto;
 }
@@ -655,7 +655,6 @@ div.thumbnailSpace.wow.bounceInDown {
 
 .exploreItems {
     text-align: center;
-    min-width: 210px;
 }
 
 /*CSS FOR SCROLL TO TOP BUTTON*/
