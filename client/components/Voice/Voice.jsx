@@ -18,7 +18,7 @@ class Voice extends Component {
   handleStart(){
     this.joe = new AI('joe', this.props.noris);    
     this.joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
-    this.props.fetchBentoMetaNoStore(this.handleVisitCountIncrement);
+    this.props.fetchBentoMetaDirectStore(this.handleVisitCountIncrement);
   }
 
   handleEnd(){
@@ -42,7 +42,7 @@ class Voice extends Component {
   }
 
   handleVisitCountIncrement (bentoId) {
-    this.props.incrementVisitNoStore(bentoId);
+    this.props.incrementVisitDirectStore(bentoId);
   }
 
   render() {
