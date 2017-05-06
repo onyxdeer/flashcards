@@ -139,10 +139,6 @@ module.exports = function (config) {
         }
     }
 
-    // $(".stop-rec-btn").click(function () {
-    //     close();
-    // });
-
     function close(){
         console.log('closing binary socket speech streaming client');
         if(recorder)
