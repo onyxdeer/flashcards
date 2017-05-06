@@ -145,10 +145,10 @@ server.on('connection', function(client) {
         
         switch(CONFIG.AudioEncoding){
             case "WAV":
-                fileWriter = new wav.FileWriter(fileName + ".wav", {
-                    channels: 1,
-                    sampleRate: meta.sampleRate,
-                    bitDepth: 16 });
+                // fileWriter = new wav.FileWriter(fileName + ".wav", {
+                //     channels: 1,
+                //     sampleRate: meta.sampleRate,
+                //     bitDepth: 16 });
                 // stream.pipe(fileWriter).pipe(recognizeStream);
                 // stream.pipe(recognizeStream);
                 stream.pipe(googleStream);
