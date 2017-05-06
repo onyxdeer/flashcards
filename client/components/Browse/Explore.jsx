@@ -31,7 +31,6 @@ class Explore extends Component {
       accessibility: true,
       autoplay: false,
       className: 'slick-margin',
-      centerMode: true,
       dotsClass: 'slick-dots slick-thumb',
       focusOnSelect: true,
       responsive: [ { breakpoint: 800, settings: { slidesToShow: 1 } }, { breakpoint: 1100, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } }, { breakpoint: 1900, settings: { slidesToShow: 4 } }, { breakpoint: 2300, settings: { slidesToShow: 5 } }],

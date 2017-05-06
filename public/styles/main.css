@@ -582,7 +582,6 @@ div.thumbnailSpace.wow.bounceIn.animated {
 
 .thumbnail {
     text-align: center;
-    border: groove;
     box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
     max-width: 300px;
     height: 600px;
@@ -596,10 +595,11 @@ div.thumbnailSpace.wow.bounceIn.animated {
 .searchBox {
     text-align: center;
     margin: 5px;
-    border: groove;
     box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
     width: 240px;
     height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 .searchBox:hover {
     border-color: #BADA55;
@@ -781,14 +781,12 @@ p.lp{
 }
 
 .landing-bento {
-    /*background: rgba(0, 0, 0, 0) linear-gradient(135deg, #8ec64e 0%, #41aba0 100%) repeat scroll 0 0;*/
     padding: 3px;
     margin: 8px;
-    border: groove;
     box-shadow: 0 4px 8px 0 rgba(142, 198, 78, 0.5);
-    /*max-width: 15%;*/
-    /*min-width: 180px;*/
     width: 240px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 .landing-bento:hover {
     border-color: #BADA55;
