@@ -52,7 +52,7 @@ class Explore extends Component {
           <div className='create-title'>
             <h1 className='default-font'>Explore Bentos</h1>
           </div>
-          <div className='row'>
+          <div className='row browseSection'>
             <div className='col-xs-offset-1 col-xs-10 col-xs-offset-1'>
 
                 {
