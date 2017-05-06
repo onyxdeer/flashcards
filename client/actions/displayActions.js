@@ -76,16 +76,19 @@ function fetchBentoMetaData(bentoId, cb) {
       params: { id: bentoId },
     })
     .then((response) => {
+      console.log('we are dispatching!!')
       dispatch({
         type: FETCH_BENTO_METADATA,
         title: response.data[0].name,
         id_hash: response.data[0].id_hash,
         visit_count: response.data[0].visit_count,
       });
+      console.log('DONE DISPATCHING')
     })
-    .then(() => {
-      return cb;
-    });
+    // .then(() => {
+    //   console.log('triggeing CALLBACK IN METADATA: ', cb)
+    //   cb();
+    // });
   };
 }
 
@@ -326,10 +329,13 @@ function shareUrlToSMS(event, url, phoneNumber) {
 
 function incrementVisitCount(id, current_count) {
   return function (dispatch) {
+    console.log('we are triggering ACTION INCREMENT VISIT COUNT')
     return axios.post('/api/visits', {
       bento_id: id,
       visit_count: current_count += 1,
-    });
+    }).then((count)=>
+      console.log('NEW VISIT COUNT: ', count)
+    );
   };
 }
 

@@ -18,7 +18,7 @@ class Voice extends Component {
   handleStart(){
     this.joe = new AI('joe', this.props.noris);    
     this.joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
-    // this.props.fetchBentoMetaData(this.props.bentoId, this.handleVisitCountIncrement);
+    this.props.fetchBentoMetaData(this.props.bentoId, this.handleVisitCountIncrement);
   }
 
   handleEnd(){
@@ -42,10 +42,12 @@ class Voice extends Component {
   }
 
   handleVisitCountIncrement () {
-    this.props.incrementVisitCount(this.props.bentoId, this.props.visit_count);
+    console.log('triggering handleVisitcount increment')
+    // this.props.incrementVisitCount(this.props.bentoId, this.props.visit_count);
   }
 
   render() {
+    console.log('YO WE ARE RERENDERING')
     this.props.terminate ? this.handleEnd(): null;
     return (
       <div className="container animated bounceIn">
