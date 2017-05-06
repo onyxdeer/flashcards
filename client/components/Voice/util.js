@@ -96,8 +96,8 @@ const summarize = ( answersList, callback ) => {
 const readSummary = ( { total, sumCorrect, sumIncorrect, list, callback }) => {
   console.log('what is callback:', callback)
   let allCorrect = sumIncorrect === 0 
-  let remain = allCorrect ? 'congratulations' : 'here are the questions that we could work on.';
-  const str = `That is the end of our session. you got ${sumCorrect} answers correct. ${sumIncorrect} answers incorrect. out of ${total} norreez. ${remain}`
+  let remain = allCorrect ? 'congratulations' : 'here are the questions we can work on.';
+  const str = `That is the end of our session. You got ${sumCorrect} answers correct and ${sumIncorrect} answers incorrect out of ${total} norreez. ${remain}`
   window.responsiveVoice.speak(
       str, 
       "US English Female", 
@@ -107,7 +107,7 @@ const readSummary = ( { total, sumCorrect, sumIncorrect, list, callback }) => {
 
 const readList = ( list, callback ) => {
   console.log('readList triggered', list, callback)
-  const toSay = list.map(i => `the question was. ${i.front}. and the correct answer was. ${i.back}. but I heard ${i.data}`)
+  const toSay = list.map(i => `the question was. ${i.front}. and the correct answer is. ${i.back}. but I heard ${i.data}`)
 
   let start = 0;
   const read = (index) => {
