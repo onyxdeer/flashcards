@@ -47,7 +47,7 @@ class Voice extends Component {
   }
 
   render() {
-    console.log('YO WE ARE RERENDERING')
+    console.log('YO WE ARE RERENDERING', this.props.terminate)
     this.props.terminate ? this.handleEnd(): null;
     return (
       <div className="container animated bounceIn">
