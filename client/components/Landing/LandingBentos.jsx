@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import * as actions from '../../actions/appActions.js'
 import { modalOn } from '../../actions/voiceActions.js';
+import { setBentoId } from '../../actions/appActions.js';
 import displayActions from './../../actions/displayActions.js';
 import personalActions from './../../actions/personalActions.js';
 
@@ -73,7 +74,7 @@ class LandingBentos extends Component {
         <p className='landingItems'><label>View Count:</label> {bento.visit_count} </p>
         <div className='landingButtons'>
           <Link to = {'/display'} onClick = {() => this.props.setBentoId(bento.id)} className="btn btn-primary btn-sm"><i className="fa fa-eye" aria-hidden="true"></i></Link>
-          <button className="speechButton btn btn-success btn-sm" onClick={this.modalAndFetchNori.bind(this, bento.id)}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
+          <button className="speechButton btn btn-success btn-sm" onClick={() => { this.modalAndFetchNori.bind(this, bento.id)(); this.props.setBentoId(bento.id); }}><i className="fa fa-volume-up" aria-hidden="true"></i></button>
           <Link className='btn btn-default btn-sm' to={'/edit'} onClick={() => this.props.handleFetchBentoForEdit(this.props.bentoToEdit, bento.id, this.props.userId === 'guest' ? 1 : this.props.userId)}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
         </div>
       </div>
@@ -89,4 +90,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { ...actions, ...personalActions, modalOn, fetchNoris})(LandingBentos);
+export default connect(mapStateToProps, { ...actions, ...personalActions, modalOn, fetchNoris, setBentoId })(LandingBentos);

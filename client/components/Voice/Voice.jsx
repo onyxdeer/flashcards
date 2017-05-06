@@ -3,7 +3,7 @@ import axios from 'axios';
 import { commands, noris, responses } from './util.js';
 import { connect } from 'react-redux';
 import AI from './ai.js';
-
+import displayActions from '../../actions/displayActions.js';
 
 class Voice extends Component {
   constructor(props) {
@@ -12,11 +12,13 @@ class Voice extends Component {
     this.handleEnd = this.handleEnd.bind(this);
     this.transfer = this.transfer.bind(this);
     this.endTransfer = this.endTransfer.bind(this);
+    this.handleVisitCountIncrement = this.handleVisitCountIncrement.bind(this);
   }
 
   handleStart(){
     this.joe = new AI('joe', this.props.noris);    
     this.joe.startSession({})  //should check if annyang and responsive voice are enabled, retrieves data from the server
+    this.props.fetchBentoMetaData(this.props.bentoId, this.handleVisitCountIncrement);
   }
 
   handleEnd(){
@@ -39,6 +41,10 @@ class Voice extends Component {
     return width + ''
   }
 
+  handleVisitCountIncrement () {
+    this.props.incrementVisitCount(this.props.bentoId, this.props.visit_count);
+  }
+
   render() {
     this.props.terminate ? this.handleEnd(): null;
     return (
@@ -52,10 +58,15 @@ class Voice extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    bentoId: state.appReducer.bentoId,
+    visit_count: state.displayReducer.visit_count,
+    terminate: state.voiceReducer.terminate,
+  }
+}
 
-export default connect((state) => ({
-  terminate: state.voiceReducer.terminate
-}),{})(Voice);
+export default connect(mapStateToProps, { ...displayActions })(Voice);
 
 
 
