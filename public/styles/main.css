@@ -242,6 +242,10 @@ input {
     margin-top: 25px;
 }
 
+.sharingSpace {
+    margin: auto;
+}
+
 .sharingSection {
     text-align: center;
 }
@@ -259,10 +263,12 @@ input {
 
 input[type=tel].cardNumberField {
     width: 40px;
+    text-align: center;
 }
 
 input[type=text].shortenURLField {
     width: 185px;
+    text-align: center;
 }
 
 .DraftEditor-root {
@@ -600,6 +606,7 @@ div.thumbnailSpace.wow.bounceIn.animated {
     height: 500px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    transition: border 0.2s ease-in-out;
 }
 .searchBox:hover {
     border-color: #BADA55;
@@ -787,6 +794,7 @@ p.lp{
     width: 240px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    transition: border 0.2s ease-in-out;
 }
 .landing-bento:hover {
     border-color: #BADA55;
