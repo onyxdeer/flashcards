@@ -96,7 +96,7 @@ const summarize = ( answersList, callback ) => {
 const readSummary = ( { total, sumCorrect, sumIncorrect, list, callback }) => {
   let allCorrect = sumIncorrect === 0 
   let remain = allCorrect ? 'congratulations' : 'here are the questions we can work on.';
-  const str = `That is the end of our session. You got ${sumCorrect} answers correct. and ${sumIncorrect} answers incorrect out of ${total} norreez. ${remain}`
+  const str = `That is the end of our session. You got ${sumCorrect} answers correct. and ${sumIncorrect} answers incorrect. out of ${total} norreez. ${remain}`
   window.responsiveVoice.speak(
       str, 
       "US English Female", 
