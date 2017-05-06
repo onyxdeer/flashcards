@@ -333,6 +333,37 @@ function incrementVisitCount(id, current_count) {
   };
 }
 
-const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput, clearPhoneNumberInput, resetCurrentNori, incrementVisitCount };
+function incrementVisitNoStore(){
+  return function (dispatch, getState) {
+    console.log('what is state right now: ', getState)
+  }
+}
+
+function fetchBentoMetaNoStore(){
+  return function (dispatch, getState) {
+    console.log('what is state right now: ', getState)
+  }
+}
+// function fetchBentoMetaData(bentoId, cb) {
+//   return function (dispatch) {
+//     // Get bento title for given bento_id
+//     axios.get('/api/bentos', {
+//       params: { id: bentoId },
+//     })
+//     .then((response) => {
+//       dispatch({
+//         type: FETCH_BENTO_METADATA,
+//         title: response.data[0].name,
+//         id_hash: response.data[0].id_hash,
+//         visit_count: response.data[0].visit_count,
+//       });
+//     })
+//     .then(() => {
+//       cb();
+//     });
+//   };
+// }
+
+const displayActions = { fetchFrontImages, fetchBackImages, fetchBentoMetaData, fetchNoris, nextNori, prevNori, handleInput, setNori, shuffleNori, flipToFront, flipToBack, shareUrlToSMS, handlePhoneNumberInput, clearPhoneNumberInput, resetCurrentNori, incrementVisitCount, incrementVisitNoStore };
 
 export default displayActions;
