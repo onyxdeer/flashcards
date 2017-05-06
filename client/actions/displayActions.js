@@ -362,7 +362,7 @@ function fetchBentoMetaNoStore(callback){
       });
     })
     .then(() => {
-      cb(bentoId);
+      callback(bentoId);
     });
   }
 }
