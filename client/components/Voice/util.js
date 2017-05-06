@@ -94,7 +94,6 @@ const summarize = ( answersList, callback ) => {
 }
 
 const readSummary = ( { total, sumCorrect, sumIncorrect, list, callback }) => {
-  console.log('what is callback:', callback)
   let allCorrect = sumIncorrect === 0 
   let remain = allCorrect ? 'congratulations' : 'here are the questions we can work on.';
   const str = `That is the end of our session. You got ${sumCorrect} answers correct. and ${sumIncorrect} answers incorrect out of ${total} norreez. ${remain}`
@@ -106,13 +105,13 @@ const readSummary = ( { total, sumCorrect, sumIncorrect, list, callback }) => {
 }
 
 const readList = ( list, callback ) => {
-  console.log('readList triggered', list, callback)
+  // console.log('readList triggered', list, callback)
   const toSay = list.map(i => `the question was. ${i.front}. and the correct answer is. ${i.back}. but I heard ${i.data}`)
 
   let start = 0;
   const read = (index) => {
     if(!toSay[index]) {
-      console.log('triggering callback!!!')
+      // console.log('triggering callback!!!')
       callback();
       return
     }
@@ -139,77 +138,7 @@ const say = (text, callbacks ) => {
 }
 
 
-const bentoList = [
-  {
-    name: 'Hack Reactor 2',
-    description: 'Learn more about Hack Reactor Cohort 71',
-    nori_count: 10,
-    visit_count: 20,
-    user_id: 1,
-    category_id: 1
-  },
-  {
-    name: 'Hack Reactor 3',
-    description: 'Learn more about Hack Reactor Cohort 71',
-    nori_count: 10,
-    visit_count: 20,
-    user_id: 1,
-    category_id: 1
-  },
-  {
-    name: 'Hack Reactor 4',
-    description: 'Learn more about Hack Reactor Cohort 71',
-    nori_count: 10,
-    visit_count: 20,
-    user_id: 1,
-    category_id: 1
-  },
-  {  
-    name: 'Hack Reactor 5',
-    description: 'Learn more about Hack Reactor Cohort 71',
-    nori_count: 10,
-    visit_count: 20,
-    user_id: 1,
-    category_id: 1
-  }
-]    
-
-const noris = [
-  {
-    name: 'card 1 ',
-    description: 'Question about Eric',
-    text_front: 'Who is Eric\'s favorite basketball player?',
-    text_back: 'Kevin Durant'
-  },
-  {
-    name: 'card 2',
-    description: 'Question about Eric',
-    text_front: 'dynamic programming',
-    text_back: 'Klay Thompson'
-  },
-  {
-    name: 'card 3',
-    description: 'Question about Eric',
-    text_front: 'dynamic programming',
-    text_back: 'In computer science, mathematics, management science, economics and bioinformatics, dynamic programming, also known as dynamic optimization, is a method for solving a complex problem by breaking it down into a collection of simpler subproblems, solving each of those subproblems just once, and storing their solutions '
-  },
-  {
-    name: 'card 4',
-    description: 'Question about Eric',
-    text_front: 'Who is Eric\'s favorite person who likes to eat and drink coconuts?',
-    text_back: 'aloak misra should be the answer, it is very obvious he has the special ability to absorb calories with accumulating any excess'
-  },
-  {
-    name: 'card 5',
-    description: 'Question about Eric',
-    text_front: 'Who is Eric\'s favorite basketball player?',
-    text_back: 'Iggy'
-  }
-]
 
 
 
-
-
-
-module.exports = { commands, noris, uuid, polish, verifyAnswer, summarize, readSummary }
+module.exports = { commands, uuid, polish, verifyAnswer, summarize, readSummary }
