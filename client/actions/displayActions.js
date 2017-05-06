@@ -84,7 +84,7 @@ function fetchBentoMetaData(bentoId, cb) {
       });
     })
     .then(() => {
-      cb();
+      return cb;
     });
   };
 }
