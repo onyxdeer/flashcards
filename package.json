@@ -14,7 +14,9 @@
     "test-server": "mocha test/test-server || true",
     "voice": "cd voice-server && npm start",
     "voice:install": "cd voice-server && npm install",
-    "seed": "node db/scripts/seed.js"
+    "seed": "node db/scripts/seed.js",
+    "start:prod": "pm2 start server/server.js --name main-server",
+    "voice:prod": "pm2 start start.sh --name voice_server"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
+    "browser-audio": "^1.0.2",
     "classnames": "^2.2.5",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
@@ -47,7 +50,6 @@
     "mdbootstrap": "^4.3.1",
     "morgan": "^1.8.1",
     "mysql": "^2.13.0",
-    "node-record-lpcm16": "^0.3.0",
     "passport": "^0.3.2",
     "path": "^0.12.7",
     "react": "^15.4.2",

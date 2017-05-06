@@ -55,7 +55,6 @@ class LandingBentos extends Component {
 
   render() {
     var bento = this.props.bento
-    console.log('what are props in landingbentos: ', this.props)
     // var animationNumber = Math.floor(Math.random()*6);
     return (
     <div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.5s">
