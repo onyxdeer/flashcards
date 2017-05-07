@@ -24,7 +24,7 @@ class ChangeToNoriSection extends Component {
         <div className='row changeNoriSection'>
           <label>Enter from 1 to {this.props.bentoData ? this.props.bentoData.length : 1} to go to that Nori: </label>
             <span>  </span>
-          <input type='tel' className='cardNumberField' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder={this.props.currentNori+1} />
+          <input type='number' min="1" max={this.props.bentoData.length} className='cardNumberField' value={this.props.input} onChange={(event) => this.props.handleInput(event)} placeholder={this.props.currentNori+1} />
         </div>
       </form>
     );
