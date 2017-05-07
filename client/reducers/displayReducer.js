@@ -28,6 +28,7 @@ const stateDefault = {
 const handleResetCurrentNori = (state, action) => ({
   ...state,
   currentNori: action.currentNori,
+  input: action.input,
 });
 
 const handleFetchNoris = (state, action) => ({
