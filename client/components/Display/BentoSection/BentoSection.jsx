@@ -64,7 +64,7 @@ class BentoSection extends Component {
 
   render() {
     return (
-      <div className='row cardSpace'>
+      <div className='row cardSpace animated slideInDown'>
         {this.props.bentoData&&(this.props.bentoData.length > 0) ? <Swipeable
           onSwipedLeft={() => this.props.prevNori(this.props.bentoData, this.props.currentNori, this.props.direction)}
           onSwipedRight={() => this.props.nextNori(this.props.bentoData, this.props.currentNori, this.props.direction)}>

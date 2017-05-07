@@ -70,7 +70,7 @@ class Display extends Component {
   render() {
 
     return (
-      <div className="displaySection animated slideInDown" data-wow-delay=".4s">
+      <div className="displaySection">
         <Modal />
         <div className="create-title">
           <h1 className="default-font">Bento: {this.props.title}</h1>
