@@ -1,11 +1,11 @@
-# Project Name
-Obento
+# Obento
+Open Source Flashcard App with Voice Interactions
 
 ## Team
-
-  - __Product Owner__: Eric Chen
-  - __Scrum Master__: David Zou
-  - __Development Team Members__: Patrick Xie, Wilton Chew, Eric Chen, David Zou
+  - Eric Chen
+  - David Zou
+  - Wilton Chew
+  - Patrick Xie
 
 ## Table of Contents
 
@@ -147,3 +147,7 @@ See [PRESS-RELEASE.md](PRESS-RELEASE.md) for more information about Obento.
 - style-loader ^0.13.2
 - webpack ^2.3.2
 - webpack-dev-server ^2.4.2
+
+
+# License
+MIT
