@@ -57,13 +57,13 @@ class imageDropzone extends React.Component {
     if(this.props.bento.noris[this.props.number]["Front"]["image"]) {
       return (
         <section className={"nori-image"}>
-        <img className={"img-thumbnail"} src = {this.props.bento.noris[this.props.number]["Front"]["image"]} />
-        <button className={"btn btn-default btn-sm"} onClick = {() => {this.props.handleImageDeletion(this.props.bento, this.props.number), this.falseImgurInstance()}}>delete</button>
+          <img className={"img-thumbnail"} src = {this.props.bento.noris[this.props.number]["Front"]["image"]} />
+          <button className={"btn btn-default btn-sm"} onClick = {() => {this.props.handleImageDeletion(this.props.bento, this.props.number), this.falseImgurInstance()}}>delete</button>
         </section>
       )
     } else {
       return (
-        <div className={'editPlaceholder dropzone'  + ' dz' + this.props.number}></div>
+        <div className={'editPlaceholder dropzone' + ' dz' + this.props.number}></div>
       )
     }
   }

@@ -56,8 +56,10 @@ html {
 
 .inner-contact {
     /*margin-top: 45px;*/
-    padding: 40px;
-    height: 320px;
+    /*padding: 40px;*/
+    /*height: 320px;*/
+    text-align: center;
+    margin: auto;
 }
 
 .contact-text{
@@ -115,6 +117,21 @@ html {
     border:1px solid #8BC3A3;
 }
 
+.bentoNameField {
+    max-width: 200px;
+}
+
+.leftInfo {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}
+
+.rightInfo {
+    display: inline-block;
+    margin: 10px;
+}
+
 /*New Nori Style*/
 
 .textarea{
@@ -124,8 +141,8 @@ html {
 }
 
 .nori-textarea{
-    height: 50%;
-    max-height: 120px;
+    /*height: 50%;*/
+    /*max-height: 120px;*/
     width: auto;
     margin: 0 auto;
     position: relative;
@@ -159,7 +176,7 @@ html {
 /* Send Button Styles */
 
 .form-btn{
-    width:180px;
+    /*width:180px;*/
     display: block;
     height: auto;
     padding:15px 15px;
@@ -221,9 +238,25 @@ input {
     text-align: center
 }
 
+.add-delete-nori {
+
+}
+
+.imageDropSection {
+    max-width: 240px;
+}
+
+.rteSection {
+
+}
+
 /* DISPLAY PAGE */
 
 .cardSpace {
+    margin: auto;
+}
+
+.changeNoriSection {
     margin: auto;
 }
 
@@ -238,7 +271,7 @@ input {
 
 .buttonSection {
     text-align: center;
-    margin: 3px;
+    margin: auto;
 }
 
 .changeToNoriSection {
@@ -682,17 +715,21 @@ div.thumbnailSpace.wow.bounceIn.animated {
 
 /*CSS FOR DROPZONE*/
 .dropzone {
+    /*text-align: center;*/
     border: 4px dashed #ccc;
-    height: 200px;
+    /*height: 200px;*/
     margin: 0 10px;
     position: relative;
-    min-width: 220px;
+    /*min-width: 220px;*/
+    height: 182px; 
+    width: 162px;
 }
 
 .dropzone p {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 100%;
-    line-height: 200px;
     margin: 0;
     text-align: center;
     width: 100%;
@@ -715,19 +752,32 @@ div.thumbnailSpace.wow.bounceIn.animated {
     text-align: center;
 }
 
+.edit-nori-right {
+    justify-content: center;
+}
+
 .nori-image {
     max-height: 182px; 
-    max-width: 162px
+    max-width: 162px;
 }
 
 .RichTextEditor__editor___1QqIU {
-    height: 90px
+    max-height: 90px;
+    overflow: auto;
 }
 
 .RichTextEditor__root___2QXK- {
-    width: 90%;
-    min-width: 400px;
+    /*width: 90%;*/
+    /*min-width: 400px;*/
     max-width: 400px
+}
+
+.rteArea {
+    text-align: center;
+}
+
+.textFieldSection {
+    margin: auto;
 }
 
 #hero-area {
@@ -841,7 +891,22 @@ p.lp{
 }
 
 .ops-div {
-    padding-right: 55px;
+    /*padding-right: 55px;*/
+    margin: 10px;
+    text-align: center;
+}
+
+.editSection {
+    text-align: center;
+    overflow: hidden;
+}
+
+.addDeleteSection {
+    margin: auto;
+}
+
+.bentoDescriptionInEdit {
+    min-width: 300px;
 }
 
 .editPlaceholder {

@@ -70,7 +70,7 @@ class Display extends Component {
   render() {
 
     return (
-      <div className="displaySection">
+      <div className="displaySection animated bounceInDown">
         <Modal />
         <div className="create-title">
           <h1 className="default-font">Bento: {this.props.title}</h1>
