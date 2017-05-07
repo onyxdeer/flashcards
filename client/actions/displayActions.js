@@ -33,6 +33,7 @@ function resetCurrentNori() {
     dispatch({
       type: RESET_CURRENT_NORI,
       currentNori: 0,
+      input: '',
     });
   };
 }
