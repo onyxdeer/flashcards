@@ -35,7 +35,7 @@ class editNewNori extends React.Component {
     return (
         <div className={"new-nori wow animated slideInLeft"} data-wow-delay = {0.5} data-wow-duration= "1.5s" style = {style}>
 
-            <div style={{display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
+            <div className="edit-nori-outer-div" style={{display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
               <div className="edit-nori-right" style={{display: 'flex', flexFlow: 'row wrap'}}>
 
                 <ImageDropzone number={this.props.number} />
