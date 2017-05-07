@@ -227,6 +227,10 @@ input {
     margin: auto;
 }
 
+.changeNoriSection {
+    margin: auto;
+}
+
 .row {
     width: 100%;
 }
@@ -238,7 +242,7 @@ input {
 
 .buttonSection {
     text-align: center;
-    margin: 3px;
+    margin: auto;
 }
 
 .changeToNoriSection {
