@@ -891,14 +891,22 @@ p.lp{
 }
 
 .ops-div {
-    padding-right: 55px;
+    /*padding-right: 55px;*/
     margin: 10px;
-    float: left;
+    text-align: center;
 }
 
 .editSection {
     text-align: center;
     overflow: hidden;
+}
+
+.addDeleteSection {
+    margin: auto;
+}
+
+.bentoDescriptionInEdit {
+    min-width: 300px;
 }
 
 .editPlaceholder {
