@@ -33,7 +33,7 @@ class Explore extends Component {
       className: 'slick-margin',
       dotsClass: 'slick-dots slick-thumb',
       focusOnSelect: true,
-      responsive: [ { breakpoint: 800, settings: { slidesToShow: 1 } }, { breakpoint: 1100, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } }, { breakpoint: 1900, settings: { slidesToShow: 4 } }, { breakpoint: 2300, settings: { slidesToShow: 5 } }],
+      responsive: [ { breakpoint: 800, settings: { slidesToShow: 1 } }, { breakpoint: 1100, settings: { slidesToShow: 2 } }, { breakpoint: 1500, settings: { slidesToShow: 3 } }, { breakpoint: 1900, settings: { slidesToShow: 4 } }, { breakpoint: 9999, settings: { slidesToShow: 5 } }],
       touchMove: true,
       swipe: true,
       swipeToSlide: true,
