@@ -53,8 +53,8 @@ class editNewNori extends React.Component {
 
                   <div className="row addDeleteSection">
                     <div className="add-delete-nori" style={{display: 'flex', justifyContent:'center'}}>
-                      <button type="submit" className="btn btn-default add-nori-button" onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}><i className="fa fa-plus" aria-hidden="true"></i></button>
-                      <button type="submit" className="btn btn-default add-nori-button" value={this.props.number} onClick= {() => {this.gettingDeleted();}}><i className="fa fa-minus" aria-hidden="true"></i></button>
+                      <button type="submit" className="btn-sm btn-default add-nori-button" onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                      <button type="submit" className="btn-sm btn-default add-nori-button" value={this.props.number} onClick= {() => {this.gettingDeleted();}}><i className="fa fa-minus" aria-hidden="true"></i></button>
                     </div>
                   </div>
 
