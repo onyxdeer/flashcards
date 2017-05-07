@@ -2,10 +2,10 @@
 Open Source Flashcard App with Voice Interactions
 
 ## Team
-
-  - __Product Owner__: Eric Chen
-  - __Scrum Master__: David Zou
-  - __Development Team Members__: Patrick Xie, Wilton Chew, Eric Chen, David Zou
+  - Eric Chen
+  - David Zou
+  - Wilton Chew
+  - Patrick Xie
 
 ## Table of Contents
 
