@@ -124,8 +124,8 @@ html {
 }
 
 .nori-textarea{
-    height: 50%;
-    max-height: 120px;
+    /*height: 50%;*/
+    /*max-height: 120px;*/
     width: auto;
     margin: 0 auto;
     position: relative;
@@ -219,6 +219,18 @@ input {
     -moz-box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
     -webkit-box-shadow: 0px 1px 4px rgba(0,0,0, 0.10);
     text-align: center
+}
+
+.add-delete-nori {
+
+}
+
+.imageDropSection {
+    max-width: 240px;
+}
+
+.rteSection {
+
 }
 
 /* DISPLAY PAGE */
@@ -686,17 +698,21 @@ div.thumbnailSpace.wow.bounceIn.animated {
 
 /*CSS FOR DROPZONE*/
 .dropzone {
+    /*text-align: center;*/
     border: 4px dashed #ccc;
-    height: 200px;
+    /*height: 200px;*/
     margin: 0 10px;
     position: relative;
-    min-width: 220px;
+    /*min-width: 220px;*/
+    height: 182px; 
+    width: 162px;
 }
 
 .dropzone p {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 100%;
-    line-height: 200px;
     margin: 0;
     text-align: center;
     width: 100%;
@@ -719,19 +735,32 @@ div.thumbnailSpace.wow.bounceIn.animated {
     text-align: center;
 }
 
+.edit-nori-right {
+    justify-content: center;
+}
+
 .nori-image {
     max-height: 182px; 
-    max-width: 162px
+    max-width: 162px;
 }
 
 .RichTextEditor__editor___1QqIU {
-    height: 90px
+    max-height: 90px;
+    overflow: auto;
 }
 
 .RichTextEditor__root___2QXK- {
-    width: 90%;
-    min-width: 400px;
+    /*width: 90%;*/
+    /*min-width: 400px;*/
     max-width: 400px
+}
+
+.rteArea {
+    text-align: center;
+}
+
+.textFieldSection {
+    margin: auto;
 }
 
 #hero-area {

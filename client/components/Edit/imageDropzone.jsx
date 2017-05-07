@@ -63,7 +63,7 @@ class imageDropzone extends React.Component {
       )
     } else {
       return (
-        <div className={'editPlaceholder dropzone'  + ' dz' + this.props.number}></div>
+        <div className={'editPlaceholder dropzone' + ' dz' + this.props.number}></div>
       )
     }
   }

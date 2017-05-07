@@ -30,31 +30,43 @@ class editNewNori extends React.Component {
       style['animationName'] = 'fadeOutRight ' 
     }
     return (
-      <div style={{display: 'flex'}}>
-      <div className={"new-nori wow animated slideInLeft"} data-wow-delay = {0.5} data-wow-duration= "1.5s" style = {style}>
-        <div style = {{ minWidth: 240}}>
-          <ImageDropzone number = {this.props.number}/>
-        </div>
-        <div className="nori-edit-right" style = {{display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
-          <div style ={{display: 'flex', flexFlow: 'row nowrap'}}>
-        <div className='nori-textarea'  >
-          <EditNewNoriRTE side = 'Front' number = {this.props.number}/>
-          </div>
-          <div className='nori-textarea'>
-          <EditNewNoriRTE side = 'Back'  number  = {this.props.number} />
-          </div>
-          </div>
-          <div className="add-delete-nori" style = {{display: 'flex', justifyContent:'flex-end'}}>
-      <button type="submit" className="btn btn-default add-nori-button"  onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}><i className="fa fa-plus" aria-hidden="true"></i></button>
-      <button type="submit" className="btn btn-default add-nori-button"  value={this.props.number}  onClick= {() => 
-        {this.gettingDeleted();
-          console.log("I just got fired")
-          }
-        }><i className="fa fa-minus" aria-hidden="true"></i></button>
-        </div>
-      </div>
-      </div> 
-      </div>
+        <div className={"new-nori wow animated slideInLeft"} data-wow-delay = {0.5} data-wow-duration= "1.5s" style = {style}>
+
+          {/*<div className="row">*/}
+
+            {/*<ImageDropzone number={this.props.number} />*/}
+
+            <div style={{display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
+              <div className="edit-nori-right" style={{display: 'flex', flexFlow: 'row wrap'}}>
+
+                <ImageDropzone number={this.props.number} />
+
+                <div className="rteArea">
+
+                  <div className="row textFieldSection">
+                    <div className='nori-textarea'>
+                      <EditNewNoriRTE side='Front' number={this.props.number} />
+                    </div>
+                    <div className='nori-textarea'>
+                      <EditNewNoriRTE side='Back'  number={this.props.number} />
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="add-delete-nori" style={{display: 'flex', justifyContent:'center'}}>
+                      <button type="submit" className="btn btn-default add-nori-button" onClick={() => {this.props.handleAddNewNori(this.props.bento, this.props.number)}}><i className="fa fa-plus" aria-hidden="true"></i></button>
+                      <button type="submit" className="btn btn-default add-nori-button" value={this.props.number} onClick= {() => {this.gettingDeleted();}}><i className="fa fa-minus" aria-hidden="true"></i></button>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+          {/*</div>*/}
+
+        </div> 
     );
   }
 }
