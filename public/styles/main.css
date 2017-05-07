@@ -718,7 +718,8 @@ div.thumbnailSpace.wow.bounceIn.animated {
     /*text-align: center;*/
     border: 4px dashed #ccc;
     /*height: 200px;*/
-    margin: 0 10px;
+    margin-bottom: 25px;
+    margin-right: 25px;
     position: relative;
     /*min-width: 220px;*/
     height: 182px; 
@@ -759,6 +760,8 @@ div.thumbnailSpace.wow.bounceIn.animated {
 .nori-image {
     max-height: 182px; 
     max-width: 162px;
+    margin-bottom: 25px;
+    margin-right: 25px;
 }
 
 .RichTextEditor__editor___1QqIU {
