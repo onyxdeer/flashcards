@@ -58,7 +58,7 @@ class LandingBentos extends Component {
     var bento = this.props.bento
     // var animationNumber = Math.floor(Math.random()*6);
     return (
-      <div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.5s">
+      <div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.2s">
     {/*<div className = {wowAnimation[0]} data-wow-delay = "0.4s" data-wow-duration="1.5s" style = {{display: 'flex', flexDirection: 'column', justifyContent:'space-between', flexGrow: 0, flexShrink: 0}}>*/}
         <div className="view overlay hm-white-slight">
           {this.props.landing.images ? 
