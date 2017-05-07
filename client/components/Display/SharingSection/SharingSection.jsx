@@ -16,7 +16,7 @@ class SharingSection extends Component {
         <div className='row sharingSpace'>
           <div className='sharingSection'>
             <label>Share this bento with the following link!</label><span>  </span><input type='text' className='shortenURLField' value={`obento.fun/id=${this.props.id_hash}`} readOnly />
-            <button type='button' className='btn btn-success' data-toggle='modal' data-target='#sendSMS' onClick={this.props.clearPhoneNumberInput}>Send via SMS</button>
+            <button type='button' className='btn btn-default' data-toggle='modal' data-target='#sendSMS' onClick={this.props.clearPhoneNumberInput}>Send via SMS</button>
           </div>
         </div>
         <PhoneNumberModal />
