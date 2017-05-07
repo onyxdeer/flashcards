@@ -555,7 +555,7 @@ input[type=text].shortenURLField {
 
 .searchGrid {
     margin: auto;
-    /*text-align: center;*/
+    text-align: center;
 }
 
 .scrollSection {
