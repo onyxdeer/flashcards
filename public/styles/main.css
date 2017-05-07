@@ -726,6 +726,17 @@ div.thumbnailSpace.wow.bounceIn.animated {
     width: 162px;
 }
 
+.dropzoneCoverImage {
+    /*text-align: center;*/
+    border: 4px dashed #ccc;
+    /*height: 200px;*/
+    margin: 25px;
+    position: relative;
+    /*min-width: 220px;*/
+    height: 182px; 
+    width: 162px;
+}
+
 .dropzone p {
     display: flex;
     flex-direction: column;
