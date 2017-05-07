@@ -1,5 +1,5 @@
-# Project Name
-Obento
+# Obento
+Open Source Flashcard App with Voice Interactions
 
 ## Team
 
@@ -147,3 +147,7 @@ See [PRESS-RELEASE.md](PRESS-RELEASE.md) for more information about Obento.
 - style-loader ^0.13.2
 - webpack ^2.3.2
 - webpack-dev-server ^2.4.2
+
+
+# License
+MIT
