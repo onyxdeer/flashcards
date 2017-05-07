@@ -771,8 +771,12 @@ div.thumbnailSpace.wow.bounceIn.animated {
 .nori-image {
     max-height: 182px; 
     max-width: 162px;
-    margin-bottom: 25px;
+    margin-bottom: 45px;
     margin-right: 25px;
+}
+
+.img-thumbnail {
+    max-height: 100%;
 }
 
 .RichTextEditor__editor___1QqIU {
