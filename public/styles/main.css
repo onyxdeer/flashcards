@@ -299,7 +299,7 @@ input {
     max-height: 150px;
 }
 
-input[type=tel].cardNumberField {
+input[type=number].cardNumberField {
     width: 40px;
     text-align: center;
 }
