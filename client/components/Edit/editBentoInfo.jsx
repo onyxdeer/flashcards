@@ -74,7 +74,7 @@ class editBentoInfo extends React.Component {
             <section className="img-fluid cover-image-fluid" style={{display: 'flex', flexDirection: 'column', height: '230px', alignItems: 'center'}}>
               <img className="img-fluid cover-image-fluid" src={this.props.bento.cover.url} />
               <button onClick={() => {this.props.handleImageDeletion(this.props.bento, "cover"), this.falseImgurInstance()}} className="btn btn-default btn-sm cover-edit-image">delete</button>
-            </section> : <div className={'editPlaceholder dropzone' + ' dzcover'}></div>}
+            </section> : <div className={'editPlaceholder dropzone dropzoneCoverImage' + ' dzcover'}></div>}
 
           </div>
 
