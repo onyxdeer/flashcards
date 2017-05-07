@@ -58,23 +58,34 @@ class editBentoInfo extends React.Component {
 
   render() {
     return (
-     <div className="inner-contact" >
-                <div className="md-form">
-                    {/*<form id="contact-us">*/}
-                        <div className="col-xs-6 wow animated slideInLeft" data-wow-delay = ".4s">
-                            <input type="text" name="name" id="form1" required="required" value={this.props.bento.name} className="form-control focusedInput" onChange = {(event) => {this.props.handleChange(event)}}/>
-                            <label className="active editPlaceholder">Bento Name</label>
-                            {/*<input type="text" name="category" id="subject" required="required" value={this.props.bento.category} className="form-control" placeholder="Subject" onChange = {(event) => {this.props.handleChange(event)}}/>*/}
-                            {/*<label for="form1" class="">Category</label>*/}
-                              {this.props.bento.cover.url ?<section className = "img-fluid cover-image-fluid" style = {{display: 'flex', flexDirection: 'column', height: '230px', alignItems: 'center'}}> <img className = "img-fluid cover-image-fluid" src = {this.props.bento.cover.url}/><button onClick={() => {this.props.handleImageDeletion(this.props.bento, "cover"), this.falseImgurInstance()}}className= "btn btn-default btn-sm cover-edit-image">delete</button></section>: <div className = {'editPlaceholder dropzone' + ' dzcover col-xs-6 pull-right'}></div>}
-                        </div>
-                        <div className="col-xs-6 wow animated slideInRight" data-wow-delay = ".4s">
-                            {/*<label>Description</label>*/}
-                            <textarea name="description" id="message" className="form textarea editPlaceholder" value={this.props.bento.description} placeholder="Description" onChange = {(event) => {this.props.handleChange(event)}}></textarea>
-                            <button  id="submit" name="submit" className="btn btn-default form-btn semibold pull-right animated slideInRight" data-delay = ".9s" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
-                        </div>
-                </div>
-            </div>
+      <div className="inner-contact md-form">
+        {/*<div className="md-form">*/}
+            {/*<form id="contact-us">*/}
+
+          <div className="leftInfo wow animated slideInLeft" data-wow-delay=".4s">
+
+            <label className="active editPlaceholder">Bento Name</label>
+            <input type="text" name="name" id="form1" required="required" value={this.props.bento.name} className="form-control focusedInput bentoNameField" onChange={(event) => {this.props.handleChange(event)}} />
+
+            {/*<input type="text" name="category" id="subject" required="required" value={this.props.bento.category} className="form-control" placeholder="Subject" onChange = {(event) => {this.props.handleChange(event)}}/>*/}
+            {/*<label for="form1" class="">Category</label>*/}
+
+            {this.props.bento.cover.url ? 
+            <section className="img-fluid cover-image-fluid" style={{display: 'flex', flexDirection: 'column', height: '230px', alignItems: 'center'}}>
+              <img className="img-fluid cover-image-fluid" src={this.props.bento.cover.url} />
+              <button onClick={() => {this.props.handleImageDeletion(this.props.bento, "cover"), this.falseImgurInstance()}} className="btn btn-default btn-sm cover-edit-image">delete</button>
+            </section> : <div className={'editPlaceholder dropzone' + ' dzcover'}></div>}
+
+          </div>
+
+          <div className="rightInfo wow animated slideInRight" data-wow-delay=".4s">
+            {/*<label>Description</label>*/}
+            <textarea name="description" id="message" className="form textarea editPlaceholder" value={this.props.bento.description} placeholder="Description" onChange={(event) => {this.props.handleChange(event)}}></textarea>
+            <button  id="submit" name="submit" className="btn btn-default form-btn semibold pull-right animated slideInRight" data-delay=".9s" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
+          </div>
+
+        {/*</div>*/}
+      </div>
     )
   }
 }

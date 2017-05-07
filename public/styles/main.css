@@ -56,8 +56,9 @@ html {
 
 .inner-contact {
     /*margin-top: 45px;*/
-    padding: 40px;
-    height: 320px;
+    /*padding: 40px;*/
+    /*height: 320px;*/
+    text-align: center;
 }
 
 .contact-text{
@@ -115,6 +116,21 @@ html {
     border:1px solid #8BC3A3;
 }
 
+.bentoNameField {
+    max-width: 200px;
+}
+
+.leftInfo {
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}
+
+.rightInfo {
+    display: inline-block;
+    margin: 10px;
+}
+
 /*New Nori Style*/
 
 .textarea{
@@ -159,7 +175,7 @@ html {
 /* Send Button Styles */
 
 .form-btn{
-    width:180px;
+    /*width:180px;*/
     display: block;
     height: auto;
     padding:15px 15px;
@@ -875,6 +891,7 @@ p.lp{
 
 .ops-div {
     padding-right: 55px;
+    margin: 10px;
 }
 
 .editPlaceholder {

@@ -22,19 +22,18 @@ class editNewNori extends React.Component {
   }
 
   render() {
-        var style = {
+
+    var style = {
       display: 'flex',
       justifyContent: 'center'
     };
-    if(this.state.deleted){
-      style['animationName'] = 'fadeOutRight ' 
+
+    if (this.state.deleted) {
+      style['animationName'] = 'fadeOutRight';
     }
+    
     return (
         <div className={"new-nori wow animated slideInLeft"} data-wow-delay = {0.5} data-wow-duration= "1.5s" style = {style}>
-
-          {/*<div className="row">*/}
-
-            {/*<ImageDropzone number={this.props.number} />*/}
 
             <div style={{display: 'flex', flexFlow: 'column', justifyContent: 'space-between' }}>
               <div className="edit-nori-right" style={{display: 'flex', flexFlow: 'row wrap'}}>
@@ -63,8 +62,6 @@ class editNewNori extends React.Component {
 
               </div>
             </div>
-
-          {/*</div>*/}
 
         </div> 
     );
