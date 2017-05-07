@@ -73,7 +73,7 @@ class editBentoInfo extends React.Component {
             {this.props.bento.cover.url ? 
             <section className="img-fluid cover-image-fluid" style={{display: 'flex', flexDirection: 'column', height: '230px', alignItems: 'center'}}>
               <img className="img-fluid cover-image-fluid" src={this.props.bento.cover.url} />
-              <button onClick={() => {this.props.handleImageDeletion(this.props.bento, "cover"), this.falseImgurInstance()}} className="btn btn-default btn-sm cover-edit-image">delete</button>
+              <button onClick={() => {this.props.handleImageDeletion(this.props.bento, "cover"), this.falseImgurInstance()}} className="btn btn-default btn-sm">delete</button>
             </section> : <div className={'editPlaceholder dropzone dropzoneCoverImage' + ' dzcover'}></div>}
 
           </div>
@@ -81,7 +81,7 @@ class editBentoInfo extends React.Component {
           <div className="rightInfo wow animated slideInRight" data-wow-delay=".4s">
             {/*<label>Description</label>*/}
             <textarea name="description" id="message" className="bentoDescriptionInEdit form textarea editPlaceholder" value={this.props.bento.description} placeholder="Description" onChange={(event) => {this.props.handleChange(event)}}></textarea>
-            <button  id="submit" name="submit" className="btn btn-default form-btn semibold animated slideInRight" data-delay=".9s" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
+            <button  id="submit" name="submit" className="btn btn-default btn-sm form-btn semibold animated slideInRight" data-delay=".9s" onClick={() =>{this.props.handleSaveBento(this.props.bento)}}>Save Bento</button> 
           </div>
 
         {/*</div>*/}
